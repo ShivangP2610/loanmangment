@@ -1,0 +1,40 @@
+table {
+    width: 100%;
+    border: 1px solid black;
+}
+/* tr,td{
+    border: 1px solid black;
+} */
+#table-1{
+    width: 100%;
+}
+h1 {
+    text-align: center;
+}
+
+
+.main {
+    display: flex;
+    justify-content: space-between;
+}
+
+.text {
+    padding: 20px;
+    width: 50%;
+}
+
+.borrower {
+    width: 80%;
+}
+
+.title {
+    width: 80%;
+}
+
+.tbdata {
+    width: 80%;
+}
+
+.tab-data {
+    width: 70%;
+}
