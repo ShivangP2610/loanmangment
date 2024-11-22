@@ -897,6 +897,9 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">RePayment Schedule</h5>
+          <div class="div" style="text-align: end;margin-left:150px;">
+            <button class="btn btn-danger" id="downloadRePayment">Download Repayment Schedual</button>
+        </div>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -917,35 +920,121 @@
 <script>
 
 $(document).ready(function() {
-    $('#lon_id').change(function() {
-        // console.log('haasdfgasdfgh');
-        var loanId = $(this).val();
-        // alert(loanId);
+    // $('#lon_id').change(function() {
+    //     // console.log('haasdfgasdfgh');
+    //     var loanId = $(this).val();
+    //     // alert(loanId);
+    //     if (loanId) {
+    //         $.ajax({
+    //             url: '/get-orignalcustomers/' + loanId,
+    //             type: 'GET',
+    //             dataType: 'json',
+    //             success: function(data) {
+    //                 $('#customer_id').empty();
+    //                 $.each(data.customers, function(key, customer) {
+    //                     $('#customer_id').append($('<option>', {
+    //                         value: customer.cust_id,
+    //                         text: customer.cust_name
+    //                     }));
+
+
+    //                 });
+
+    //             },
+    //             error: function(error) {
+    //                 console.error("Error fetching customers:", error);
+    //             }
+    //         });
+    //     } else {
+    //         $('#customer_id').empty();
+    //     }
+    // });
+    $('#lon_id').change(function () {
+        let loanId = $(this).val();
+        fetchCustomersByLoanId(loanId); // Fetch customers
+        let customerId = $('#customer_id').val();
+        fetchLoanAndCustomerData(loanId, customerId); // Fetch loan and customer data
+    });
+
+    // Function to populate customers based on loan ID
+    function fetchCustomersByLoanId(loanId) {
         if (loanId) {
             $.ajax({
                 url: '/get-orignalcustomers/' + loanId,
                 type: 'GET',
                 dataType: 'json',
-                success: function(data) {
+                success: function (data) {
                     $('#customer_id').empty();
-                    $.each(data.customers, function(key, customer) {
+                    $.each(data.customers, function (key, customer) {
                         $('#customer_id').append($('<option>', {
                             value: customer.cust_id,
                             text: customer.cust_name
                         }));
-
-
                     });
-
                 },
-                error: function(error) {
+                error: function (error) {
                     console.error("Error fetching customers:", error);
                 }
             });
         } else {
             $('#customer_id').empty();
         }
-    });
+    }
+
+    // calling function
+
+    function fetchLoanAndCustomerData(loanId, customerId) {
+    $("#loanidmain").val(loanId);
+    $("#custidmain").val(customerId);
+
+    if (loanId) {
+        $.ajax({
+            url: '{{ url("getloandata") }}/' + loanId,
+            method: 'GET',
+            success: function (response) {
+                console.log(response.repaymentdata);
+
+                // Populate credit data
+                let $creditdata = response.creditdata;
+                if ($creditdata && $creditdata.length > 0) {
+                    $("#appication_amount").val($creditdata[0]['requested_amount']);
+                    $("#Tanure").val($creditdata[0]['requested_tenure']);
+                    $("#policy_rate").val($creditdata[0]['policyrate']);
+                    $("#rate_percentage").val($creditdata[0]['policyrate']);
+                }
+
+                // Populate repayment data
+                let $repaymentdata = response.repaymentdata;
+                if ($repaymentdata) {
+                    $("#disbursalType").val($repaymentdata['disbursal_type']);
+                    $("#numberdisbursal").val($repaymentdata['number_od_disbursal']);
+                    $("#disbursalTo").val($repaymentdata['disbursal_to']);
+                    $("#Recovery_Type").val($repaymentdata['recovery_type']);
+                    $("#Recovery_Sub_Type").val($repaymentdata['recovery_sub_type']);
+                    $("#Repayment_type").val($repaymentdata['repayment_type']);
+                    $("#Repayment_Frequency").val($repaymentdata['repayment_frequency']);
+                    $("#Tanure_in").val($repaymentdata['tenure_in']);
+                    $("#int_type").val($repaymentdata['installment_type']);
+                    $("#ins_based_on").val($repaymentdata['installment_based_on']);
+                    $("#ins_mode").val($repaymentdata['installment_mode']);
+                    $("#adv_installment").val($repaymentdata['number_of_advance_installment']);
+                    $("#total_installment").val($repaymentdata['total_number_of_installment']);
+                    $("#spread").val($repaymentdata['spread']);
+                    $("#due_day").val($repaymentdata['due_day']);
+                    $("#sdate").val($repaymentdata['interest_startdate']);
+                    $("#fins_date").val($repaymentdata['first_installment_date']);
+                    $("#brk_prd_adjust").val($repaymentdata['broken_period_adjustment']);
+                    $("#int_chrge_type").val($repaymentdata['interest_charge_type']);
+                    $("#int_chrged").val($repaymentdata['interest_charged']);
+                    $("#act_date").val($repaymentdata['actual_date']);
+                }
+            },
+            error: function (error) {
+                console.error("Error fetching loan data:", error);
+            }
+        });
+    }
+}
 
     $("#adddesicion").on('click',function()
     {
@@ -1141,7 +1230,7 @@ $(document).ready(function() {
            let $remainblnc = $amount;
         //    let $opaningblnc = $amount;
            let emiSheet  = [];
-
+           let totalEmi = 0, totalPrincipal = 0, totalInterest = 0;
            for(let i=1;i<=$tanure;i++)
            {
               let $opaningblnc = $remainblnc;
@@ -1149,6 +1238,10 @@ $(document).ready(function() {
               $newprinciple = $emi3 - $interst;
               $remainblnc -= $newprinciple;
 
+
+              totalEmi += parseFloat($finalemi);
+              totalPrincipal += parseFloat($newprinciple);
+              totalInterest += parseFloat($interst);
 
               emiSheet.push({
                 month:i,
@@ -1163,6 +1256,11 @@ $(document).ready(function() {
                     <table class="table table-bordered">
                         <thead>
                             <tr>
+                               <th colspan="8" style="text-align:center">Repayment Schedual</th>
+                            </tr>
+                            <tr>
+                                <th>Month</th>
+                                <th>Month</th>
                                 <th>Month</th>
                                 <th>Opaning Balance</th>
                                 <th>EMI (INR)</th>
@@ -1177,6 +1275,8 @@ $(document).ready(function() {
                 tableHTML += `
                     <tr>
                         <td>${row.month}</td>
+                        <td>${row.month}</td>
+                        <td>${row.month}</td>
                         <td>${row.opaningblnc}</td>
                         <td>${row.emi}</td>
                         <td>${row.principle}</td>
@@ -1188,6 +1288,17 @@ $(document).ready(function() {
 
             tableHTML += `
                     </tbody>
+                      <tfoot>
+                        <tr>
+                            <td style="text-align: center;"><strong>Total</strong></td>
+                            <td></td>
+                            <td></td>
+                            <td><strong>${totalEmi.toFixed(2)}</strong></td>
+                            <td><strong>${totalPrincipal.toFixed(2)}</strong></td>
+                            <td><strong>${totalInterest.toFixed(2)}</strong></td>
+                            <td></td> <!-- Empty for Remaining Balance -->
+                        </tr>
+                    </tfoot>
                 </table>
             `;
 
@@ -1212,6 +1323,111 @@ $(document).ready(function() {
             alert("Please Select Tanure In!!");
         }
     });
+
+    // downlaod data
+//     document.getElementById("downloadRePayment").addEventListener("click", function () {
+//     let table = document.querySelector("#emiSheet table");
+//     if (!table) {
+//         alert("No EMI schedule data available.");
+//         return;
+//     }
+
+//     let csv = [];
+//     let rows = table.querySelectorAll("thead tr, tbody tr, tfoot tr");
+
+//     rows.forEach((row) => {
+//         let cols = row.querySelectorAll("th, td");
+//         let rowData = [];
+
+//         cols.forEach((col) => {
+//             rowData.push(col.innerText.trim());
+//         });
+
+//         csv.push(rowData.join(","));
+//     });
+
+//     // Convert array to CSV string
+//     let csvContent = csv.join("\n");
+
+//     // Create a Blob from the CSV string
+//     let blob = new Blob([csvContent], { type: "text/csv" });
+//     let url = URL.createObjectURL(blob);
+
+//     // Create a download link and trigger the download
+//     let a = document.createElement("a");
+//     a.href = url;
+//     a.download = "Repayment_Schedule.csv";
+//     a.style.display = "none";
+//     document.body.appendChild(a);
+//     a.click();
+//     document.body.removeChild(a);
+// });
+
+document.getElementById("downloadRePayment").addEventListener("click", function () {
+    let table = document.querySelector("#emiSheet table");
+    if (!table) {
+        alert("No EMI schedule data available.");
+        return;
+    }
+
+    let csv = [];
+    let rows = table.querySelectorAll("thead tr, tbody tr, tfoot tr"); // Include all rows
+
+    // Handle the header with colspan and title
+    let headerRow = table.querySelector("thead tr:nth-child(1)"); // The row with "Repayment Schedule"
+    let headerData = ["Repayment Schedule"]; // Title row with a colspan
+    csv.push(headerData.join(",")); // Push this title row to CSV
+
+    // Second header row with the actual column names
+    let columnsHeader = table.querySelector("thead tr:nth-child(2)");
+    let columnsData = Array.from(columnsHeader.querySelectorAll("th")).map(col => col.innerText.trim());
+    csv.push(columnsData.join(","));
+
+    // Handle the tbody rows with month data
+    rows.forEach((row, rowIndex) => {
+        let cols = row.querySelectorAll("th, td");
+        let rowData = [];
+
+        // Only process tbody rows
+        if (row.parentNode.tagName === "TBODY") {
+            rowData = Array.from(cols).map(col => col.innerText.trim());
+        }
+        // Only add rows with data to CSV
+        if (rowData.length > 0) {
+            csv.push(rowData.join(","));
+        }
+    });
+
+    // Handle the footer row with totals
+    let footerRow = table.querySelector("tfoot tr");
+    let footerData = Array.from(footerRow.querySelectorAll("td")).map((col, colIndex) => {
+        if (colIndex === 0) {
+            return "Total"; // For the "Total" column
+        } else if (colIndex === 3 || colIndex === 4 || colIndex === 5) {
+            return col.innerText.trim(); // Total EMI, Principal, and Interest
+        } else {
+            return ""; // Empty for the other columns
+        }
+    });
+    csv.push(footerData.join(","));
+
+    // Convert array to CSV string
+    let csvContent = csv.join("\n");
+
+    // Create a Blob from the CSV string
+    let blob = new Blob([csvContent], { type: "text/csv" });
+    let url = URL.createObjectURL(blob);
+
+    // Create a download link and trigger the download
+    let a = document.createElement("a");
+    a.href = url;
+    a.download = "Repayment_Schedule.csv";
+    a.style.display = "none";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+});
+
 
 });
 
