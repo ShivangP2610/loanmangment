@@ -641,8 +641,6 @@ $(document).ready(function() {
     $('#lon_id').change(function () {
         let loanId = $(this).val();
         fetchCustomersByLoanId(loanId); // Fetch customers
-        let customerId = $('#customer_id').val();
-        fetchLoanAndCustomerData(loanId, customerId); // Fetch loan and customer data
     });
 
     // Function to populate customers based on loan ID
@@ -660,6 +658,8 @@ $(document).ready(function() {
                             text: customer.cust_name
                         }));
                     });
+                    let customerId = $('#customer_id').val(); 
+                    fetchLoanAndCustomerData(loanId, customerId); // Fetch loan and customer data
                 },
                 error: function (error) {
                     console.error("Error fetching customers:", error);
@@ -673,6 +673,7 @@ $(document).ready(function() {
     // calling function
 
     function fetchLoanAndCustomerData(loanId, customerId) {
+        // alert(customerId);
     $("#loanidmain").val(loanId);
     $("#custidmain").val(customerId);
 
@@ -896,12 +897,20 @@ $(document).ready(function() {
     });
 
     // calculate installment
+    // calculate installment
     $('#calculate').on('click', function(event) {
         event.preventDefault();
         $gettime = $("#Tanure_in").val();
         $amount = $("#appication_amount").val();
         $rate   = $("#policy_rate").val();
         $tanure = $("#Tanure").val();
+        // for month and year
+        $instdate = $("#fins_date").val();
+        let startdate= new Date($instdate);
+        let startmonth = startdate.getMonth();
+        let startyear  = startdate.getFullYear();
+        // alert(startmonth);
+        // alert(startyear);
 
         if($gettime == "Month")
         {
@@ -920,6 +929,8 @@ $(document).ready(function() {
         //    let $opaningblnc = $amount;
            let emiSheet  = [];
            let totalEmi = 0, totalPrincipal = 0, totalInterest = 0;
+
+           const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
            for(let i=1;i<=$tanure;i++)
            {
               let $opaningblnc = $remainblnc;
@@ -932,8 +943,13 @@ $(document).ready(function() {
               totalPrincipal += parseFloat($newprinciple);
               totalInterest += parseFloat($interst);
 
+              let currentMonthIndex = (startmonth + i - 1) % 12;
+              let currentYear = startyear + Math.floor((startmonth + i - 1) / 12);
+
               emiSheet.push({
-                month:i,
+                srno:i,
+                months:monthNames[currentMonthIndex],
+                year:currentYear,
                 opaningblnc: parseFloat($opaningblnc).toFixed(2),
                 emi:$finalemi.toFixed(2),
                 principle:$newprinciple.toFixed(2),
@@ -948,9 +964,9 @@ $(document).ready(function() {
                                <th colspan="8" style="text-align:center">Repayment Schedual</th>
                             </tr>
                             <tr>
+                                <th>Sr.No</th>
                                 <th>Month</th>
-                                <th>Month</th>
-                                <th>Month</th>
+                                <th>Year</th>
                                 <th>Opaning Balance</th>
                                 <th>EMI (INR)</th>
                                 <th>Principal (INR)</th>
@@ -963,9 +979,9 @@ $(document).ready(function() {
                 emiSheet.forEach((row) => {
                 tableHTML += `
                     <tr>
-                        <td>${row.month}</td>
-                        <td>${row.month}</td>
-                        <td>${row.month}</td>
+                        <td>${row.srno}</td>
+                        <td>${row.months}</td>
+                        <td>${row.year}</td>
                         <td>${row.opaningblnc}</td>
                         <td>${row.emi}</td>
                         <td>${row.principle}</td>

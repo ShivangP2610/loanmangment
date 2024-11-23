@@ -296,6 +296,13 @@
                       <i class="fa fa-book"></i>
                       <p>Add</p>
                     </a>
+                  </li>  
+
+                  <li class="nav-item ">
+                    <a href="{{url('approved/disbursal')}}" class="nav-link {{ request()->is('approved/disbursal') ? 'active' : '' }}">
+                      <i class="fa fa-book"></i>
+                      <p>Disbursal Details</p>
+                    </a>
                   </li> 
 
                   <li class="nav-item">

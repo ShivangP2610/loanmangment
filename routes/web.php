@@ -256,11 +256,21 @@ Route::get('/generate-pdf/{loan_id}', [PDFController::class,'generatePDF'])->nam
 Route::post('creditsatage/add',[CamController::class,'addcreditstage'])->name('add-creditstage');
 
 // approved stage ----shivnang 2-7-2024
-Route::get('approved/add',[ApprovedController::class,'create'])->name('approved/add');
-Route::get('viewapproved',[ApprovedController::class,'create'])->name('viewapproved');
-Route::get('getloandata/{id}',[ApprovedController::class,'getloandata'])->name('getLoanData');
+Route::get('approved/add',[ApprovedController::class,'create'])->name('approved/add'); 
 
-Route::post('repayment-instrument',[ApprovedController::class,'store'])->name('repaymentinstrument');
+Route::get('approved/disbursal',[ApprovedController::class,'disbursal'])->name('approved/disbursal'); 
+Route::get('viewapproved',[ApprovedController::class,'create'])->name('viewapproved');
+Route::get('getloandata/{id}',[ApprovedController::class,'getloandata'])->name('getLoanData'); 
+
+Route::get('getdisbursaldata/{id}',[ApprovedController::class,'getdisbursaldata'])->name('getdisbursaldata');
+
+Route::post('repayment-instrument',[ApprovedController::class,'store'])->name('repaymentinstrument'); 
+
+Route::post('disbursal-details',[ApprovedController::class,'disbursalstore'])->name('disbursaldetails'); 
+
+Route::get('/get-partners', [ApprovedController::class, 'getPartners'])->name('get.partners'); 
+Route::post('/submit-form', [ApprovedController::class, 'adjustablestore'])->name('adjustable.store');
+
 
 
 

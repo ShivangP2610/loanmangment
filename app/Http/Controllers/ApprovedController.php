@@ -1,10 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Adjustable;
+use App\Models\BankDetails;
 use App\Models\Customer;
 use App\Models\FormOffice;
 use App\Models\Repayment;
 use App\Models\Creditstage;
+use App\Models\Disbursal;
+use App\Models\Proprietor;
 use Illuminate\Http\Request;
 
 class ApprovedController extends Controller
@@ -28,24 +33,58 @@ class ApprovedController extends Controller
         $data = compact('url', 'title', 'btext');
 
         $creditdata = Creditstage::where('application', 'Approve')->first();
-        $loans  =  FormOffice::where('loan_id',$creditdata->loan_id)->get();
-        $customers = Customer::where('cust_id',$creditdata->cust__id)->get();
+        $loans  =  FormOffice::where('loan_id', $creditdata->loan_id)->get();
+        $customers = Customer::where('cust_id', $creditdata->cust__id)->get();
 
 
         // dd($creditdatamain);
         return view('approved')->with(array_merge($data, ['loans' => $loans, 'customers' => $customers]));
     }
 
+
+    public function disbursal()
+    {
+        $url = url('/approved/disbursal');
+        $title = 'Approved Disbursal';
+        $btext = "Submit";
+        $data = compact('url', 'title', 'btext');
+
+        $creditdata = Creditstage::where('application', 'Approve')->first();
+        $loans  =  FormOffice::where('loan_id', $creditdata->loan_id)->get();
+        $customers = Customer::where('cust_id', $creditdata->cust__id)->get();
+
+
+        // dd($creditdatamain);
+        return view('disbursaldetails')->with(array_merge($data, ['loans' => $loans, 'customers' => $customers]));
+    }
+
     public function getloandata(string $id)
     {
-        $creditdata = Creditstage::where('loan_id',$id)->get();
-        $loans  =  FormOffice::where('loan_id',$id)->get();
-        $repaymentdata = Repayment::where('loan_id',$id)->first();
+        $creditdata = Creditstage::where('loan_id', $id)->get();
+        $loans  =  FormOffice::where('loan_id', $id)->get(); 
+        $repaymentdata = Repayment::where('loan_id', $id)->first();
 
         return response()->json([
             'creditdata' => $creditdata,
             'loans' => $loans,
             'repaymentdata' => $repaymentdata
+        ]);
+    } 
+
+
+
+    public function getdisbursaldata(string $id)
+    {
+        $creditdata = Creditstage::where('loan_id', $id)->get();
+        $loans  =  FormOffice::where('loan_id', $id)->get(); 
+        $bandetails  = BankDetails::where('loan_id', $id)->get(); 
+        $disbursalmaindata = Disbursal::where('loan_id', $id)->first();
+
+        return response()->json([
+            'creditdata' => $creditdata,
+            'loans' => $loans, 
+            'bankdetails' =>$bandetails,
+            'disbursal' => $disbursalmaindata
         ]);
     }
     /**
@@ -56,35 +95,34 @@ class ApprovedController extends Controller
         // dd($request);
         $request->validate([
             'appication_amount' => 'required',
-             'disbursaltype'    => 'required',
-             'number_disbursals' => 'required',
-             'disbursal_to'      => 'required',
-             'recovery_type'     => 'required',
-             'recovery_sub_type' => 'required',
-             'repayment_type'    => 'required',
-             'repayment_frequency' => 'required',
-             'tenure'              => 'required',
-             'tenure_in'           => 'required',
-             'installment_type'    => 'required',
-             'installment_base_on' => 'required',
-             'installment_mode'    => 'required',
-             'number_of_adva_installment' => 'required',
-             'total_number_of_installment' => 'required',
-             'policy_rate'                 => 'required',
-             'rate'                        => 'required',
-             'spread'                      => 'required',
-             'due_day'                     => 'required',
-             'interest_startdate'          => 'required',
-             'first_installment_date'      => 'required',
-             'brokan_prd_adjust'           => 'required',
-             'interest_charge_type'        => 'required',
-             'interest_charged'            => 'required',
-             'actual_date'                 => 'required'
+            'disbursaltype'    => 'required',
+            'number_disbursals' => 'required',
+            'disbursal_to'      => 'required',
+            'recovery_type'     => 'required',
+            'recovery_sub_type' => 'required',
+            'repayment_type'    => 'required',
+            'repayment_frequency' => 'required',
+            'tenure'              => 'required',
+            'tenure_in'           => 'required',
+            'installment_type'    => 'required',
+            'installment_base_on' => 'required',
+            'installment_mode'    => 'required',
+            'number_of_adva_installment' => 'required',
+            'total_number_of_installment' => 'required',
+            'policy_rate'                 => 'required',
+            'rate'                        => 'required',
+            'spread'                      => 'required',
+            'due_day'                     => 'required',
+            'interest_startdate'          => 'required',
+            'first_installment_date'      => 'required',
+            'brokan_prd_adjust'           => 'required',
+            'interest_charge_type'        => 'required',
+            'interest_charged'            => 'required',
+            'actual_date'                 => 'required'
         ]);
 
-         $repaymentdata = Repayment::find($request->loanidmain);
-         if(!$repaymentdata)
-         {
+        $repaymentdata = Repayment::find($request->loanidmain);
+        if (!$repaymentdata) {
             $payment_data = new Repayment;
             $payment_data->loan_id = $request->loanidmain;
             $payment_data->cust_id = $request->custidmain;
@@ -103,7 +141,7 @@ class ApprovedController extends Controller
             $payment_data->installment_mode = $request->installment_mode;
             $payment_data->number_of_advance_installment = $request->number_of_adva_installment;
             $payment_data->total_number_of_installment = $request->total_number_of_installment;
-            $payment_data->policy_rate	= $request->policy_rate;
+            $payment_data->policy_rate    = $request->policy_rate;
             $payment_data->rate = $request->rate;
             $payment_data->spread = $request->spread;
             $payment_data->due_day = $request->due_day;
@@ -118,10 +156,7 @@ class ApprovedController extends Controller
             $payment_data->save();
 
             return redirect()->back()->with('success', 'Repayment Added successfully.');
-
-         }
-         else
-         {
+        } else {
             $repaymentdata->application_amount = $request->appication_amount;
             $repaymentdata->disbursal_type = $request->disbursaltype;
             $repaymentdata->number_od_disbursal = $request->number_disbursals;
@@ -137,7 +172,7 @@ class ApprovedController extends Controller
             $repaymentdata->installment_mode = $request->installment_mode;
             $repaymentdata->number_of_advance_installment = $request->number_of_adva_installment;
             $repaymentdata->total_number_of_installment = $request->total_number_of_installment;
-            $repaymentdata->policy_rate	= $request->policy_rate;
+            $repaymentdata->policy_rate    = $request->policy_rate;
             $repaymentdata->rate = $request->rate;
             $repaymentdata->spread = $request->spread;
             $repaymentdata->due_day = $request->due_day;
@@ -150,9 +185,151 @@ class ApprovedController extends Controller
             $repaymentdata->save();
 
             return redirect()->back()->with('success', 'Repayment Updated successfully.');
-         }
+        }
+    }
 
 
+    public function disbursalstore(Request $request)
+    {
+        // dd($request->all()); 
+      
+        $request->validate([
+            'sanction_amount' => 'required',
+            'sanction_date'  => 'required',
+            'tenure' => 'required',
+            'roi' => 'required',
+            // 'app_disbursal_amount' => 'required',
+            // 'app_adjustment_amount' => 'required',
+            'disbursal_type'  => 'required',
+            'application_status' => 'required',
+            // 'disbursal_date'  => 'required',
+            // 'effective_payment_date'   => 'required',
+            'payment_mode'    => 'required',
+            'business_partner_type' => 'required',
+            'beneficiary_name'    => 'required',
+            'business_acccount_type' => 'required',
+            'beneficiary_account_number' => 'required',
+            'bankvalidation'   => 'required',
+            'bankdealing'      => 'required',
+            'bankcode'      => 'required',
+            'bankName'     => 'required',
+            'branch'      => 'required',
+            'location'   => 'required',
+
+         
+        ]); 
+       
+
+        $disbursal_data = Disbursal::find($request->loanidmain); 
+        // dd($disbursal_data );
+        if (!$disbursal_data) {
+            if($request->applicant_type == 'BORROWER')
+            {
+               $id = $request->partner_name;
+            //    $name = Customer::find($id)->select('cust_name'); 
+               $name = Customer::where('cust_id', $id)->pluck('cust_name')->first();
+            }
+            else
+            {
+                $id = $request->partner_name;
+                // $name = Proprietor::find($id)->select('proprietor_name'); 
+                $name = Proprietor::where('proprietor_id', $id)->pluck('proprietor_name')->first();
+            } 
+            // dd($name);
+            $payment_data = new Disbursal;
+            $payment_data->loan_id = $request->loanidmain;
+            $payment_data->cust_id = $request->custidmain;
+            $payment_data->sanction_amount = $request->sanction_amount;
+            $payment_data->sanction_date = $request->sanction_date;
+            $payment_data->tenure = $request->tenure;
+            $payment_data->roi = $request->roi;
+            $payment_data->app_disbursal_amount = $request->app_disbursal_amount;
+            $payment_data->app_adjustment_amount = $request->app_adjustment_amount;
+            $payment_data->disbursal_type = $request->disbursal_type;
+            $payment_data->application_status = $request->application_status;
+            $payment_data->loan_account_number = $request->loan_account_number;
+            $payment_data->disbursal_date = $request->disbursal_date;
+            $payment_data->disbursal_amount = $request->disbursal_amount;
+            $payment_data->adjustment_amount = $request->adjustment_amount;
+            $payment_data->actual_payment_amount = $request->actual_payment_amount; 
+
+            $payment_data->bussiness_partner_type = $request->applicant_type;  
+            // $payment_data->bussiness_partner_name_appant_id = $request->partner_name;
+            $payment_data->bussiness_partner_name_appant_name = $request->partner_name;;
+            $payment_data->bussiness_disbursal_amount    = $request->bussiness_disbursal_amount;
+            $payment_data->bussiness_adjustment_amount = $request->bussiness_adjustment_amount;
+            $payment_data->payment_amount = $request->payment_amount;
+            $payment_data->effective_payment_date = $request->effective_payment_date;
+            $payment_data->payment_mode = $request->payment_mode;
+            $payment_data->business_partner_type = $request->business_partner_type;
+            $payment_data->beneficiary_name = $request->beneficiary_name;
+            $payment_data->business_acccount_type = $request->business_acccount_type;
+            $payment_data->beneficiary_account_number = $request->beneficiary_account_number;
+            $payment_data->bankvalidation = $request->bankvalidation;
+            $payment_data->bankdealing = $request->bankdealing;
+            $payment_data->bankcode = $request->bankcode;
+            $payment_data->bankName = $request->bankName;
+            $payment_data->branch = $request->branch;
+            $payment_data->location = $request->location;
+//  dd($request->all()); 
+            // Save the new record to the database
+            $payment_data->save();
+
+            return redirect()->back()->with('success', 'Disbursal Added successfully.');
+        } else {
+              
+
+
+            if($request->applicant_type == 'BORROWER')
+            {
+               $id = $request->partner_name;
+            //    $name = Customer::find($id)->select('cust_name'); 
+               $name = Customer::where('cust_id', $id)->pluck('cust_name')->first();
+            }
+            else
+            {
+                $id = $request->partner_name;
+                // $name = Proprietor::find($id)->select('proprietor_name'); 
+                $name = Proprietor::where('proprietor_id', $id)->pluck('proprietor_name')->first();
+            } 
+            $disbursal_data->sanction_amount = $request->sanction_amount;
+            $disbursal_data->sanction_date = $request->sanction_date;
+            $disbursal_data->tenure = $request->tenure;
+            $disbursal_data->roi = $request->roi;
+            $disbursal_data->app_disbursal_amount = $request->app_disbursal_amount;
+            $disbursal_data->app_adjustment_amount = $request->app_adjustment_amount;
+            $disbursal_data->disbursal_type = $request->disbursal_type;
+            $disbursal_data->application_status = $request->application_status;
+            $disbursal_data->loan_account_number = $request->loan_account_number;
+            $disbursal_data->disbursal_date = $request->disbursal_date;
+            $disbursal_data->disbursal_amount = $request->disbursal_amount;
+            $disbursal_data->adjustment_amount = $request->adjustment_amount;
+            $disbursal_data->actual_payment_amount = $request->actual_payment_amount; 
+
+            $disbursal_data->bussiness_partner_type = $request->applicant_type; 
+
+            // $disbursal_data->bussiness_partner_name_appant_id = $request->partner_name;
+          
+            $disbursal_data->bussiness_partner_name_appant_name = $request->partner_name;;
+            $disbursal_data->bussiness_disbursal_amount = $request->bussiness_disbursal_amount; 
+            $disbursal_data->bussiness_adjustment_amount = $request->bussiness_adjustment_amount;
+            $disbursal_data->payment_amount = $request->payment_amount;
+            $disbursal_data->effective_payment_date = $request->effective_payment_date;
+            $disbursal_data->payment_mode = $request->payment_mode;
+            $disbursal_data->business_partner_type = $request->business_partner_type;
+            $disbursal_data->beneficiary_name = $request->beneficiary_name;
+            $disbursal_data->business_acccount_type = $request->business_acccount_type;
+            $disbursal_data->beneficiary_account_number = $request->beneficiary_account_number;
+            $disbursal_data->bankvalidation = $request->bankvalidation;
+            $disbursal_data->bankdealing = $request->bankdealing;
+            $disbursal_data->bankcode = $request->bankcode;
+            $disbursal_data->bankName = $request->bankName;
+            $disbursal_data->branch = $request->branch;
+            $disbursal_data->location = $request->location;
+            $disbursal_data->save();
+
+            return redirect()->back()->with('success', 'Disbursal Updated successfully.');
+        }
     }
 
 
@@ -186,5 +363,86 @@ class ApprovedController extends Controller
     public function destroy(string $id)
     {
         //
+    } 
+
+    // public function getPartners(Request $request)
+    // {
+    //     $type = $request->type; 
+
+    //     if ($type === 'BORROWER') { 
+     
+    //         $partners = Customer::select('loan_id', 'cust_name')->get();  
+    //         // dd( $partners);
+    //     } elseif ($type === 'CO-BORROWER') {
+    //         $partners = Proprietor::select('id', 'name')->get(); 
+    //     } else {
+    //         return response()->json(['error' => 'Invalid type'], 400);
+    //     }
+
+    //     return response()->json($partners);
+    // } 
+
+    public function getPartners(Request $request)
+{
+    $type = $request->type; // Applicant type: BORROWER or CO-BORROWER
+    $loanId = $request->loan_id; // Loan ID
+    $customerId = $request->customer_id; // Customer ID
+// dd($customerId);
+    // Validate input
+    if (!$loanId || !$customerId || !$type) {
+        return response()->json(['error' => 'Invalid input data'], 400);
     }
+
+    // Fetch based on applicant type
+    if ($type === 'BORROWER') {
+        // Get borrowers linked to the given loan and customer
+        $partners = Customer::where('loan_id', $loanId)
+            ->where('cust_id', $customerId)
+            // ->select('cust_id', 'cust_name') 
+            ->select('cust_id as id', 'cust_name as name')
+            ->get(); 
+            // dd(  $partners);
+    } elseif ($type === 'CO-BORROWER') {
+        // Get co-borrowers (proprietors) associated with the given loan and customer
+        $partners = Proprietor::where('loan_id', $loanId)
+            ->where('cust_id', $customerId) // Assuming this links Proprietors to Customers
+            // ->select('proprietor_id', 'proprietor_name') 
+            ->select('proprietor_id as id', 'proprietor_name as name')
+            ->get(); 
+            // dd($partners);
+    } else {
+        return response()->json(['error' => 'Invalid type'], 400);
+    }
+
+    return response()->json($partners);
+}  
+
+
+public function adjustablestore(Request $request)
+{
+    // Validate the request 
+    // dd($request->all());
+    $request->validate([
+        'charges_details' => 'required|array',
+        'percentage' => 'array',
+        'amount' => 'array',
+    ]);
+
+    // Loop through the input arrays and save each row in the database
+    foreach ($request->charges_details as $index => $charges_detail) {
+        if (!empty($charges_detail) && $request->amount[$index] != null) {  
+            Adjustable::create([  
+                'loan_id' => $request->loan_id,  
+                'cust_id' => $request->customer_id, 
+                'charges_detail' => $charges_detail,
+                'percentage' => $request->percentage[$index] ?? null,
+                'amount' => $request->amount[$index] ?? null, 
+                'total_amount' => $request->total_amount ?? null, 
+            ]);
+        }
+    }
+
+    return redirect()->back()->with('success', 'Data has been saved successfully!');
+}
+
 }
