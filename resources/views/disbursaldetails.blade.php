@@ -60,7 +60,8 @@
                                         <select class="form-control loan_id" id="lon_id" name="lon_id">
                                             <option value="" disabled selected>Select a loan</option>
                                             @foreach ($loans as $loan)
-                                                <option value="{{ $loan->loan_id }}">{{ $loan->Prospect_No }}</option>
+                                                <option value="{{ $loan->loan_id }}">{{ $loan->Prospect_No }}</option> 
+                                                <input type="text" id="loannumber" value="{{$loan->Prospect_No?$loan->Prospect_No:'' }}" hidden>
                                             @endforeach
                                         </select>
                                         @error('lon_id')
@@ -94,13 +95,13 @@
                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
                             <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
                                 data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home"
-                                aria-selected="true">Disbursal Details</button> 
+                                aria-selected="true">Disbursal Details</button>
 
-                                <div class="col-md-10" style="text-align:end">
-                                    <a href="" data-toggle="modal" data-target="#exampleModal1">Adjust Amount</a>
-                                 </div>
+                            <div class="col-md-10" style="text-align:end">
+                                <a href="" data-toggle="modal" data-target="#exampleModal1">Adjust Amount</a>
+                            </div>
 
-                        </div>  
+                        </div>
                     </nav>
                     <div class="tab-content" id="nav-tabContent">
 
@@ -138,7 +139,7 @@
                                             <tr>
                                                 <td class="text-nowrap" style="text-align: center">
                                                     <input type="number" class="form-control" name="sanction_amount"
-                                                        placeholder="" id="sanctioned_amount">
+                                                        placeholder="" id="sanctioned_amount" readonly>
                                                     <input type="text" class="form-control" id="loanidmain"
                                                         name="loanidmain"
                                                         aria-label="Dollar amount (with dot and two decimal places)" hidden>
@@ -156,19 +157,19 @@
                                                 </td>
                                                 <td class="text-nowrap" style="text-align: center">
                                                     <input type="number" class="form-control" id="tenure"
-                                                        name="tenure">
+                                                        name="tenure" readonly>
                                                 </td>
                                                 <td class="text-nowrap" style="text-align: center">
                                                     <input type="text" class="form-control" id="roi"
-                                                        name="roi">
+                                                        name="roi" readonly>
                                                 </td>
                                                 <td class="text-nowrap" style="text-align: center">
                                                     <input type="number" class="form-control" id="app_disbursal_amount"
-                                                        name="app_disbursal_amount">
+                                                        name="app_disbursal_amount" readonly>
                                                 </td>
                                                 <td class="text-nowrap" style="text-align: center">
                                                     <input type="number" class="form-control" id="app_adjustment_amount"
-                                                        name="app_adjustment_amount">
+                                                        name="app_adjustment_amount" readonly>
                                                 </td>
                                                 <td class="text-nowrap" style="text-align: center">
                                                     <select class="form-select" id="disbursal_type"
@@ -178,11 +179,13 @@
                                                     </select>
                                                 </td>
                                                 <td class="text-nowrap" style="text-align: center">
-                                                    <select class="form-select" id="application_status"
+                                                    {{-- <select class="form-select" id="application_status"
                                                         name="application_status">
                                                         <option value="Not Disbursed" selected>Not Disbursed</option>
                                                         <option value="Disbursed">Disbursed</option>
-                                                    </select>
+                                                    </select> --}}
+                                                    <input type="text" class="form-control" id="application_status"
+                                                        name="application_status" readonly>
                                                 </td>
                                                 <td class="text-nowrap" style="text-align: center">
                                                     <input type="text" class="form-control" id="loan_account_number"
@@ -235,8 +238,7 @@
                                                                 class="fa-solid fa-chevron-down ms-1"></i></span>
                                                         <input type="text" class="form-control" id="disbursal_amount"
                                                             name="disbursal_amount"
-                                                            aria-label="Dollar amount (with dot and two decimal places)"
-                                                            >
+                                                            aria-label="Dollar amount (with dot and two decimal places)">
                                                     </div>
                                                 </td>
 
@@ -295,34 +297,11 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                {{-- <td>
-                                                    <select class="form-select form-control"
-                                                        aria-label="Default select example" id="bussiness_partner_type"
-                                                        name="bussiness_partner_type">
-                                                        <option selected>Open this select menu</option>
-                                                        <option value="BORROWER">BORROWER</option>
-                                                        <option value="CO-BORROWER">CO-BORROWER</option>
-
-                                                    </select>
-                                                </td>
-                                                <td>
-                                                    <select class="form-select form-control"
-                                                        aria-label="Default select example" id="bussiness_partner_type"
-                                                        name="bussiness_partner_type">
-                                                        <option selected>Open this select menu</option>
-                                                        <option value=""></option>
-                                                        <option value=""></option>
-
-                                                    </select>
-                                                </td> --}}
+                                    
 
 
                                                 <td>
-                                                    {{-- <select class="form-select form-control" id="bussiness_partner_type" name="bussiness_partner_type">
-                                                        <option value="" disabled selected>Select Partner Type</option>
-                                                        <option value="BORROWER">BORROWER</option>
-                                                        <option value="CO-BORROWER">CO-BORROWER</option>
-                                                    </select>  --}}
+                                                   
 
                                                     <select class="form-control" id="applicant_type"
                                                         name="applicant_type">
@@ -333,9 +312,7 @@
                                                     </select>
                                                 </td>
                                                 <td>
-                                                    {{-- <select class="form-select form-control" id="partner_name" name="partner_name">
-                                                        <option value="" disabled selected>Select a Partner</option>
-                                                    </select> --}}
+                                                  
 
                                                     <select class="form-control" id="partner_name" name="partner_name">
                                                         <option value="" disabled selected>Select a Partner</option>
@@ -524,6 +501,13 @@
                                             <tr>
                                                 <td colspan="4">
                                                     <div class="d-flex justify-content-end">
+                                                        <!-- Save Button (sets values only) -->
+                                                        <button type="button" class="btn btn-primary mt-3" id="saveButton">Save</button>
+                                                    </div>
+                                                </td> 
+
+                                                <td colspan="4">
+                                                    <div class="d-flex justify-content-end">
                                                         <button type="submit"
                                                             class="btn btn-primary mt-3">Submit</button>
                                                     </div>
@@ -553,118 +537,137 @@
     </div>
     <!-- /.container-fluid -->
     </div>
-    </div> 
+    </div>
 
-    
+
 
     {{-- for view schdual popu up --}}
     {{-- for adjustment amount --}}
-  <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Adjustable Amount</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            
-                <form action="/submit-form" method="POST">
-                    @csrf
-                
-                    <input type="hidden" name="loan_id" id="loan_idpop">
-                    <input type="hidden" name="customer_id" id="customer_idpop">
-
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th scope="col">No</th>
-                            <th scope="col">Charges Details</th>
-                            <th scope="col">Percentage</th>
-                            <th scope="col">Amount</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th> 
-                            
-                            <td><input type="text" class="form-control" name="charges_details[]" value="Processing Fee"></td>
-                            <td><input type="text" class="form-control" name="percentage[]" id="processfeeid"></td>
-                            <td><input type="text" class="form-control amount" name="amount[]" id="proccefeeamount"  readonly></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td><input type="text" class="form-control" name="charges_details[]" value="GST"></td>
-                            <td><input type="text" class="form-control" name="percentage[]" id="gstid"></td>
-                            <td><input type="text" class="form-control amount" name="amount[]" id="gstamount"  readonly></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td><input type="text" class="form-control" name="charges_details[]" value="Stamp Charges"></td>
-                            <td><input type="text" class="form-control" name="percentage[]"></td>
-                            <td><input type="text" class="form-control amount" name="amount[]"></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">4</th>
-                            <td><input type="text" class="form-control" name="charges_details[]" value="Insurance"></td>
-                            <td><input type="text" class="form-control" name="percentage[]"></td>
-                            <td><input type="text" class="form-control amount" name="amount[]"></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">5</th>
-                            <td><input type="text" class="form-control" name="charges_details[]" value="Existing Loan OutStading"></td>
-                            <td><input type="text" class="form-control" name="percentage[]"></td>
-                            <td><input type="text" class="form-control amount" name="amount[]"></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">6</th>
-                            <td><input type="text" class="form-control" name="charges_details[]" value="Broken Period Interest"></td>
-                            <td><input type="text" class="form-control" name="percentage[]"></td>
-                            <td><input type="text" class="form-control amount" name="amount[]"></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">7</th>
-                            <td><input type="text" class="form-control" name="charges_details[]"></td>
-                            <td><input type="text" class="form-control" name="percentage[]"></td>
-                            <td><input type="text" class="form-control amount" name="amount[]"></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">8</th>
-                            <td><input type="text" class="form-control" name="charges_details[]"></td>
-                            <td><input type="text" class="form-control" name="percentage[]"></td>
-                            <td><input type="text" class="form-control amount" name="amount[]"></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">9</th>
-                            <td><input type="text" class="form-control" name="charges_details[]"></td>
-                            <td><input type="text" class="form-control" name="percentage[]"></td>
-                            <td><input type="text" class="form-control amount" name="amount[]" oninput="calculateTotal()"></td>
-                        </tr>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <th></th>
-                            <td colspan="2" style="text-align: end"><strong>Total</strong></td>
-                            <td><input type="text" class="form-control" name="total_amount" id="total_amount_main" readonly></td>
-                        </tr>
-                    </tfoot>
-                </table>
-                <div class="text-center mt-3">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Adjustable Amount</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-            </form>
+                <div class="modal-body">
 
+                    <form id="chargesForm" action="/submit-form" method="POST">
+                        @csrf
+
+                        <input type="hidden" name="loan_id" id="loan_idpop">
+                        <input type="hidden" name="customer_id" id="customer_idpop">
+
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">No</th>
+                                    <th scope="col">Charges Details</th>
+                                    <th scope="col">Percentage</th>
+                                    <th scope="col">Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+
+                                    <td><input type="text" class="form-control" name="charges_details[]"
+                                            id="charges_detail_1" value="Processing Fee"></td>
+                                    <td><input type="text" class="form-control" name="percentage[]"
+                                            id="processfeeid"></td>
+                                    <td><input type="text" class="form-control amount" name="amount[]"
+                                            id="proccefeeamount" readonly></td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td><input type="text" class="form-control" name="charges_details[]"
+                                            value="GST"></td>
+                                    <td><input type="text" class="form-control" name="percentage[]" id="gstid">
+                                    </td>
+                                    <td><input type="text" class="form-control amount" name="amount[]" id="gstamount"
+                                            readonly></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td><input type="text" class="form-control" name="charges_details[]"
+                                            value="Stamp Charges"></td>
+                                    <td><input type="text" class="form-control" name="percentage[]"></td>
+                                    <td><input type="text" class="form-control amount" name="amount[]"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">4</th>
+                                    <td><input type="text" class="form-control" name="charges_details[]"
+                                            value="Insurance"></td>
+                                    <td><input type="text" class="form-control" name="percentage[]"></td>
+                                    <td><input type="text" class="form-control amount" name="amount[]"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">5</th>
+                                    <td><input type="text" class="form-control" name="charges_details[]"
+                                            value="Existing Loan OutStading"></td>
+                                    <td><input type="text" class="form-control" name="percentage[]"></td>
+                                    <td><input type="text" class="form-control amount" name="amount[]"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">6</th>
+                                    <td><input type="text" class="form-control" name="charges_details[]"
+                                            value="Broken Period Interest"></td>
+                                    <td><input type="text" class="form-control" name="percentage[]"></td>
+                                    <td><input type="text" class="form-control amount" name="amount[]"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">7</th>
+                                    <td><input type="text" class="form-control" name="charges_details[]"></td>
+                                    <td><input type="text" class="form-control" name="percentage[]"></td>
+                                    <td><input type="text" class="form-control amount" name="amount[]"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">8</th>
+                                    <td><input type="text" class="form-control" name="charges_details[]"></td>
+                                    <td><input type="text" class="form-control" name="percentage[]"></td>
+                                    <td><input type="text" class="form-control amount" name="amount[]"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">9</th>
+                                    <td><input type="text" class="form-control" name="charges_details[]"></td>
+                                    <td><input type="text" class="form-control" name="percentage[]"></td>
+                                    <td><input type="text" class="form-control amount" name="amount[]"
+                                            oninput="calculateTotal()"></td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th></th>
+                                    <td colspan="2" style="text-align: end"><strong>Total</strong></td>
+                                    <td><input type="text" class="form-control" name="total_amount"
+                                            id="total_amount_main" readonly></td>
+                                </tr>
+                            </tfoot>
+                        </table>  
+                        <div class="text-center mt-3"> 
+                            {{-- <button type="button"  id="closebtn" class="btn btn-primary">close</button> 
+                            
+                            --}} 
+                            <button  id="saveButton" class="btn btn-primary">Save</button>
+                            <button type="submit" class="btn btn-primary">Submit</button> 
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
         </div>
-
-      </div>
     </div>
-  </div>
 
 @endsection
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script>
+    let app_name;
     $(document).ready(function() {
         $('#lon_id').change(function() {
             // console.log('haasdfgasdfgh');
@@ -694,6 +697,9 @@
                     },
                     error: function(error) {
                         console.error("Error fetching customers:", error);
+                    },
+                    complete: function() {
+                        $('#customer_id').trigger('change');
                     }
                 });
             } else {
@@ -824,14 +830,6 @@
 
 
 
-        // $('#lon_id').change(function() {
-        //     let loanId = $(this).val();
-        //     // alert(loanId);
-        //     // fetchCustomersByLoanId(loanId); 
-        //     let customerId1 = $('#customer_id').val();
-        //     alert(customerId1);
-        //     fetchLoanAndCustomerData(loanId, customerId1);
-        // });
 
 
 
@@ -846,6 +844,7 @@
                     url: '{{ url('getdisbursaldata') }}/' + loanId,
                     method: 'GET',
                     success: function(response) {
+
                         // console.log(response.creditdata);
 
 
@@ -853,6 +852,8 @@
                         let $creditdata = response.creditdata;
                         let $bankdetails = response.bankdetails;
                         let $disbursaldata = response.disbursal;
+                        let $adjustabledata = response.adjustabledata;
+
 
 
 
@@ -865,6 +866,8 @@
                             $("#sanctioned_date").val(date);
                             $("#tenure").val($creditdata[0]['sanctioned_tenure']);
                             $("#roi").val($creditdata[0]['sanctionedInterest']);
+                            // $("#roi").val($creditdata[0]['sanctionedInterest']); 
+
                             // $("#roi").val($creditdata[0]['policyrate']);
                         }
                         if ($bankdetails) {
@@ -882,38 +885,100 @@
                             $("#bankdealing").val($disbursaldata['bankdealing']);
                             $("#benklocation").val($disbursaldata['location']);
                             $("#applicant_type").val($disbursaldata['bussiness_partner_type']);
+                            $("#applicant_type").trigger('change');
+                            $("#app_disbursal_amount").val($disbursaldata['app_disbursal_amount']);
+                            app_name = $disbursaldata['bussiness_partner_name_appant_name'];
+                            $("#app_adjustment_amount").val($disbursaldata[
+                                'app_adjustment_amount']);
+                            $("#disbursal_amount").val($disbursaldata['disbursal_amount']);
+                            $("#adjustment_amount").val($disbursaldata['adjustment_amount']);
+
+                            $("#bussiness_disbursal_amount").val($disbursaldata[
+                                'disbursal_amount']);
+                            $("#bussiness_adjustment_amount").val($disbursaldata[
+                                'bussiness_adjustment_amount']);
+                            $("#actual_payment_amount").val($disbursaldata[
+                                'actual_payment_amount']);
+                            $("#payment_amount").val($disbursaldata['payment_amount']);
+
                             $("#partner_name").val($disbursaldata[
                                 'bussiness_partner_name_appant_name']);
 
+                            $("#application_status").val($disbursaldata['application_status']);
+
+                            $("#loan_account_number").val($disbursaldata['loan_account_number'])
+
+
+                            // $("#loan_account_number").val($disbursaldata[
+                            // 'bussiness_partner_name_appant_name']); 
+
                         }
 
-                        // Populate repayment data
-                        let $repaymentdata = response.repaymentdata;
-                        if ($repaymentdata) {
-                            $("#disbursalType").val($repaymentdata['disbursal_type']);
-                            $("#numberdisbursal").val($repaymentdata['number_od_disbursal']);
-                            $("#disbursalTo").val($repaymentdata['disbursal_to']);
-                            $("#Recovery_Type").val($repaymentdata['recovery_type']);
-                            $("#Recovery_Sub_Type").val($repaymentdata['recovery_sub_type']);
-                            $("#Repayment_type").val($repaymentdata['repayment_type']);
-                            $("#Repayment_Frequency").val($repaymentdata['repayment_frequency']);
-                            $("#Tanure_in").val($repaymentdata['tenure_in']);
-                            $("#int_type").val($repaymentdata['installment_type']);
-                            $("#ins_based_on").val($repaymentdata['installment_based_on']);
-                            $("#ins_mode").val($repaymentdata['installment_mode']);
-                            $("#adv_installment").val($repaymentdata[
-                                'number_of_advance_installment']);
-                            $("#total_installment").val($repaymentdata[
-                                'total_number_of_installment']);
-                            $("#spread").val($repaymentdata['spread']);
-                            $("#due_day").val($repaymentdata['due_day']);
-                            $("#sdate").val($repaymentdata['interest_startdate']);
-                            $("#fins_date").val($repaymentdata['first_installment_date']);
-                            $("#brk_prd_adjust").val($repaymentdata['broken_period_adjustment']);
-                            $("#int_chrge_type").val($repaymentdata['interest_charge_type']);
-                            $("#int_chrged").val($repaymentdata['interest_charged']);
-                            $("#act_date").val($repaymentdata['actual_date']);
+                        // if ($adjustabledata) {
+                        //     $("#charges_detail_1").val($adjustabledata['charges_detail']);
+                        //     $("#percentage_1").val($adjustabledata['percentage']);
+                        //     $("#amount_1").val($adjustabledata['amount']);
+                        // }
+                        if ($adjustabledata && $adjustabledata.length > 0) {
+                            // Loop through each item in $adjustabledata 
+
+                            let totalAmount = 0;
+                            $adjustabledata.forEach((item, index) => {
+                                let rowIndex = index + 1; // Row index starts from 1
+                                let $row = $(`tbody tr:nth-child(${rowIndex})`);
+
+                                // Populate existing rows or append new ones if necessary
+                                if ($row.length > 0) {
+                                    $row.find('input[name="charges_details[]"]').val(item
+                                        .charges_detail);
+                                    $row.find('input[name="percentage[]"]').val(item
+                                        .percentage);
+                                    $row.find('input[name="amount[]"]').val(item.amount);
+                                } else {
+                                    // If no row exists, append new row dynamically
+                                    let newRow = `
+                                <tr>
+                                    <th scope="row">${rowIndex}</th>
+                                    <td><input type="text" class="form-control" name="charges_details[]" value="${item.charges_detail || ''}"></td>
+                                    <td><input type="text" class="form-control" name="percentage[]" value="${item.percentage || ''}"></td>
+                                    <td><input type="text" class="form-control amount" name="amount[]" value="${item.amount || ''}" readonly></td>
+                                </tr>`;
+                                    $('tbody').append(newRow);
+                                }
+                                totalAmount += parseFloat(item.amount) || 0;
+                            });
+                            $('#total_amount_main').val(totalAmount.toFixed(2));
                         }
+
+                        ///////////////
+
+                        // Populate repayment data
+                        // let $repaymentdata = response.repaymentdata;
+                        // if ($repaymentdata) {
+                        //     $("#disbursalType").val($repaymentdata['disbursal_type']);
+                        //     $("#numberdisbursal").val($repaymentdata['number_od_disbursal']);
+                        //     $("#disbursalTo").val($repaymentdata['disbursal_to']);
+                        //     $("#Recovery_Type").val($repaymentdata['recovery_type']);
+                        //     $("#Recovery_Sub_Type").val($repaymentdata['recovery_sub_type']);
+                        //     $("#Repayment_type").val($repaymentdata['repayment_type']);
+                        //     $("#Repayment_Frequency").val($repaymentdata['repayment_frequency']);
+                        //     $("#Tanure_in").val($repaymentdata['tenure_in']);
+                        //     $("#int_type").val($repaymentdata['installment_type']);
+                        //     $("#ins_based_on").val($repaymentdata['installment_based_on']);
+                        //     $("#ins_mode").val($repaymentdata['installment_mode']);
+                        //     $("#adv_installment").val($repaymentdata[
+                        //         'number_of_advance_installment']);
+                        //     $("#total_installment").val($repaymentdata[
+                        //         'total_number_of_installment']);
+                        //     $("#spread").val($repaymentdata['spread']);
+                        //     $("#due_day").val($repaymentdata['due_day']);
+                        //     $("#sdate").val($repaymentdata['interest_startdate']);
+                        //     $("#fins_date").val($repaymentdata['first_installment_date']);
+                        //     $("#brk_prd_adjust").val($repaymentdata['broken_period_adjustment']);
+                        //     $("#int_chrge_type").val($repaymentdata['interest_charge_type']);
+                        //     $("#int_chrged").val($repaymentdata['interest_charged']);
+                        //     $("#act_date").val($repaymentdata['actual_date']);
+                        // }
                     },
                     error: function(error) {
                         console.error("Error fetching loan data:", error);
@@ -941,9 +1006,10 @@
                 return;
             }
 
-            // Fetch business partners dynamically
+
+
             $.ajax({
-                url: '/get-partners', // Your route to fetch partners
+                url: '/get-partners',
                 type: 'GET',
                 data: {
                     type: type,
@@ -951,98 +1017,195 @@
                     customer_id: customerId
                 },
                 success: function(response) {
-                    // Handle response to populate business partner dropdown
+                    // Clear the dropdown and add the default "Select a Partner" option
                     $('#partner_name').empty().append(
                         '<option value="" disabled selected>Select a Partner</option>');
 
                     if (response.length > 0) {
+                        // Iterate over the response
                         $.each(response, function(index, partner) {
-
-
-                            $('#partner_name').append(
-                                `<option value="${partner.id}|${partner.name}" data-id="${partner.id}" data-name="${partner.name}">
+                            // Check if the partner's data exists before appending
+                            if (partner.id && partner.name) {
+                                $('#partner_name').append(
+                                    `<option value="${partner.id}|${partner.name}" 
+                                ${partner.id == (app_name ? app_name.split("|")[0] : null) ? 'selected' : ''} 
+                                data-id="${partner.id}" 
+                                data-name="${partner.name}">
                                 ${partner.name}
-                            </option>`
-                            );
-
+                        </option>`
+                                );
+                            }
                         });
                     } else {
-                        // $('#partner_name').append('<option value="" disabled>No partners found</option>'); 
+                        // No partners found: Add a fallback option
                         $('#partner_name').append(
                             '<option value="" disabled>No partners found</option>');
                     }
                 },
                 error: function(error) {
+                    // Error handling: Add an error option
                     console.error("Error fetching partners:", error);
                     $('#partner_name').empty().append(
                         '<option value="" disabled>Error loading partners</option>');
                 }
             });
+
         });
     });
-</script> 
+</script>
 {{-- ///    --}}
 <script>
-       $(document).ready(function() { 
+    $(document).ready(function() {
         // sdjustment amount
-    $("#processfeeid").on('input',function()
-    {
-        $amount = $('#sanctioned_amount').val();
-        $percntgae = $('#processfeeid').val();
+        $("#processfeeid").on('input', function() {
+            $amount = $('#sanctioned_amount').val();
+            $percntgae = $('#processfeeid').val();
+            //    alert($percntgae);
+            $processfee = $amount * $percntgae / 100;
+            $('#proccefeeamount').val($processfee);
+            calculatetotalsum();
 
-        $processfee = $amount * $percntgae /100;
-        $('#proccefeeamount').val($processfee);
-
-    });
-
-    // forgst
-    $('#gstid').on('input',function(){
-        $amount = $('#sanctioned_amount').val();
-        $percntgae = $('#gstid').val();
-
-        $gstfee = $amount * $percntgae / 100;
-        $('#gstamount').val($gstfee);
-    });
-
-    $(".amount").on('input',function(){
-        calculatetotalsum();
-    });
-
-    function calculatetotalsum()
-    {
-        let total = 0;
-        $(".amount").each(function () {
-           let value = parseFloat($(this).val()) || 0;
-            total += value;
         });
 
-        let amount = $('#sanctioned_amount').val();
-        let disbursalamount = amount - total;
-        $("#total_amount_main").val(total.toFixed(2));
-        $('#app_disbursal_amount').val(disbursalamount.toFixed(2));  
-        $('#app_adjustment_amount').val(total.toFixed(2));  
+        // forgst
+        $('#gstid').on('input', function() {
+            $amount = $('#sanctioned_amount').val();
+            $percntgae = $('#gstid').val();
 
-        // ("#total_amount_main").val(total.toFixed(2)); 
-        $('#disbursal_amount').val(disbursalamount.toFixed(2)); 
-        $('#adjustment_amount').val(total.toFixed(2));     
-        $('#actual_payment_amount').val(disbursalamount.toFixed(2)); 
+            $gstfee = $amount * $percntgae / 100;
+            $('#gstamount').val($gstfee);
+            calculatetotalsum();
+        });
+
+        $(".amount").on('input', function() {
+            calculatetotalsum();
+        });
+
+        function calculatetotalsum() {
+            let total = 0;
+            $(".amount").each(function() {
+                let value = parseFloat($(this).val()) || 0;
+                total += value;
+            });
+
+            let amount = $('#sanctioned_amount').val();
+            let disbursalamount = amount - total;
+            $("#total_amount_main").val(total.toFixed(2));
+            $('#app_disbursal_amount').val(disbursalamount.toFixed(2));
+            $('#app_adjustment_amount').val(total.toFixed(2));
+
+            // ("#total_amount_main").val(total.toFixed(2)); 
+            $('#disbursal_amount').val(disbursalamount.toFixed(2));
+            $('#adjustment_amount').val(total.toFixed(2));
+            $('#actual_payment_amount').val(disbursalamount.toFixed(2));
+
+
+
+            $('#bussiness_disbursal_amount').val(disbursalamount.toFixed(2));
+            $('#bussiness_adjustment_amount').val(total.toFixed(2));
+            $('#payment_amount').val(disbursalamount.toFixed(2));
+
+
+
+        }
+    });
+
+
+
+    //     document.addEventListener('DOMContentLoaded', function () {
+    //     const form = document.getElementById('chargesForm');
+    //     // const totalAmountInput = document.getElementById('total_amount_main');
+
+    //     form.addEventListener('submit', function (event) { 
+    //         // alert('duetueefh');
+    //         event.preventDefault(); // Prevent the default form submission
+
+    //         // Gather form data
+    //         const formData = new FormData(form);
+
+    //         // Send AJAX request
+    //         fetch(form.action, {
+    //             method: 'POST',
+    //             headers: {
+    //                 'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value,
+    //             },
+    //             body: formData,
+    //         })
+    //         .then(response => response.json()) 
+    //         .then(data => {
+    //             if (data.success) {
+    //                 // alert(data.message); 
+    //                 // totalAmountInput.value = data.total_amount; 
+    //             } else {
+    //                 alert('Error: ' + data.message); 
+    //             }
+    //         })
+    //         .catch(error => {
+    //             console.error('AJAX request failed:', error);
+    //             alert('Failed to save data. Please try again.');
+    //         });
+    //     });
+    // }); 
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('chargesForm');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Gather form data
+            const formData = new FormData(form);
+
+            // Send AJAX request
+            fetch(form.action, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value,
+                    },
+                    body: formData,
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert(data.message); 
+
+                        form.reset(); 
+
+                        // const popup = document.getElementById('exampleModal1');
+                        // if (popup) {
+                        //     popup.style.display = 'none';
+                        // }
+                    } else {
+                        alert('Error: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('AJAX request failed:', error);
+                    alert('Failed to save data. Please try again.');
+                });
+        });
+    });  
+
+    
+
+
+</script> 
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    const saveButton = document.getElementById('saveButton');
+
+    saveButton.addEventListener('click', function () { 
+      
+        $appno = $("#loannumber").val();
+        $("#application_status").val("Disbursed");
+        $('#loan_account_number').val($appno);
+
         
-        
 
-        $('#bussiness_disbursal_amount').val(disbursalamount.toFixed(2));  
+     
+    });
+});
 
-         $('#bussiness_adjustment_amount').val(total.toFixed(2));     
-         $('#payment_amount').val(disbursalamount.toFixed(2));  
-
-         
-
-
-        
-        
-        
-
-
-        
-    }
-       });
 </script>
+
