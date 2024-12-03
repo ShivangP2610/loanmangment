@@ -16,6 +16,7 @@ use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\RefrrencesController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\ApprovedController;
+use App\Http\Controllers\LoanController;
 use App\Models\Customer;
 use App\Models\Document;
 use App\Models\FormOffice;
@@ -269,7 +270,18 @@ Route::post('repayment-instrument',[ApprovedController::class,'store'])->name('r
 Route::post('disbursal-details',[ApprovedController::class,'disbursalstore'])->name('disbursaldetails'); 
 
 Route::get('/get-partners', [ApprovedController::class, 'getPartners'])->name('get.partners'); 
-Route::post('/submit-form', [ApprovedController::class, 'adjustablestore'])->name('adjustable.store');
+Route::post('/submit-form', [ApprovedController::class, 'adjustablestore'])->name('adjustable.store'); 
+
+
+// Route::get('/loan/select/{id}', [LoanController::class, 'selectLoan']);
+// Route::post('/loan/save', [LoanController::class, 'saveLoan'])->name('loan.save');
+// Route::post('/loan/clearSession', [LoanController::class, 'clearSession'])->name('loan.clearSession');  
+
+
+Route::get('/', [LoanController::class, 'index'])->name('loan.dashboard');
+Route::get('/loan/select/{loanId}', [LoanController::class, 'selectLoan']);
+Route::post('/loan/clearSession', [LoanController::class, 'clearSession'])->name('loan.clearSession');
+Route::post('/loan/save', [LoanController::class, 'save'])->name('loan.save');
 
 
 

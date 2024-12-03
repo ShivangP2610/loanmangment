@@ -155,16 +155,24 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
               <!-- Add icons to the links using the .nav-icon class
                    with font-awesome or any other icon font library -->
-              <li class="nav-item menu-open {{ request()->is('home') ? 'menu-open' : '' }}">
+              {{-- <li class="nav-item menu-open {{ request()->is('home') ? 'menu-open' : '' }}">
                 <a href="{{url('/home')}}" class="nav-link {{request()->is('home') ? 'active' : ''}}">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>
                     Dashboard
-                    {{-- <i class="right fas fa-angle-left"></i> --}}
+                   
                   </p>
                 </a>
 
-              </li>
+              </li> --}} 
+              <li class="nav-item menu-open {{ request()->routeIs('loan.dashboard') ? 'menu-open' : '' }}">
+                <a href="{{ route('loan.dashboard') }}" class="nav-link {{ request()->routeIs('loan.dashboard') ? 'active' : '' }}">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>
+                        Dashboard
+                    </p>
+                </a>
+            </li>
 
                 {{-- user start --}}
               <li class="nav-item {{ request()->is('document/add','viewappliation') ? 'menu-open' : '' }}">

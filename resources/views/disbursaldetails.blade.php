@@ -384,7 +384,7 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td class="col-3">
+                                                {{-- <td class="col-3">
                                                     <div class="form-group">
                                                         <label for="businessPartnerType">Business Partner Type</label>
                                                         <select id="businessPartnerType"
@@ -397,8 +397,8 @@
                                                             <option value="3">Three</option>
                                                         </select>
                                                     </div>
-                                                </td>
-                                                <td class="col-3">
+                                                </td> --}}
+                                                <td class="col-4">
                                                     <div class="form-group">
                                                         <label for="beneficiaryName">Beneficiary Name</label>
                                                         <input id="beneficiaryName" class="form-control mt-1"
@@ -407,7 +407,7 @@
                                                             readonly>
                                                     </div>
                                                 </td>
-                                                <td class="col-3">
+                                                <td class="col-4">
                                                     <div class="form-group">
                                                         <label for="businessacccountType">Beneficiary Account Type</label>
                                                         <select id="businessacccountType" name="business_acccount_type"
@@ -420,7 +420,7 @@
                                                         </select>
                                                     </div>
                                                 </td>
-                                                <td class="col-3">
+                                                <td class="col-4">
                                                     <div class="form-group">
                                                         <label for="beneficiaryAccountNumber">Beneficiary Account
                                                             Number</label>
@@ -432,7 +432,7 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td class="col-3">
+                                                {{-- <td class="col-3">
                                                     <div class="form-group">
                                                         <label for="bankvalidation">Bank Validation Status</label>
                                                         <input id="bankvalidation" name="bankvalidation"
@@ -440,15 +440,15 @@
                                                             placeholder="bankvalidation"
                                                             aria-label="default input example">
                                                     </div>
-                                                </td>
-                                                <td class="col-3">
+                                                </td> --}}
+                                                {{-- <td class="col-3">
                                                     <div class="form-group">
                                                         <label for="bankdealing">Dealing Bank</label>
                                                         <input id="bankdealing" name="bankdealing"
                                                             class="form-control mt-1" type="text"
                                                             placeholder="bankdealing" aria-label="default input example">
                                                     </div>
-                                                </td>
+                                                </td> --}}
                                                 <td class="col-3">
                                                     <div class="form-group">
                                                         <label for="bankcode">IFSC Code</label>
@@ -456,9 +456,8 @@
                                                             type="text" placeholder="Default input"
                                                             aria-label="default input example" readonly>
                                                     </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
+                                                </td> 
+
                                                 <td class="col-3">
                                                     <div class="form-group">
                                                         <label for="bankName">Bank</label>
@@ -476,16 +475,8 @@
                                                             readonly>
                                                     </div>
                                                 </td>
-                                                <td class="col-3">
-                                                    <div class="form-group">
-                                                        <label for="benklocation">Banking Location</label>
-                                                        <input id="benklocation" name="location"
-                                                            class="form-control mt-1" type="text"
-                                                            placeholder="location" aria-label="default input example">
-                                                    </div>
-                                                </td>
-
                                             </tr>
+                                          
 
 
 
@@ -1148,7 +1139,7 @@
     // }); 
 
     document.addEventListener('DOMContentLoaded', function() {
-        const form = document.getElementById('chargesForm');
+        const form = document.getElementById('chargesForm');    
 
         form.addEventListener('submit', function(event) {
             event.preventDefault();

@@ -137,12 +137,12 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-3">
+                                                {{-- <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label for="numberdisbursal">Number Of Disbursals</label>
                                                         <input id="numberdisbursal" class="form-control mt-1" type="text" name="number_disbursals" placeholder="Default input" aria-label="default input example">
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label for="disbursalTo">Disbursal To</label>
@@ -170,7 +170,7 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-3">
+                                                {{-- <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label for="Recovery_Sub_Type">Recovery Sub Type</label>
                                                         <select id="Recovery_Sub_Type" class="form-select mt-1 form-control" aria-label="Default select example" name="recovery_sub_type">
@@ -179,7 +179,7 @@
                                                             <option value="Non_Revolving">Non Revolving</option>
                                                         </select>
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label for="Repayment_type">Repayment Type</label>
@@ -400,7 +400,7 @@
                                                         </label>
                                                     </div>
                                                 </div> --}}
-                                                <div class="col-md-3">
+                                                {{-- <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label for="intereststartdate">Interest StartDate</label>
                                                         <div class="input-group mb-3">
@@ -409,7 +409,7 @@
 
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label for="FirstInstallmentdate">First Installment Date</label>
@@ -451,49 +451,8 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label for="int_chrge_type">Interest Charge Type</label><br>
-                                                        <select id="int_chrge_type" class="form-select mt-1 form-control" aria-label="Default select example" name="interest_charge_type">
-                                                            {{-- <option selected>Open this select menu</option> --}}
-                                                            <option value="Yes">Yes</option>
-                                                            <option value="No">No</option>
-                                                            {{-- <option value="3">Three</option> --}}
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label for="int_chrged">Interest Charged</label><br>
-                                                        <select id="int_chrged" class="form-select mt-1 form-control" aria-label="Default select example" name="interest_charged">
-                                                            <option selected>Open this select menu</option>
-                                                            <option value="One">One</option>
-                                                            <option value="Two">Two</option>
-                                                            <option value="Three">Three</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label for="Actualdate">Actual Date</label>
-                                                        <div class="input-group mb-3">
-                                                            <input type="date"  name="actual_date" id="act_date" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
-                                                            <span class="input-group-text"><i class="fa-solid fa-calendar-days"></i></span>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                {{-- <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label for="int_chrged">Moratorium</label><br>
-                                                        <select id="int_chrged" class="form-select mt-1 form-control" aria-label="Default select example">
-
-                                                            <option value="No">No</option>
-                                                            <option value="Yes">Yes</option>
-
-                                                        </select>
-                                                    </div>
-                                                </div> --}}
+                                               
+                                              
                                             </div>
                                         </td>
 

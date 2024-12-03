@@ -105,10 +105,10 @@ class ApprovedController extends Controller
         $request->validate([
             'appication_amount' => 'required',
             'disbursaltype'    => 'required',
-            'number_disbursals' => 'required',
+            // 'number_disbursals' => 'required',
             'disbursal_to'      => 'required',
             'recovery_type'     => 'required',
-            'recovery_sub_type' => 'required',
+            // 'recovery_sub_type' => 'required',
             'repayment_type'    => 'required',
             'repayment_frequency' => 'required',
             'tenure'              => 'required',
@@ -122,12 +122,12 @@ class ApprovedController extends Controller
             'rate'                        => 'required',
             'spread'                      => 'required',
             'due_day'                     => 'required',
-            'interest_startdate'          => 'required',
+            // 'interest_startdate'          => 'required',
             'first_installment_date'      => 'required',
             'brokan_prd_adjust'           => 'required',
-            'interest_charge_type'        => 'required',
-            'interest_charged'            => 'required',
-            'actual_date'                 => 'required'
+            // 'interest_charge_type'        => 'required',
+            // 'interest_charged'            => 'required',
+            // 'actual_date'                 => 'required'
         ]);
 
         $repaymentdata = Repayment::find($request->loanidmain);
@@ -137,10 +137,10 @@ class ApprovedController extends Controller
             $payment_data->cust_id = $request->custidmain;
             $payment_data->application_amount = $request->appication_amount;
             $payment_data->disbursal_type = $request->disbursaltype;
-            $payment_data->number_od_disbursal = $request->number_disbursals;
+            // $payment_data->number_od_disbursal = $request->number_disbursals;
             $payment_data->disbursal_to = $request->disbursal_to;
             $payment_data->recovery_type = $request->recovery_type;
-            $payment_data->recovery_sub_type = $request->recovery_sub_type;
+            // $payment_data->recovery_sub_type = $request->recovery_sub_type;
             $payment_data->repayment_type = $request->repayment_type;
             $payment_data->repayment_frequency = $request->repayment_frequency;
             $payment_data->tenure = $request->tenure;
@@ -154,12 +154,12 @@ class ApprovedController extends Controller
             $payment_data->rate = $request->rate;
             $payment_data->spread = $request->spread;
             $payment_data->due_day = $request->due_day;
-            $payment_data->interest_startdate = $request->interest_startdate;
+            // $payment_data->interest_startdate = $request->interest_startdate;
             $payment_data->first_installment_date = $request->first_installment_date;
             $payment_data->broken_period_adjustment = $request->brokan_prd_adjust;
-            $payment_data->interest_charge_type = $request->interest_charge_type;
-            $payment_data->interest_charged = $request->interest_charged;
-            $payment_data->actual_date = $request->actual_date;
+            // $payment_data->interest_charge_type = $request->interest_charge_type;
+            // $payment_data->interest_charged = $request->interest_charged;
+            // $payment_data->actual_date = $request->actual_date;
 
             // Save the new record to the database
             $payment_data->save();
@@ -168,10 +168,10 @@ class ApprovedController extends Controller
         } else {
             $repaymentdata->application_amount = $request->appication_amount;
             $repaymentdata->disbursal_type = $request->disbursaltype;
-            $repaymentdata->number_od_disbursal = $request->number_disbursals;
+            // $repaymentdata->number_od_disbursal = $request->number_disbursals;
             $repaymentdata->disbursal_to = $request->disbursal_to;
             $repaymentdata->recovery_type = $request->recovery_type;
-            $repaymentdata->recovery_sub_type = $request->recovery_sub_type;
+            // $repaymentdata->recovery_sub_type = $request->recovery_sub_type;
             $repaymentdata->repayment_type = $request->repayment_type;
             $repaymentdata->repayment_frequency = $request->repayment_frequency;
             $repaymentdata->tenure = $request->tenure;
@@ -185,12 +185,12 @@ class ApprovedController extends Controller
             $repaymentdata->rate = $request->rate;
             $repaymentdata->spread = $request->spread;
             $repaymentdata->due_day = $request->due_day;
-            $repaymentdata->interest_startdate = $request->interest_startdate;
+            // $repaymentdata->interest_startdate = $request->interest_startdate;
             $repaymentdata->first_installment_date = $request->first_installment_date;
             $repaymentdata->broken_period_adjustment = $request->brokan_prd_adjust;
-            $repaymentdata->interest_charge_type = $request->interest_charge_type;
-            $repaymentdata->interest_charged = $request->interest_charged;
-            $repaymentdata->actual_date = $request->actual_date;
+            // $repaymentdata->interest_charge_type = $request->interest_charge_type;
+            // $repaymentdata->interest_charged = $request->interest_charged;
+            // $repaymentdata->actual_date = $request->actual_date;
             $repaymentdata->save();
 
             return redirect()->back()->with('success', 'Repayment Updated successfully.');
@@ -214,16 +214,16 @@ class ApprovedController extends Controller
             // 'disbursal_date'  => 'required',
             // 'effective_payment_date'   => 'required',
             'payment_mode'    => 'required',
-            'business_partner_type' => 'required',
+            // 'business_partner_type' => 'required',
             'beneficiary_name'    => 'required',
             'business_acccount_type' => 'required',
             'beneficiary_account_number' => 'required',
-            'bankvalidation'   => 'required',
-            'bankdealing'      => 'required',
+            // 'bankvalidation'   => 'required',
+            // 'bankdealing'      => 'required',
             'bankcode'      => 'required',
             'bankName'     => 'required',
             'branch'      => 'required',
-            'location'   => 'required',
+            // 'location'   => 'required',
 
 
         ]);
@@ -267,20 +267,20 @@ class ApprovedController extends Controller
             $payment_data->payment_amount = $request->payment_amount;
             $payment_data->effective_payment_date = $request->effective_payment_date;
             $payment_data->payment_mode = $request->payment_mode;
-            $payment_data->business_partner_type = $request->business_partner_type;
+            // $payment_data->business_partner_type = $request->business_partner_type;
             $payment_data->beneficiary_name = $request->beneficiary_name;
             $payment_data->business_acccount_type = $request->business_acccount_type;
             $payment_data->beneficiary_account_number = $request->beneficiary_account_number;
-            $payment_data->bankvalidation = $request->bankvalidation;
-            $payment_data->bankdealing = $request->bankdealing;
+            // $payment_data->bankvalidation = $request->bankvalidation;
+            // $payment_data->bankdealing = $request->bankdealing;
             $payment_data->bankcode = $request->bankcode;
             $payment_data->bankName = $request->bankName;
             $payment_data->branch = $request->branch;
-            $payment_data->location = $request->location;
-            $FormOffice = FormOffice::where('loan_id', $request->loanidmain)->first(); 
-            // dd($FormOffice);
-            $lonaccountnumber = $FormOffice->Prospect_No; 
-            $payment_data->loan_account_number = $lonaccountnumber;
+            // $payment_data->location = $request->location;
+            // $FormOffice = FormOffice::where('loan_id', $request->loanidmain)->first(); 
+            // // dd($FormOffice);
+            // $lonaccountnumber = $FormOffice->Prospect_No; 
+            // $payment_data->loan_account_number = $lonaccountnumber;
             //  dd($request->all()); 
             // Save the new record to the database
             $payment_data->save();
@@ -323,16 +323,16 @@ class ApprovedController extends Controller
             $disbursal_data->payment_amount = $request->payment_amount;
             $disbursal_data->effective_payment_date = $request->effective_payment_date;
             $disbursal_data->payment_mode = $request->payment_mode;
-            $disbursal_data->business_partner_type = $request->business_partner_type;
+            // $disbursal_data->business_partner_type = $request->business_partner_type;
             $disbursal_data->beneficiary_name = $request->beneficiary_name;
             $disbursal_data->business_acccount_type = $request->business_acccount_type;
             $disbursal_data->beneficiary_account_number = $request->beneficiary_account_number;
-            $disbursal_data->bankvalidation = $request->bankvalidation;
-            $disbursal_data->bankdealing = $request->bankdealing;
+            // $disbursal_data->bankvalidation = $request->bankvalidation;
+            // $disbursal_data->bankdealing = $request->bankdealing;
             $disbursal_data->bankcode = $request->bankcode;
             $disbursal_data->bankName = $request->bankName;
             $disbursal_data->branch = $request->branch;
-            $disbursal_data->location = $request->location;
+            // $disbursal_data->location = $request->location;
             $disbursal_data->save();
 
             return redirect()->back()->with('success', 'Disbursal Updated successfully.');
