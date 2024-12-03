@@ -278,10 +278,10 @@ Route::post('/submit-form', [ApprovedController::class, 'adjustablestore'])->nam
 // Route::post('/loan/clearSession', [LoanController::class, 'clearSession'])->name('loan.clearSession');  
 
 
-Route::get('/', [LoanController::class, 'index'])->name('loan.dashboard');
-Route::get('/loan/select/{loanId}', [LoanController::class, 'selectLoan']);
-Route::post('/loan/clearSession', [LoanController::class, 'clearSession'])->name('loan.clearSession');
-Route::post('/loan/save', [LoanController::class, 'save'])->name('loan.save');
+// Route::get('/', [LoanController::class, 'index'])->name('loan.dashboard');
+// Route::get('/loan/select/{loanId}', [LoanController::class, 'selectLoan']);
+// Route::post('/loan/clearSession', [LoanController::class, 'clearSession'])->name('loan.clearSession');
+// Route::post('/loan/save', [LoanController::class, 'save'])->name('loan.save');
 
 
 
