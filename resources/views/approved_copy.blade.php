@@ -58,18 +58,11 @@
                             <div class="col-lg-3">
                                 <div class="form-group">
                                     <label for="lon_id" class="text-nowrap">Loan:</label>
-                                    {{-- <select class="form-control loan_id" id="lon_id" name="lon_id">
+                                    <select class="form-control loan_id" id="lon_id" name="lon_id">
                                         <option value="" disabled selected>Select a loan</option>
                                         @foreach ($loans as $loan)
                                             <option value="{{ $loan->loan_id }}">{{ $loan->Prospect_No }}</option>
                                         @endforeach
-                                    </select> --}}
-                                    <select class="form-control loan_id" id="lon_id" name="lon_id">
-                                        <option value="" disabled {{ !session('mainloan_id') ? 'selected' : '' }}>Select a loan</option>
-                                        <option value="{{ session('mainloan_id') }}" selected>{{ session('mainprospect_No') }}</option>
-                                        {{-- @foreach ($loans as $loan)
-                                            <option value="{{ $loan->loan_id }}">{{ $loan->Prospect_No }}</option>
-                                        @endforeach --}}
                                     </select>
                                     @error('lon_id')
                                         <span class="text-danger">{{ $message }}</span>
@@ -171,6 +164,12 @@
                                                         </select>
                                                     </div>
                                                 </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="row">
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label for="Recovery_Type">Recovery Type</label><br>
@@ -181,22 +180,6 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="row">
-                                                {{-- <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label for="Recovery_Type">Recovery Type</label><br>
-                                                        <select id="Recovery_Type" class="form-select mt-1 form-control" aria-label="Default select example" name="recovery_type">
-                                                            <option selected>select</option>
-                                                            <option value="Installment">Installment</option>
-                                                            <option value="Interest">Interest</option>
-                                                        </select>
-                                                    </div>
-                                                </div> --}}
                                                 {{-- <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label for="Recovery_Sub_Type">Recovery Sub Type</label>
@@ -229,28 +212,10 @@
                                                         </select>
                                                     </div>
                                                 </div>
-
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label for="Tanure">Tenure</label>
-                                                        <input id="Tanure" class="form-control mt-1" type="text"  name="tenure"  placeholder="Default input" aria-label="default input example" readonly>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label for="Tanure_in">Tenure In</label><br>
-                                                        <select id="Tanure_in" class="form-select mt-1 form-control" aria-label="Default select example" name="tenure_in">
-                                                            <option selected>select</option>
-                                                            <option value="Month">Month</option>
-                                                            <option value="Year">Year</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
                                             </div>
                                         </td>
                                     </tr>
-                                    {{-- <tr>
+                                    <tr>
                                         <td colspan="2"> <!-- Use colspan to span the entire row -->
                                             <div class="row">
                                                 <div class="col-md-6">
@@ -271,7 +236,7 @@
                                                 </div>
                                             </div>
                                         </td>
-                                    </tr> --}}
+                                    </tr>
                                     <tr>
                                         <td colspan="3"> <!-- Use colspan to span the entire row -->
                                             <div class="row">
@@ -407,7 +372,7 @@
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label for="rate_percentage">Rate (%)</label>
-                                                        <input id="rate_percentage" class="form-control mt-1" type="text" name="rate" placeholder="Default input" aria-label="default input example">
+                                                        <input id="rate_percentage" class="form-control mt-1" type="text" name="rate" placeholder="Default input" aria-label="default input example" readonly>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
@@ -425,7 +390,7 @@
                                     <tr>
                                         <td colspan="4"> <!-- Use colspan to span the entire row -->
                                             <div class="row">
-                                                <div class="col-md-2">
+                                                <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label for="due_day">Due Day</label><br>
                                                         <select id="due_day" class="form-select mt-1 form-control" aria-label="Default select example" name="due_day">
@@ -434,7 +399,6 @@
                                                             <option value="5">5</option>
                                                             <option value="7">7</option>
                                                             <option value="10">10</option>
-                                                            <option value="16">16</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -466,38 +430,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label for="brk_prd_adjust">Broken Period Adjustment</label><br>
-                                                        <select id="brk_prd_adjust" class="form-select mt-1 form-control" aria-label="Default select example" name="brokan_prd_adjust">
-                                                            <option value="No">No</option>
-                                                            <option value="Yes">Yes</option>
-
-                                                       </select>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-3" hidden>
-                                                    <div class="form-group">
-                                                        <label for="FirstInstallmentdate">Till Installment Date</label>
-                                                        <div class="input-group mb-3">
-                                                            <input type="date" name="till_installment_date" id="till_date"  class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
-                                                            <span class="input-group-text"><i class="fa-solid fa-calendar-days"></i></span>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-1" hidden>
-                                                    <div class="form-group">
-                                                        <label for="FirstInstallmentdate">Days</label>
-                                                        <div class="input-group mb-3">
-                                                            <input type="number" name="days_num" id="days_num"  class="form-control" aria-label="Dollar amount (with dot and two decimal places)" readonly>
-                                                            <input type="text" name="brk_charge" id="brk_charge" hidden>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
                                             </div>
                                         </td>
 
@@ -518,16 +450,17 @@
                                                         </div>
                                                     </div>
                                                 </div> --}}
-                                                {{-- <div class="col-md-3">
+                                                <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label for="brk_prd_adjust">Broken Period Adjustment</label><br>
                                                         <select id="brk_prd_adjust" class="form-select mt-1 form-control" aria-label="Default select example" name="brokan_prd_adjust">
-                                                            <option value="No">No</option>
+                                                            {{-- <option selected>Open this select menu</option> --}}
                                                             <option value="Yes">Yes</option>
-
-                                                       </select>
+                                                            <option value="No">No</option>
+                                                            {{-- <option value="3">Three</option> --}}
+                                                        </select>
                                                     </div>
-                                                </div> --}}
+                                                </div>
 
 
                                             </div>
@@ -674,15 +607,10 @@ $(document).ready(function() {
     //         $('#customer_id').empty();
     //     }
     // });
-    // $('#lon_id').change(function () {
-    //     let loanId = $(this).val();
-    //     fetchCustomersByLoanId(loanId); // Fetch customers
-    // });
-
-    var selectedLoanId = $('#lon_id').val();
-    if (selectedLoanId) {
-        fetchCustomersByLoanId(selectedLoanId); // Fetch customers
-    }
+    $('#lon_id').change(function () {
+        let loanId = $(this).val();
+        fetchCustomersByLoanId(loanId); // Fetch customers
+    });
 
     // Function to populate customers based on loan ID
     function fetchCustomersByLoanId(loanId) {
@@ -728,28 +656,15 @@ $(document).ready(function() {
                 // Populate credit data
                 let $creditdata = response.creditdata;
                 if ($creditdata && $creditdata.length > 0) {
-
-                    $policy_rate = 18;
-                    $rate = $creditdata[0]['policyrate'];
-                    $spread = $rate - $policy_rate;
                     $("#appication_amount").val($creditdata[0]['requested_amount']);
-                    $("#Tanure").val($creditdata[0]['sanctioned_tenure']);
-                    $("#policy_rate").val($policy_rate);
+                    $("#Tanure").val($creditdata[0]['requested_tenure']);
+                    $("#policy_rate").val($creditdata[0]['policyrate']);
                     $("#rate_percentage").val($creditdata[0]['policyrate']);
-                    $("#sanctioned_amount").val($creditdata[0]['sanctioned_amount']);
-                    $("#spread").val($spread);
-                    $("#total_installment").val($creditdata[0]['sanctioned_tenure']);
                 }
 
                 // Populate repayment data
                 let $repaymentdata = response.repaymentdata;
                 if ($repaymentdata) {
-
-                    if($repaymentdata['broken_period_adjustment'] == 'Yes')
-                    {
-                        $("#till_date").closest('.col-md-3').removeAttr('hidden');
-                        $("#days_num").closest('.col-md-1').removeAttr('hidden');
-                    }
                     $("#disbursalType").val($repaymentdata['disbursal_type']);
                     $("#numberdisbursal").val($repaymentdata['number_od_disbursal']);
                     $("#disbursalTo").val($repaymentdata['disbursal_to']);
@@ -889,7 +804,6 @@ $(document).ready(function() {
 
     });
 
-
     $("#package_discount").on('input', function() {
         var pr_discount = parseFloat($("#product_discount").val()) || 0;
         var pckg_discount = parseFloat($(this).val()) || 0;
@@ -956,17 +870,16 @@ $(document).ready(function() {
     $('#calculate').on('click', function(event) {
         event.preventDefault();
         $gettime = $("#Tanure_in").val();
-        $amount = $("#sanctioned_amount").val();  // channge appication_amount to sectionamount
-        $rate   = $("#rate_percentage").val();       // change policy rate to rate_percentage
+        $amount = $("#appication_amount").val();
+        $rate   = $("#policy_rate").val();
         $tanure = $("#Tanure").val();
         // for month and year
         $instdate = $("#fins_date").val();
-        let startdate = new Date($instdate);
+        let startdate= new Date($instdate);
         let startmonth = startdate.getMonth();
         let startyear  = startdate.getFullYear();
         // alert(startmonth);
         // alert(startyear);
-        // alert(startdate);
 
         if($gettime == "Month")
         {
@@ -1002,15 +915,10 @@ $(document).ready(function() {
               let currentMonthIndex = (startmonth + i - 1) % 12;
               let currentYear = startyear + Math.floor((startmonth + i - 1) / 12);
 
-              let emiDate = new Date(startdate);
-              emiDate.setMonth(startdate.getMonth() + (i - 1));
-              let formattedDate = `${String(emiDate.getDate()).padStart(2, '0')}-${String(emiDate.getMonth() + 1).padStart(2, '0')}-${emiDate.getFullYear()}`;
-
               emiSheet.push({
                 srno:i,
-                // months:monthNames[currentMonthIndex],
-                // year:currentYear,
-                date:formattedDate,
+                months:monthNames[currentMonthIndex],
+                year:currentYear,
                 opaningblnc: parseFloat($opaningblnc).toFixed(2),
                 emi:$finalemi.toFixed(2),
                 principle:$newprinciple.toFixed(2),
@@ -1026,7 +934,8 @@ $(document).ready(function() {
                             </tr>
                             <tr>
                                 <th>Sr.No</th>
-                                <th>Date</th>
+                                <th>Month</th>
+                                <th>Year</th>
                                 <th>Opaning Balance</th>
                                 <th>EMI (INR)</th>
                                 <th>Principal (INR)</th>
@@ -1039,13 +948,14 @@ $(document).ready(function() {
                 emiSheet.forEach((row) => {
                 tableHTML += `
                     <tr>
-                        <td class="text-nowrap">${row.srno}</td>
-                        <td class="text-nowrap">${row.date}</td>
-                        <td class="text-nowrap">${row.opaningblnc}</td>
-                        <td class="text-nowrap">${row.emi}</td>
-                        <td class="text-nowrap">${row.principle}</td>
-                        <td class="text-nowrap">${row.interest}</td>
-                        <td class="text-nowrap">${row.remainblnc}</td>
+                        <td>${row.srno}</td>
+                        <td>${row.months}</td>
+                        <td>${row.year}</td>
+                        <td>${row.opaningblnc}</td>
+                        <td>${row.emi}</td>
+                        <td>${row.principle}</td>
+                        <td>${row.interest}</td>
+                        <td>${row.remainblnc}</td>
                     </tr>
                 `;
             });
@@ -1195,107 +1105,4 @@ document.getElementById("downloadRePayment").addEventListener("click", function 
 
 });
 
-</script>
-<script>
-$(document).ready(function()
-{
-  $("#policy_rate").val(18);
-
-   $("#rate_percentage").on('input',function()
-    {
-     $val = $(this).val();
-     $policy_rate = $("#policy_rate").val();
-     $spread = $val - $policy_rate;
-     $("#spread").val($spread);
-    });
-
-
-    $("#brk_prd_adjust").on('change',function()
-    {
-        var val = $(this).val();
-
-        if (val === 'Yes') {
-        // Show the hidden div by removing the `hidden` attribute
-        $("#till_date").closest('.col-md-3').removeAttr('hidden');
-        } else {
-            // Hide the div by adding the `hidden` attribute
-            $("#till_date").closest('.col-md-3').attr('hidden', true);
-        }
-    });
-
-    $("#due_day").on('change',function()
-    {
-       $val = $(this).val();
-       var today = new Date();
-       var year = today.getFullYear();
-       var month = today.getMonth();
-        if ($val <= 15) {
-            month += 1;
-            if (month > 11) {
-                month = 0;
-                year += 1;
-            }
-            var targetDate = new Date(year, month, 7);
-            var day = String(targetDate.getDate()).padStart(2, '0');
-            var formattedMonth = String(targetDate.getMonth() + 1).padStart(2, '0');
-            var shortYear = String(targetDate.getFullYear());
-            var formattedDate = `${shortYear}-${formattedMonth}-${day}`;
-            $("#fins_date").val(formattedDate);
-        } else {
-            var nextmonth = month + 2;
-            if (nextmonth > 11) {
-                nextmonth -= 12;
-                year += 1;
-            }
-            var targetDate = new Date(year, nextmonth, 7);
-            var day = String(targetDate.getDate()).padStart(2, '0');
-            var formattedMonth = String(targetDate.getMonth() + 1).padStart(2, '0');
-            var shortYear = String(targetDate.getFullYear());
-            var formattedDate = `${shortYear}-${formattedMonth}-${day}`;
-            $("#fins_date").val(formattedDate);
-
-            // last month
-            let lastMonth = nextmonth - 1;
-            if (lastMonth < 0) {
-                lastMonth = 11;
-                year -= 1;
-            }
-            let targetDate1 = new Date(year, lastMonth, 7);
-            var day1 = String(targetDate1.getDate()).padStart(2, '0');
-            var formattedMonth1 = String(targetDate1.getMonth() + 1).padStart(2, '0');
-            var shortYear1 = String(targetDate1.getFullYear());
-            var formattedDate1 = `${shortYear1}-${formattedMonth1}-${day1}`;
-
-
-            $("#brk_prd_adjust").val('Yes');
-            $val = $("#brk_prd_adjust").val();
-            if ($val === 'Yes') {
-                $("#till_date").closest('.col-md-3').removeAttr('hidden');
-                $("#days_num").closest('.col-md-1').removeAttr('hidden');
-                $("#till_date").val(formattedDate1);
-
-                // days count
-                let diffTime = targetDate1 - today;
-                let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-                $("#days_num").val(diffDays);
-
-                // broken adjusment chager
-                $amount = $("#sanctioned_amount").val();
-                $rate   = $("#rate_percentage").val();
-
-                let dailyRate = $rate / 365;
-                let dailyCharge = $amount * (dailyRate / 100);
-                let totalCharge = dailyCharge * diffDays;
-
-                let brk_charge = Math.round(totalCharge);
-
-                $("#brk_charge").val(brk_charge);
-
-                // alert(brk_charge);
-            }
-
-        }
-    });
-
-});
 </script>

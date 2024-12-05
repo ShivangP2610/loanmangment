@@ -114,6 +114,8 @@ Route::get('/user/delete/{id}',[UserController::class,'destroy']);
 
     //view application
     Route::get('viewappliation',[FormController::class,'viewapplication'])->name('viewapplication');
+    // shivang add this 05-12-2024
+    Route::get('viewappliation/{loanno}',[FormController::class,'viewapplicationfull'])->name('viewapplicationfull');
     Route::get('viewapplication/{id}',[FormController::class,'show']);
     Route::get('applicatipon/delete/{id}',[FormController::class,'destroy']);
 
@@ -257,25 +259,25 @@ Route::get('/generate-pdf/{loan_id}', [PDFController::class,'generatePDF'])->nam
 Route::post('creditsatage/add',[CamController::class,'addcreditstage'])->name('add-creditstage');
 
 // approved stage ----shivnang 2-7-2024
-Route::get('approved/add',[ApprovedController::class,'create'])->name('approved/add'); 
+Route::get('approved/add',[ApprovedController::class,'create'])->name('approved/add');
 
-Route::get('approved/disbursal',[ApprovedController::class,'disbursal'])->name('approved/disbursal'); 
+Route::get('approved/disbursal',[ApprovedController::class,'disbursal'])->name('approved/disbursal');
 Route::get('viewapproved',[ApprovedController::class,'create'])->name('viewapproved');
-Route::get('getloandata/{id}',[ApprovedController::class,'getloandata'])->name('getLoanData'); 
+Route::get('getloandata/{id}',[ApprovedController::class,'getloandata'])->name('getLoanData');
 
 Route::get('getdisbursaldata/{id}',[ApprovedController::class,'getdisbursaldata'])->name('getdisbursaldata');
 
-Route::post('repayment-instrument',[ApprovedController::class,'store'])->name('repaymentinstrument'); 
+Route::post('repayment-instrument',[ApprovedController::class,'store'])->name('repaymentinstrument');
 
-Route::post('disbursal-details',[ApprovedController::class,'disbursalstore'])->name('disbursaldetails'); 
+Route::post('disbursal-details',[ApprovedController::class,'disbursalstore'])->name('disbursaldetails');
 
-Route::get('/get-partners', [ApprovedController::class, 'getPartners'])->name('get.partners'); 
-Route::post('/submit-form', [ApprovedController::class, 'adjustablestore'])->name('adjustable.store'); 
+Route::get('/get-partners', [ApprovedController::class, 'getPartners'])->name('get.partners');
+Route::post('/submit-form', [ApprovedController::class, 'adjustablestore'])->name('adjustable.store');
 
 
 // Route::get('/loan/select/{id}', [LoanController::class, 'selectLoan']);
 // Route::post('/loan/save', [LoanController::class, 'saveLoan'])->name('loan.save');
-// Route::post('/loan/clearSession', [LoanController::class, 'clearSession'])->name('loan.clearSession');  
+// Route::post('/loan/clearSession', [LoanController::class, 'clearSession'])->name('loan.clearSession');
 
 
 // Route::get('/', [LoanController::class, 'index'])->name('loan.dashboard');

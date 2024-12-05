@@ -160,11 +160,11 @@
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>
                     Dashboard
-                   
+
                   </p>
                 </a>
 
-              </li> 
+              </li>
               {{-- <li class="nav-item menu-open {{ request()->routeIs('loan.dashboard') ? 'menu-open' : '' }}">
                 <a href="{{ route('loan.dashboard') }}" class="nav-link {{ request()->routeIs('loan.dashboard') ? 'active' : '' }}">
                     <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -192,16 +192,18 @@
                     </a>
                   </li>
 
-                  <li class="nav-item">
+                  {{-- shivang hide this 05-12-2024 --}}
+                  {{-- <li class="nav-item">
                     <a href="{{route('viewapplication')}}" class="nav-link {{ request()->is('viewappliation') ? 'active' : '' }}">
                       <i class="far fa-circle nav-icon"></i>
                       <p>View</p>
                     </a>
-                  </li>
+                  </li> --}}
 
                 </ul>
-              </li> 
+              </li>
 
+            @if(session('mainloan_id'))
               <li class="nav-item {{ request()->is('document/add','viewdocument') ? 'menu-open' : '' }}">
                 <a href="#" class="nav-link {{ request()->is('document/add','viewdocument') ? 'active' : '' }}">
                   {{-- <i class="nav-icon fas fa-tachometer-alt"></i> --}}
@@ -217,7 +219,7 @@
                       <i class="fa fa-book"></i>
                       <p>Add</p>
                     </a>
-                  </li> 
+                  </li>
 
                   <li class="nav-item">
                     <a href="{{route('viewdocument')}}" class="nav-link {{ request()->is('viewdocument') ? 'active' : '' }}">
@@ -226,14 +228,14 @@
                     </a>
                   </li>
 
-                  
+
 
                 </ul>
-              </li> 
+              </li>
 
               <li class="nav-item {{ request()->is('cam/add','viewcam') ? 'menu-open' : '' }}">
                 <a href="#" class="nav-link {{ request()->is('cam/add','viewcam') ? 'active' : '' }}">
-                  
+
                   <i class="fa fa-file"></i>
                   <p>
                     CAM Stage
@@ -246,23 +248,23 @@
                       <i class="fa fa-book"></i>
                       <p>Add</p>
                     </a>
-                  </li> 
+                  </li>
 
                   <li class="nav-item">
                     <a href="{{route('viewcam')}}" class="nav-link {{ request()->is('viewcam') ? 'active' : '' }}">
                       <i class="far fa-circle nav-icon"></i>
                       <p>View</p>
                     </a>
-                  </li> 
+                  </li>
 
-                  
+
 
                 </ul>
-              </li> 
+              </li>
 
               <li class="nav-item {{ request()->is('credit/add','viewcredit') ? 'menu-open' : '' }}">
                 <a href="#" class="nav-link {{ request()->is('credit/add','viewcredit') ? 'active' : '' }}">
-                  
+
                   <i class="fa fa-file"></i>
                   <p>
                     Credit Stage
@@ -275,7 +277,7 @@
                       <i class="fa fa-book"></i>
                       <p>Add</p>
                     </a>
-                  </li> 
+                  </li>
 
                   {{-- <li class="nav-item">
                     <a href="{{route('viewcam')}}" class="nav-link {{ request()->is('viewcam') ? 'active' : '' }}">
@@ -284,14 +286,14 @@
                     </a>
                   </li> --}}
 
-                  
+
 
                 </ul>
               </li>
               {{-- aproved stage start--}}
               <li class="nav-item {{ request()->is('approved/add','viewapproved') ? 'menu-open' : '' }}">
                 <a href="#" class="nav-link {{ request()->is('approved/add','viewapproved') ? 'active' : '' }}">
-                  
+
                   <i class="fa fa-file"></i>
                   <p>
                     Approved Stage
@@ -304,28 +306,28 @@
                       <i class="fa fa-book"></i>
                       <p>Add</p>
                     </a>
-                  </li>  
+                  </li>
 
                   <li class="nav-item ">
                     <a href="{{url('approved/disbursal')}}" class="nav-link {{ request()->is('approved/disbursal') ? 'active' : '' }}">
                       <i class="fa fa-book"></i>
                       <p>Disbursal Details</p>
                     </a>
-                  </li> 
+                  </li>
 
                   <li class="nav-item">
                     <a href="{{route('viewapproved')}}" class="nav-link {{ request()->is('viewapproved') ? 'active' : '' }}">
                       <i class="far fa-circle nav-icon"></i>
                       <p>View</p>
                     </a>
-                  </li> 
+                  </li>
 
-                  
+
 
                 </ul>
-              </li> 
+              </li>
               {{-- approved stage end --}}
-
+            @endif
               {{-- user start --}}
               <li class="nav-item {{ request()->is('adduser', 'alluser') ? 'menu-open' : '' }}">
                 <a href="#" class="nav-link {{ request()->is('adduser', 'alluser') ? 'active' : '' }}">

@@ -46,11 +46,18 @@
                             <div class="col-lg-3">
                                 <div class="form-group">
                                     <label for="lon_id" class="text-nowrap">Loan:</label>
-                                    <select class="form-control loan_id" id="lon_id" name="lon_id">
+                                    {{-- <select class="form-control loan_id" id="lon_id" name="lon_id">
                                         <option value="" disabled selected>Select a loan</option>
                                         @foreach ($loans as $loan)
                                             <option value="{{ $loan->loan_id }}">{{ $loan->Prospect_No }}</option>
                                         @endforeach
+                                    </select> --}}
+                                    <select class="form-control loan_id" id="lon_id" name="lon_id">
+                                        <option value="" disabled {{ !session('mainloan_id') ? 'selected' : '' }}>Select a loan</option>
+                                        <option value="{{ session('mainloan_id') }}" selected>{{ session('mainprospect_No') }}</option>
+                                        {{-- @foreach ($loans as $loan)
+                                            <option value="{{ $loan->loan_id }}">{{ $loan->Prospect_No }}</option>
+                                        @endforeach --}}
                                     </select>
                                     @error('lon_id')
                                         <span class="text-danger">{{ $message }}</span>
@@ -390,43 +397,99 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 $(document).ready(function() {
-    $('#lon_id').change(function() {
-        // console.log('haasdfgasdfgh');
-        var loanId = $(this).val();
-        // alert(loanId);
-        if (loanId) {
-            $.ajax({
-                url: '/get-orignalcustomers/' + loanId,
+    var selectedLoanId = $('#lon_id').val();
+    if (selectedLoanId) {
+        // $('#lon_id').trigger('change');
+        $.ajax({
+                url: '/get-customers/' + selectedLoanId,
                 type: 'GET',
                 dataType: 'json',
                 success: function(data) {
                     $('#customer_id').empty();
-                    $.each(data.customers, function(key, customer) {
-                        $('#customer_id').append($('<option>', {
-                            value: customer.cust_id,
-                            text: customer.cust_name
-                        }));
-                        $("#cust_id_main").val(customer.cust_id)
+                    // $('#customer_id').append($('<option>', {
+                    //     value: '',
+                    //     text: 'Select a customer',
+                    //     disabled: true,
+                    //     selected: true
+                    // }));
 
+                    var selectedValues = {}; // Object to store selected values
+
+                    // Gather selected values from existing options
+                    $('#customer_id option:selected').each(function() {
+                        selectedValues[$(this).val()] = true;
                     });
-                    if (data.officedata) {
-                        $("#requested_amount").val(data.officedata.Loan_Amount);
-                        $("#requested_tenure").val(data.officedata.Months);
-                        $("#loan_id_main").val(data.officedata.loan_id)
-                    } else {
-                        $("#requested_amount").val('');
-                        $("#requested_tenure").val('');
-                    }
 
+                    $.each(data, function(key, item) {
+
+
+
+                        if (!selectedValues[item.customer_id]) {
+                            $('#customer_id').append($('<option>', {
+                                value: item.customer_id,
+                                text: item.customer_name + ' (BORROWER)'
+                            }));
+                            selectedValues[item.customer_id] = true;
+                            // customerNames[item.customer_id] = true; // Mark customer as added
+                             $('#customermainnid').val(item.customer_id);
+                        }
+
+
+                        if (item.proprietor_id && item.proprietor_name && !selectedValues[item.proprietor_id]) {
+                            $('#customer_id').append($('<option>', {
+                                value: item.proprietor_id,
+                                text: item.proprietor_name + ' (Proprietor)'
+                            }));
+                            selectedValues[item.proprietor_id] = true; // Mark proprietor as added
+                        }
+                    });
+
+                    // $('#customer_id').click(function() {
+                    //     var customerId = $(this).val();
+                    //     alert(customerId);
                 },
                 error: function(error) {
                     console.error("Error fetching customers:", error);
                 }
             });
-        } else {
-            $('#customer_id').empty();
-        }
-    });
+    }
+    // $('#lon_id').change(function() {
+    //     // console.log('haasdfgasdfgh');
+    //     var loanId = $(this).val();
+    //     // alert(loanId);
+    //     if (loanId) {
+    //         $.ajax({
+    //             url: '/get-orignalcustomers/' + loanId,
+    //             type: 'GET',
+    //             dataType: 'json',
+    //             success: function(data) {
+    //                 $('#customer_id').empty();
+    //                 $.each(data.customers, function(key, customer) {
+    //                     $('#customer_id').append($('<option>', {
+    //                         value: customer.cust_id,
+    //                         text: customer.cust_name
+    //                     }));
+    //                     $("#cust_id_main").val(customer.cust_id)
+
+    //                 });
+    //                 if (data.officedata) {
+    //                     $("#requested_amount").val(data.officedata.Loan_Amount);
+    //                     $("#requested_tenure").val(data.officedata.Months);
+    //                     $("#loan_id_main").val(data.officedata.loan_id)
+    //                 } else {
+    //                     $("#requested_amount").val('');
+    //                     $("#requested_tenure").val('');
+    //                 }
+
+    //             },
+    //             error: function(error) {
+    //                 console.error("Error fetching customers:", error);
+    //             }
+    //         });
+    //     } else {
+    //         $('#customer_id').empty();
+    //     }
+    // });
 
     $("#adddesicion").on('click',function()
     {

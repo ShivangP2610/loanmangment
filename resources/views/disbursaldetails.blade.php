@@ -57,12 +57,19 @@
                                 <div class="col-lg-3">
                                     <div class="form-group">
                                         <label for="lon_id" class="text-nowrap">Loan:</label>
-                                        <select class="form-control loan_id" id="lon_id" name="lon_id">
+                                        {{-- <select class="form-control loan_id" id="lon_id" name="lon_id">
                                             <option value="" disabled selected>Select a loan</option>
                                             @foreach ($loans as $loan)
-                                                <option value="{{ $loan->loan_id }}">{{ $loan->Prospect_No }}</option> 
+                                                <option value="{{ $loan->loan_id }}">{{ $loan->Prospect_No }}</option>
                                                 <input type="text" id="loannumber" value="{{$loan->Prospect_No?$loan->Prospect_No:'' }}" hidden>
                                             @endforeach
+                                        </select> --}}
+                                        <select class="form-control loan_id" id="lon_id" name="lon_id">
+                                            <option value="" disabled {{ !session('mainloan_id') ? 'selected' : '' }}>Select a loan</option>
+                                            <option value="{{ session('mainloan_id') }}" selected>{{ session('mainprospect_No') }}</option>
+                                            {{-- @foreach ($loans as $loan)
+                                                <option value="{{ $loan->loan_id }}">{{ $loan->Prospect_No }}</option>
+                                            @endforeach --}}
                                         </select>
                                         @error('lon_id')
                                             <span class="text-danger">{{ $message }}</span>
@@ -297,11 +304,11 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                    
+
 
 
                                                 <td>
-                                                   
+
 
                                                     <select class="form-control" id="applicant_type"
                                                         name="applicant_type">
@@ -312,7 +319,7 @@
                                                     </select>
                                                 </td>
                                                 <td>
-                                                  
+
 
                                                     <select class="form-control" id="partner_name" name="partner_name">
                                                         <option value="" disabled selected>Select a Partner</option>
@@ -456,7 +463,7 @@
                                                             type="text" placeholder="Default input"
                                                             aria-label="default input example" readonly>
                                                     </div>
-                                                </td> 
+                                                </td>
 
                                                 <td class="col-3">
                                                     <div class="form-group">
@@ -476,7 +483,7 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                          
+
 
 
 
@@ -495,7 +502,7 @@
                                                         <!-- Save Button (sets values only) -->
                                                         <button type="button" class="btn btn-primary mt-3" id="saveButton">Save</button>
                                                     </div>
-                                                </td> 
+                                                </td>
 
                                                 <td colspan="4">
                                                     <div class="d-flex justify-content-end">
@@ -638,13 +645,13 @@
                                             id="total_amount_main" readonly></td>
                                 </tr>
                             </tfoot>
-                        </table>  
-                        <div class="text-center mt-3"> 
-                            {{-- <button type="button"  id="closebtn" class="btn btn-primary">close</button> 
-                            
-                            --}} 
+                        </table>
+                        <div class="text-center mt-3">
+                            {{-- <button type="button"  id="closebtn" class="btn btn-primary">close</button>
+
+                            --}}
                             <button  id="saveButton" class="btn btn-primary">Save</button>
-                            <button type="submit" class="btn btn-primary">Submit</button> 
+                            <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </form>
 
@@ -660,13 +667,48 @@
 <script>
     let app_name;
     $(document).ready(function() {
-        $('#lon_id').change(function() {
-            // console.log('haasdfgasdfgh');
-            var loanId = $(this).val();
-            // alert(loanId);
-            if (loanId) {
-                $.ajax({
-                    url: '/get-orignalcustomers/' + loanId,
+        // $('#lon_id').change(function() {
+        //     // console.log('haasdfgasdfgh');
+        //     var loanId = $(this).val();
+        //     // alert(loanId);
+        //     if (loanId) {
+        //         $.ajax({
+        //             url: '/get-orignalcustomers/' + loanId,
+        //             type: 'GET',
+        //             dataType: 'json',
+        //             success: function(data) {
+        //                 $('#customer_id').empty();
+        //                 $.each(data.customers, function(key, customer) {
+        //                     $('#customer_id').append($('<option>', {
+        //                         value: customer.cust_id,
+        //                         text: customer.cust_name
+        //                     }));
+
+        //                     let customerId1 = $('#customer_id').val();
+        //                     $("#loan_idpop").val(loanId);
+        //                     $("#customer_idpop").val(customerId1);
+        //                     // alert(customerId1);
+        //                     fetchLoanAndCustomerData(loanId, customerId1);
+
+        //                 });
+
+        //             },
+        //             error: function(error) {
+        //                 console.error("Error fetching customers:", error);
+        //             },
+        //             complete: function() {
+        //                 $('#customer_id').trigger('change');
+        //             }
+        //         });
+        //     } else {
+        //         $('#customer_id').empty();
+        //     }
+        // });
+
+        var selectedLoanId = $('#lon_id').val();
+        if (selectedLoanId) {
+            $.ajax({
+                    url: '/get-orignalcustomers/' + selectedLoanId,
                     type: 'GET',
                     dataType: 'json',
                     success: function(data) {
@@ -678,10 +720,10 @@
                             }));
 
                             let customerId1 = $('#customer_id').val();
-                            $("#loan_idpop").val(loanId);
+                            $("#loan_idpop").val(selectedLoanId);
                             $("#customer_idpop").val(customerId1);
                             // alert(customerId1);
-                            fetchLoanAndCustomerData(loanId, customerId1);
+                            fetchLoanAndCustomerData(selectedLoanId, customerId1);
 
                         });
 
@@ -693,10 +735,7 @@
                         $('#customer_id').trigger('change');
                     }
                 });
-            } else {
-                $('#customer_id').empty();
-            }
-        });
+        }
 
         $("#adddesicion").on('click', function() {
             var loanId = document.getElementById('lon_id').value;
@@ -857,7 +896,7 @@
                             $("#sanctioned_date").val(date);
                             $("#tenure").val($creditdata[0]['sanctioned_tenure']);
                             $("#roi").val($creditdata[0]['sanctionedInterest']);
-                            // $("#roi").val($creditdata[0]['sanctionedInterest']); 
+                            // $("#roi").val($creditdata[0]['sanctionedInterest']);
 
                             // $("#roi").val($creditdata[0]['policyrate']);
                         }
@@ -870,7 +909,7 @@
                         }
 
                         if ($disbursaldata) {
-                            // alert($disbursaldata['bussiness_partner_name_appant_name']); 
+                            // alert($disbursaldata['bussiness_partner_name_appant_name']);
                             // let y = 'xcscfd';
                             $("#bankvalidation").val($disbursaldata['bankvalidation']);
                             $("#bankdealing").val($disbursaldata['bankdealing']);
@@ -901,7 +940,7 @@
 
 
                             // $("#loan_account_number").val($disbursaldata[
-                            // 'bussiness_partner_name_appant_name']); 
+                            // 'bussiness_partner_name_appant_name']);
 
                         }
 
@@ -911,7 +950,7 @@
                         //     $("#amount_1").val($adjustabledata['amount']);
                         // }
                         if ($adjustabledata && $adjustabledata.length > 0) {
-                            // Loop through each item in $adjustabledata 
+                            // Loop through each item in $adjustabledata
 
                             let totalAmount = 0;
                             $adjustabledata.forEach((item, index) => {
@@ -987,8 +1026,8 @@
         $('#applicant_type').change(function() {
             let type = $(this).val(); // Get selected applicant type
             let loanId = $('#lon_id').val(); // Get selected loan ID
-            let customerId = $('#customer_id').val(); // Get selected customer ID 
-            // alert(customerId); 
+            let customerId = $('#customer_id').val(); // Get selected customer ID
+            // alert(customerId);
             // alert(type);
 
             // Ensure all required fields are selected
@@ -1018,9 +1057,9 @@
                             // Check if the partner's data exists before appending
                             if (partner.id && partner.name) {
                                 $('#partner_name').append(
-                                    `<option value="${partner.id}|${partner.name}" 
-                                ${partner.id == (app_name ? app_name.split("|")[0] : null) ? 'selected' : ''} 
-                                data-id="${partner.id}" 
+                                    `<option value="${partner.id}|${partner.name}"
+                                ${partner.id == (app_name ? app_name.split("|")[0] : null) ? 'selected' : ''}
+                                data-id="${partner.id}"
                                 data-name="${partner.name}">
                                 ${partner.name}
                         </option>`
@@ -1085,7 +1124,7 @@
             $('#app_disbursal_amount').val(disbursalamount.toFixed(2));
             $('#app_adjustment_amount').val(total.toFixed(2));
 
-            // ("#total_amount_main").val(total.toFixed(2)); 
+            // ("#total_amount_main").val(total.toFixed(2));
             $('#disbursal_amount').val(disbursalamount.toFixed(2));
             $('#adjustment_amount').val(total.toFixed(2));
             $('#actual_payment_amount').val(disbursalamount.toFixed(2));
@@ -1107,7 +1146,7 @@
     //     const form = document.getElementById('chargesForm');
     //     // const totalAmountInput = document.getElementById('total_amount_main');
 
-    //     form.addEventListener('submit', function (event) { 
+    //     form.addEventListener('submit', function (event) {
     //         // alert('duetueefh');
     //         event.preventDefault(); // Prevent the default form submission
 
@@ -1122,13 +1161,13 @@
     //             },
     //             body: formData,
     //         })
-    //         .then(response => response.json()) 
+    //         .then(response => response.json())
     //         .then(data => {
     //             if (data.success) {
-    //                 // alert(data.message); 
-    //                 // totalAmountInput.value = data.total_amount; 
+    //                 // alert(data.message);
+    //                 // totalAmountInput.value = data.total_amount;
     //             } else {
-    //                 alert('Error: ' + data.message); 
+    //                 alert('Error: ' + data.message);
     //             }
     //         })
     //         .catch(error => {
@@ -1136,10 +1175,10 @@
     //             alert('Failed to save data. Please try again.');
     //         });
     //     });
-    // }); 
+    // });
 
     document.addEventListener('DOMContentLoaded', function() {
-        const form = document.getElementById('chargesForm');    
+        const form = document.getElementById('chargesForm');
 
         form.addEventListener('submit', function(event) {
             event.preventDefault();
@@ -1158,9 +1197,9 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        alert(data.message); 
+                        alert(data.message);
 
-                        form.reset(); 
+                        form.reset();
 
                         // const popup = document.getElementById('exampleModal1');
                         // if (popup) {
@@ -1175,26 +1214,26 @@
                     alert('Failed to save data. Please try again.');
                 });
         });
-    });  
-
-    
+    });
 
 
-</script> 
+
+
+</script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
     const saveButton = document.getElementById('saveButton');
 
-    saveButton.addEventListener('click', function () { 
-      
+    saveButton.addEventListener('click', function () {
+
         $appno = $("#loannumber").val();
         $("#application_status").val("Disbursed");
         $('#loan_account_number').val($appno);
 
-        
 
-     
+
+
     });
 });
 

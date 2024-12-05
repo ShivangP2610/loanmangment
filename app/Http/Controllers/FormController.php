@@ -257,6 +257,26 @@ class FormController extends Controller
 
     }
 
+    // shivang 05-12-2024
+
+    public function viewapplicationfull(String $id)
+    {
+        $allapplications = FormOffice::where('Prospect_No',$id)->get();
+        // $loan_id = $allapplications->first()->loan_id;
+        // session(['mainloan_id' => $loan_id]);
+        if ($allapplications->isNotEmpty()) {
+            $loan_id = $allapplications->first()->loan_id;
+            $pr_no = $allapplications->first()->Prospect_No;
+
+            session(['mainloan_id' => $loan_id]);
+            session(['mainprospect_No' => $pr_no]);
+        } else {
+            session()->forget('mainloan_id');
+        }
+        $data = compact('allapplications');
+        return view('viewapplication')->with($data);
+
+    }
 
 
 }

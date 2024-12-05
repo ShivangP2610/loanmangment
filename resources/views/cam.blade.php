@@ -3,12 +3,12 @@
 @endpush
 @extends("layout.main")
 
-@section('main-section') 
+@section('main-section')
 
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
-      
+
     </div>
 
     <div class="content">
@@ -30,7 +30,7 @@
             </div>
         @endif
             <div class="row">
-                
+
                 <div class="col-lg-12">
                     <form action="{{ route('add-cam') }}" method="POST" enctype="multipart/form-data">
                         @csrf
@@ -39,24 +39,31 @@
                             <div>
                                 <h6 style="font-weight: 700" class="mt-2 ml-2">{{$title}}</h6>
                             </div>
-                          
+
                         </div>
 
                         <div class="row mb-3">
                             <div class="col-lg-4">
                                 <div class="form-group">
                                     <label for="lon_id" class="text-nowrap">Loan:</label>
-                                    <select class="form-control loan_id" id="lon_id" name="lon_id">
+                                    {{-- <select class="form-control loan_id" id="lon_id" name="lon_id">
                                         <option value="" disabled selected>Select a loan</option>
                                         @foreach ($loans as $loan)
                                             <option value="{{ $loan->loan_id }}">{{ $loan->Prospect_No }}</option>
                                         @endforeach
+                                    </select> --}}
+                                    <select class="form-control loan_id" id="lon_id" name="lon_id">
+                                        <option value="" disabled {{ !session('mainloan_id') ? 'selected' : '' }}>Select a loan</option>
+                                        <option value="{{ session('mainloan_id') }}" selected>{{ session('mainprospect_No') }}</option>
+                                        {{-- @foreach ($loans as $loan)
+                                            <option value="{{ $loan->loan_id }}">{{ $loan->Prospect_No }}</option>
+                                        @endforeach --}}
                                     </select>
                                     @error('lon_id')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
-                            </div>  
+                            </div>
 
 
                             <div class="col-lg-4">
@@ -71,10 +78,10 @@
                                 </div>
                             </div>
 
-                          
 
-                           
-                             
+
+
+
 
                             <div class="col-lg-4">
                                 <div class="form-group">
@@ -86,20 +93,20 @@
                                   @enderror
                                 </div>
                               </div>
-                        </div> 
+                        </div>
 
                         <!-- <div class="col-lg-4">
                             <div class="form-group">
                                 <label for="status" class="text-nowrap">Status:</label>
-                                 
-                                <select class="form-control" id="status" name="status">
-                                    <option value="">Select a Status</option> 
-                                    <option value="cam approved">Done</option> 
-                                    <option value="document approved">Pending</option> 
 
-                                    {{-- <option value="">cam approved</option> 
+                                <select class="form-control" id="status" name="status">
+                                    <option value="">Select a Status</option>
+                                    <option value="cam approved">Done</option>
+                                    <option value="document approved">Pending</option>
+
+                                    {{-- <option value="">cam approved</option>
                                     <option value="">credit approved</option>  --}}
-                                    
+
                                     </select>
                                 @error('status')
                                     <span class="text-danger">{{ $message }}</span>
@@ -107,7 +114,7 @@
                             </div>
                         </div> -->
 
-                       
+
 
                         <div class="row">
                            <div class="col-lg-12">
@@ -123,38 +130,94 @@
         <!-- /.container-fluid -->
       </div>
 </div>
-@endsection 
+@endsection
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script>
-   
+
 $(document).ready(function() {
-    $('#lon_id').change(function() {  
-        // console.log('haasdfgasdfgh');
-        var loanId = $(this).val(); 
-        // alert(loanId);
-        if (loanId) {
-            $.ajax({
-                url: '/get-orignalcustomers/' + loanId,
+    // $('#lon_id').change(function() {
+    //     // console.log('haasdfgasdfgh');
+    //     var loanId = $(this).val();
+    //     // alert(loanId);
+    //     if (loanId) {
+    //         $.ajax({
+    //             url: '/get-orignalcustomers/' + loanId,
+    //             type: 'GET',
+    //             dataType: 'json',
+    //             success: function(data) {
+    //                 console.log(data);
+    //                 $('#customer_id').empty();
+    //                 $.each(data, function(key, customer) {
+    //                     $('#customer_id').append($('<option>', {
+    //                         value: customer[0].cust_id,
+    //                         text: customer[0].cust_name
+    //                     }));
+    //                 });
+    //             },
+    //             error: function(error) {
+    //                 console.error("Error fetching customers:", error);
+    //             }
+    //         });
+    //     } else {
+    //         $('#customer_id').empty();
+    //     }
+    // });
+    var selectedLoanId = $('#lon_id').val();
+    if (selectedLoanId) {
+        // $('#lon_id').trigger('change');
+        $.ajax({
+                url: '/get-customers/' + selectedLoanId,
                 type: 'GET',
                 dataType: 'json',
-                success: function(data) { 
-                    console.log(data);
+                success: function(data) {
                     $('#customer_id').empty();
-                    $.each(data, function(key, customer) {
-                        $('#customer_id').append($('<option>', {
-                            value: customer[0].cust_id,
-                            text: customer[0].cust_name
-                        }));
+                    // $('#customer_id').append($('<option>', {
+                    //     value: '',
+                    //     text: 'Select a customer',
+                    //     disabled: true,
+                    //     selected: true
+                    // }));
+
+                    var selectedValues = {}; // Object to store selected values
+
+                    // Gather selected values from existing options
+                    $('#customer_id option:selected').each(function() {
+                        selectedValues[$(this).val()] = true;
                     });
+
+                    $.each(data, function(key, item) {
+
+
+
+                        if (!selectedValues[item.customer_id]) {
+                            $('#customer_id').append($('<option>', {
+                                value: item.customer_id,
+                                text: item.customer_name + ' (BORROWER)'
+                            }));
+                            selectedValues[item.customer_id] = true;
+                            // customerNames[item.customer_id] = true; // Mark customer as added
+                             $('#customermainnid').val(item.customer_id);
+                        }
+
+
+                        if (item.proprietor_id && item.proprietor_name && !selectedValues[item.proprietor_id]) {
+                            $('#customer_id').append($('<option>', {
+                                value: item.proprietor_id,
+                                text: item.proprietor_name + ' (Proprietor)'
+                            }));
+                            selectedValues[item.proprietor_id] = true; // Mark proprietor as added
+                        }
+                    });
+
+                    // $('#customer_id').click(function() {
+                    //     var customerId = $(this).val();
+                    //     alert(customerId);
                 },
                 error: function(error) {
                     console.error("Error fetching customers:", error);
                 }
             });
-        } else {
-            $('#customer_id').empty();
-        }
-    });
+    }
 });
     </script>

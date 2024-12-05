@@ -90,7 +90,7 @@ class ApprovedController extends Controller
         ]);
         // dd([
         //     'creditdata' => $creditdata,
-        //     'loans' => $loans, 
+        //     'loans' => $loans,
         //     'bankdetails' => $bandetails,
         //     'disbursal' => $disbursalmaindata,
         //     'adjustabledata' => $adjustabledata
@@ -104,7 +104,7 @@ class ApprovedController extends Controller
         // dd($request);
         $request->validate([
             'appication_amount' => 'required',
-            'disbursaltype'    => 'required',
+            // 'disbursaltype'    => 'required',
             // 'number_disbursals' => 'required',
             'disbursal_to'      => 'required',
             'recovery_type'     => 'required',
@@ -200,7 +200,7 @@ class ApprovedController extends Controller
 
     public function disbursalstore(Request $request)
     {
-        // dd($request->all()); 
+        // dd($request->all());
 
         $request->validate([
             'sanction_amount' => 'required',
@@ -234,11 +234,11 @@ class ApprovedController extends Controller
         if (!$disbursal_data) {
             if ($request->applicant_type == 'BORROWER') {
                 $id = $request->partner_name;
-                //    $name = Customer::find($id)->select('cust_name'); 
+                //    $name = Customer::find($id)->select('cust_name');
                 $name = Customer::where('cust_id', $id)->pluck('cust_name')->first();
             } else {
                 $id = $request->partner_name;
-                // $name = Proprietor::find($id)->select('proprietor_name'); 
+                // $name = Proprietor::find($id)->select('proprietor_name');
                 // $name = Proprietor::where('proprietor_id', $id)->pluck('proprietor_name')->first();
             }
             // dd($name);
@@ -277,11 +277,11 @@ class ApprovedController extends Controller
             $payment_data->bankName = $request->bankName;
             $payment_data->branch = $request->branch;
             // $payment_data->location = $request->location;
-            // $FormOffice = FormOffice::where('loan_id', $request->loanidmain)->first(); 
+            // $FormOffice = FormOffice::where('loan_id', $request->loanidmain)->first();
             // // dd($FormOffice);
-            // $lonaccountnumber = $FormOffice->Prospect_No; 
+            // $lonaccountnumber = $FormOffice->Prospect_No;
             // $payment_data->loan_account_number = $lonaccountnumber;
-            //  dd($request->all()); 
+            //  dd($request->all());
             // Save the new record to the database
             $payment_data->save();
 
@@ -292,11 +292,11 @@ class ApprovedController extends Controller
 
             if ($request->applicant_type == 'BORROWER') {
                 $id = $request->partner_name;
-                //    $name = Customer::find($id)->select('cust_name'); 
+                //    $name = Customer::find($id)->select('cust_name');
                 $name = Customer::where('cust_id', $id)->pluck('cust_name')->first();
             } else {
                 $id = $request->partner_name;
-                // $name = Proprietor::find($id)->select('proprietor_name'); 
+                // $name = Proprietor::find($id)->select('proprietor_name');
                 $name = Proprietor::where('proprietor_id', $id)->pluck('proprietor_name')->first();
             }
             $disbursal_data->sanction_amount = $request->sanction_amount;
@@ -374,20 +374,20 @@ class ApprovedController extends Controller
 
     // public function getPartners(Request $request)
     // {
-    //     $type = $request->type; 
+    //     $type = $request->type;
 
-    //     if ($type === 'BORROWER') { 
+    //     if ($type === 'BORROWER') {
 
-    //         $partners = Customer::select('loan_id', 'cust_name')->get();  
+    //         $partners = Customer::select('loan_id', 'cust_name')->get();
     //         // dd( $partners);
     //     } elseif ($type === 'CO-BORROWER') {
-    //         $partners = Proprietor::select('id', 'name')->get(); 
+    //         $partners = Proprietor::select('id', 'name')->get();
     //     } else {
     //         return response()->json(['error' => 'Invalid type'], 400);
     //     }
 
     //     return response()->json($partners);
-    // } 
+    // }
 
     public function getPartners(Request $request)
     {
@@ -405,7 +405,7 @@ class ApprovedController extends Controller
             // Get borrowers linked to the given loan and customer
             $partners = Customer::where('loan_id', $loanId)
                 ->where('cust_id', $customerId)
-                // ->select('cust_id', 'cust_name') 
+                // ->select('cust_id', 'cust_name')
                 ->select('cust_id as id', 'cust_name as name')
                 ->get();
             // dd(  $partners);
@@ -413,7 +413,7 @@ class ApprovedController extends Controller
             // Get co-borrowers (proprietors) associated with the given loan and customer
             $partners = Proprietor::where('loan_id', $loanId)
                 ->where('cust_id', $customerId) // Assuming this links Proprietors to Customers
-                // ->select('proprietor_id', 'proprietor_name') 
+                // ->select('proprietor_id', 'proprietor_name')
                 ->select('proprietor_id as id', 'proprietor_name as name')
                 ->get();
             // dd($partners);
@@ -427,7 +427,7 @@ class ApprovedController extends Controller
 
     // public function adjustablestore(Request $request)
     // {
-    //     // Validate the request 
+    //     // Validate the request
     //     // dd($request->all());
     //     $request->validate([
     //         'charges_details' => 'required|array',
@@ -440,56 +440,56 @@ class ApprovedController extends Controller
 
     //     // Loop through the input arrays and save each row in the database
     //     foreach ($request->charges_details as $index => $charges_detail) {
-    //         if (!empty($charges_detail) && $request->amount[$index] != null) {  
-    //             Adjustable::create([  
-    //                 'loan_id' => $request->loan_id,  
-    //                 'cust_id' => $request->customer_id, 
+    //         if (!empty($charges_detail) && $request->amount[$index] != null) {
+    //             Adjustable::create([
+    //                 'loan_id' => $request->loan_id,
+    //                 'cust_id' => $request->customer_id,
     //                 'charges_detail' => $charges_detail,
     //                 'percentage' => $request->percentage[$index] ?? null,
-    //                 'amount' => $request->amount[$index] ?? null, 
-    //                 'total_amount' => $request->total_amount ?? null, 
-    //             ]); 
+    //                 'amount' => $request->amount[$index] ?? null,
+    //                 'total_amount' => $request->total_amount ?? null,
+    //             ]);
 
     //             // $totalAdjustmentAmount += $request->amount[$index];
     //         }
-    //     } 
+    //     }
 
 
     //     $disbursal = Disbursal::where('loan_id', $request->loan_id)
     //         ->where('cust_id', $request->customer_id)
-    //         ->first(); 
+    //         ->first();
 
-    //         $sanction_amount = $disbursal->sanction_amount;   
-    //         $adjustment_amount = $request->total_amount;  
+    //         $sanction_amount = $disbursal->sanction_amount;
+    //         $adjustment_amount = $request->total_amount;
     //         $disbursalmainamount =   $sanction_amount - $adjustment_amount;
 
 
     //     if ($disbursal) {
     //         // Update the Disbursal model's fields
-    //         $disbursal->app_disbursal_amount = $disbursalmainamount; 
-    //         $disbursal->app_adjustment_amount = $request->total_amount;    
-    //         $disbursal->disbursal_amount =  $disbursalmainamount;  
-    //         $disbursal->adjustment_amount = $request->total_amount;      
-    //         $disbursal->bussiness_disbursal_amount =  $disbursalmainamount;   
-    //         $disbursal->bussiness_adjustment_amount =  $request->total_amount;    
-    //         $disbursal->payment_amount =  $disbursalmainamount;   
-    //         $disbursal->actual_payment_amount =  $disbursalmainamount; 
+    //         $disbursal->app_disbursal_amount = $disbursalmainamount;
+    //         $disbursal->app_adjustment_amount = $request->total_amount;
+    //         $disbursal->disbursal_amount =  $disbursalmainamount;
+    //         $disbursal->adjustment_amount = $request->total_amount;
+    //         $disbursal->bussiness_disbursal_amount =  $disbursalmainamount;
+    //         $disbursal->bussiness_adjustment_amount =  $request->total_amount;
+    //         $disbursal->payment_amount =  $disbursalmainamount;
+    //         $disbursal->actual_payment_amount =  $disbursalmainamount;
     //         $disbursal->save();
     //     }
 
     //     return redirect()->back()->with('success', 'Data has been saved successfully!');
-    // }    
+    // }
 
 
     public function adjustablestore(Request $request)
     {
-        // Validate the request 
+        // Validate the request
         $request->validate([
             'charges_details' => 'required|array',
             'percentage' => 'array',
             'amount' => 'array',
         ]);
- 
+
         // dd($request->all());
         // Loop through the input arrays and save or update each row in the database
         foreach ($request->charges_details as $index => $charges_detail) {
@@ -546,13 +546,13 @@ class ApprovedController extends Controller
         }
 
         // Return success response
-        // return redirect()->back()->with('success', 'Data has been saved successfully!'); 
+        // return redirect()->back()->with('success', 'Data has been saved successfully!');
 
         return response()->json([
             'success' => true,
             'message' => 'Data has been saved successfully!',
             // 'total_amount' => $totalAdjustmentAmount,
-        ]); 
-        
+        ]);
+
     }
 }
