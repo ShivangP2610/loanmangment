@@ -334,7 +334,7 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="" id="advanceinstallment" name="advance_installment_to_be_deducted">
+                                                        <input class="form-check-input advance-installment" type="checkbox" value="1" id="advanceinstallment" name="advance_installment_to_be_deducted">
                                                         <label class="form-check-label" for="advanceinstallment">
                                                             Advance Installment to be deducted
                                                         </label>
@@ -775,7 +775,15 @@ $(document).ready(function() {
                     $("#int_chrged").val($repaymentdata['interest_charged']);
                     $("#act_date").val($repaymentdata['actual_date']);  
                     $("#till_date").val($repaymentdata['till_date']);   
-                    $("#days_num").val($repaymentdata['days_num']);  
+                    $("#days_num").val($repaymentdata['days_num']);   
+
+                    if ($repaymentdata['advance_installment_to_be_deducted'] == 1) {  
+                        // alert('gjkgg');
+       
+        $(".advance-installment").prop("checked", true);
+    } else {
+        $(".advance-installment").prop("checked", false);
+    }
                     
                    
                 }
@@ -962,6 +970,7 @@ $(document).ready(function() {
     // calculate installment
     $('#calculate').on('click', function(event) {
         event.preventDefault();
+        getbrokendta();
         $gettime = $("#Tanure_in").val();
         $amount = $("#sanctioned_amount").val();  // channge appication_amount to sectionamount
         $rate   = $("#rate_percentage").val();       // change policy rate to rate_percentage
@@ -1239,7 +1248,8 @@ $(document).ready(function()
             // Hide the div by adding the `hidden` attribute
             $("#till_date").closest('.col-md-3').attr('hidden', true);
         }
-    });
+    }); 
+
 
     $("#due_day").on('change',function()
     {
@@ -1258,7 +1268,10 @@ $(document).ready(function()
             var formattedMonth = String(targetDate.getMonth() + 1).padStart(2, '0');
             var shortYear = String(targetDate.getFullYear());
             var formattedDate = `${shortYear}-${formattedMonth}-${day}`;
-            $("#fins_date").val(formattedDate);
+            $("#fins_date").val(formattedDate);  
+            $("#brk_prd_adjust").val('No');
+            $("#till_date").closest('.col-md-3').attr('hidden', true);
+            $("#days_num").closest('.col-md-1').attr('hidden', true);
         } else {
             var nextmonth = month + 2;
             if (nextmonth > 11) {
@@ -1313,7 +1326,8 @@ $(document).ready(function()
             }
 
         }
-    });
+    }); 
+    
 
     // advance installment
 
@@ -1325,4 +1339,81 @@ $(document).ready(function()
     // });
 
 });
-</script>
+function getbrokendta(){ 
+        $val = $('#due_day').val();
+       var today = new Date();
+       var year = today.getFullYear();
+       var month = today.getMonth();
+        if ($val <= 15) {
+            month += 1;
+            if (month > 11) {
+                month = 0;
+                year += 1;
+            }
+            var targetDate = new Date(year, month, 7);
+            var day = String(targetDate.getDate()).padStart(2, '0');
+            var formattedMonth = String(targetDate.getMonth() + 1).padStart(2, '0');
+            var shortYear = String(targetDate.getFullYear());
+            var formattedDate = `${shortYear}-${formattedMonth}-${day}`;
+            $("#fins_date").val(formattedDate);  
+            $("#brk_prd_adjust").val('No');
+            $("#till_date").closest('.col-md-3').attr('hidden', true);
+            $("#days_num").closest('.col-md-1').attr('hidden', true);
+        } else {
+            var nextmonth = month + 2;
+            if (nextmonth > 11) {
+                nextmonth -= 12;
+                year += 1;
+            }
+            var targetDate = new Date(year, nextmonth, 7);
+            var day = String(targetDate.getDate()).padStart(2, '0');
+            var formattedMonth = String(targetDate.getMonth() + 1).padStart(2, '0');
+            var shortYear = String(targetDate.getFullYear());
+            var formattedDate = `${shortYear}-${formattedMonth}-${day}`;
+            $("#fins_date").val(formattedDate);
+
+            // last month
+            let lastMonth = nextmonth - 1;
+            if (lastMonth < 0) {
+                lastMonth = 11;
+                year -= 1;
+            }
+            let targetDate1 = new Date(year, lastMonth, 7);
+            var day1 = String(targetDate1.getDate()).padStart(2, '0');
+            var formattedMonth1 = String(targetDate1.getMonth() + 1).padStart(2, '0');
+            var shortYear1 = String(targetDate1.getFullYear());
+            var formattedDate1 = `${shortYear1}-${formattedMonth1}-${day1}`;
+
+
+            $("#brk_prd_adjust").val('Yes');
+            $val = $("#brk_prd_adjust").val();
+            if ($val === 'Yes') {
+                $("#till_date").closest('.col-md-3').removeAttr('hidden');
+                $("#days_num").closest('.col-md-1').removeAttr('hidden');
+                $("#till_date").val(formattedDate1);
+
+                // days count
+                let diffTime = targetDate1 - today;
+                let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                $("#days_num").val(diffDays);
+
+                // broken adjusment chager
+                $amount = $("#sanctioned_amount").val();
+                $rate   = $("#rate_percentage").val();
+
+                let dailyRate = $rate / 365;
+                let dailyCharge = $amount * (dailyRate / 100);
+                let totalCharge = dailyCharge * diffDays;
+
+                let brk_charge = Math.round(totalCharge);
+
+                $("#brk_charge").val(brk_charge);
+
+                // alert(brk_charge);
+            }
+
+        }
+
+    }
+</script> 
+

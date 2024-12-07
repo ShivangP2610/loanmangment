@@ -171,7 +171,13 @@ class ApprovedController extends Controller
             $payment_data->broken_period_adjustment = $request->brokan_prd_adjust; 
             $payment_data->till_date = $request->till_installment_date;   
             $payment_data->days_num = $request->days_num; 
-            $payment_data->brk_charge =  $request->brk_charge;
+            $payment_data->brk_charge =  $request->brk_charge;  
+            $payment_data->ads_charge =  $request->ads_charge; 
+            $payment_data->rem_final_amount =  $request->rem_final_amount; 
+            $payment_data->advance_installment_to_be_deducted =  $request->advance_installment_to_be_deducted;   
+            
+
+
             // $payment_data->interest_charge_type = $request->interest_charge_type;
             // $payment_data->interest_charged = $request->interest_charged;
             // $payment_data->actual_date = $request->actual_date;
@@ -208,7 +214,10 @@ class ApprovedController extends Controller
             // $repaymentdata->till_installment_date = $request->till_date;   
             $repaymentdata->till_date = $request->till_installment_date;   
             $repaymentdata->days_num = $request->days_num;   
-            $repaymentdata->brk_charge =  $request->brk_charge;
+            $repaymentdata->brk_charge =  $request->brk_charge; 
+            $repaymentdata->ads_charge =  $request->ads_charge; 
+            $repaymentdata->rem_final_amount =  $request->rem_final_amount;  
+            $repaymentdata->advance_installment_to_be_deducted =  $request->advance_installment_to_be_deducted;   
             
 
             
