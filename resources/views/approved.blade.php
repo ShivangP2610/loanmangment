@@ -494,6 +494,9 @@
                                                         <div class="input-group mb-3">
                                                             <input type="number" name="days_num" id="days_num"  class="form-control" aria-label="Dollar amount (with dot and two decimal places)" readonly>
                                                             <input type="text" name="brk_charge" id="brk_charge" hidden>
+                                                            <input type="text" name="ads_charge" id="ads_charge" hidden>
+                                                            <input type="text" name="rem_final_amount" id="rem_final_amount" hidden>
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1069,6 +1072,16 @@ $(document).ready(function() {
             // Store EMI Table in a Div for Modal
             $("#emiSheet").html(tableHTML);
 
+            if ($("#advanceinstallment").is(":checked")) {
+                $ads_install = $("#adv_installment").val();
+                $advance_amount = $finalemi * $ads_install;
+                $finalamount = $advance_amount.toFixed(2);
+                $remaining_amount = $amount - $finalamount;
+                $("#ads_charge").val($finalamount);
+                $("#rem_final_amount").val($remaining_amount);
+
+            }
+
         }
         else if($gettime == "Year")
         {
@@ -1296,6 +1309,15 @@ $(document).ready(function()
 
         }
     });
+
+    // advance installment
+
+    // $('#advanceinstallment').on('change', function () {
+    //     if ($(this).is(':checked')) {
+    //      $ads_install = $("#adv_installment").val();
+    //      alert($ads_install);
+    //     }
+    // });
 
 });
 </script>
