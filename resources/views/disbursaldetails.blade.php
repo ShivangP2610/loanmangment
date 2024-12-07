@@ -581,14 +581,25 @@
                                             id="proccefeeamount" readonly></td>
                                 </tr>
 
+                                {{-- <tr>
+                                    <th scope="row">2</th>
+                                    <td><input type="text" class="form-control" name="charges_details[]"
+                                            value="GST"></td>
+                                    <td><input type="text" class="form-control" name="percentage[]" id="gstid">
+                                    </td> 
+                                              readonly></td>
+                                </tr>  --}} 
                                 <tr>
                                     <th scope="row">2</th>
                                     <td><input type="text" class="form-control" name="charges_details[]"
                                             value="GST"></td>
                                     <td><input type="text" class="form-control" name="percentage[]" id="gstid">
                                     </td>
-                                              readonly></td>
+                                    <td><input type="text" class="form-control amount" name="amount[]" id="gstamount"
+                                            readonly></td>
                                 </tr>
+
+                                
                                 <tr>
                                     <th scope="row">3</th>
                                     <td><input type="text" class="form-control" name="charges_details[]"

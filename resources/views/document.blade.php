@@ -379,7 +379,9 @@ $(document).ready(function() {
                     {
                         $('#identity_proof').siblings('.text-muted').html('(Supported: Aadhaar Card, Voter ID Card)');
                         $('#bank_statement').siblings('.text-muted').html('(Bank statement previous 3 Months)');
-                        $('#salary_slip').siblings('.text-muted').html('(Supported Formats: PDF, DOCX, XLSX; Two Latest)');
+                        $('#salary_slip').siblings('.text-muted').html('(Supported Formats: PDF, DOCX, XLSX; Two Latest)'); 
+                        $('#business_proof').siblings('.text-muted').html('(Supported Formats: PDF, DOCX, XLSX; Two Latest)');
+                        $('#adresss_proof').siblings('.text-muted').html('(Supported Formats: PDF, DOCX, XLSX; Two Latest)');
                     }
                     else{
                         $('#identity_proof').siblings('.text-muted').html('File: ' + data[0].identity_proof);
