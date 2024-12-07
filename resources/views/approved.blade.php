@@ -770,7 +770,11 @@ $(document).ready(function() {
                     $("#brk_prd_adjust").val($repaymentdata['broken_period_adjustment']);
                     $("#int_chrge_type").val($repaymentdata['interest_charge_type']);
                     $("#int_chrged").val($repaymentdata['interest_charged']);
-                    $("#act_date").val($repaymentdata['actual_date']);
+                    $("#act_date").val($repaymentdata['actual_date']);  
+                    $("#till_date").val($repaymentdata['till_date']);   
+                    $("#days_num").val($repaymentdata['days_num']);  
+                    
+                   
                 }
             },
             error: function (error) {

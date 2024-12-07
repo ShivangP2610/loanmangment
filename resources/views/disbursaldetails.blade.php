@@ -66,7 +66,8 @@
                                         </select> --}}
                                         <select class="form-control loan_id" id="lon_id" name="lon_id">
                                             <option value="" disabled {{ !session('mainloan_id') ? 'selected' : '' }}>Select a loan</option>
-                                            <option value="{{ session('mainloan_id') }}" selected>{{ session('mainprospect_No') }}</option>
+                                            <option value="{{ session('mainloan_id') }}" selected>{{ session('mainprospect_No') }}</option> 
+                                            <input type="text" id="loannumber" value="{{session('mainprospect_No')? session('mainprospect_No') :'' }}" hidden>
                                             {{-- @foreach ($loans as $loan)
                                                 <option value="{{ $loan->loan_id }}">{{ $loan->Prospect_No }}</option>
                                             @endforeach --}}
@@ -586,8 +587,7 @@
                                             value="GST"></td>
                                     <td><input type="text" class="form-control" name="percentage[]" id="gstid">
                                     </td>
-                                    <td><input type="text" class="form-control amount" name="amount[]" id="gstamount"
-                                            readonly></td>
+                                              readonly></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">3</th>
@@ -613,9 +613,9 @@
                                 <tr>
                                     <th scope="row">6</th>
                                     <td><input type="text" class="form-control" name="charges_details[]"
-                                            value="Broken Period Interest"></td>
+                                            value="Broken Period Interest" ></td>
                                     <td><input type="text" class="form-control" name="percentage[]"></td>
-                                    <td><input type="text" class="form-control amount" name="amount[]"></td>
+                                    <td><input type="text" class="form-control amount" name="amount[]" id="brokenid" readonly></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">7</th>
@@ -882,20 +882,23 @@
                         let $creditdata = response.creditdata;
                         let $bankdetails = response.bankdetails;
                         let $disbursaldata = response.disbursal;
-                        let $adjustabledata = response.adjustabledata;
+                        let $adjustabledata = response.adjustabledata; 
+                        let $repaymentdata = response.repaymentdata; 
 
 
 
 
 
-                        console.log($disbursaldata);
+                        // console.log( $repaymentdata[0]['brk_charge']);
                         if ($creditdata && $creditdata.length > 0) {
                             let createdAt = new Date($creditdata[0]['created_at']);
                             let date = createdAt.toISOString().split('T')[0]; // F
                             $("#sanctioned_amount").val($creditdata[0]['sanctioned_amount']);
                             $("#sanctioned_date").val(date);
                             $("#tenure").val($creditdata[0]['sanctioned_tenure']);
-                            $("#roi").val($creditdata[0]['sanctionedInterest']);
+                            $("#roi").val($creditdata[0]['sanctionedInterest']);  
+                            
+                            
                             // $("#roi").val($creditdata[0]['sanctionedInterest']);
 
                             // $("#roi").val($creditdata[0]['policyrate']);
@@ -951,12 +954,14 @@
                         // }
                         if ($adjustabledata && $adjustabledata.length > 0) {
                             // Loop through each item in $adjustabledata
+                          // .console.log($adjustabledata);
 
                             let totalAmount = 0;
-                            $adjustabledata.forEach((item, index) => {
+                            $adjustabledata.forEach((item, index) => { 
+                                
                                 let rowIndex = index + 1; // Row index starts from 1
                                 let $row = $(`tbody tr:nth-child(${rowIndex})`);
-
+                        //    alert(item.charges_detail);
                                 // Populate existing rows or append new ones if necessary
                                 if ($row.length > 0) {
                                     $row.find('input[name="charges_details[]"]').val(item
@@ -979,7 +984,8 @@
                             });
                             $('#total_amount_main').val(totalAmount.toFixed(2));
                         }
-
+                       
+                        $("#brokenid").val($repaymentdata[0]['brk_charge']); 
                         ///////////////
 
                         // Populate repayment data
@@ -1032,7 +1038,7 @@
 
             // Ensure all required fields are selected
             if (!loanId || !customerId || !type) {
-                alert('Please select Loan, Customer, and Applicant Type.');
+                // alert('Please select Loan, Customer, and Applicant Type.');
                 return;
             }
 

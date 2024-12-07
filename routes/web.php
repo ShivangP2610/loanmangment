@@ -20,7 +20,8 @@ use App\Http\Controllers\LoanController;
 use App\Models\Customer;
 use App\Models\Document;
 use App\Models\FormOffice;
-use App\Models\Creditstage;
+use App\Models\Creditstage; 
+use Illuminate\Http\Request;
 
 
 
@@ -145,7 +146,7 @@ Route::get('/user/delete/{id}',[UserController::class,'destroy']);
     Route::get('/get-orignalcustomers/{loanId}', function ($loanId) {
         $customers = Customer::where('loan_id', $loanId)->get();
         $officedata = FormOffice::where('loan_id', $loanId)->first(); // shivang 29-
-
+//  dd($customers);
         // //shivang 29-6-2024
         return response()->json([
             'customers' => $customers,
@@ -154,8 +155,10 @@ Route::get('/user/delete/{id}',[UserController::class,'destroy']);
         // return response()->json($customers);
     });
 
-    Route::get('/get-creditdata/{loanId}', function ($loanId) {
-        $creditdata = Creditstage::where('loan_id', $loanId)->first();
+    Route::get('/get-creditdata/{loanId}', function ($loanId) { 
+        // dd($loanId);
+        $creditdata = Creditstage::where('loan_id', $loanId)->first(); 
+        // dd($creditdata);
 
         return response()->json($creditdata);
     });
@@ -256,7 +259,14 @@ Route::get('/generate-pdf/{loan_id}', [PDFController::class,'generatePDF'])->nam
 
 
 // Credit data
-Route::post('creditsatage/add',[CamController::class,'addcreditstage'])->name('add-creditstage');
+// Route::post('creditsatage/add',[CamController::class,'addcreditstage'])->name('add-creditstage');    
+
+
+
+Route::post('creditsatage/add', [CamController::class, 'addcreditstage2'])->name('add-creditstage');
+
+
+
 
 // approved stage ----shivnang 2-7-2024
 Route::get('approved/add',[ApprovedController::class,'create'])->name('approved/add');

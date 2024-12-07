@@ -62,7 +62,8 @@
                             </ul>
                         </div>
                     </div>
-                </div> --}}
+                </div> --}}  
+                {{-- <?php  dd($customerData);?> --}}
 
 
                     @include('sidebar')
@@ -112,7 +113,7 @@
                                                 <select class="form-control" id="entity_type" name="entity_type">
                                                     <option value="" selected disabled>Select Entity Type</option>
                                                     <option value="Proprietorship"
-                                                        {{ isset($customerData->cust_entity_type) && $customerData->cust_entity_type == 'Proprietorship' ? 'selected' : '' }}>
+                                                        {{ isset($customerData->cust_entity_type) && $customerData->cust_entity_type == 'Proprietors' ? 'selected' : '' }}>
                                                         Proprietorship
                                                     </option>
                                                     <option value="Partnership"

@@ -19,7 +19,9 @@ class DocumentController extends Controller
     {
         Session::forget('customer_id');
 
-        $documents = Document::orderBy('created_at', 'desc')->get();
+        // $documents = Document::orderBy('created_at', 'desc')->get();  
+        $documents = Document::where('lon_id', session('mainloan_id'))->get(); 
+        // dd($documents);
         // dd($documents);
         $data = compact('documents');
         return view('viewdocument')->with($data);
@@ -28,7 +30,8 @@ class DocumentController extends Controller
 
     public function  viewdocument1($id)
     {
-        $documents = Document::where('lon_id',$id)->get();
+        $documents = Document::where('lon_id',$id)->get(); 
+      
         $back  = "Back";
         $data = compact('documents','back');
         return view('viewdocument')->with($data);
@@ -368,7 +371,8 @@ public function downloadaddressSlip($id)
 
 
 public function viewDocumentlist($customer_id)
-{
+{ 
+    // dd('gsgsssgh');
     session()->put('customer_id', $customer_id);
     $documentlist = Document::with('proprietorDetails')->where('customer_id', $customer_id)
                             ->orderBy('created_at', 'desc')
@@ -406,10 +410,12 @@ public function viewDocumentedit($id)
 
 
 
-    if ($lon_id && $proprietor_id) {
+    if ($lon_id && $proprietor_id) { 
+        // dd('dhjdhhdhjh');
         $officedata = FormOffice::where('loan_id', $lon_id)->get();
         $proprietor = Proprietor::where('proprietor_id', $proprietor_id)->first();
-        $customer = Customer::where('cust_id', $proprietor_id)->first();
+        $customer = Customer::where('cust_id', $proprietor_id)->first(); 
+        // dd('sikhsgh');
         $back  = "Back";
         if ($proprietor) {
             $data = compact('url', 'title', 'btext', 'officedata', 'proprietor','back');
@@ -507,7 +513,7 @@ public function updatestore(Request $request)
     } else{
         $document->adresss_proof = $document->adresss_proof;
     }
-
+// dd( $document);
     $document->status = ($document->identity_proof && $document->bank_statement && $document->salary_slip && $document->business_proof && $document->adresss_proof) ? 1 : null;
     // Save the updated document
     $document->save();

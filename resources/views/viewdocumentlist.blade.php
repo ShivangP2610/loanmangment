@@ -76,7 +76,9 @@
                                 </thead>
                                 <tbody class="text-nowrap">
                                   @php $counter = 1; @endphp
-                                @foreach($documentlist as $document)
+                                @foreach($documentlist as $document) 
+                                {{-- dd($document); --}} 
+                                {{-- <?php dd($document);?> --}}
                                 @if($document->customer_id != $document->proprietor_id)
                                 <tr>
                                         <td>{{ $counter++ }}</td>
