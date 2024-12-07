@@ -452,10 +452,20 @@ $(document).ready(function() {
                     console.error("Error fetching customers:", error);
                 }
             });
-    }
+    }  
+
+
+     ///  
+     
+  
+     
+
+   
     // $('#lon_id').change(function() {
     //     // console.log('haasdfgasdfgh');
-    //     var loanId = $(this).val();
+    //     var loanId = $(this).val(); 
+
+        
     //     // alert(loanId);
     //     if (loanId) {
     //         $.ajax({
@@ -489,11 +499,15 @@ $(document).ready(function() {
     //     } else {
     //         $('#customer_id').empty();
     //     }
-    // });
+    // }); 
+
+
 
     $("#adddesicion").on('click',function()
-    {
-        var loanId = document.getElementById('lon_id').value;
+    { 
+        // alert('shhshsgh')
+        var loanId = document.getElementById('lon_id').value; 
+        // alert(loanId);
         if(loanId)
         {
             $('.modal').modal('show');
@@ -721,6 +735,49 @@ function fetchLoanData(viewType) {
             reasonLabel.innerText = ''; // Clear the label
         }
     }
+</script>  
+
+<script>
+    $(document).ready(function() {
+    var getLoanId = $('#lon_id').val(); 
+
+    if (getLoanId) {
+        // alert('Loan ID detected: ' + getLoanId); 
+
+        // Make an AJAX call
+        $.ajax({
+            url: '/get-orignalcustomers/' + getLoanId, 
+            type: 'GET', 
+            dataType: 'json', 
+            success: function(data) {
+                console.log('AJAX response:', data); 
+                
+                
+            
+               
+
+                // Populate office data if available
+                if (data.officedata) { 
+                    // alert(data.officedata);
+                    $("#requested_amount").val(data.officedata.Loan_Amount);
+                    $("#requested_tenure").val(data.officedata.Months);
+                    $("#loan_id_main").val(data.officedata.loan_id);  
+                    $("#cust_id_main").val(data.officedata.customer_id); 
+                } else {
+                    $("#requested_amount").val('');
+                    $("#requested_tenure").val('');
+                }
+            },
+            error: function(error) {
+                console.error('Error during AJAX request:', error);
+                alert('Failed to fetch data. Please check the console for more details.');
+            }
+        });
+    } else {
+        alert('No Loan ID found!');
+    }
+});
+
 </script>
 
 {{-- <script>

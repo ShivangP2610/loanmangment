@@ -372,7 +372,8 @@ $(document).ready(function() {
                 url: '/get-documents/' + customerId1 + '/' + lonid1,
                 type: 'GET',
                 dataType: 'json',
-                success: function(data) {
+                success: function(data) { 
+                    // alert(data[0].salary_slip);
                     console.log(data);
                     if(data == '')
                     {
@@ -383,7 +384,11 @@ $(document).ready(function() {
                     else{
                         $('#identity_proof').siblings('.text-muted').html('File: ' + data[0].identity_proof);
                         $('#bank_statement').siblings('.text-muted').html('File: ' + data[0].bank_statement);
-                        $('#salary_slip').siblings('.text-muted').html('File: ' + data[0].salary_slip);
+                        $('#salary_slip').siblings('.text-muted').html('File: ' + data[0].salary_slip);  
+                        $('#business_proof').siblings('.text-muted').html('File: ' + data[0].business_proof);  
+                        $('#adresss_proof').siblings('.text-muted').html('File: ' + data[0].adresss_proof); 
+
+                        
                     }
 
                 },

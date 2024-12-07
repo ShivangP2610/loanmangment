@@ -31,14 +31,16 @@ class ApprovedController extends Controller
         $title = 'Approved Upload';
         $btext = "Submit";
         $data = compact('url', 'title', 'btext');
-
-        $creditdata = Creditstage::where('application', 'Approve')->first();
-        $loans  =  FormOffice::where('loan_id', $creditdata->loan_id)->get();
-        $customers = Customer::where('cust_id', $creditdata->cust__id)->get();
+// dd('shshshshshshshshs'); 
 
 
+        // $creditdata = Creditstage::where('application', 'Approve')->first(); 
+        // $loans  =  FormOffice::where('loan_id', $creditdata->loan_id)->get();
+        // $customers = Customer::where('cust_id', $creditdata->cust__id)->get();
         // dd($creditdatamain);
-        return view('approved')->with(array_merge($data, ['loans' => $loans, 'customers' => $customers]));
+        // return view('approved')->with(array_merge($data, ['loans' => $loans, 'customers' => $customers])); 
+
+        return view('approved')->with(array_merge($data));
     }
 
 
@@ -49,13 +51,15 @@ class ApprovedController extends Controller
         $btext = "Submit";
         $data = compact('url', 'title', 'btext');
 
-        $creditdata = Creditstage::where('application', 'Approve')->first();
-        $loans  =  FormOffice::where('loan_id', $creditdata->loan_id)->get();
-        $customers = Customer::where('cust_id', $creditdata->cust__id)->get();
+        // $creditdata = Creditstage::where('application', 'Approve')->first(); 
+        // dd($creditdata);
+        // $loans  =  FormOffice::where('loan_id', $creditdata->loan_id)->get();
+        // $customers = Customer::where('cust_id', $creditdata->cust__id)->get();
 
 
         // dd($creditdatamain);
-        return view('disbursaldetails')->with(array_merge($data, ['loans' => $loans, 'customers' => $customers]));
+        // return view('disbursaldetails')->with(array_merge($data, ['loans' => $loans, 'customers' => $customers])); 
+        return view('disbursaldetails')->with(array_merge($data));
     }
 
     public function getloandata(string $id)
@@ -79,14 +83,16 @@ class ApprovedController extends Controller
         $loans  =  FormOffice::where('loan_id', $id)->get();
         $bandetails  = BankDetails::where('loan_id', $id)->get();
         $disbursalmaindata = Disbursal::where('loan_id', $id)->first();
-        $adjustabledata = Adjustable::where('loan_id', $id)->get();
+        $adjustabledata = Adjustable::where('loan_id', $id)->get(); 
+        $repaymentdata = Repayment::where('loan_id', $id)->get(); 
 
         return response()->json([
             'creditdata' => $creditdata,
             'loans' => $loans,
             'bankdetails' => $bandetails,
             'disbursal' => $disbursalmaindata,
-            'adjustabledata' => $adjustabledata
+            'adjustabledata' => $adjustabledata,
+            'repaymentdata'  =>  $repaymentdata
         ]);
         // dd([
         //     'creditdata' => $creditdata,
@@ -100,12 +106,15 @@ class ApprovedController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        // dd($request);
+    { 
+
+        // dd('ya re ya a aaagahgahahagh');
+        // dd($request->all());
         $request->validate([
             'appication_amount' => 'required',
             // 'disbursaltype'    => 'required',
-            // 'number_disbursals' => 'required',
+            // 'number_disbursals' => 'required', 
+            'sanctioned_amount' => 'required', 
             'disbursal_to'      => 'required',
             'recovery_type'     => 'required',
             // 'recovery_sub_type' => 'required',
@@ -136,7 +145,10 @@ class ApprovedController extends Controller
             $payment_data->loan_id = $request->loanidmain;
             $payment_data->cust_id = $request->custidmain;
             $payment_data->application_amount = $request->appication_amount;
-            $payment_data->disbursal_type = $request->disbursaltype;
+            // $payment_data->disbursal_type = $request->disbursaltype;   
+            $payment_data->sanctioned_amount = $request->sanctioned_amount; 
+
+            
             // $payment_data->number_od_disbursal = $request->number_disbursals;
             $payment_data->disbursal_to = $request->disbursal_to;
             $payment_data->recovery_type = $request->recovery_type;
@@ -156,7 +168,10 @@ class ApprovedController extends Controller
             $payment_data->due_day = $request->due_day;
             // $payment_data->interest_startdate = $request->interest_startdate;
             $payment_data->first_installment_date = $request->first_installment_date;
-            $payment_data->broken_period_adjustment = $request->brokan_prd_adjust;
+            $payment_data->broken_period_adjustment = $request->brokan_prd_adjust; 
+            $payment_data->till_date = $request->till_installment_date;   
+            $payment_data->days_num = $request->days_num; 
+            $payment_data->brk_charge =  $request->brk_charge;
             // $payment_data->interest_charge_type = $request->interest_charge_type;
             // $payment_data->interest_charged = $request->interest_charged;
             // $payment_data->actual_date = $request->actual_date;
@@ -167,7 +182,9 @@ class ApprovedController extends Controller
             return redirect()->back()->with('success', 'Repayment Added successfully.');
         } else {
             $repaymentdata->application_amount = $request->appication_amount;
-            $repaymentdata->disbursal_type = $request->disbursaltype;
+            // $repaymentdata->disbursal_type = $request->disbursaltype; 
+
+            $repaymentdata->sanctioned_amount = $request->sanctioned_amount; 
             // $repaymentdata->number_od_disbursal = $request->number_disbursals;
             $repaymentdata->disbursal_to = $request->disbursal_to;
             $repaymentdata->recovery_type = $request->recovery_type;
@@ -187,7 +204,14 @@ class ApprovedController extends Controller
             $repaymentdata->due_day = $request->due_day;
             // $repaymentdata->interest_startdate = $request->interest_startdate;
             $repaymentdata->first_installment_date = $request->first_installment_date;
-            $repaymentdata->broken_period_adjustment = $request->brokan_prd_adjust;
+            $repaymentdata->broken_period_adjustment = $request->brokan_prd_adjust;  
+            // $repaymentdata->till_installment_date = $request->till_date;   
+            $repaymentdata->till_date = $request->till_installment_date;   
+            $repaymentdata->days_num = $request->days_num;   
+            $repaymentdata->brk_charge =  $request->brk_charge;
+            
+
+            
             // $repaymentdata->interest_charge_type = $request->interest_charge_type;
             // $repaymentdata->interest_charged = $request->interest_charged;
             // $repaymentdata->actual_date = $request->actual_date;
