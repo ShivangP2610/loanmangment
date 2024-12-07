@@ -1082,7 +1082,8 @@ $(document).ready(function() {
                 $finalamount = $advance_amount.toFixed(2);
                 $remaining_amount = $amount - $finalamount;
                 $("#ads_charge").val($finalamount);
-                $("#rem_final_amount").val($remaining_amount);
+                $("#rem_final_amount").val($remaining_amount); 
+                // alert($remaining_amount);
 
             }
 
