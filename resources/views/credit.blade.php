@@ -234,7 +234,7 @@
                                                     </label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="sanctionedInterest" id="sanctionedInterest2" value="0">
+                                                    <input class="form-check-input" type="radio" name="sanctionedInterest" id="sanctionedInterest2" value="">
                                                     <label class="form-check-label" for="sanctionedInterest2">
                                                         Others
                                                     </label>
@@ -534,12 +534,13 @@ $(document).ready(function() {
                         if (data.sanctionedInterest === "8") {
                             $("#sanctionedInterest1").prop("checked", true);
                         } else {
-                            $("#sanctionedInterest2").prop("checked", true).val(data.sanctionedInterest);
+                            $("#sanctionedInterest2").prop("checked", true).val(data.sanctionedInterest); 
+                            $('#policyrate').val(data.sanctionedInterest).prop('readonly', false);
                         }
 
                         // Set the radio buttons for application status
                         if (data.application === "Approve") {
-                            $("#Approve").prop("checked", true);
+                            $("#ApproveConditions").prop("checked", true);
                         } else if (data.application === "Reject") {
                             $("#Reject").prop("checked", true);
                         } else if (data.application === "Hold") {
@@ -576,7 +577,7 @@ $(document).ready(function() {
 
                         // Set the radio buttons for application status
                         if (data.application === "Approve") {
-                            $("#Approve").prop("checked", false);
+                            $("#ApproveConditions").prop("checked", false);
                         } else if (data.application === "Reject") {
                             $("#Reject").prop("checked", false);
                         } else if (data.application === "Hold") {
@@ -599,25 +600,53 @@ $(document).ready(function() {
 
     });
 
-    $("input[name='sanctionedInterest']").on('click', function() {
-        var val = $(this).val();
-        if(val != 0)
-        {
-            $('#policyrate').val(val).prop('readonly', true);
-            $('#applicable_rate').val(val);
-        }
-        else{
-            $('#policyrate').val(val).prop('readonly', false);
-            $('#applicable_rate').val('');
-        }
+    // $("input[name='sanctionedInterest']").on('click', function() {
+    //     var val = $(this).val();
+    //     if(val != 0)
+    //     {
+    //         $('#policyrate').val(val).prop('readonly', true);
+    //         $('#applicable_rate').val(val);
+    //     }
+    //     else{
+    //         $('#policyrate').val(val).prop('readonly', false);
+    //         $('#applicable_rate').val('');
+    //     }
 
-    });
+    // }); 
 
-    $("#policyrate").on('input',function(){
-        var val = $(this).val();
+    $("input[name='sanctionedInterest']").on('click', function () {
+    var val = $(this).val();
+    if (val == 8) {
+        // If 8% is selected, update both fields with 8 and make policyrate read-only
+        $('#policyrate').val(val).prop('readonly', true);
         $('#applicable_rate').val(val);
+    } else {
+        // If "Others" is selected, clear policyrate and allow manual entry
+        $('#policyrate').val('').prop('readonly', false);
+        $('#applicable_rate').val(''); // Clear applicable_rate to avoid confusion
+    }
+});
 
-    });
+    // $("#policyrate").on('input',function(){
+    //     var val = $(this).val();
+    //     $('#applicable_rate').val(val);
+
+    // }); 
+
+    $('#policyrate').on('input', function () {
+    var enteredValue = $(this).val();
+
+    // Dynamically update the value of the "Others" radio button
+    $("#sanctionedInterest2").val(enteredValue);
+
+    // If the value of policyrate is non-empty, sync it with applicable_rate
+    if (enteredValue) {
+        $('#applicable_rate').val(enteredValue);
+    } else {
+        // Clear applicable_rate if policyrate is empty
+        $('#applicable_rate').val('');
+    }
+});
 
     $("#package_discount").on('input', function() {
         var pr_discount = parseFloat($("#product_discount").val()) || 0;
