@@ -773,19 +773,19 @@ $(document).ready(function() {
                     $("#brk_prd_adjust").val($repaymentdata['broken_period_adjustment']);
                     $("#int_chrge_type").val($repaymentdata['interest_charge_type']);
                     $("#int_chrged").val($repaymentdata['interest_charged']);
-                    $("#act_date").val($repaymentdata['actual_date']);  
-                    $("#till_date").val($repaymentdata['till_date']);   
-                    $("#days_num").val($repaymentdata['days_num']);   
+                    $("#act_date").val($repaymentdata['actual_date']);
+                    $("#till_date").val($repaymentdata['till_date']);
+                    $("#days_num").val($repaymentdata['days_num']);
 
-                    if ($repaymentdata['advance_installment_to_be_deducted'] == 1) {  
+                    if ($repaymentdata['advance_installment_to_be_deducted'] == 1) {
                         // alert('gjkgg');
-       
+
         $(".advance-installment").prop("checked", true);
     } else {
         $(".advance-installment").prop("checked", false);
     }
-                    
-                   
+
+
                 }
             },
             error: function (error) {
@@ -970,7 +970,12 @@ $(document).ready(function() {
     // calculate installment
     $('#calculate').on('click', function(event) {
         event.preventDefault();
-        getbrokendta();
+        $due_day = $("#due_day").val();
+        if($due_day >= 15)
+        {
+            getbrokendta();
+        }
+
         $gettime = $("#Tanure_in").val();
         $amount = $("#sanctioned_amount").val();  // channge appication_amount to sectionamount
         $rate   = $("#rate_percentage").val();       // change policy rate to rate_percentage
@@ -1091,24 +1096,133 @@ $(document).ready(function() {
                 $finalamount = $advance_amount.toFixed(2);
                 $remaining_amount = $amount - $finalamount;
                 $("#ads_charge").val($finalamount);
-                $("#rem_final_amount").val($remaining_amount); 
+                $("#rem_final_amount").val($remaining_amount);
                 // alert($remaining_amount);
 
             }
 
         }
-        else if($gettime == "Year")
-        {
-           $r = $rate/100;
-           $emi1 = $amount*$r*(1+$r)**$tanure;
-           $emi2 = (1+$r)**$tanure - 1;
+        // else if($gettime == "Year")
+        // {
+        //    $r = $rate/100;
+        //    $emi1 = $amount*$r*(1+$r)**$tanure;
+        //    $emi2 = (1+$r)**$tanure - 1;
 
-           $emi3 = $emi1/$emi2;
-          //    $finalemi = Math.round($emi3 * 100) / 100;
-           $finalemi = ($emi3 % 1 >= 0.5) ? Math.ceil($emi3) : Math.floor($emi3);
-           $("#installment").text("INR " + $finalemi.toFixed(2).toLocaleString('en-IN'));
+        //    $emi3 = $emi1/$emi2;
+        //   //    $finalemi = Math.round($emi3 * 100) / 100;
+        //    $finalemi = ($emi3 % 1 >= 0.5) ? Math.ceil($emi3) : Math.floor($emi3);
+        //    $("#installment").text("INR " + $finalemi.toFixed(2).toLocaleString('en-IN'));
 
+        // }
+
+        // shivang 09-12-2024
+
+        else if ($gettime === "Year") {
+            let $r = $rate / 100; // Convert rate to decimal
+            let $emi1 = $amount * $r * Math.pow(1 + $r, $tanure);
+            let $emi2 = Math.pow(1 + $r, $tanure) - 1;
+            let $emi3 = $emi1 / $emi2;
+
+            // Round EMI value
+            let $finalemi = Math.round($emi3);
+
+            // Show calculated EMI
+            $("#installment").text("INR " + $finalemi.toFixed(2).toLocaleString('en-IN'));
+
+            let $remainblnc = $amount;
+            let emiSheet = [];
+            let totalEmi = 0, totalPrincipal = 0, totalInterest = 0;
+
+            for (let i = 1; i <= $tanure; i++) {
+                let $opaningblnc = $remainblnc;
+                let $interst = $opaningblnc * $r; // Calculate yearly interest amount
+                let $newprinciple = $emi3 - $interst;
+                $remainblnc -= $newprinciple;
+
+                // Accumulate totals
+                totalEmi += parseFloat($finalemi);
+                totalPrincipal += parseFloat($newprinciple);
+                totalInterest += parseFloat($interst);
+
+                // Calculate year for EMI
+                let emiYear = startyear + i - 1; // Increment year based on iteration
+
+                // Append the EMI details for the current year
+                emiSheet.push({
+                    srno: i,
+                    year: emiYear,
+                    opening_balance: parseFloat($opaningblnc).toFixed(2),
+                    emi: parseFloat($finalemi).toFixed(2),
+                    principle: parseFloat($newprinciple).toFixed(2),
+                    interest: parseFloat($interst).toFixed(2),
+                    remaining_balance: parseFloat($remainblnc).toFixed(2)
+                });
+            }
+            let tableHTML = `
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                               <th colspan="8" style="text-align:center">Repayment Schedual</th>
+                            </tr>
+                            <tr>
+                                <th>Sr.No</th>
+                                <th>Year</th>
+                                <th>Opaning Balance</th>
+                                <th>EMI (INR)</th>
+                                <th>Principal (INR)</th>
+                                <th>Interest (INR)</th>
+                                <th>Balance (INR)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                `;
+                emiSheet.forEach((row) => {
+                tableHTML += `
+                    <tr>
+                        <td class="text-nowrap">${row.srno}</td>
+                        <td class="text-nowrap">${row.year}</td>
+                        <td class="text-nowrap">${row.opening_balance}</td>
+                        <td class="text-nowrap">${row.emi}</td>
+                        <td class="text-nowrap">${row.principle}</td>
+                        <td class="text-nowrap">${row.interest}</td>
+                        <td class="text-nowrap">${row.remaining_balance}</td>
+                    </tr>
+                `;
+            });
+
+            tableHTML += `
+                    </tbody>
+                      <tfoot>
+                        <tr>
+                            <td style="text-align: center;"><strong>Total</strong></td>
+                            <td></td>
+                            <td></td>
+                            <td><strong>${totalEmi.toFixed(2)}</strong></td>
+                            <td><strong>${totalPrincipal.toFixed(2)}</strong></td>
+                            <td><strong>${totalInterest.toFixed(2)}</strong></td>
+                            <td></td> <!-- Empty for Remaining Balance -->
+                        </tr>
+                    </tfoot>
+                </table>
+            `;
+
+            // Store EMI Table in a Div for Modal
+            $("#emiSheet").html(tableHTML);
+
+            if ($("#advanceinstallment").is(":checked")) {
+                $ads_install = $("#adv_installment").val();
+                $advance_amount = $finalemi * $ads_install;
+                $finalamount = $advance_amount.toFixed(2);
+                $remaining_amount = $amount - $finalamount;
+                $("#ads_charge").val($finalamount);
+                $("#rem_final_amount").val($remaining_amount);
+                // alert($remaining_amount);
+
+            }
+            // Display the EMI Sheet
+            // console.table(emiSheet);
         }
+
         else
         {
             alert("Please Select Tanure In!!");
@@ -1247,8 +1361,9 @@ $(document).ready(function()
         } else {
             // Hide the div by adding the `hidden` attribute
             $("#till_date").closest('.col-md-3').attr('hidden', true);
+            $("#days_num").closest('.col-md-1').attr('hidden', true);
         }
-    }); 
+    });
 
 
     $("#due_day").on('change',function()
@@ -1268,7 +1383,7 @@ $(document).ready(function()
             var formattedMonth = String(targetDate.getMonth() + 1).padStart(2, '0');
             var shortYear = String(targetDate.getFullYear());
             var formattedDate = `${shortYear}-${formattedMonth}-${day}`;
-            $("#fins_date").val(formattedDate);  
+            $("#fins_date").val(formattedDate);
             $("#brk_prd_adjust").val('No');
             $("#till_date").closest('.col-md-3').attr('hidden', true);
             $("#days_num").closest('.col-md-1').attr('hidden', true);
@@ -1326,8 +1441,8 @@ $(document).ready(function()
             }
 
         }
-    }); 
-    
+    });
+
 
     // advance installment
 
@@ -1339,7 +1454,7 @@ $(document).ready(function()
     // });
 
 });
-function getbrokendta(){ 
+function getbrokendta(){
         $val = $('#due_day').val();
        var today = new Date();
        var year = today.getFullYear();
@@ -1355,7 +1470,7 @@ function getbrokendta(){
             var formattedMonth = String(targetDate.getMonth() + 1).padStart(2, '0');
             var shortYear = String(targetDate.getFullYear());
             var formattedDate = `${shortYear}-${formattedMonth}-${day}`;
-            $("#fins_date").val(formattedDate);  
+            $("#fins_date").val(formattedDate);
             $("#brk_prd_adjust").val('No');
             $("#till_date").closest('.col-md-3').attr('hidden', true);
             $("#days_num").closest('.col-md-1').attr('hidden', true);
@@ -1415,5 +1530,5 @@ function getbrokendta(){
         }
 
     }
-</script> 
+</script>
 
