@@ -79,7 +79,7 @@
                             <div>
                                 <h6 style="font-weight: 700" class="mt-2 ml-2">{{$title}}</h6>
                             </div>
-                            <div>
+                            {{-- <div>
                                 <div class="form-group d-flex align-items-center ">
                                     <label for="ckyc_no" class="text-nowrap">CKYC No:</label>
                                     <input type="text"  class="form-control ml-2" id="ckyc_no" name="ckyc_no" value="{{ isset($officedata->ckyc_no) ? $officedata->ckyc_no : old('ckyc_no') }}">
@@ -87,7 +87,7 @@
                                      <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
 
                         <div class="row mb-3">
@@ -246,7 +246,7 @@
                         <div class="row mb-3">
                             <div class="col-lg-12">
                                 <div class="form-group d-flex align-items-center">
-                                    <label class="text-nowrap">Lon Type:</label>
+                                    <label class="text-nowrap">Loan Type:</label>
                                     <div class="form-check ml-2">
                                         <input type="radio" class="form-check-input" id="personal" name="lon_type" value="personal" {{ isset($officedata) && ($officedata->lon_type === 'personal' || old('lon_type') === 'personal') ? 'checked' : ''  }}>
                                         <label class="form-check-label" for="normal">Personal</label>

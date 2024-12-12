@@ -74,7 +74,7 @@ class FormController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'ckyc_no'             => 'required',
+            // 'ckyc_no'             => 'required',
             'date_of_application' => 'required',
             'customer_id'         => 'required',
             'prospect_no'         => 'required',
@@ -94,7 +94,7 @@ class FormController extends Controller
         if(!$pospectmatc)
         {
             $officedata = new FormOffice;
-            $officedata->ckyc_no = $request['ckyc_no'];
+            // $officedata->ckyc_no = $request['ckyc_no'];
             $officedata->date = $request['date_of_application'];
             $officedata->customer_id = $request['customer_id'];
             $officedata->Prospect_No = $request['prospect_no'];
@@ -112,7 +112,7 @@ class FormController extends Controller
         else
         {
 
-            $pospectmatc->ckyc_no = $request['ckyc_no'];
+            // $pospectmatc->ckyc_no = $request['ckyc_no'];
             $pospectmatc->date = $request['date_of_application'];
             $pospectmatc->customer_id = $request['customer_id'];
             $pospectmatc->Prospect_No = $request['prospect_no'];
