@@ -509,4 +509,21 @@ class CamController extends Controller
 
 
 }
+
+// shivang 13-12-2024
+public function camuploadmain($id)
+{
+    // dd($id);
+    $document = Cam::find($id);
+
+    if ($document && $document->excel_uplod) {
+        $filePath = storage_path('app/public/documents/cam/' . $document->excel_uplod); // Adjust path based on your storage location
+        // dd($filePath);
+        if (file_exists($filePath)) {
+            return response()->file($filePath); // View the file in the browser
+        }
+    }
+
+    return abort(404, 'File not found.');
+}
 }

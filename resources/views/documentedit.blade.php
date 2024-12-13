@@ -3,12 +3,12 @@
 @endpush
 @extends("layout.main")
 
-@section('main-section') 
+@section('main-section')
 
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
-      
+
     </div>
 
     <div class="content">
@@ -29,16 +29,16 @@
                 </ul>
             </div>
         @endif
-            <div class="row"> 
-   
-                
+            <div class="row">
+
+                <a href="{{ URL::previous() }}" class="btn btn-primary btn-sm">{{$back}}</a>
             <div class="col-lg-12">
                 <form action="{{ route('update-document') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
                     <!-- Hidden input to store customer_id from session -->
                      <?php
-                     $session_id = Session::get('customer_id'); 
+                     $session_id = Session::get('customer_id');
                      ?>
                     <input type="hidden" class="form-control-file" id="customermainnid" name="customermainnid" value="{{ $session_id }}">
 
@@ -112,25 +112,25 @@
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
-                        </div> 
+                        </div>
 
 
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <label for="salary_slip" class="text-nowrap">business Proof:</label>
-                                <input type="file" class="form-control-file" id="business_proof" name="business_proof">  
+                                <input type="file" class="form-control-file" id="business_proof" name="business_proof">
                                 <span class="text-muted">(Supported Formats: PDF, DOCX, XLSX; Two Latest)</span>
                                 @error('business_proof')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
-                        </div> 
+                        </div>
 
 
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <label for="salary_slip" class="text-nowrap">Adresss Proof:</label>
-                                <input type="file" class="form-control-file" id="adresss_proof" name="adresss_proof"> 
+                                <input type="file" class="form-control-file" id="adresss_proof" name="adresss_proof">
                                  <span class="text-muted">(Supported Formats: PDF, DOCX, XLSX; Two Latest)</span>
                                 @error('adresss_proof')
                                     <span class="text-danger">{{ $message }}</span>
@@ -151,24 +151,24 @@
             </div>
         </div>
         <!-- /.container-fluid -->
-      </div> 
+      </div>
 
 
 
 </div>
 </div>
-@endsection 
+@endsection
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<script> 
+<script>
 $(document).ready(function() {
     // Fetch the initial values needed for the AJAX request
-    var customerId1 = $('#customer_id').val(); 
-    var lonid1 = $('#lon_id').val(); 
-     
+    var customerId1 = $('#customer_id').val();
+    var lonid1 = $('#lon_id').val();
 
-   
+
+
     // Make sure customerId1 is not empty or null
     if (customerId1) {
         // Perform AJAX request
@@ -181,17 +181,17 @@ $(document).ready(function() {
                 if (data.length === 0) {
                     $('#identity_proof').siblings('.text-muted').html('(Supported: Aadhaar Card, Voter ID Card)');
                     $('#bank_statement').siblings('.text-muted').html('(Bank statement previous 3 Months)');
-                    $('#salary_slip').siblings('.text-muted').html('(Supported Formats: PDF, DOCX, XLSX; Two Latest)');  
-                    $('#business_proof').siblings('.text-muted').html('(Supported Formats: PDF, DOCX, XLSX; Two Latest)');  
-                    $('#adresss_proof').siblings('.text-muted').html('(Supported Formats: PDF, DOCX, XLSX; Two Latest)'); 
-                    
+                    $('#salary_slip').siblings('.text-muted').html('(Supported Formats: PDF, DOCX, XLSX; Two Latest)');
+                    $('#business_proof').siblings('.text-muted').html('(Supported Formats: PDF, DOCX, XLSX; Two Latest)');
+                    $('#adresss_proof').siblings('.text-muted').html('(Supported Formats: PDF, DOCX, XLSX; Two Latest)');
+
                 } else {
                     $('#identity_proof').siblings('.text-muted').html('File: ' + data[0].identity_proof);
                     $('#bank_statement').siblings('.text-muted').html('File: ' + data[0].bank_statement);
-                    $('#salary_slip').siblings('.text-muted').html('File: ' + data[0].salary_slip); 
-                    $('#business_proof').siblings('.text-muted').html('File: ' + data[0].business_proof); 
+                    $('#salary_slip').siblings('.text-muted').html('File: ' + data[0].salary_slip);
+                    $('#business_proof').siblings('.text-muted').html('File: ' + data[0].business_proof);
                     $('#adresss_proof').siblings('.text-muted').html('File: ' + data[0].business_proof);
-                   
+
 
                 }
             },

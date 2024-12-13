@@ -7,6 +7,43 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <!-- DataTables Buttons CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.1.1/css/buttons.dataTables.min.css">
+    <style>
+        .download-icon {
+            display: inline-block; /* Makes it an inline block for width/height adjustments */
+            width: 70px; /* Set the width */
+            height: 35px; /* Set the height */
+            line-height: 50px; /* Centers the icon vertically */
+            text-align: center; /* Centers the icon horizontally */
+            font-size: 25px; /* Adjusts the font size of the icon */
+            margin-left: 5px;
+            /* border: 1PX solid black; */
+            padding: 5px;
+            background-color: #f0f0f0
+        }
+        .download-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .download-label {
+            display: none;
+            position: absolute;
+            left: 50%;
+            background-color: #f0f0f0;
+            padding: 5px;
+            border-radius: 5px;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        .download-wrapper:hover .download-label {
+            display: block;
+        }
+        .viewicon
+        {
+            margin-top: -10px !important;
+        }
+    </style>
 @endpush
 
 @extends("layout.main")
@@ -63,9 +100,9 @@
                                 <thead class="text-nowrap">
                                 <tr>
                                     <th>No</th>
-                                    <th>customer</th>
-                                    <th>Lon</th>
-                                    <th>Excel </th>   
+                                    <th>Customer</th>
+                                    <th>Loan</th>
+                                    <th>Cam Excel</th>
                                     <!-- <th>Action</th> -->
                                 </tr>
                                 </thead>
@@ -73,33 +110,41 @@
                                   @php $counter = 1; @endphp
                                 @foreach($cams as $cam)
                                     <tr>
-                                        <td>{{ $counter++ }}</td>   
-                                        <td>{{ $cam->customer->cust_name }}</td> 
-                                        <td>{{ $cam->loan->Prospect_No }}</td>  
+                                        <td>{{ $counter++ }}</td>
+                                        <td>{{ $cam->customer->cust_name }}</td>
+                                        <td>{{ $cam->loan->Prospect_No }}</td>
                                         <td>
                                        @if ($cam->excel_uplod)
                                       <a href="{{ route('download.cam_uplod', ['id' => $cam->id]) }}" >
-                                      <i class="fas fa-file-excel"></i> 
+                                      {{-- <i class="fas fa-file-excel"></i>  --}}
+                                      <span class="download-wrapper">
+                                        <i class="fas fa-download download-icon"></i>
+                                        <span class="download-label">{{ $cam->excel_uplod }}</span>
+                                    </span>
+                                     </a>
+                                     <a href="{{ route('view.cam_uplod', ['id' => $cam->id]) }}" target="_blank" class="btn btn-primary btn-sm ml-2 viewicon">
+                                        View
+
                                         </a>
                                           @else
                                               N/A
                                           @endif
                                          </td>
-                                          
-                                        
-                                        
+
+
+
                                         <!-- <td>
-                                            
+
 
                                             {{-- <a href="{{ url("/user/edit") }}/{{ $allapplication->loan_id }}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a> --}}
 
-                                           
 
-                                            
+
+
 
                                             {{-- <a href="{{ url("/user/delete") }}/{{ $allapplication->loan_id }}" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a> --}}
 
-                                            
+
                                       </td> -->
                                     </tr>
                                 @endforeach

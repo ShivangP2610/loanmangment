@@ -274,7 +274,7 @@
                 "paging": true, // Enable pagination
                 "lengthChange": false,
                 "searching": true,
-                "scrollY": '300px',
+                "scrollY": '800px',
                  "scrollCollapse": true,
                 "scrollX": true,
                 "ordering": true,
