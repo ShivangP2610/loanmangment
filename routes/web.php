@@ -20,7 +20,7 @@ use App\Http\Controllers\LoanController;
 use App\Models\Customer;
 use App\Models\Document;
 use App\Models\FormOffice;
-use App\Models\Creditstage; 
+use App\Models\Creditstage;
 use Illuminate\Http\Request;
 
 
@@ -155,9 +155,9 @@ Route::get('/user/delete/{id}',[UserController::class,'destroy']);
         // return response()->json($customers);
     });
 
-    Route::get('/get-creditdata/{loanId}', function ($loanId) { 
+    Route::get('/get-creditdata/{loanId}', function ($loanId) {
         // dd($loanId);
-        $creditdata = Creditstage::where('loan_id', $loanId)->first(); 
+        $creditdata = Creditstage::where('loan_id', $loanId)->first();
         // dd($creditdata);
 
         return response()->json($creditdata);
@@ -259,7 +259,7 @@ Route::get('/generate-pdf/{loan_id}', [PDFController::class,'generatePDF'])->nam
 
 
 // Credit data
-// Route::post('creditsatage/add',[CamController::class,'addcreditstage'])->name('add-creditstage');    
+// Route::post('creditsatage/add',[CamController::class,'addcreditstage'])->name('add-creditstage');
 
 
 
@@ -276,6 +276,7 @@ Route::get('viewapproved',[ApprovedController::class,'create'])->name('viewappro
 Route::get('getloandata/{id}',[ApprovedController::class,'getloandata'])->name('getLoanData');
 
 Route::get('getdisbursaldata/{id}',[ApprovedController::class,'getdisbursaldata'])->name('getdisbursaldata');
+Route::get('getbankdata/{id}',[ApprovedController::class,'getbankdata'])->name('getbankdata');
 
 Route::post('repayment-instrument',[ApprovedController::class,'store'])->name('repaymentinstrument');
 

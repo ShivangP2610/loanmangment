@@ -106,8 +106,12 @@ class FormController extends Controller
             $officedata->lon_type = $request['lon_type'];
 
             $officedata->save();
+            $lastInsertedId = $officedata->loan_id;
 
-            return redirect('viewappliation')->with('success', 'Appication created successfully.');
+            // echo $lastInsertedId;
+            // exit();
+
+            return redirect('viewapplication/'.$lastInsertedId)->with('success', 'Appication created successfully.');
         }
         else
         {
@@ -124,8 +128,10 @@ class FormController extends Controller
             $pospectmatc->lon_type = $request['lon_type'];
 
             $pospectmatc->save();
+            $loan_id = $pospectmatc->loan_id;
+            // return redirect('viewappliation')->with('success', 'Appication Updated successfully.');
+            return redirect('viewapplication/'.$loan_id)->with('success', 'Appication Updated successfully.');
 
-            return redirect('viewappliation')->with('success', 'Appication Updated successfully.');
         }
 
     }
@@ -275,6 +281,7 @@ class FormController extends Controller
         }
         $data = compact('allapplications');
         return view('viewapplication')->with($data);
+
 
     }
 

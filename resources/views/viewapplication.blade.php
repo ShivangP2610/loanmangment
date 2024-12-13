@@ -59,7 +59,7 @@
                                 <tr>
                                     <th>No</th>
                                     <th>APPLICATION_DATE</th>
-                                    <th>CKYC_no</th>
+                                    {{-- <th>CKYC_no</th> --}}
                                     <th>PROSPECT_No</th>
                                     <th>VIEW</th>
                                     <th>PDF</th>
@@ -72,7 +72,7 @@
                                     <tr>
                                       <td>{{ $counter++ }}</td>
                                       <td>{{ date('d-M-Y', strtotime($allapplication->date)) }}</td>
-                                        <td>{{ $allapplication->ckyc_no }}</td>
+                                        {{-- <td>{{ $allapplication->ckyc_no }}</td> --}}
                                         <td>{{ $allapplication->Prospect_No }}</td>
 
 

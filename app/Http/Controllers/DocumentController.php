@@ -19,8 +19,8 @@ class DocumentController extends Controller
     {
         Session::forget('customer_id');
 
-        // $documents = Document::orderBy('created_at', 'desc')->get();  
-        $documents = Document::where('lon_id', session('mainloan_id'))->get(); 
+        // $documents = Document::orderBy('created_at', 'desc')->get();
+        $documents = Document::where('lon_id', session('mainloan_id'))->get();
         // dd($documents);
         // dd($documents);
         $data = compact('documents');
@@ -30,8 +30,8 @@ class DocumentController extends Controller
 
     public function  viewdocument1($id)
     {
-        $documents = Document::where('lon_id',$id)->get(); 
-      
+        $documents = Document::where('lon_id',$id)->get();
+
         $back  = "Back";
         $data = compact('documents','back');
         return view('viewdocument')->with($data);
@@ -44,7 +44,9 @@ class DocumentController extends Controller
         $btext = "Submit";
 
         $lon = FormOffice::all();
-        $loans = FormOffice::where('app_status', 'office approved')->get();
+        // $loans = FormOffice::where('app_status', 'office approved')->get();
+        $id = session('mainloan_id');
+        $loans = FormOffice::where('loan_id', $id)->get();
         // dd($loans);
         // $customers = Customer::all();
         $documents = Document::with('customer', 'loan')->get();
@@ -371,7 +373,7 @@ public function downloadaddressSlip($id)
 
 
 public function viewDocumentlist($customer_id)
-{ 
+{
     // dd('gsgsssgh');
     session()->put('customer_id', $customer_id);
     $documentlist = Document::with('proprietorDetails')->where('customer_id', $customer_id)
@@ -410,11 +412,11 @@ public function viewDocumentedit($id)
 
 
 
-    if ($lon_id && $proprietor_id) { 
+    if ($lon_id && $proprietor_id) {
         // dd('dhjdhhdhjh');
         $officedata = FormOffice::where('loan_id', $lon_id)->get();
         $proprietor = Proprietor::where('proprietor_id', $proprietor_id)->first();
-        $customer = Customer::where('cust_id', $proprietor_id)->first(); 
+        $customer = Customer::where('cust_id', $proprietor_id)->first();
         // dd('sikhsgh');
         $back  = "Back";
         if ($proprietor) {

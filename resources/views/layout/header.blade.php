@@ -175,34 +175,35 @@
             </li> --}}
 
                 {{-- user start --}}
-              <li class="nav-item {{ request()->is('document/add','viewappliation') ? 'menu-open' : '' }}">
-                <a href="#" class="nav-link {{ request()->is('office/add','viewappliation') ? 'active' : '' }}">
-                  {{-- <i class="nav-icon fas fa-tachometer-alt"></i> --}}
-                  <i class="nav-icon fa fa-user"></i>
-                  <p>
-                    Application Form
-                    <i class="right fas fa-angle-left"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview ">
-                  <li class="nav-item ">
-                    <a href="{{url('office/add')}}" class="nav-link {{ request()->is('office/add') ? 'active' : '' }}">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Add</p>
+            @if(!session('mainloan_id'))
+                <li class="nav-item {{ request()->is('document/add','viewappliation') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is('office/add','viewappliation') ? 'active' : '' }}">
+                    {{-- <i class="nav-icon fas fa-tachometer-alt"></i> --}}
+                    <i class="nav-icon fa fa-user"></i>
+                    <p>
+                        Application Form
+                        <i class="right fas fa-angle-left"></i>
+                    </p>
                     </a>
-                  </li>
+                    <ul class="nav nav-treeview ">
+                    <li class="nav-item ">
+                        <a href="{{url('office/add')}}" class="nav-link {{ request()->is('office/add') ? 'active' : '' }}">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Add</p>
+                        </a>
+                    </li>
 
-                  {{-- shivang hide this 05-12-2024 --}}
-                  {{-- <li class="nav-item">
-                    <a href="{{route('viewapplication')}}" class="nav-link {{ request()->is('viewappliation') ? 'active' : '' }}">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>View</p>
-                    </a>
-                  </li> --}}
+                    {{-- shivang hide this 05-12-2024 --}}
+                    {{-- <li class="nav-item">
+                        <a href="{{route('viewapplication')}}" class="nav-link {{ request()->is('viewappliation') ? 'active' : '' }}">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>View</p>
+                        </a>
+                    </li> --}}
 
-                </ul>
-              </li>
-
+                    </ul>
+                </li>
+            @endif
             @if(session('mainloan_id'))
               <li class="nav-item {{ request()->is('document/add','viewdocument') ? 'menu-open' : '' }}">
                 <a href="#" class="nav-link {{ request()->is('document/add','viewdocument') ? 'active' : '' }}">

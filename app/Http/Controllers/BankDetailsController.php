@@ -20,12 +20,12 @@ class BankDetailsController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {  
+    {
         $id = session()->get('application_id');
         $url = url('/bankdetails/add');
         $title = 'DETAILS OF THE ACCOUNT FOR DISBURSEMENT ';
-        $btext = "Submit"; 
-        $bankdata = BankDetails::where('loan_id', $id)->first();  
+        $btext = "Submit";
+        $bankdata = BankDetails::where('loan_id', $id)->first();
         // dd($bankdata);
         $data = compact('url', 'title', 'btext' ,'bankdata');
         return view('bankdetails')->with($data);
@@ -35,13 +35,13 @@ class BankDetailsController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    { 
+    {
 
 
         // echo "<pre>";
         // print_r($request->all());
         // echo "</pre>";
-        // exit();  
+        // exit();
 
         $request->validate([
 
@@ -58,12 +58,13 @@ class BankDetailsController extends Controller
 
         // $lastcustomerId = Customer::latest()->first()->cust_id;
         // $loanId = Customer::where('cust_id', $lastcustomerId)->value('loan_id');
- 
-        $id = session()->get('application_id');
+
+        // $id = session()->get('application_id');
+        $id = session('mainloan_id');
         $customer = Customer::where('loan_id', $id)->first();
         $bankdata = BankDetails::where('loan_id', $id)->first();
         if($bankdata) {
-            
+
             $bankdata->bank_name            = $request['name_of_bank'];
             $bankdata->branch_address       = $request['branch_address'];
             $bankdata->account_holder_name  = $request['accountname'];
@@ -72,8 +73,8 @@ class BankDetailsController extends Controller
             $bankdata->account_oprete_since = $request['accountyear'];
             $bankdata->ifsc_code            = $request['ifsc_code'];
             $bankdata->micr_code            = $request['micr_code'];
-        
-            $bankdata->save(); 
+
+            $bankdata->save();
         }
         else{
         $bankdetil = new BankDetails;
@@ -88,10 +89,10 @@ class BankDetailsController extends Controller
         $bankdetil->ifsc_code              = $request['ifsc_code'];
         $bankdetil->micr_code              = $request['micr_code'];
 
-        $bankdetil->save(); 
+        $bankdetil->save();
         }
-        
-  
+
+
         return redirect('reference/add')->with('success', 'Account details added successfully.');
     }
 

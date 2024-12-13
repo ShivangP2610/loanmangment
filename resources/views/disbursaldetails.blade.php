@@ -66,7 +66,7 @@
                                         </select> --}}
                                         <select class="form-control loan_id" id="lon_id" name="lon_id">
                                             <option value="" disabled {{ !session('mainloan_id') ? 'selected' : '' }}>Select a loan</option>
-                                            <option value="{{ session('mainloan_id') }}" selected>{{ session('mainprospect_No') }}</option> 
+                                            <option value="{{ session('mainloan_id') }}" selected>{{ session('mainprospect_No') }}</option>
                                             <input type="text" id="loannumber" value="{{session('mainprospect_No')? session('mainprospect_No') :'' }}" hidden>
                                             {{-- @foreach ($loans as $loan)
                                                 <option value="{{ $loan->loan_id }}">{{ $loan->Prospect_No }}</option>
@@ -106,7 +106,7 @@
                                 aria-selected="true">Disbursal Details</button>
 
                             <div class="col-md-10" style="text-align:end">
-                                <a href="" data-toggle="modal" data-target="#exampleModal1">Adjust Amount</a>
+                                <a href="" data-toggle="modal" data-target="#exampleModal1">Charges Details</a>
                             </div>
 
                         </div>
@@ -406,6 +406,26 @@
                                                         </select>
                                                     </div>
                                                 </td> --}}
+                                                {{-- <td class="col-3">
+                                                    <div class="form-group">
+                                                        <label for="bankName">Bank</label>
+                                                        <input id="bankName" name="bankName" class="form-control mt-1"
+                                                            type="text" placeholder="Default input"
+                                                            aria-label="default input example" readonly>
+                                                    </div>
+                                                </td> --}}
+
+                                                <td class="col-4">
+                                                    <div class="form-group">
+                                                        <label for="businessacccountType">Bank</label>
+                                                        <select id="bankName" name="bankName"
+                                                            class="form-select mt-1 form-control"
+                                                            aria-label="Default select example">
+
+                                                        </select>
+                                                    </div>
+                                                </td>
+
                                                 <td class="col-4">
                                                     <div class="form-group">
                                                         <label for="beneficiaryName">Beneficiary Name</label>
@@ -417,6 +437,15 @@
                                                 </td>
                                                 <td class="col-4">
                                                     <div class="form-group">
+                                                        <label for="businessacccountType">Beneficiary Name</label>
+                                                        <input id="businessacccountType" class="form-control mt-1"
+                                                            name="business_acccount_type" type="text"
+                                                            placeholder="Default input" aria-label="default input example"
+                                                            readonly>
+                                                    </div>
+                                                </td>
+                                                {{-- <td class="col-4">
+                                                    <div class="form-group">
                                                         <label for="businessacccountType">Beneficiary Account Type</label>
                                                         <select id="businessacccountType" name="business_acccount_type"
                                                             class="form-select mt-1 form-control"
@@ -427,17 +456,8 @@
 
                                                         </select>
                                                     </div>
-                                                </td>
-                                                <td class="col-4">
-                                                    <div class="form-group">
-                                                        <label for="beneficiaryAccountNumber">Beneficiary Account
-                                                            Number</label>
-                                                        <input id="beneficiaryAccountNumber"
-                                                            name="beneficiary_account_number" class="form-control mt-1"
-                                                            type="text" placeholder="Default input"
-                                                            aria-label="default input example" readonly>
-                                                    </div>
-                                                </td>
+                                                </td> --}}
+
                                             </tr>
                                             <tr>
                                                 {{-- <td class="col-3">
@@ -457,6 +477,17 @@
                                                             placeholder="bankdealing" aria-label="default input example">
                                                     </div>
                                                 </td> --}}
+                                                <td class="col-4">
+                                                    <div class="form-group">
+                                                        <label for="beneficiaryAccountNumber">Beneficiary Account
+                                                            Number</label>
+                                                        <input id="beneficiaryAccountNumber"
+                                                            name="beneficiary_account_number" class="form-control mt-1"
+                                                            type="text" placeholder="Default input"
+                                                            aria-label="default input example" readonly>
+                                                    </div>
+                                                </td>
+
                                                 <td class="col-3">
                                                     <div class="form-group">
                                                         <label for="bankcode">IFSC Code</label>
@@ -468,14 +499,6 @@
 
                                                 <td class="col-3">
                                                     <div class="form-group">
-                                                        <label for="bankName">Bank</label>
-                                                        <input id="bankName" name="bankName" class="form-control mt-1"
-                                                            type="text" placeholder="Default input"
-                                                            aria-label="default input example" readonly>
-                                                    </div>
-                                                </td>
-                                                <td class="col-3">
-                                                    <div class="form-group">
                                                         <label for="beneficiarybranch">Branch</label>
                                                         <input id="beneficiarybranch" name="branch"
                                                             class="form-control mt-1" type="text"
@@ -484,9 +507,6 @@
                                                     </div>
                                                 </td>
                                             </tr>
-
-
-
 
 
                                             <tr>
@@ -586,20 +606,20 @@
                                     <td><input type="text" class="form-control" name="charges_details[]"
                                             value="GST"></td>
                                     <td><input type="text" class="form-control" name="percentage[]" id="gstid">
-                                    </td> 
+                                    </td>
                                               readonly></td>
-                                </tr>  --}} 
+                                </tr>  --}}
                                 <tr>
                                     <th scope="row">2</th>
                                     <td><input type="text" class="form-control" name="charges_details[]"
-                                            value="GST"></td>
+                                            value="GST On Processing"></td>
                                     <td><input type="text" class="form-control" name="percentage[]" id="gstid">
                                     </td>
                                     <td><input type="text" class="form-control amount" name="amount[]" id="gstamount"
                                             readonly></td>
                                 </tr>
 
-                                
+
                                 <tr>
                                     <th scope="row">3</th>
                                     <td><input type="text" class="form-control" name="charges_details[]"
@@ -630,9 +650,9 @@
                                 </tr>
                                 <tr>
                                     <th scope="row">7</th>
-                                    <td><input type="text" class="form-control" name="charges_details[]"></td>
+                                    <td><input type="text" class="form-control" name="charges_details[]" value="Advance Installment Charges"></td>
                                     <td><input type="text" class="form-control" name="percentage[]"></td>
-                                    <td><input type="text" class="form-control amount" name="amount[]"></td>
+                                    <td><input type="text" class="form-control amount" name="amount[]" id="ads_charge" readonly></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">8</th>
@@ -886,19 +906,16 @@
                     method: 'GET',
                     success: function(response) {
 
-                        // console.log(response.creditdata);
+                        console.log(response.banknames);
 
 
                         // Populate credit data
                         let $creditdata = response.creditdata;
                         let $bankdetails = response.bankdetails;
                         let $disbursaldata = response.disbursal;
-                        let $adjustabledata = response.adjustabledata; 
-                        let $repaymentdata = response.repaymentdata; 
-
-
-
-
+                        let $adjustabledata = response.adjustabledata;
+                        let $repaymentdata = response.repaymentdata;
+                        let $banknames     = response.banknames;
 
                         // console.log( $repaymentdata[0]['brk_charge']);
                         if ($creditdata && $creditdata.length > 0) {
@@ -907,20 +924,39 @@
                             $("#sanctioned_amount").val($creditdata[0]['sanctioned_amount']);
                             $("#sanctioned_date").val(date);
                             $("#tenure").val($creditdata[0]['sanctioned_tenure']);
-                            $("#roi").val($creditdata[0]['sanctionedInterest']);  
-                            
-                            
+                            $("#roi").val($creditdata[0]['sanctionedInterest']);
+
+
                             // $("#roi").val($creditdata[0]['sanctionedInterest']);
 
                             // $("#roi").val($creditdata[0]['policyrate']);
                         }
-                        if ($bankdetails) {
-                            $("#beneficiarybranch").val($bankdetails[0]['branch_address']);
-                            $("#beneficiaryName").val($bankdetails[0]['account_holder_name']);
-                            $("#beneficiaryAccountNumber").val($bankdetails[0]['account_number']);
-                            $("#bankcode").val($bankdetails[0]['ifsc_code']);
-                            $("#bankName").val($bankdetails[0]['bank_name']);
+
+                        // if ($bankdetails) {
+                        //     $("#beneficiarybranch").val($bankdetails[0]['branch_address']);
+                        //     $("#beneficiaryName").val($bankdetails[0]['account_holder_name']);
+                        //     $("#beneficiaryAccountNumber").val($bankdetails[0]['account_number']);
+                        //     $("#bankcode").val($bankdetails[0]['ifsc_code']);
+                        //     $("#bankName").val($bankdetails[0]['bank_name']);
+                        // }
+
+                        if ($banknames && Object.keys($banknames).length > 0) { // Ensure banknames is valid and not empty
+                            let bankSelect = document.getElementById("bankName");
+
+                            // Clear any existing options in the select box
+                            bankSelect.innerHTML = '<option value="">Select Bank Name</option>';
+
+                            // Loop through the banknames object
+                            Object.entries($banknames).forEach(([id, name]) => {
+                                let option = document.createElement("option"); // Create a new option element
+                                option.value = id; // Set the value of the option (bank ID)
+                                option.textContent = name; // Set the visible text of the option (bank name)
+                                bankSelect.appendChild(option); // Append the option to the select box
+                            });
+                        } else {
+                            console.error("Bank names data is invalid or empty.");
                         }
+
 
                         if ($disbursaldata) {
                             // alert($disbursaldata['bussiness_partner_name_appant_name']);
@@ -968,8 +1004,8 @@
                           // .console.log($adjustabledata);
 
                             let totalAmount = 0;
-                            $adjustabledata.forEach((item, index) => { 
-                                
+                            $adjustabledata.forEach((item, index) => {
+
                                 let rowIndex = index + 1; // Row index starts from 1
                                 let $row = $(`tbody tr:nth-child(${rowIndex})`);
                         //    alert(item.charges_detail);
@@ -995,8 +1031,10 @@
                             });
                             $('#total_amount_main').val(totalAmount.toFixed(2));
                         }
-                       
-                        $("#brokenid").val($repaymentdata[0]['brk_charge']); 
+
+                        $("#brokenid").val($repaymentdata[0]['brk_charge'] || 0);
+                        $("#ads_charge").val($repaymentdata[0]['ads_charge'] || 0);
+
                         ///////////////
 
                         // Populate repayment data
@@ -1031,7 +1069,10 @@
                         console.error("Error fetching loan data:", error);
                     }
                 });
+
+
             }
+
         }
 
     });
@@ -1098,6 +1139,27 @@
             });
 
         });
+
+        // shivang add 12-12-2024
+        $("#bankName").on('change',function()
+        {
+           $bankid = $(this).val();
+            $.ajax({
+                url: '{{ url('getbankdata') }}/' + $bankid,
+                    method: 'GET',
+                    success: function(response) {
+                        console.log(response.bankdetails);
+                        let $bankdetails = response.bankdetails;
+                        if ($bankdetails) {
+                            $("#beneficiarybranch").val($bankdetails[0]['branch_address']);
+                            $("#beneficiaryName").val($bankdetails[0]['account_holder_name']);
+                            $("#beneficiaryAccountNumber").val($bankdetails[0]['account_number']);
+                            $("#bankcode").val($bankdetails[0]['ifsc_code']);
+                            $("#businessacccountType").val($bankdetails[0]['Type_of_Account']);
+                        }
+                    }
+            });
+        });
     });
 </script>
 {{-- ///    --}}
@@ -1116,7 +1178,8 @@
 
         // forgst
         $('#gstid').on('input', function() {
-            $amount = $('#sanctioned_amount').val();
+            // $amount = $('#sanctioned_amount').val();
+            $amount = $('#proccefeeamount').val();    // shivang add this 12-12-24
             $percntgae = $('#gstid').val();
 
             $gstfee = $amount * $percntgae / 100;

@@ -29,7 +29,7 @@ class ProprietorController extends Controller
         $Proprietordatas = Proprietor::where('loan_id', $id)->toBase()->get();
 
 
-        // dd($Proprietordatas); 
+        // dd($Proprietordatas);
         $data = compact('url', 'title', 'btext', 'Proprietordatas');
         return view('proprietor')->with($data);
     }
@@ -42,7 +42,7 @@ class ProprietorController extends Controller
         // echo "<pre>";
         // print_r($request->all());
         // echo "</pre>";
-        // exit();  
+        // exit();
 
 
         $validator = Validator::make($request->all(), [
@@ -88,17 +88,20 @@ class ProprietorController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
             // dd($validator);proof_address
         }
-        // dd($request->all()); 
+        // dd($request->all());
         //  dd($request->input('per_pincode'));
         $LoanId = session('application_id');
-        $custmoreID = Customer::where('loan_id', $LoanId)->value('cust_id');
+        // dd($LoanId);
+        $LoanId1 = session('mainloan_id');
+
+        $custmoreID = Customer::where('loan_id', $LoanId1)->value('cust_id');
         // dd($custmoreID);
-        $Proprietors = Proprietor::where('loan_id', $LoanId)->get();
+        $Proprietors = Proprietor::where('loan_id', $LoanId1)->get();
         if ($Proprietors->isNotEmpty()) {
             foreach ($Proprietors as $key => $Proprietor) {
                 $proprietor_id = $Proprietor->proprietor_id;
 
-                // $ref_id->delete(); 
+                // $ref_id->delete();
                 Proprietor::where('proprietor_id', $proprietor_id)->delete();
             }
 
@@ -107,7 +110,7 @@ class ProprietorController extends Controller
         foreach ($request->title as $key => $value) {
             //  dd($request->title);
             $Proprietor = new Proprietor;
-            $Proprietor->loan_id = $LoanId;
+            $Proprietor->loan_id = $LoanId1;
             $Proprietor->cust_id = $custmoreID;
             $Proprietor->title = $request['title'][$key];
             $Proprietor->proprietor_name = $request['fullname'][$key];
@@ -133,7 +136,7 @@ class ProprietorController extends Controller
             $Proprietor->Current_Country_Code = $request['country_code'][$key];
             $Proprietor->Residence_Type = $request['Residence_type'][$key];
             //    $Proprietor->Current_Residences_years = $request['residance_year'][$key];
-            //    $Proprietor->Address_as_per_proof = $request['proof_address'][$key]; 
+            //    $Proprietor->Address_as_per_proof = $request['proof_address'][$key];
             $Proprietor->Address_as_per_proof = $request['proof_address'][$key] ?? '';
             $Proprietor->Permanent_Residence_Address = $request['per_address'][$key];
             $Proprietor->Permanent_Landmark = $request['per_landmark'][$key];

@@ -76,7 +76,8 @@ class CustomerController extends Controller
 
         // $lastLoanId = FormOffice::latest()->first()->loan_id;
         // $LoanId = session('application_id');
-        $id = session()->get('application_id');
+        // $id = session()->get('application_id');
+        $id = session('mainloan_id');
         $customerdata = Customer::where('loan_id', $id)->first();
         if($customerdata)
         {

@@ -1421,7 +1421,13 @@ $(document).ready(function()
                 $("#till_date").val(formattedDate1);
 
                 // days count
-                let diffTime = targetDate1 - today;
+                var today1 = new Date();
+                var year1 = today1.getFullYear();
+                var month1 = today1.getMonth();
+                let sixtindate = new Date(year1, month1, 16);
+
+
+                let diffTime = targetDate1 - sixtindate;
                 let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
                 $("#days_num").val(diffDays);
 

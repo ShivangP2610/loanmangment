@@ -21,13 +21,13 @@ class RemainingPartnerController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {   
+    {
         $id = session()->get('application_id');
         $url = url('/rpartners/add');
         $title = 'DETAILS OF REMAINING PARTNERS / DIRECTORS';
-        $btext = "Submit"; 
-        $Remainingdata = Remainingpartner::where('loan_id', $id)->get();  
-        $data = compact('url', 'title', 'btext' ,'Remainingdata'); 
+        $btext = "Submit";
+        $Remainingdata = Remainingpartner::where('loan_id', $id)->get();
+        $data = compact('url', 'title', 'btext' ,'Remainingdata');
         //  dd($Remainingdata);
         return view('remaining_partners')->with($data);
     }
@@ -36,33 +36,34 @@ class RemainingPartnerController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    { 
-        
+    {
+
         $lastcustomerId = Customer::latest()->first()->cust_id;
-        $loanId = Customer::where('cust_id', $lastcustomerId)->value('loan_id'); 
+        $loanId = Customer::where('cust_id', $lastcustomerId)->value('loan_id');
 
-        $id = session()->get('application_id');
+        // $id = session()->get('application_id');
+        $id = session('mainloan_id');
         $customer = Customer::where('loan_id', $id)->first();
-        $Remainingpartners = Remainingpartner::where('loan_id', $id)->get();   
-      
-       
+        $Remainingpartners = Remainingpartner::where('loan_id', $id)->get();
 
-        $requestData = $request->all(); 
+
+
+        $requestData = $request->all();
 
         // Flag to track if any partners were saved
         $partnersSaved = false;
-        if ($Remainingpartners->isNotEmpty()) { 
-        
+        if ($Remainingpartners->isNotEmpty()) {
 
-            foreach ($Remainingpartners as $key => $Remainingpartne) {  
-                // dd($Remainingpartne);  
+
+            foreach ($Remainingpartners as $key => $Remainingpartne) {
+                // dd($Remainingpartne);
                 $co_partner_id =  $Remainingpartne->co_partner_id;
                 //  dd($ref_id);
-                // $ref_id->delete(); 
+                // $ref_id->delete();
                 Remainingpartner::where('co_partner_id', $co_partner_id)->delete();
-            } 
-       
-            
+            }
+
+
         }
         // Loop through the input arrays and insert non-blank values
         for ($i = 0; $i < count($requestData['full_name_first']); $i++) {

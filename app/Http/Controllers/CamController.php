@@ -15,7 +15,7 @@ class CamController extends Controller
     public function viewdocument()
     {
         // dd('djdjdgh');
-        // $cams = Cam::orderBy('created_at', 'desc')->get(); 
+        // $cams = Cam::orderBy('created_at', 'desc')->get();
         $cams = Cam::where('lon_id', session('mainloan_id'))->get();
         // dd($documents);
         $data = compact('cams');
@@ -36,7 +36,9 @@ class CamController extends Controller
         $title = 'CAM Uplod';
         $btext = "Submit";
         $data = compact('url', 'title', 'btext');
-        $loans = FormOffice::where('app_status', 'document done')->get();
+        // $loans = FormOffice::where('app_status', 'document done')->get();
+        $id = session('mainloan_id');
+        $loans = FormOffice::where('loan_id', $id)->get();
         $customers = Customer::all();
         // dd($customers)->count();
         return view('cam')->with(array_merge($data, ['loans' => $loans, 'customers' => $customers]));
@@ -70,11 +72,11 @@ class CamController extends Controller
 
     //     $cam->save();
     //     return redirect()->back()->with('success', 'Document Submit successfully.');
-    // } 
+    // }
 
 
     public function store(Request $request)
-    { 
+    {
         // dd('dhgjdghdgh');
         // Validate the request
         $request->validate([
@@ -116,15 +118,18 @@ class CamController extends Controller
 
 
     public function creditcreate()
-    { 
+    {
         // dd('creaditsatge');
         $url = url('/credit/add');
         $title = 'Credit Uplod';
         $btext = "Submit";
         $data = compact('url', 'title', 'btext');
 
-        $loans = FormOffice::where('app_status', 'cam approved')->get();
+        // $loans = FormOffice::where('app_status', 'cam approved')->get();
+        $id = session('mainloan_id');
+        $loans = FormOffice::where('loan_id', $id)->get();
         $customers = Customer::all();
+        // dd($customers);
         // dd($customers)->count();
         return view('credit')->with(array_merge($data, ['loans' => $loans, 'customers' => $customers]));
     }
@@ -167,7 +172,7 @@ class CamController extends Controller
 
     //     $cam->save();
     //     return redirect()->back()->with('success', 'Document Submit successfully.');
-    // }   
+    // }
     public function creditstore(Request $request)
 {
     // Validate the incoming request
@@ -202,7 +207,7 @@ class CamController extends Controller
         // Save the updated record
         $cam->save();
 
-       
+
         $appstatus = 'credit approved';
         FormOffice::where('loan_id', $request->lon_id)->update(['app_status' => $appstatus]);
 
@@ -427,13 +432,13 @@ class CamController extends Controller
 //         }
 
 //         return redirect()->back()->with('success', 'Credit Data Saved Successfully');
-//     } 
+//     }
 
 
     public function addcreditstage2(Request $request)
 {
     // Dump all request data to check what is being sent
-    // dd($request->all()); 
+    // dd($request->all());
 
     // Validate the incoming request
     // $validated = $request->validate([
@@ -441,7 +446,7 @@ class CamController extends Controller
     //     'cust_id_main' => 'required',
     //     'loan_id_main' => 'required',
     //     // Add other fields here
-    // ]);  
+    // ]);
     $request->validate([
         'cust_id_main' => 'required',
         'loan_id_main' => 'required',
@@ -453,14 +458,14 @@ class CamController extends Controller
         'policyrate' => 'required',
         'applicable_rate' => 'required',
         'application' => 'required',
-    ]); 
-      
-    $loan_id = $request->loan_id_main;
-    $cust_id = $request->cust_id_main;  
+    ]);
 
-    $existindata = Creditstage::where('loan_id', $loan_id)->where('cust__id', $cust_id)->first(); 
+    $loan_id = $request->loan_id_main;
+    $cust_id = $request->cust_id_main;
+
+    $existindata = Creditstage::where('loan_id', $loan_id)->where('cust__id', $cust_id)->first();
     if ($existindata) {
-       
+
         $id = $existindata->credit_id;
         $maindata = Creditstage::find($id);
 
@@ -469,10 +474,10 @@ class CamController extends Controller
             $maindata->requested_amount = $request->requested_amount;
             $maindata->requested_tenure = $request->requested_tenure;
             $maindata->sanctioned_amount = $request->sanctioned_amount;
-           
+
             $maindata->sanctioned_tenure = $request->sanctioned_tenure;
-          
-            $maindata->sanctionedInterest = $request->policyrate;    
+
+            $maindata->sanctionedInterest = $request->policyrate;
             $maindata->policyrate = $request->policyrate;
             $maindata->applicable_rate = $request->applicable_rate;
             $maindata->application = $request->application;
@@ -482,26 +487,26 @@ class CamController extends Controller
             throw new \Exception("Data not found for credit_id: $id");
         }
     } else {
-        
+
         $data = new Creditstage;
         $data->loan_id = $request->loan_id_main;
         $data->cust__id = $request->cust_id_main;
         $data->requested_amount = $request->requested_amount;
         $data->requested_tenure = $request->requested_tenure;
         $data->sanctioned_amount = $request->sanctioned_amount;
-      
+
         $data->sanctioned_tenure = $request->sanctioned_tenure;
-        
-        $data->sanctionedInterest = $request->policyrate;     
+
+        $data->sanctionedInterest = $request->policyrate;
         $data->policyrate = $request->policyrate;
         $data->applicable_rate = $request->applicable_rate;
         $data->application = $request->application;
         $data->reason  =  $request->reason;
         $data->save();
     }
- 
+
     return redirect()->back()->with('success', 'Credit Data Saved Successfully');
 
-    
+
 }
 }

@@ -6,7 +6,42 @@
     <!-- DataTables CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <!-- DataTables Buttons CSS -->
+
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.1.1/css/buttons.dataTables.min.css">
+    <style>
+        .download-icon {
+            display: inline-block; /* Makes it an inline block for width/height adjustments */
+            width: 100px; /* Set the width */
+            height: 50px; /* Set the height */
+            line-height: 50px; /* Centers the icon vertically */
+            text-align: center; /* Centers the icon horizontally */
+            font-size: 40px; /* Adjusts the font size of the icon */
+            margin-left: 15px;
+            /* border: 1PX solid black; */
+            padding: 5px;
+            background-color: #f0f0f0
+        }
+        .download-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .download-label {
+            display: none;
+            position: absolute;
+            top: 5;
+            left: 50%;
+            background-color: #f0f0f0;
+            padding: 5px;
+            border-radius: 5px;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        .download-wrapper:hover .download-label {
+            display: block;
+        }
+    </style>
 @endpush
 
 @extends("layout.main")
@@ -68,7 +103,7 @@
                                 <tr>
                                     <th>No</th>
                                     <th>customer</th>
-                                    <th>Lon</th>
+                                    <th>Loan</th>
                                     <th>IdentityProof</th>
                                     <th>Bank statement</th>
                                     <th>Income Proof</th>
@@ -101,7 +136,10 @@
                                         <td>
                                        @if ($document->bank_statement)
                                       <a href="{{ route('download.bank_statement', ['id' => $document->id]) }}" download>
-                                      <i class="fas fa-file-excel"></i>
+                                        <span class="download-wrapper">
+                                            <i class="fas fa-download download-icon"></i>
+                                            <span class="download-label">{{ $document->bank_statement }}</span>
+                                        </span>
                                         </a>
                                           @else
                                               N/A
@@ -111,8 +149,11 @@
                                           <td>
                                          @if ($document->salary_slip)
                                         <a href="{{ route('download.salary_slip', ['id' => $document->id]) }}" download>
-                                        <i class="fas fa-file-pdf"></i>
-
+                                        {{-- <i class="fas fa-file-pdf"></i> --}}
+                                        <span class="download-wrapper">
+                                            <i class="fas fa-download download-icon"></i>
+                                            <span class="download-label">{{ $document->salary_slip }}</span>
+                                        </span>
                                         </a>
                                          @else
                                          N/A
@@ -123,7 +164,11 @@
                                          <td>
                                                 @if ($document->business_proof)
                                             <a href="{{ route('download.business_proof', ['id' => $document->id]) }}" download>
-                                            <i class="fas fa-file-excel"></i>
+                                            {{-- <i class="fas fa-file-excel"></i> --}}
+                                            <span class="download-wrapper">
+                                                <i class="fas fa-download download-icon"></i>
+                                                <span class="download-label">{{ $document->business_proof }}</span>
+                                            </span>
                                                 </a>
                                                 @else
                                                     N/A
@@ -135,7 +180,11 @@
                                          <td>
                                             @if ($document->adresss_proof)
                                            <a href="{{ route('download.adresss_proof', ['id' => $document->id]) }}" download>
-                                           <i class="fas fa-file-excel"></i>
+                                           {{-- <i class="fas fa-file-excel"></i> --}}
+                                           <span class="download-wrapper">
+                                                <i class="fas fa-download download-icon"></i>
+                                                <span class="download-label">{{ $document->adresss_proof }}</span>
+                                            </span>
                                              </a>
                                                @else
                                                    N/A

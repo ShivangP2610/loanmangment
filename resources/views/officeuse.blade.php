@@ -68,7 +68,7 @@
                     </div>
                 </div> --}}
 
-               
+
                 @include('sidebar')
 
                 <div class="col-lg-9">
@@ -241,7 +241,7 @@
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-                        </div> 
+                        </div>
 
                         <div class="row mb-3">
                             <div class="col-lg-12">
@@ -255,16 +255,16 @@
                                         <input type="radio" class="form-check-input" id="business" name="lon_type" value="business" {{ isset($officedata) && ($officedata->lon_type === 'business' || old('lon_type') === 'business') ? 'checked' : ''  }}>
                                         <label class="form-check-label" for="minor">Business</label>
                                     </div>
-                                 
+
                                 </div>
                                 @error('lon_type')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-                        </div> 
+                        </div>
 
 
-                        
+
 
                         {{-- <div class="row mb-3">
                             <div class="col-lg-12">

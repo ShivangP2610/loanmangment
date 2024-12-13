@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Customer; 
+use App\Models\Customer;
 use App\Models\FormOffice;
 use App\Models\References;
 
@@ -21,14 +21,14 @@ class RefrrencesController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {   
+    {
         $id = session()->get('application_id');
         $url = url('/reference/add');
         $title = 'REFERENCES';
-        $btext = "Submit"; 
-        $Refernces = References::where('loan_id', $id)->get(); 
+        $btext = "Submit";
+        $Refernces = References::where('loan_id', $id)->get();
         $numRows = $Refernces->count();
-        
+
         if($numRows != 0)
         {
             $data = compact('url', 'title', 'btext' ,'Refernces');
@@ -38,14 +38,14 @@ class RefrrencesController extends Controller
             $data = compact('url', 'title', 'btext');
             return view('refernce_copy')->with($data);
         }
-        
+
     // dd($numRows);
     // foreach ($Refernces as $Refernce) {
     //     dd($Refernce);
-       
+
 
     // }
-        
+
     }
 
     /**
@@ -67,24 +67,25 @@ class RefrrencesController extends Controller
             'applicntrelation.*'     => 'required'
         ]);
 
-       
 
 
-        $id = session()->get('application_id');
+
+        // $id = session()->get('application_id');
+        $id = session('mainloan_id');
         $customer = Customer::where('loan_id', $id)->first();
-        $Refernces = References::where('loan_id', $id)->get(); 
-       
+        $Refernces = References::where('loan_id', $id)->get();
+
         if ($Refernces->isNotEmpty()) {
-            foreach ($Refernces as $key => $Refernce) {   
+            foreach ($Refernces as $key => $Refernce) {
                 $ref_id =  $Refernce->ref_id;
-                 
-                // $ref_id->delete();  
+
+                // $ref_id->delete();
                 References::where('ref_id', $ref_id)->delete();
-            } 
-       
-            
-        } 
-        foreach ($request->name as $key => $value) { 
+            }
+
+
+        }
+        foreach ($request->name as $key => $value) {
             $ref = new References;
             $ref->loan_id                 = $id;
             $ref->cust_id                 = $customer->cust_id;
@@ -99,15 +100,15 @@ class RefrrencesController extends Controller
             $ref->Email                   = $request->email[$key];
             $ref->Relation_with_applicant = $request->applicntrelation[$key];
             $ref->save();
-        } 
+        }
 
-        $FormOffice = FormOffice::where('loan_id' ,$ref->loan_id)->first(); 
+        $FormOffice = FormOffice::where('loan_id' ,$ref->loan_id)->first();
     //    dd($FormOffice);
-        $FormOffice->app_status = 'office approved'; 
+        $FormOffice->app_status = 'office approved';
         $FormOffice->update();
-        
-      
-      
+
+
+
 
         return redirect()->back()->with('success', 'References created successfully.');
 
