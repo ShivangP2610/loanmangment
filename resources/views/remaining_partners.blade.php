@@ -103,10 +103,22 @@
                             <div class="col-md-12">
                                 <div class="form-group d-flex justify-content-between">
                                     <label class="text-nowrap">Tel/Mobile</label>
-                                    <div class="d-flex">
+                                    {{-- <div class="d-flex">
                                         <input type="text" class="form-control" id="MOBILE1" name="MOBILE[]" placeholder="MOBILE NUMBER" value="{{ isset($Remainingdata[0]->partners_Mobile_no) ? $Remainingdata[0]->partners_Mobile_no : old('partners_Mobile_no') }}">
                                         <input type="text" class="form-control ml-2" id="MOBILE2" name="MOBILE[]" placeholder="MOBILE NUMBER" value="{{ isset($Remainingdata[1]->partners_Mobile_no) ? $Remainingdata[1]->partners_Mobile_no : old('partners_Mobile_no') }}">
                                         <input type="text" class="form-control ml-2" id="MOBILE3" name="MOBILE[]" placeholder="MOBILE NUMBER" value="{{ isset($Remainingdata[2]->partners_Mobile_no) ? $Remainingdata[2]->partners_Mobile_no : old('partners_Mobile_no') }}">
+                                    </div>  --}}
+
+                                    <div class="d-flex">
+                                        <input type="number" class="form-control" id="MOBILE1" name="MOBILE[]" placeholder="MOBILE NUMBER" 
+                                               value="{{ isset($Remainingdata[0]->partners_Mobile_no) ? $Remainingdata[0]->partners_Mobile_no : old('partners_Mobile_no') }}" 
+                                               oninput="validateMobileLength(this)">
+                                        <input type="number" class="form-control ml-2" id="MOBILE2" name="MOBILE[]" placeholder="MOBILE NUMBER" 
+                                               value="{{ isset($Remainingdata[1]->partners_Mobile_no) ? $Remainingdata[1]->partners_Mobile_no : old('partners_Mobile_no') }}" 
+                                               oninput="validateMobileLength(this)">
+                                        <input type="number" class="form-control ml-2" id="MOBILE3" name="MOBILE[]" placeholder="MOBILE NUMBER" 
+                                               value="{{ isset($Remainingdata[2]->partners_Mobile_no) ? $Remainingdata[2]->partners_Mobile_no : old('partners_Mobile_no') }}" 
+                                               oninput="validateMobileLength(this)">
                                     </div>
                                 </div>
                                 @error('MOBILE')
@@ -236,6 +248,17 @@
         // Initial check when the page loads
         checkInputs();
     });
+</script>  
+<script>
+function validateMobileLength(input) {
+    // Convert the value to a string to enforce length restrictions
+    let value = input.value;
+    
+    // Ensure only 10 digits max
+    if (value.length > 10) {
+        input.value = value.slice(0, 10);
+    }
+}
 </script>
 
 

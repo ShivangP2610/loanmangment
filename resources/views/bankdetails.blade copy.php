@@ -5,8 +5,21 @@
 
 @section('main-section')
     <div class="content-wrapper">
-        
+        <!-- Content Header (Page header) -->
         <div class="content-header">
+            {{-- <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Dashboard</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="">Home</a></li>
+              <li class="breadcrumb-item active">Add Permission</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid --> --}}
         </div>
 
         <div class="content">
@@ -33,13 +46,7 @@
 
                     <div class="col-lg-9">
                         <form action="{{ url($url) }}" method="POST">
-                            @csrf 
-
-                            @php $counter = 0; @endphp 
-                             
-                            @forEach($bankdetails as $bankdata)  
-                        
-
+                            @csrf
                             <div id="partner-row-container">
                                 <div class="row mb-3 bg-red d-flex justify-content-between">
                                     <div>
@@ -110,7 +117,7 @@
                                             </div>
                                         </div>
 
-                                        {{-- <div class="col-lg-2">
+                                        <div class="col-lg-2">
                                             <div class="form-group">
                                                 <label for="typeofacount" class="text-nowrap">Type of Account</label>
                                                 <input type="text" class="form-control" id="typeofacount"
@@ -120,50 +127,7 @@
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
                                             </div>
-                                        </div> --}}  
-                                     
-
-                                        <div class="col-lg-2">
-                                            <div class="form-group">
-                                                <label for="typeofacount" class="text-nowrap">Type of Account</label>
-                                                <select class="form-control" id="typeofacount" name="typeofacount[]">
-                                                    <option value="">Select Type of Account</option>
-                                                    <option value="Current account" 
-                                                        {{ (isset($bankdata->Type_of_Account) && $bankdata->Type_of_Account == 'Current Account') || (old('typeofacount.0') == 'Current account') ? 'selected' : '' }}>
-                                                        Current account
-                                                    </option>
-                                                    <option value="Savings account" 
-                                                        {{ (isset($bankdata->Type_of_Account) && $bankdata->Type_of_Account == 'Savings Account') || (old('typeofacount.0') == 'Savings account') ? 'selected' : '' }}>
-                                                        Savings account
-                                                    </option>
-                                                    <option value="Salary account" 
-                                                        {{ (isset($bankdata->Type_of_Account) && $bankdata->Type_of_Account == 'Salary Account') || (old('typeofacount.0') == 'Salary account') ? 'selected' : '' }}>
-                                                        Salary account
-                                                    </option>
-                                                    <option value="Fixed deposit account" 
-                                                        {{ (isset($bankdata->Type_of_Account) && $bankdata->Type_of_Account == 'Fixed Deposit Account') || (old('typeofacount.0') == 'Fixed deposit account') ? 'selected' : '' }}>
-                                                        Fixed deposit account
-                                                    </option>
-                                                    <option value="Recurring deposit account" 
-                                                        {{ (isset($bankdata->Type_of_Account) && $bankdata->Type_of_Account == 'Recurring Deposit Account') || (old('typeofacount.0') == 'Recurring deposit account') ? 'selected' : '' }}>
-                                                        Recurring deposit account
-                                                    </option>
-                                                    <option value="NRI account" 
-                                                        {{ (isset($bankdata->Type_of_Account) && $bankdata->Type_of_Account == 'NRI Account') || (old('typeofacount.0') == 'NRI account') ? 'selected' : '' }}>
-                                                        NRI account
-                                                    </option>
-                                                </select>
-                                                @error('typeofacount')
-                                                    <span class="text-danger">{{ $message }}</span>
-                                                @enderror
-                                            </div>
                                         </div>
-                                        
-                                        
-
-
-                                        
-                                        
 
                                         <div class="col-lg-3">
                                             <div class="form-group">
@@ -204,9 +168,7 @@
                                 </div>
                             </div>
 
-                            @php $counter++; @endphp
 
-                            @endforeach
                             <div class="row">
                                 <div class="col-lg-12">
                                     <button type="submit" class="btn btn-primary">{{ $btext }}</button>

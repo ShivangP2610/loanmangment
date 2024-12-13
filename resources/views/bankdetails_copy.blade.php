@@ -35,9 +35,9 @@
                         <form action="{{ url($url) }}" method="POST">
                             @csrf 
 
-                            @php $counter = 0; @endphp 
+                            
                              
-                            @forEach($bankdetails as $bankdata)  
+                            
                         
 
                             <div id="partner-row-container">
@@ -204,9 +204,9 @@
                                 </div>
                             </div>
 
-                            @php $counter++; @endphp
+                            
 
-                            @endforeach
+                         
                             <div class="row">
                                 <div class="col-lg-12">
                                     <button type="submit" class="btn btn-primary">{{ $btext }}</button>
