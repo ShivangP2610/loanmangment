@@ -214,7 +214,8 @@
                                         <td>
 
 
-                                        <a href="{{ route('viewDocumentedit', ['customer_id' => $document->proprietor_id]) }}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
+                                        {{-- <a href="{{ route('viewDocumentedit', ['customer_id' => $document->proprietor_id]) }}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a> --}}
+                                        <a href="{{ route('viewDocumenteditlast', ['customer_id' => $document->id]) }}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
 
 
                                       </td>

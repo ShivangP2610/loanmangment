@@ -161,54 +161,54 @@ class DocumentController extends Controller
                         ->first();
 // dd($document);
     // If a document exists, update it; otherwise, create a new one
-    if ($document) {
-        // Update existing document
-        if ($request->hasFile('identity_proof')) {
-            // Handle identity_proof file
-            $image = $request->file('identity_proof');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->storeAs('public/documents/identity_proofs', $imageName);
-            $document->identity_proof = $imageName;
-        }
+    // if ($document) {
+    //     // Update existing document
+    //     if ($request->hasFile('identity_proof')) {
+    //         // Handle identity_proof file
+    //         $image = $request->file('identity_proof');
+    //         $imageName = time() . '.' . $image->getClientOriginalExtension();
+    //         $image->storeAs('public/documents/identity_proofs', $imageName);
+    //         $document->identity_proof = $imageName;
+    //     }
 
-        if ($request->hasFile('bank_statement')) {
-            // Handle bank_statement file
-            $file = $request->file('bank_statement');
-            $fileName = time() . '.' . $file->getClientOriginalExtension();
-            $file->storeAs('public/documents/bank_statements', $fileName);
-            $document->bank_statement = $fileName;
-        }
+    //     if ($request->hasFile('bank_statement')) {
+    //         // Handle bank_statement file
+    //         $file = $request->file('bank_statement');
+    //         $fileName = time() . '.' . $file->getClientOriginalExtension();
+    //         $file->storeAs('public/documents/bank_statements', $fileName);
+    //         $document->bank_statement = $fileName;
+    //     }
 
-        if ($request->hasFile('salary_slip')) {
-            // Handle salary_slip file
-            $file = $request->file('salary_slip');
-            $fileName = time() . '.' . $file->getClientOriginalExtension();
-            $file->storeAs('public/documents/salary_slips', $fileName);
-            $document->salary_slip = $fileName;
-        }
+    //     if ($request->hasFile('salary_slip')) {
+    //         // Handle salary_slip file
+    //         $file = $request->file('salary_slip');
+    //         $fileName = time() . '.' . $file->getClientOriginalExtension();
+    //         $file->storeAs('public/documents/salary_slips', $fileName);
+    //         $document->salary_slip = $fileName;
+    //     }
 
 
-        if ($request->hasFile('business_proof')) {
-            // Handle business_proof file
-            $file = $request->file('business_proof');
-            $fileName = time() . '.' . $file->getClientOriginalExtension();
-            $file->storeAs('public/documents/business_proof', $fileName);
-            $document->business_proof = $fileName;
-        }
+    //     if ($request->hasFile('business_proof')) {
+    //         // Handle business_proof file
+    //         $file = $request->file('business_proof');
+    //         $fileName = time() . '.' . $file->getClientOriginalExtension();
+    //         $file->storeAs('public/documents/business_proof', $fileName);
+    //         $document->business_proof = $fileName;
+    //     }
 
-        if ($request->hasFile('adresss_proof')) {
-            // Handle adresss_proof file
-            $file = $request->file('adresss_proof');
-            $fileName = time() . '.' . $file->getClientOriginalExtension();
-            $file->storeAs('public/documents/adresss_proof', $fileName);
-            $document->adresss_proof = $fileName;
-        }
+    //     if ($request->hasFile('adresss_proof')) {
+    //         // Handle adresss_proof file
+    //         $file = $request->file('adresss_proof');
+    //         $fileName = time() . '.' . $file->getClientOriginalExtension();
+    //         $file->storeAs('public/documents/adresss_proof', $fileName);
+    //         $document->adresss_proof = $fileName;
+    //     }
 
-        // Update status based on file presence
-        $document->status = ($document->identity_proof && $document->bank_statement && $document->salary_slip && $document->business_proof && $document->adresss_proof) ? 1 : null;
-        // dd($newDocument);
-        $document->save(); // Save updated document
-    } else {
+    //     // Update status based on file presence
+    //     $document->status = ($document->identity_proof && $document->bank_statement && $document->salary_slip && $document->business_proof && $document->adresss_proof) ? 1 : null;
+    //     // dd($newDocument);
+    //     $document->save(); // Save updated document
+    // } else {
         // Create new document
         $newDocument = new Document();
         $newDocument->lon_id = $request->lon_id;
@@ -260,7 +260,7 @@ class DocumentController extends Controller
 
 // dd($newDocument);
         $newDocument->save(); // Save new document
-    }
+
 
     // Update FormOffice based on loan_id
     $lonidcount = Document::where('lon_id', $request->lon_id)->where('status', 1)->count();
@@ -446,26 +446,79 @@ public function viewDocumentedit($id)
 
 }
 
-public function updatestore(Request $request)
+// shivang 13-12-2024
+public function viewDocumenteditlast($id)
 {
-    // dd($request);
 
-    $document = Document::where('lon_id', $request->lon_id)
-                        ->where('customer_id', $request->customermainnid)
-                        ->where('proprietor_id', $request->customer_id)
-                        ->first();
-                        // dd($document);
+    $url = url('/document/update');
+    $title = 'Document Update';
+    $btext = "Submit";
 
 
-    if (!$document) {
+    $documents = Document::where('id',$id)->get();
+    // dd($documents);
+    // Check if $id exists as customer_id or proprietor_id
+    // $document = Document::find($id);
 
-        return redirect()->back()->with('error', 'Document not found for update.');
+    if (!$documents) {
+        abort(404);
     }
 
-    $loan_id = $request->lon_id;
-    $pri_id = $request->customer_id;
-    $document->proprietor_id = $request->customer_id;
+    $lon_id = $documents[0]->lon_id;
+    $proprietor_id = $documents[0]->proprietor_id;
+
+    if ($lon_id && $proprietor_id) {
+        // dd('dhjdhhdhjh');
+        $officedata = FormOffice::where('loan_id', $lon_id)->get();
+        $proprietor = Proprietor::where('proprietor_id', $proprietor_id)->first();
+        $customer = Customer::where('cust_id', $proprietor_id)->first();
+        // dd('sikhsgh');
+        $back  = "Back";
+        $mainid = $documents[0]->id;
+
+        if ($proprietor) {
+            $data = compact('url', 'title', 'btext', 'officedata', 'proprietor','back','mainid');
+        } elseif ($customer) {
+            $data = compact('url', 'title', 'btext', 'officedata', 'customer','back','mainid');
+        } else {
+
+            abort(404, 'No data found for this ID.');
+        }
+
+        return view('documentedit', $data);
+    }
+
+    else{
+        return Redirect()->back()->with('msg', 'loan id and proprietor_id doesnt match');
+    }
+
+
+}
+
+public function updatestore(Request $request)
+{
+    // dd($request->all());
+
+    // $document = Document::where('lon_id', $request->lon_id)
+    //                     ->where('customer_id', $request->customermainnid)
+    //                     ->where('proprietor_id', $request->customer_id)
+    //                     ->first();
+    //                     // dd($document);
+
+
+    // if (!$document) {
+
+    //     return redirect()->back()->with('error', 'Document not found for update.');
+    // }
+
+    // $loan_id = $request->lon_id;
+    // $pri_id = $request->customer_id;
+    // $document->proprietor_id = $request->customer_id;
+
 // dd($request->customer_id);
+$docid = $request->docid;
+$document = Document::find($docid);
+// dd($document);
     if ($request->hasFile('identity_proof')) {
         $image = $request->file('identity_proof');
         $imageName = time() . '.' . $image->getClientOriginalExtension();

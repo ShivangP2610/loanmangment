@@ -217,8 +217,6 @@ Route::get('/user/delete/{id}',[UserController::class,'destroy']);
             ->get();
 
 
-
-
         return response()->json($data);
     });
 
@@ -229,6 +227,14 @@ Route::get('/user/delete/{id}',[UserController::class,'destroy']);
     Route::get('/get-documents/{customerId}/{lonid1}', function ($customerId ,$lonid1) {
 
         $data = Document::where('proprietor_id', $customerId)->where('lon_id', $lonid1)->get();
+    // dd($data);
+        return response()->json($data);
+    });
+
+    // shivang 13-12-2024
+    Route::get('/get-documentsmain/{docsid}', function ($docsid) {
+
+        $data = Document::where('id', $docsid)->get();
     // dd($data);
         return response()->json($data);
     });
@@ -247,6 +253,8 @@ Route::get('/download/camuplod/{id}', [CamController::class,'downloadCamuplod'])
 // Route::get('viewDocumentlist/{customer_id}',[DocumentController::class,'viewDocumentlist'])->name('viewDocumentlist');
 Route::get('viewDocumentlist/{customer_id}', [DocumentController::class, 'viewDocumentlist'])->name('viewDocumentlist');
 Route::get('viewDocumentedit/{customer_id}', [DocumentController::class, 'viewDocumentedit'])->name('viewDocumentedit');
+// shivang
+Route::get('viewDocumenteditlast/{customer_id}', [DocumentController::class, 'viewDocumenteditlast'])->name('viewDocumenteditlast');
 
 Route::post('document/update',[DocumentController::class,'updatestore'])->name('update-document');
 

@@ -45,6 +45,7 @@
                     <div class="row mb-3 d-flex justify-content-between">
                         <div>
                             <h6 style="font-weight: 700" class="mt-2 ml-2">{{ $title }}</h6>
+                            <input type="hidden" id="docid" name="docid" value="{{ $mainid }}" >
                         </div>
                     </div>
 
@@ -166,14 +167,16 @@ $(document).ready(function() {
     // Fetch the initial values needed for the AJAX request
     var customerId1 = $('#customer_id').val();
     var lonid1 = $('#lon_id').val();
-
+    var docsid = $("#docid").val();
+    // alert(docsid);
 
 
     // Make sure customerId1 is not empty or null
     if (customerId1) {
         // Perform AJAX request
         $.ajax({
-            url: '/get-documents/' + customerId1 + '/' + lonid1,
+            // url: '/get-documents/' + customerId1 + '/' + lonid1 ,
+            url: '/get-documentsmain/' + docsid,
             type: 'GET',
             dataType: 'json',
             success: function(data) {

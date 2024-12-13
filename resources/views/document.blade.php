@@ -250,6 +250,7 @@ $(document).ready(function() {
                 type: 'GET',
                 dataType: 'json',
                 success: function(data) {
+
                     $('#customer_id').empty();
                     // $('#customer_id').append($('<option>', {
                     //     value: '',
@@ -270,6 +271,7 @@ $(document).ready(function() {
 
 
                         if (!selectedValues[item.customer_id]) {
+
                             $('#customer_id').append($('<option>', {
                                 value: item.customer_id,
                                 text: item.customer_name + ' (BORROWER)'
@@ -280,7 +282,17 @@ $(document).ready(function() {
                         }
 
 
-                        if (item.proprietor_id && item.proprietor_name && !selectedValues[item.proprietor_id]) {
+                        // if (item.proprietor_id && item.proprietor_name && !selectedValues[item.proprietor_id]) {
+                        //     $('#customer_id').append($('<option>', {
+                        //         value: item.proprietor_id,
+                        //         text: item.proprietor_name + ' (Proprietor)'
+                        //     }));
+                        //     selectedValues[item.proprietor_id] = true; // Mark proprietor as added
+                        // }
+
+                        // shivang 13-12-2024
+
+                        if (item.proprietor_id && item.proprietor_name || !selectedValues[item.proprietor_id]) {
                             $('#customer_id').append($('<option>', {
                                 value: item.proprietor_id,
                                 text: item.proprietor_name + ' (Proprietor)'
@@ -372,25 +384,25 @@ $(document).ready(function() {
                 url: '/get-documents/' + customerId1 + '/' + lonid1,
                 type: 'GET',
                 dataType: 'json',
-                success: function(data) { 
+                success: function(data) {
                     // alert(data[0].salary_slip);
                     console.log(data);
                     if(data == '')
                     {
                         $('#identity_proof').siblings('.text-muted').html('(Supported: Aadhaar Card, Voter ID Card)');
                         $('#bank_statement').siblings('.text-muted').html('(Bank statement previous 3 Months)');
-                        $('#salary_slip').siblings('.text-muted').html('(Supported Formats: PDF, DOCX, XLSX; Two Latest)'); 
+                        $('#salary_slip').siblings('.text-muted').html('(Supported Formats: PDF, DOCX, XLSX; Two Latest)');
                         $('#business_proof').siblings('.text-muted').html('(Supported Formats: PDF, DOCX, XLSX; Two Latest)');
                         $('#adresss_proof').siblings('.text-muted').html('(Supported Formats: PDF, DOCX, XLSX; Two Latest)');
                     }
                     else{
                         $('#identity_proof').siblings('.text-muted').html('File: ' + data[0].identity_proof);
                         $('#bank_statement').siblings('.text-muted').html('File: ' + data[0].bank_statement);
-                        $('#salary_slip').siblings('.text-muted').html('File: ' + data[0].salary_slip);  
-                        $('#business_proof').siblings('.text-muted').html('File: ' + data[0].business_proof);  
-                        $('#adresss_proof').siblings('.text-muted').html('File: ' + data[0].adresss_proof); 
+                        $('#salary_slip').siblings('.text-muted').html('File: ' + data[0].salary_slip);
+                        $('#business_proof').siblings('.text-muted').html('File: ' + data[0].business_proof);
+                        $('#adresss_proof').siblings('.text-muted').html('File: ' + data[0].adresss_proof);
 
-                        
+
                     }
 
                 },
