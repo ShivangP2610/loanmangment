@@ -296,6 +296,11 @@ Route::post('/submit-form', [ApprovedController::class, 'adjustablestore'])->nam
 // Route::post('/loan/clearSession', [LoanController::class, 'clearSession'])->name('loan.clearSession');
 // Route::post('/loan/save', [LoanController::class, 'save'])->name('loan.save');
 
+// shivang 133-12-2024
+Route::get('/view_bank_statement/{id}', [DocumentController::class, 'viewBankStatementmain'])->name('view.bank_statement_main');
+Route::get('/view_salary_slip/{id}', [DocumentController::class, 'viewsalarymain'])->name('view.salary_main');
+Route::get('/view_business_proof/{id}', [DocumentController::class, 'business_proofmain'])->name('view.business_proof');
+Route::get('/view_adresss_proof/{id}', [DocumentController::class, 'adresss_proofmain'])->name('view.adresss_proof');
 
 
 

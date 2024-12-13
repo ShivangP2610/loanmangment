@@ -11,12 +11,12 @@
     <style>
         .download-icon {
             display: inline-block; /* Makes it an inline block for width/height adjustments */
-            width: 100px; /* Set the width */
-            height: 50px; /* Set the height */
+            width: 70px; /* Set the width */
+            height: 35px; /* Set the height */
             line-height: 50px; /* Centers the icon vertically */
             text-align: center; /* Centers the icon horizontally */
-            font-size: 40px; /* Adjusts the font size of the icon */
-            margin-left: 15px;
+            font-size: 25px; /* Adjusts the font size of the icon */
+            margin-left: 5px;
             /* border: 1PX solid black; */
             padding: 5px;
             background-color: #f0f0f0
@@ -40,6 +40,10 @@
 
         .download-wrapper:hover .download-label {
             display: block;
+        }
+        .viewicon
+        {
+            margin-top: -10px !important;
         }
     </style>
 @endpush
@@ -141,6 +145,9 @@
                                             <span class="download-label">{{ $document->bank_statement }}</span>
                                         </span>
                                         </a>
+                                        <a href="{{ route('view.bank_statement_main', ['id' => $document->id]) }}" target="_blank" class="btn btn-primary btn-sm ml-2 viewicon">
+                                            View
+                                        </a>
                                           @else
                                               N/A
                                           @endif
@@ -154,6 +161,9 @@
                                             <i class="fas fa-download download-icon"></i>
                                             <span class="download-label">{{ $document->salary_slip }}</span>
                                         </span>
+                                        </a>
+                                        <a href="{{ route('view.salary_main', ['id' => $document->id]) }}" target="_blank" class="btn btn-primary btn-sm ml-2 viewicon">
+                                            View
                                         </a>
                                          @else
                                          N/A
@@ -169,6 +179,9 @@
                                                 <i class="fas fa-download download-icon"></i>
                                                 <span class="download-label">{{ $document->business_proof }}</span>
                                             </span>
+                                                </a>
+                                                <a href="{{ route('view.business_proof', ['id' => $document->id]) }}" target="_blank" class="btn btn-primary btn-sm ml-2 viewicon">
+                                                    View
                                                 </a>
                                                 @else
                                                     N/A
@@ -186,6 +199,9 @@
                                                 <span class="download-label">{{ $document->adresss_proof }}</span>
                                             </span>
                                              </a>
+                                             <a href="{{ route('view.adresss_proof', ['id' => $document->id]) }}" target="_blank" class="btn btn-primary btn-sm ml-2 viewicon">
+                                                View
+                                            </a>
                                                @else
                                                    N/A
                                                @endif

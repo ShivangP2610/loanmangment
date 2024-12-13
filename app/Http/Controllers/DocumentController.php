@@ -577,8 +577,68 @@ public function updatestore(Request $request)
     return redirect()->back()->with('success', 'Document updated successfully.')->with('appstatus', $appstatus);
 }
 
+// shivang 13-12-2024
+public function viewBankStatementmain($id)
+{
+    // dd($id);
+    $document = Document::find($id);
 
+    if ($document && $document->bank_statement) {
+        $filePath = storage_path('app/public/documents/bank_statements/' . $document->bank_statement); // Adjust path based on your storage location
+        // dd($filePath);
+        if (file_exists($filePath)) {
+            return response()->file($filePath); // View the file in the browser
+        }
+    }
 
+    return abort(404, 'File not found.');
+}
+
+public function viewsalarymain($id)
+{
+    // dd($id);
+    $document = Document::find($id);
+
+    if ($document && $document->salary_slip) {
+        $filePath = storage_path('app/public/documents/salary_slips/' . $document->salary_slip); // Adjust path based on your storage location
+        // dd($filePath);
+        if (file_exists($filePath)) {
+            return response()->file($filePath); // View the file in the browser
+        }
+    }
+
+    return abort(404, 'File not found.');
+}
+public function business_proofmain($id)
+{
+    // dd($id);
+    $document = Document::find($id);
+
+    if ($document && $document->business_proof) {
+        $filePath = storage_path('app/public/documents/business_proof/' . $document->business_proof); // Adjust path based on your storage location
+        // dd($filePath);
+        if (file_exists($filePath)) {
+            return response()->file($filePath); // View the file in the browser
+        }
+    }
+
+    return abort(404, 'File not found.');
+}
+public function adresss_proofmain($id)
+{
+    // dd($id);
+    $document = Document::find($id);
+
+    if ($document && $document->adresss_proof) {
+        $filePath = storage_path('app/public/documents/adresss_proof/' . $document->adresss_proof); // Adjust path based on your storage location
+        // dd($filePath);
+        if (file_exists($filePath)) {
+            return response()->file($filePath); // View the file in the browser
+        }
+    }
+
+    return abort(404, 'File not found.');
+}
 
 }
 
