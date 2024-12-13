@@ -22,7 +22,16 @@ class RefrrencesController extends Controller
      */
     public function create()
     {
-        $id = session()->get('application_id');
+        // $id = session()->get('application_id'); 
+ 
+        $id1 = session()->get('application_id'); 
+        if ($id1){ 
+            $id = session()->get('application_id');
+
+        }else{
+            $id = session('mainloan_id');
+        } 
+
         $url = url('/reference/add');
         $title = 'REFERENCES';
         $btext = "Submit";
@@ -71,7 +80,15 @@ class RefrrencesController extends Controller
 
 
         // $id = session()->get('application_id');
-        $id = session('mainloan_id');
+        // $id = session('mainloan_id'); 
+
+        $id1 = session()->get('application_id'); 
+        if ($id1){ 
+            $id = session()->get('application_id');
+
+        }else{
+            $id = session('mainloan_id');
+        }
         $customer = Customer::where('loan_id', $id)->first();
         $Refernces = References::where('loan_id', $id)->get();
 

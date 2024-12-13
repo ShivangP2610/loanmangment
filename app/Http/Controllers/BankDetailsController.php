@@ -21,12 +21,22 @@ class BankDetailsController extends Controller
      */
     public function create()
     {
-        // $id = session()->get('application_id');
-        $id = session('mainloan_id');
+        // $id = session()->get('application_id'); 
+
+        $id1 = session()->get('application_id'); 
+        if ($id1){ 
+            $id = session()->get('application_id');
+
+        }else{
+            $id = session('mainloan_id');
+        } 
+        // $id = session('mainloan_id'); 
+        // dd($id);
         $url = url('/bankdetails/add');
         $title = 'DETAILS OF THE ACCOUNT FOR DISBURSEMENT ';
         $btext = "Submit";
-        $bankdetails = BankDetails::where('loan_id', $id)->get();
+        $bankdetails = BankDetails::where('loan_id', $id)->get(); 
+        // dd($bankdetails);
 
         $numRows = $bankdetails->count();
 
@@ -134,7 +144,16 @@ class BankDetailsController extends Controller
     // $id = session()->get('application_id');
     // $customer = Customer::where('loan_id', $id)->first();
 
-    $id = session()->get('application_id');
+    // $id = session()->get('application_id'); 
+
+
+    $id1 = session()->get('application_id'); 
+        if ($id1){ 
+            $id = session()->get('application_id');
+
+        }else{
+            $id = session('mainloan_id');
+        }  
     // dd($id);
     $customer = Customer::where('loan_id', $id)->first();
     // dd($customer);

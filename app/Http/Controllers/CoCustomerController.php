@@ -80,9 +80,15 @@ class CoCustomerController extends Controller
         ]);
         //   dd($request->all());
 
+        $id1 = session()->get('application_id'); 
+        if ($id1){ 
+            $LoanId = session()->get('application_id');
 
+        }else{
+            $LoanId = session('mainloan_id');
+        }
 
-        $LoanId = session('application_id');
+        // $LoanId = session('application_id');
         $custmoreID = Customer::where('loan_id', $LoanId)->value('cust_id');
 
 

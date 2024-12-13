@@ -21,7 +21,14 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        $id = session()->get('application_id');
+        // $id = session()->get('application_id'); 
+        $id1 = session()->get('application_id'); 
+        if ($id1){ 
+            $id = session()->get('application_id');
+
+        }else{
+            $id = session('mainloan_id');
+        }
         //  dd($id);
         $url = url('/customer/add');
         $title = 'BORROWER DETAILS';
@@ -76,8 +83,14 @@ class CustomerController extends Controller
 
         // $lastLoanId = FormOffice::latest()->first()->loan_id;
         // $LoanId = session('application_id');
-        // $id = session()->get('application_id');
-        $id = session('mainloan_id');
+        $id1 = session()->get('application_id'); 
+        if ($id1){ 
+            $id = session()->get('application_id');
+
+        }else{
+            $id = session('mainloan_id');
+        }
+        // $id = session('mainloan_id');
         $customerdata = Customer::where('loan_id', $id)->first();
         if($customerdata)
         {
