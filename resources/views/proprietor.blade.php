@@ -586,13 +586,24 @@
                                                     class="img-fluid" height="150" width="150">
                                             </div>
 
-                                            <div class="col-lg-2 mt-5 ml-5">
+                                            {{-- <div class="col-lg-2 mt-5 ml-5">
                                                 <div class="form-group">
                                                     <label for="title" class="text-nowrap">Title</label>
                                                     <input type="text" class="form-control" id="title"
                                                         name="title[]" value="{{ old('title') }}">
 
                                                     @error('title')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                            </div>  --}}
+
+                                            <div class="col-lg-2 mt-5 ml-5">
+                                                <div class="form-group">
+                                                    <label for="title" class="text-nowrap">Title</label>
+                                                    <input type="text" class="form-control" id="title"
+                                                        name="title[]" value="{{ old('title.0') }}">
+                                                    @error('title.0')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>

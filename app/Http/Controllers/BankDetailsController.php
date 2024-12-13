@@ -27,13 +27,74 @@ class BankDetailsController extends Controller
         $btext = "Submit";
         $bankdata = BankDetails::where('loan_id', $id)->first();
         // dd($bankdata);
-        $data = compact('url', 'title', 'btext' ,'bankdata');
-        return view('bankdetails')->with($data);
+        // $data = compact('url', 'title', 'btext' ,'bankdetails');
+        // return view('bankdetails')->with($data);
     }
 
     /**
      * Store a newly created resource in storage.
      */
+    // public function store(Request $request)
+    // {
+
+
+    //     // echo "<pre>";
+    //     // print_r($request->all());
+    //     // echo "</pre>";
+    //     // exit();
+
+    //     $request->validate([
+
+    //         'name_of_bank.*'    => 'required',
+    //         'branch_address.*'  => 'required',
+    //         'accountname.*'     => 'required',
+    //         'accountnumber.*'   => 'required|numeric',
+    //         'typeofacount.*'    => 'required',
+    //         'accountyear.*'     => 'required',
+    //         'ifsc_code.*'       => 'required',
+    //         'micr_code.*'      => 'required'
+
+    //     ]);
+
+    //     // $lastcustomerId = Customer::latest()->first()->cust_id;
+    //     // $loanId = Customer::where('cust_id', $lastcustomerId)->value('loan_id');
+
+    //     $id = session()->get('application_id');
+    //     $customer = Customer::where('loan_id', $id)->first();
+    //     $bankdata = BankDetails::where('loan_id', $id)->first();
+    //     if($bankdata) {
+
+    //         $bankdata->bank_name            = $request['name_of_bank'];
+    //         $bankdata->branch_address       = $request['branch_address'];
+    //         $bankdata->account_holder_name  = $request['accountname'];
+    //         $bankdata->account_number       = $request['accountnumber'];
+    //         $bankdata->Type_of_Account      = $request['typeofacount'];
+    //         $bankdata->account_oprete_since = $request['accountyear'];
+    //         $bankdata->ifsc_code            = $request['ifsc_code'];
+    //         $bankdata->micr_code            = $request['micr_code'];
+
+    //         $bankdata->save();
+    //     }
+    //     else{
+    //     $bankdetil = new BankDetails;
+    //     $bankdetil->loan_id                = $id;
+    //     $bankdetil->cust_id                = $customer->cust_id;
+    //     $bankdetil->bank_name              = $request['name_of_bank'];
+    //     $bankdetil->branch_address         = $request['branch_address'];
+    //     $bankdetil->account_holder_name    = $request['accountname'];
+    //     $bankdetil->account_number         = $request['accountnumber'];
+    //     $bankdetil->Type_of_Account         = $request['typeofacount'];
+    //     $bankdetil->account_oprete_since   = $request['accountyear'];
+    //     $bankdetil->ifsc_code              = $request['ifsc_code'];
+    //     $bankdetil->micr_code              = $request['micr_code'];
+
+    //     $bankdetil->save();
+    //     }
+
+
+    //     return redirect('reference/add')->with('success', 'Account details added successfully.');
+    // }
+
     public function store(Request $request)
     {
 
@@ -43,24 +104,22 @@ class BankDetailsController extends Controller
         // echo "</pre>";
         // exit();
 
-        $request->validate([
-
-            'name_of_bank'    => 'required',
-            'branch_address'  => 'required',
-            'accountname'     => 'required',
-            'accountnumber'   => 'required|numeric',
-            'typeofacount'    => 'required',
-            'accountyear'     => 'required',
-            'ifsc_code'       => 'required',
-            'micr_code'      => 'required'
-
-        ]);
+    // Validate the request for all input fields
+    $request->validate([
+        'name_of_bank.*'    => 'required',
+        'branch_address.*'  => 'required',
+        'accountname.*'     => 'required',
+        'accountnumber.*'   => 'required|numeric',
+        'typeofacount.*'    => 'required',
+        'accountyear.*'     => 'required',
+        'ifsc_code.*'       => 'required',
+        'micr_code.*'       => 'required',
+    ]);
 
         // $lastcustomerId = Customer::latest()->first()->cust_id;
         // $loanId = Customer::where('cust_id', $lastcustomerId)->value('loan_id');
 
-        // $id = session()->get('application_id');
-        $id = session('mainloan_id');
+        $id = session()->get('application_id');
         $customer = Customer::where('loan_id', $id)->first();
         $bankdata = BankDetails::where('loan_id', $id)->first();
         if($bankdata) {
