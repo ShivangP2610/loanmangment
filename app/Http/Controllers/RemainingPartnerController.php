@@ -22,7 +22,15 @@ class RemainingPartnerController extends Controller
      */
     public function create()
     {
-        $id = session()->get('application_id');
+        // $id = session()->get('application_id'); 
+
+        $id1 = session()->get('application_id'); 
+        if ($id1){ 
+            $id = session()->get('application_id');
+
+        }else{
+            $id = session('mainloan_id');
+        }
         $url = url('/rpartners/add');
         $title = 'DETAILS OF REMAINING PARTNERS / DIRECTORS';
         $btext = "Submit";
@@ -37,12 +45,21 @@ class RemainingPartnerController extends Controller
      */
     public function store(Request $request)
     {
-
+            
         $lastcustomerId = Customer::latest()->first()->cust_id;
         $loanId = Customer::where('cust_id', $lastcustomerId)->value('loan_id');
 
         // $id = session()->get('application_id');
-        $id = session('mainloan_id');
+        // $id = session('mainloan_id'); 
+
+        $id1 = session()->get('application_id'); 
+        if ($id1){ 
+            $id = session()->get('application_id');
+
+        }else{
+            $id = session('mainloan_id');
+        }  
+
         $customer = Customer::where('loan_id', $id)->first();
         $Remainingpartners = Remainingpartner::where('loan_id', $id)->get();
 

@@ -22,7 +22,16 @@ class ProprietorController extends Controller
      */
     public function create()
     {
-        $id = session()->get('application_id');
+        // $id = session()->get('application_id'); 
+
+        $id1 = session()->get('application_id'); 
+        if ($id1){ 
+            $id = session()->get('application_id');
+
+        }else{
+            $id = session('mainloan_id');
+        }
+
         $url = url('/proprietor/add');
         $title = 'DETAILS OF CO-BORROWER';
         $btext = "Submit";
@@ -89,14 +98,24 @@ class ProprietorController extends Controller
             // dd($validator);proof_address
         }
         // dd($request->all());
-        //  dd($request->input('per_pincode'));
-        $LoanId = session('application_id');
-        // dd($LoanId);
-        $LoanId1 = session('mainloan_id');
+        //  dd($request->input('per_pincode')); 
 
-        $custmoreID = Customer::where('loan_id', $LoanId1)->value('cust_id');
+
+        $id1 = session()->get('application_id'); 
+        if ($id1){ 
+            $LoanId = session()->get('application_id');
+
+        }else{
+            $LoanId = session('mainloan_id');
+        } 
+
+        // $LoanId = session('application_id');
+        // dd($LoanId);
+        // $LoanId1 = session('mainloan_id');
+
+        $custmoreID = Customer::where('loan_id', $LoanId)->value('cust_id');
         // dd($custmoreID);
-        $Proprietors = Proprietor::where('loan_id', $LoanId1)->get();
+        $Proprietors = Proprietor::where('loan_id', $LoanId)->get();
         if ($Proprietors->isNotEmpty()) {
             foreach ($Proprietors as $key => $Proprietor) {
                 $proprietor_id = $Proprietor->proprietor_id;
@@ -110,7 +129,7 @@ class ProprietorController extends Controller
         foreach ($request->title as $key => $value) {
             //  dd($request->title);
             $Proprietor = new Proprietor;
-            $Proprietor->loan_id = $LoanId1;
+            $Proprietor->loan_id = $LoanId;
             $Proprietor->cust_id = $custmoreID;
             $Proprietor->title = $request['title'][$key];
             $Proprietor->proprietor_name = $request['fullname'][$key];
