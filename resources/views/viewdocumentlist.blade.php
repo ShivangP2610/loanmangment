@@ -117,7 +117,7 @@
                                   @php $counter = 1; @endphp
                                 @foreach($documentlist as $document)
                                 {{-- dd($document); --}}
-                                {{-- <?php dd($document);?> --}}
+
                                 @if($document->customer_id != $document->proprietor_id)
                                 <tr>
                                         <td>{{ $counter++ }}</td>
@@ -204,7 +204,7 @@
 
                                         <td>
 
-                                            <a href="{{ route('viewDocumentedit', ['customer_id' => $document->proprietor_id]) }}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
+                                            <a href="{{ route('viewDocumentedit', ['customer_id' => $document->id]) }}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
 
                                         </td>
 

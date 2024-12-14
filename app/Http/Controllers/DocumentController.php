@@ -398,7 +398,8 @@ public function viewDocumentedit($id)
     $btext = "Submit";
 
 
-    $documents = Document::where('proprietor_id',$id)->get();
+    // $documents = Document::where('proprietor_id',$id)->get();
+    $documents = Document::where('id',$id)->get();
     // dd($documents);
     // Check if $id exists as customer_id or proprietor_id
     // $document = Document::find($id);
@@ -419,10 +420,11 @@ public function viewDocumentedit($id)
         $customer = Customer::where('cust_id', $proprietor_id)->first();
         // dd('sikhsgh');
         $back  = "Back";
+        $mainid = $documents[0]->id;
         if ($proprietor) {
-            $data = compact('url', 'title', 'btext', 'officedata', 'proprietor','back');
+            $data = compact('url', 'title', 'btext', 'officedata', 'proprietor','back','mainid');
         } elseif ($customer) {
-            $data = compact('url', 'title', 'btext', 'officedata', 'customer','back');
+            $data = compact('url', 'title', 'btext', 'officedata', 'customer','back','mainid');
         } else {
 
             abort(404, 'No data found for this ID.');
