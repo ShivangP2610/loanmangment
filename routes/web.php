@@ -314,7 +314,10 @@ Route::get('/view_cam_upload/{id}', [CamController::class, 'camuploadmain'])->na
 
 
 Route::get('/cam/edit/{id}', [CamController::class, 'camedit'])->name('edit-cam'); 
-Route::post('/cam/update/{id}', [CamController::class, 'camupdate'])->name('update-cam'); 
+Route::post('/cam/update/{id}', [CamController::class, 'camupdate'])->name('update-cam');  
+
+Route::delete('/credit/{id}', [CamController::class, 'destroy'])->name('delete-credit');
+
 
 
 

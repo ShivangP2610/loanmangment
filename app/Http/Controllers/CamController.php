@@ -151,16 +151,16 @@ class CamController extends Controller
 
     public function camupdate(Request $request, $id)
     {
-        
+
         // dd('dsadhaskldh');
         $request->validate([
             'lon_id' => 'required',
             'customer_id' => 'required',
-            'excel_uplod' => 'nullable|file|mimes:xlsx,xls|max:2048' 
+            'excel_uplod' => 'nullable|file|mimes:xlsx,xls|max:2048'
         ]);
 
         try {
-           
+
             $cam = Cam::findOrFail($id);
 
             // Handle file upload if a new file is provided
@@ -174,7 +174,7 @@ class CamController extends Controller
                     Storage::delete('public/documents/cam/' . $cam->excel_uplod);
                 }
 
-                
+
                 $cam->excel_uplod = $fileName;
             }
 
@@ -204,9 +204,17 @@ class CamController extends Controller
         $id = session('mainloan_id');
         $loans = FormOffice::where('loan_id', $id)->get();
         $customers = Customer::all();
+        $credit = Credit::where('lon_id', $id)->get();
+        // dd($credit);
+        if ($credit != '') {
+            return view('credit')->with(array_merge($data, ['loans' => $loans, 'customers' => $customers, 'credit' => $credit]));
+        } else {
+
+            return view('credit')->with(array_merge($data, ['loans' => $loans, 'customers' => $customers]));
+        }
         // dd($customers);
         // dd($customers)->count();
-        return view('credit')->with(array_merge($data, ['loans' => $loans, 'customers' => $customers]));
+
     }
 
 
@@ -258,7 +266,6 @@ class CamController extends Controller
         $request->validate([
             'lon_id' => 'required',
             'customer_id' => 'required',
-            'cam_uplod' => 'required|file|mimes:xlsx,xls',
             'final_uplod' => 'required|file|mimes:xlsx,xls',
         ]);
 
@@ -267,59 +274,63 @@ class CamController extends Controller
             ->where('customer_id', $request->customer_id)
             ->first();
 
-        if ($cam) {
-            // If record exists, update it
-            if ($request->hasFile('cam_uplod')) {
-                $file = $request->file('cam_uplod');
-                $fileName = time() . '_cam.' . $file->getClientOriginalExtension();
-                $file->storeAs('public/documents/credit', $fileName);
-                $cam->cam_uplod = $fileName;
-            }
-
-            if ($request->hasFile('final_uplod')) {
-                $file = $request->file('final_uplod');
-                $fileName = time() . '_final.' . $file->getClientOriginalExtension();
-                $file->storeAs('public/documents/credit', $fileName);
-                $cam->final_uplod = $fileName;
-            }
-
-            // Save the updated record
-            $cam->save();
+        // if ($cam) {
 
 
-            $appstatus = 'credit approved';
-            FormOffice::where('loan_id', $request->lon_id)->update(['app_status' => $appstatus]);
+        //     if ($request->hasFile('final_uplod')) {
+        //         $file = $request->file('final_uplod');
+        //         $fileName = time() . '_final.' . $file->getClientOriginalExtension();
+        //         $file->storeAs('public/documents/credit', $fileName);
+        //         $cam->final_uplod = $fileName;
+        //     }
 
-            return redirect()->back()->with('success', 'Record updated successfully.');
-        } else {
-            // If no record exists, create a new one
-            $cam = new Credit();
-            $cam->lon_id = $request->lon_id;
-            $cam->customer_id = $request->customer_id;
+        //     // Save the updated record
+        //     $cam->save();
 
-            if ($request->hasFile('cam_uplod')) {
-                $file = $request->file('cam_uplod');
-                $fileName = time() . '_cam.' . $file->getClientOriginalExtension();
-                $file->storeAs('public/documents/credit', $fileName);
-                $cam->cam_uplod = $fileName;
-            }
 
-            if ($request->hasFile('final_uplod')) {
-                $file = $request->file('final_uplod');
-                $fileName = time() . '_final.' . $file->getClientOriginalExtension();
-                $file->storeAs('public/documents/credit', $fileName);
-                $cam->final_uplod = $fileName;
-            }
+        //     $appstatus = 'credit approved';
+        //     FormOffice::where('loan_id', $request->lon_id)->update(['app_status' => $appstatus]);
 
-            // Save the new record
-            $cam->save();
+        //     return redirect()->back()->with('success', 'Record updated successfully.');
+        // } else {
+        // If no record exists, create a new one
+        $cam = new Credit();
+        $cam->lon_id = $request->lon_id;
+        $cam->customer_id = $request->customer_id;
 
-            // Update FormOffice status
-            $appstatus = 'credit approved';
-            FormOffice::where('loan_id', $request->lon_id)->update(['app_status' => $appstatus]);
 
-            return redirect()->back()->with('success', 'Record created successfully.');
+
+        // if ($request->hasFile('final_uplod')) {
+        //     $file = $request->file('final_uplod');
+        //     $fileName = time() . '_final.' . $file->getClientOriginalExtension();
+        //     $file->storeAs('public/documents/credit', $fileName);
+        //     $cam->final_uplod = $fileName;
+        // } 
+
+        if ($request->hasFile('final_uplod')) {
+            $file = $request->file('final_uplod');
+
+
+            $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+            $extension = $file->getClientOriginalExtension();
+            $uniqueFileName = $originalName . '_' . time() . '.' . $extension;
+
+            // Store the file with the unique name
+            $file->storeAs('public/documents/credit', $uniqueFileName);
+
+            // Save the original file name in the database
+            $cam->final_uplod = $uniqueFileName; // Save the unique name
         }
+
+
+
+        $cam->save();
+
+        // Update FormOffice status
+        $appstatus = 'credit approved';
+        FormOffice::where('loan_id', $request->lon_id)->update(['app_status' => $appstatus]);
+
+        return redirect()->back()->with('success', 'Record created successfully.');
     }
 
 
@@ -602,5 +613,22 @@ class CamController extends Controller
         }
 
         return abort(404, 'File not found.');
+    }
+
+
+    public function destroy($id)
+    {
+        $credit = Credit::findOrFail($id); 
+        $filePath = storage_path('app/public/documents/credit/' . $credit->final_uplod);
+
+        // Delete the file from storage if it exists
+        if (file_exists($filePath)) {
+            unlink($filePath);
+        }
+
+        // Delete the record from the database
+        $credit->delete();
+
+        return redirect()->back()->with('success', 'Record deleted successfully.');
     }
 }
