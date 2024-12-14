@@ -309,7 +309,14 @@ Route::get('/view_bank_statement/{id}', [DocumentController::class, 'viewBankSta
 Route::get('/view_salary_slip/{id}', [DocumentController::class, 'viewsalarymain'])->name('view.salary_main');
 Route::get('/view_business_proof/{id}', [DocumentController::class, 'business_proofmain'])->name('view.business_proof');
 Route::get('/view_adresss_proof/{id}', [DocumentController::class, 'adresss_proofmain'])->name('view.adresss_proof');
-Route::get('/view_cam_upload/{id}', [CamController::class, 'camuploadmain'])->name('view.cam_uplod');
+Route::get('/view_cam_upload/{id}', [CamController::class, 'camuploadmain'])->name('view.cam_uplod');  
+
+
+
+Route::get('/cam/edit/{id}', [CamController::class, 'camedit'])->name('edit-cam'); 
+Route::post('/cam/update/{id}', [CamController::class, 'camupdate'])->name('update-cam'); 
+
+
 
 
 

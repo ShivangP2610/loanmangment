@@ -17,13 +17,14 @@ class CamController extends Controller
         // dd('djdjdgh');
         // $cams = Cam::orderBy('created_at', 'desc')->get();
         $cams = Cam::where('lon_id', session('mainloan_id'))->get();
-        // dd($documents);
+        // dd($cams);
         $data = compact('cams');
         return view('viewcam')->with($data);
     }
 
     public function viewdocument1($id)
     {
+        // dd('ftrtdfh');
         $cams = Cam::where('lon_id', $id)->get();
         $back  = "Back";
         $data = compact('cams', 'back');
@@ -77,6 +78,7 @@ class CamController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->all());
         // dd('dhgjdghdgh');
         // Validate the request
         $request->validate([
@@ -86,9 +88,9 @@ class CamController extends Controller
         ]);
 
 
-        $existingCam = Cam::where('lon_id', $request->lon_id)
-            ->where('customer_id', $request->customer_id)
-            ->first();
+        // $existingCam = Cam::where('lon_id', $request->lon_id)
+        //     ->where('customer_id', $request->customer_id)
+        //     ->first();
 
         // File handling
         $file = $request->file('excel_uplod');
@@ -96,17 +98,23 @@ class CamController extends Controller
         $file->storeAs('public/documents/cam', $fileName);
 
         // If record exists, update it
-        if ($existingCam) {
-            $existingCam->excel_uplod = $fileName;
-            $existingCam->save();
-        } else {
-            // If record does not exist, create a new one
-            $cam = new Cam();
-            $cam->lon_id = $request->lon_id;
-            $cam->customer_id = $request->customer_id;
-            $cam->excel_uplod = $fileName;
-            $cam->save();
-        }
+        // if ($existingCam) {
+        //     $existingCam->excel_uplod = $fileName;
+        //     $existingCam->save();
+        // } else {
+        //     // If record does not exist, create a new one
+        //     $cam = new Cam();
+        //     $cam->lon_id = $request->lon_id;
+        //     $cam->customer_id = $request->customer_id;
+        //     $cam->excel_uplod = $fileName;
+        //     $cam->save();
+        // } 
+
+        $cam = new Cam();
+        $cam->lon_id = $request->lon_id;
+        $cam->customer_id = $request->customer_id;
+        $cam->excel_uplod = $fileName;
+        $cam->save();
 
         // Update the app_status in FormOffice table
         $appstatus = 'cam approved';
@@ -114,6 +122,73 @@ class CamController extends Controller
 
         return redirect()->back()->with('success', 'Document submitted successfully.');
     }
+
+
+
+
+    public function camedit($id)
+    {
+
+        // dd('dsdgjsgdsdgh');
+        // Fetch the record for the given ID
+        $cam = Cam::findOrFail($id);
+        // dd($cam->lon_id);
+
+        // Fetch additional data if needed (e.g., customers, loans)
+        $loans = FormOffice::where('loan_id', $cam->lon_id)->get();
+        $customers = Customer::all();
+
+        // Return the edit view with the fetched data
+        return view('viewcamedit', compact('cam', 'loans', 'customers'))->with([
+            'title' => 'Edit CAM Document',
+            'btext' => 'Update Document'
+        ]);
+    }
+
+
+
+
+
+    public function camupdate(Request $request, $id)
+    {
+        
+        // dd('dsadhaskldh');
+        $request->validate([
+            'lon_id' => 'required',
+            'customer_id' => 'required',
+            'excel_uplod' => 'nullable|file|mimes:xlsx,xls|max:2048' 
+        ]);
+
+        try {
+           
+            $cam = Cam::findOrFail($id);
+
+            // Handle file upload if a new file is provided
+            if ($request->hasFile('excel_uplod')) {
+                $file = $request->file('excel_uplod');
+                $fileName = time() . '.' . $file->getClientOriginalExtension();
+                $file->storeAs('public/documents/cam', $fileName);
+
+                // Delete the old file if necessary
+                if ($cam->excel_uplod) {
+                    Storage::delete('public/documents/cam/' . $cam->excel_uplod);
+                }
+
+                
+                $cam->excel_uplod = $fileName;
+            }
+
+            // Update other fields
+            $cam->lon_id = $request->lon_id;
+            $cam->customer_id = $request->customer_id;
+            $cam->save();
+
+            return redirect()->route('add-cam')->with('success', 'Document updated successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'An error occurred: ' . $e->getMessage());
+        }
+    }
+
 
 
 
@@ -133,6 +208,10 @@ class CamController extends Controller
         // dd($customers)->count();
         return view('credit')->with(array_merge($data, ['loans' => $loans, 'customers' => $customers]));
     }
+
+
+
+
 
 
     // public function creditstore(Request $request)
@@ -174,74 +253,74 @@ class CamController extends Controller
     //     return redirect()->back()->with('success', 'Document Submit successfully.');
     // }
     public function creditstore(Request $request)
-{
-    // Validate the incoming request
-    $request->validate([
-        'lon_id' => 'required',
-        'customer_id' => 'required',
-        'cam_uplod' => 'required|file|mimes:xlsx,xls',
-        'final_uplod' => 'required|file|mimes:xlsx,xls',
-    ]);
+    {
+        // Validate the incoming request
+        $request->validate([
+            'lon_id' => 'required',
+            'customer_id' => 'required',
+            'cam_uplod' => 'required|file|mimes:xlsx,xls',
+            'final_uplod' => 'required|file|mimes:xlsx,xls',
+        ]);
 
-    // Check if a record with the given lon_id and customer_id exists
-    $cam = Credit::where('lon_id', $request->lon_id)
-                ->where('customer_id', $request->customer_id)
-                ->first();
+        // Check if a record with the given lon_id and customer_id exists
+        $cam = Credit::where('lon_id', $request->lon_id)
+            ->where('customer_id', $request->customer_id)
+            ->first();
 
-    if ($cam) {
-        // If record exists, update it
-        if ($request->hasFile('cam_uplod')) {
-            $file = $request->file('cam_uplod');
-            $fileName = time() . '_cam.' . $file->getClientOriginalExtension();
-            $file->storeAs('public/documents/credit', $fileName);
-            $cam->cam_uplod = $fileName;
+        if ($cam) {
+            // If record exists, update it
+            if ($request->hasFile('cam_uplod')) {
+                $file = $request->file('cam_uplod');
+                $fileName = time() . '_cam.' . $file->getClientOriginalExtension();
+                $file->storeAs('public/documents/credit', $fileName);
+                $cam->cam_uplod = $fileName;
+            }
+
+            if ($request->hasFile('final_uplod')) {
+                $file = $request->file('final_uplod');
+                $fileName = time() . '_final.' . $file->getClientOriginalExtension();
+                $file->storeAs('public/documents/credit', $fileName);
+                $cam->final_uplod = $fileName;
+            }
+
+            // Save the updated record
+            $cam->save();
+
+
+            $appstatus = 'credit approved';
+            FormOffice::where('loan_id', $request->lon_id)->update(['app_status' => $appstatus]);
+
+            return redirect()->back()->with('success', 'Record updated successfully.');
+        } else {
+            // If no record exists, create a new one
+            $cam = new Credit();
+            $cam->lon_id = $request->lon_id;
+            $cam->customer_id = $request->customer_id;
+
+            if ($request->hasFile('cam_uplod')) {
+                $file = $request->file('cam_uplod');
+                $fileName = time() . '_cam.' . $file->getClientOriginalExtension();
+                $file->storeAs('public/documents/credit', $fileName);
+                $cam->cam_uplod = $fileName;
+            }
+
+            if ($request->hasFile('final_uplod')) {
+                $file = $request->file('final_uplod');
+                $fileName = time() . '_final.' . $file->getClientOriginalExtension();
+                $file->storeAs('public/documents/credit', $fileName);
+                $cam->final_uplod = $fileName;
+            }
+
+            // Save the new record
+            $cam->save();
+
+            // Update FormOffice status
+            $appstatus = 'credit approved';
+            FormOffice::where('loan_id', $request->lon_id)->update(['app_status' => $appstatus]);
+
+            return redirect()->back()->with('success', 'Record created successfully.');
         }
-
-        if ($request->hasFile('final_uplod')) {
-            $file = $request->file('final_uplod');
-            $fileName = time() . '_final.' . $file->getClientOriginalExtension();
-            $file->storeAs('public/documents/credit', $fileName);
-            $cam->final_uplod = $fileName;
-        }
-
-        // Save the updated record
-        $cam->save();
-
-
-        $appstatus = 'credit approved';
-        FormOffice::where('loan_id', $request->lon_id)->update(['app_status' => $appstatus]);
-
-        return redirect()->back()->with('success', 'Record updated successfully.');
-    } else {
-        // If no record exists, create a new one
-        $cam = new Credit();
-        $cam->lon_id = $request->lon_id;
-        $cam->customer_id = $request->customer_id;
-
-        if ($request->hasFile('cam_uplod')) {
-            $file = $request->file('cam_uplod');
-            $fileName = time() . '_cam.' . $file->getClientOriginalExtension();
-            $file->storeAs('public/documents/credit', $fileName);
-            $cam->cam_uplod = $fileName;
-        }
-
-        if ($request->hasFile('final_uplod')) {
-            $file = $request->file('final_uplod');
-            $fileName = time() . '_final.' . $file->getClientOriginalExtension();
-            $file->storeAs('public/documents/credit', $fileName);
-            $cam->final_uplod = $fileName;
-        }
-
-        // Save the new record
-        $cam->save();
-
-        // Update FormOffice status
-        $appstatus = 'credit approved';
-        FormOffice::where('loan_id', $request->lon_id)->update(['app_status' => $appstatus]);
-
-        return redirect()->back()->with('success', 'Record created successfully.');
     }
-}
 
 
     public function show($id)
@@ -366,164 +445,162 @@ class CamController extends Controller
 
     // }
 
-//     public function addcreditstage(Request $request)
-//     {
-// //  dd($request->all);
-//         $request->validate([
-//             'cust_id_main' => 'required',
-//             'loan_id_main' => 'required',
-//             'requested_amount' => 'required',
-//             'requested_tenure' => 'required',
-//             'sanctioned_amount' => 'required',
-//             // 'maximum_sanctioned_amount' => 'required',
-//             'sanctioned_tenure' => 'required',
-//             // 'maximum_sanctioned_tenure' => 'required',
-//             'sanctionedInterest' => 'required',
-//             'policyrate' => 'required',
-//             'applicable_rate' => 'required',
-//             'application' => 'required',
-//         ]);
-// // dd($request->cust_id_main);
-//         $loan_id = $request->loan_id_main;
-//         $cust_id = $request->cust_id_main;
+    //     public function addcreditstage(Request $request)
+    //     {
+    // //  dd($request->all);
+    //         $request->validate([
+    //             'cust_id_main' => 'required',
+    //             'loan_id_main' => 'required',
+    //             'requested_amount' => 'required',
+    //             'requested_tenure' => 'required',
+    //             'sanctioned_amount' => 'required',
+    //             // 'maximum_sanctioned_amount' => 'required',
+    //             'sanctioned_tenure' => 'required',
+    //             // 'maximum_sanctioned_tenure' => 'required',
+    //             'sanctionedInterest' => 'required',
+    //             'policyrate' => 'required',
+    //             'applicable_rate' => 'required',
+    //             'application' => 'required',
+    //         ]);
+    // // dd($request->cust_id_main);
+    //         $loan_id = $request->loan_id_main;
+    //         $cust_id = $request->cust_id_main;
 
-//         // Retrieve the existing data if it exists
-//         $existindata = Creditstage::where('loan_id', $loan_id)->where('cust__id', $cust_id)->first();
+    //         // Retrieve the existing data if it exists
+    //         $existindata = Creditstage::where('loan_id', $loan_id)->where('cust__id', $cust_id)->first();
 
-//         if ($existindata) {
-//             // Find the record by its credit_id
-//             $id = $existindata->credit_id;
-//             $maindata = Creditstage::find($id);
+    //         if ($existindata) {
+    //             // Find the record by its credit_id
+    //             $id = $existindata->credit_id;
+    //             $maindata = Creditstage::find($id);
 
-//             if ($maindata) {
-//                 // Update existing data
-//                 $maindata->requested_amount = $request->requested_amount;
-//                 $maindata->requested_tenure = $request->requested_tenure;
-//                 $maindata->sanctioned_amount = $request->sanctioned_amount;
-//                 // $maindata->maximum_sanctioned_amount = $request->maximum_sanctioned_amount;
-//                 $maindata->sanctioned_tenure = $request->sanctioned_tenure;
-//                 // $maindata->maximum_sanctioned_tenure = $request->maximum_sanctioned_tenure;
-//                 $maindata->sanctionedInterest = $request->policyrate;    // sanctionedInterest
-//                 $maindata->policyrate = $request->policyrate;
-//                 $maindata->applicable_rate = $request->applicable_rate;
-//                 $maindata->application = $request->application;
-//                 $maindata->reason  =  $request->reason;
-//                 $maindata->save();
-//             } else {
-//                 throw new \Exception("Data not found for credit_id: $id");
-//             }
-//         } else {
-//             // Insert new data
-//             $data = new Creditstage;
-//             $data->loan_id = $request->loan_id_main;
-//             $data->cust__id = $request->cust_id_main;
-//             $data->requested_amount = $request->requested_amount;
-//             $data->requested_tenure = $request->requested_tenure;
-//             $data->sanctioned_amount = $request->sanctioned_amount;
-//             // $data->maximum_sanctioned_amount = $request->maximum_sanctioned_amount;
-//             $data->sanctioned_tenure = $request->sanctioned_tenure;
-//             // $data->maximum_sanctioned_tenure = $request->maximum_sanctioned_tenure;
-//             $data->sanctionedInterest = $request->policyrate;     // sanctionedInterest
-//             $data->policyrate = $request->policyrate;
-//             $data->applicable_rate = $request->applicable_rate;
-//             $data->application = $request->application;
-//             $data->reason  =  $request->reason;
-//             $data->save();
-//         }
+    //             if ($maindata) {
+    //                 // Update existing data
+    //                 $maindata->requested_amount = $request->requested_amount;
+    //                 $maindata->requested_tenure = $request->requested_tenure;
+    //                 $maindata->sanctioned_amount = $request->sanctioned_amount;
+    //                 // $maindata->maximum_sanctioned_amount = $request->maximum_sanctioned_amount;
+    //                 $maindata->sanctioned_tenure = $request->sanctioned_tenure;
+    //                 // $maindata->maximum_sanctioned_tenure = $request->maximum_sanctioned_tenure;
+    //                 $maindata->sanctionedInterest = $request->policyrate;    // sanctionedInterest
+    //                 $maindata->policyrate = $request->policyrate;
+    //                 $maindata->applicable_rate = $request->applicable_rate;
+    //                 $maindata->application = $request->application;
+    //                 $maindata->reason  =  $request->reason;
+    //                 $maindata->save();
+    //             } else {
+    //                 throw new \Exception("Data not found for credit_id: $id");
+    //             }
+    //         } else {
+    //             // Insert new data
+    //             $data = new Creditstage;
+    //             $data->loan_id = $request->loan_id_main;
+    //             $data->cust__id = $request->cust_id_main;
+    //             $data->requested_amount = $request->requested_amount;
+    //             $data->requested_tenure = $request->requested_tenure;
+    //             $data->sanctioned_amount = $request->sanctioned_amount;
+    //             // $data->maximum_sanctioned_amount = $request->maximum_sanctioned_amount;
+    //             $data->sanctioned_tenure = $request->sanctioned_tenure;
+    //             // $data->maximum_sanctioned_tenure = $request->maximum_sanctioned_tenure;
+    //             $data->sanctionedInterest = $request->policyrate;     // sanctionedInterest
+    //             $data->policyrate = $request->policyrate;
+    //             $data->applicable_rate = $request->applicable_rate;
+    //             $data->application = $request->application;
+    //             $data->reason  =  $request->reason;
+    //             $data->save();
+    //         }
 
-//         return redirect()->back()->with('success', 'Credit Data Saved Successfully');
-//     }
+    //         return redirect()->back()->with('success', 'Credit Data Saved Successfully');
+    //     }
 
 
     public function addcreditstage2(Request $request)
-{
-    // Dump all request data to check what is being sent
-    // dd($request->all());
+    {
+        // Dump all request data to check what is being sent
+        // dd($request->all());
 
-    // Validate the incoming request
-    // $validated = $request->validate([
-    //     'sanctioned_amount' => 'required|numeric',
-    //     'cust_id_main' => 'required',
-    //     'loan_id_main' => 'required',
-    //     // Add other fields here
-    // ]);
-    $request->validate([
-        'cust_id_main' => 'required',
-        'loan_id_main' => 'required',
-        'requested_amount' => 'required',
-        'requested_tenure' => 'required',
-        'sanctioned_amount' => 'required',
-        'sanctioned_tenure' => 'required',
-        'sanctionedInterest' => 'required',
-        'policyrate' => 'required',
-        'applicable_rate' => 'required',
-        'application' => 'required',
-    ]);
+        // Validate the incoming request
+        // $validated = $request->validate([
+        //     'sanctioned_amount' => 'required|numeric',
+        //     'cust_id_main' => 'required',
+        //     'loan_id_main' => 'required',
+        //     // Add other fields here
+        // ]);
+        $request->validate([
+            'cust_id_main' => 'required',
+            'loan_id_main' => 'required',
+            'requested_amount' => 'required',
+            'requested_tenure' => 'required',
+            'sanctioned_amount' => 'required',
+            'sanctioned_tenure' => 'required',
+            'sanctionedInterest' => 'required',
+            'policyrate' => 'required',
+            'applicable_rate' => 'required',
+            'application' => 'required',
+        ]);
 
-    $loan_id = $request->loan_id_main;
-    $cust_id = $request->cust_id_main;
+        $loan_id = $request->loan_id_main;
+        $cust_id = $request->cust_id_main;
 
-    $existindata = Creditstage::where('loan_id', $loan_id)->where('cust__id', $cust_id)->first();
-    if ($existindata) {
+        $existindata = Creditstage::where('loan_id', $loan_id)->where('cust__id', $cust_id)->first();
+        if ($existindata) {
 
-        $id = $existindata->credit_id;
-        $maindata = Creditstage::find($id);
+            $id = $existindata->credit_id;
+            $maindata = Creditstage::find($id);
 
-        if ($maindata) {
-            // Update existing data
-            $maindata->requested_amount = $request->requested_amount;
-            $maindata->requested_tenure = $request->requested_tenure;
-            $maindata->sanctioned_amount = $request->sanctioned_amount;
+            if ($maindata) {
+                // Update existing data
+                $maindata->requested_amount = $request->requested_amount;
+                $maindata->requested_tenure = $request->requested_tenure;
+                $maindata->sanctioned_amount = $request->sanctioned_amount;
 
-            $maindata->sanctioned_tenure = $request->sanctioned_tenure;
+                $maindata->sanctioned_tenure = $request->sanctioned_tenure;
 
-            $maindata->sanctionedInterest = $request->policyrate;
-            $maindata->policyrate = $request->policyrate;
-            $maindata->applicable_rate = $request->applicable_rate;
-            $maindata->application = $request->application;
-            $maindata->reason  =  $request->reason;
-            $maindata->save();
+                $maindata->sanctionedInterest = $request->policyrate;
+                $maindata->policyrate = $request->policyrate;
+                $maindata->applicable_rate = $request->applicable_rate;
+                $maindata->application = $request->application;
+                $maindata->reason  =  $request->reason;
+                $maindata->save();
+            } else {
+                throw new \Exception("Data not found for credit_id: $id");
+            }
         } else {
-            throw new \Exception("Data not found for credit_id: $id");
+
+            $data = new Creditstage;
+            $data->loan_id = $request->loan_id_main;
+            $data->cust__id = $request->cust_id_main;
+            $data->requested_amount = $request->requested_amount;
+            $data->requested_tenure = $request->requested_tenure;
+            $data->sanctioned_amount = $request->sanctioned_amount;
+
+            $data->sanctioned_tenure = $request->sanctioned_tenure;
+
+            $data->sanctionedInterest = $request->policyrate;
+            $data->policyrate = $request->policyrate;
+            $data->applicable_rate = $request->applicable_rate;
+            $data->application = $request->application;
+            $data->reason  =  $request->reason;
+            $data->save();
         }
-    } else {
 
-        $data = new Creditstage;
-        $data->loan_id = $request->loan_id_main;
-        $data->cust__id = $request->cust_id_main;
-        $data->requested_amount = $request->requested_amount;
-        $data->requested_tenure = $request->requested_tenure;
-        $data->sanctioned_amount = $request->sanctioned_amount;
-
-        $data->sanctioned_tenure = $request->sanctioned_tenure;
-
-        $data->sanctionedInterest = $request->policyrate;
-        $data->policyrate = $request->policyrate;
-        $data->applicable_rate = $request->applicable_rate;
-        $data->application = $request->application;
-        $data->reason  =  $request->reason;
-        $data->save();
+        return redirect()->back()->with('success', 'Credit Data Saved Successfully');
     }
 
-    return redirect()->back()->with('success', 'Credit Data Saved Successfully');
+    // shivang 13-12-2024
+    public function camuploadmain($id)
+    {
+        // dd($id);
+        $document = Cam::find($id);
 
-
-}
-
-// shivang 13-12-2024
-public function camuploadmain($id)
-{
-    // dd($id);
-    $document = Cam::find($id);
-
-    if ($document && $document->excel_uplod) {
-        $filePath = storage_path('app/public/documents/cam/' . $document->excel_uplod); // Adjust path based on your storage location
-        // dd($filePath);
-        if (file_exists($filePath)) {
-            return response()->file($filePath); // View the file in the browser
+        if ($document && $document->excel_uplod) {
+            $filePath = storage_path('app/public/documents/cam/' . $document->excel_uplod); // Adjust path based on your storage location
+            // dd($filePath);
+            if (file_exists($filePath)) {
+                return response()->file($filePath); // View the file in the browser
+            }
         }
-    }
 
-    return abort(404, 'File not found.');
-}
+        return abort(404, 'File not found.');
+    }
 }

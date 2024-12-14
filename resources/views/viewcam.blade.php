@@ -102,7 +102,8 @@
                                     <th>No</th>
                                     <th>Customer</th>
                                     <th>Loan</th>
-                                    <th>Cam Excel</th>
+                                    <th>Cam Excel</th> 
+                                    <th> Edit</th>
                                     <!-- <th>Action</th> -->
                                 </tr>
                                 </thead>
@@ -130,22 +131,11 @@
                                               N/A
                                           @endif
                                          </td>
-
-
-
-                                        <!-- <td>
-
-
-                                            {{-- <a href="{{ url("/user/edit") }}/{{ $allapplication->loan_id }}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a> --}}
-
-
-
-
-
-                                            {{-- <a href="{{ url("/user/delete") }}/{{ $allapplication->loan_id }}" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a> --}}
-
-
-                                      </td> -->
+                                         <td>
+                                            <a href="{{ route('edit-cam', $cam->id) }}" class="btn btn-primary btn-sm">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                        </td> 
                                     </tr>
                                 @endforeach
                                 </tbody>
