@@ -24,6 +24,23 @@
 
         <div class="content">
             <div class="container-fluid">
+                @if (session('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+
+                @if ($errors->any())
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
                 <div class="row">
                     <div class="col-lg-12">
 
@@ -51,12 +68,16 @@
                         </div> --}}
                         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="pills-search-tab" data-bs-toggle="pill" data-bs-target="#pills-search" type="button" role="tab" aria-controls="pills-search" aria-selected="true">
+                                <button class="nav-link active" id="pills-search-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-search" type="button" role="tab"
+                                    aria-controls="pills-search" aria-selected="true">
                                     Search
                                 </button>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="pills-new-tab" data-bs-toggle="pill" data-bs-target="#pills-new" type="button" role="tab" aria-controls="pills-new" aria-selected="false">
+                                <button class="nav-link" id="pills-new-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-new" type="button" role="tab" aria-controls="pills-new"
+                                    aria-selected="false">
                                     New Add
                                 </button>
                             </li>
@@ -64,12 +85,16 @@
 
                         <div class="tab-content" id="pills-tabContent">
                             <!-- Search Tab -->
-                            <div class="tab-pane fade show active" id="pills-search" role="tabpanel" aria-labelledby="pills-search-tab">
+                            <div class="tab-pane fade show active" id="pills-search" role="tabpanel"
+                                aria-labelledby="pills-search-tab">
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="input-group mb-3">
-                                            <input type="text" class="form-control" id="searchvalue" placeholder="Search here..." aria-label="Search here" aria-describedby="button-search">
-                                            <button class="btn btn-primary" type="button" id="button-search">Search</button>
+                                            <input type="text" class="form-control" id="searchvalue"
+                                                placeholder="Search here..." aria-label="Search here"
+                                                aria-describedby="button-search">
+                                            <button class="btn btn-primary" type="button"
+                                                id="button-search">Search</button>
                                         </div>
                                     </div>
                                 </div>
@@ -100,13 +125,14 @@
         $("#button-search").on('click', function() {
             var searchValue = $('#searchvalue').val();
 
-            if(searchValue)
-            {
+            if (searchValue) {
                 var url = '/viewappliation/' + searchValue;
                 $.ajax({
                     url: url,
                     type: 'GET',
-                    data: { search: searchValue },
+                    data: {
+                        search: searchValue
+                    },
                     success: function(response) {
                         console.log(response);
                         window.location.href = '/viewappliation/' + searchValue;
@@ -125,4 +151,14 @@
         });
 
     });
+</script>
+<script>
+    // Automatically remove alerts after 5 seconds
+    setTimeout(() => {
+        const alerts = document.querySelectorAll('.alert');
+        alerts.forEach(alert => {
+            alert.classList.remove('show');
+            alert.addEventListener('transitionend', () => alert.remove());
+        });
+    }, 3000);
 </script>

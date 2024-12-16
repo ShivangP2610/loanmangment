@@ -10,6 +10,10 @@ use Session;
 
 class LoginController extends Controller
 {
+    public function showLoginForm()
+    {
+        return view('login');
+    }
     public function login(Request $request)
     {
 
@@ -39,8 +43,8 @@ class LoginController extends Controller
             $user->save();
         }
 
-        if (Auth::attempt($credentials)) { 
-            
+        if (Auth::attempt($credentials)) {
+
             // Authentication successful, redirect to dashboard
             return redirect('/home');
         } else {

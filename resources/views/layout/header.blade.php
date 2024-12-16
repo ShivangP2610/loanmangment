@@ -311,19 +311,21 @@
                     </a>
                   </li>
 
-                  <li class="nav-item ">
-                    <a href="{{url('approved/disbursal')}}" class="nav-link {{ request()->is('approved/disbursal') ? 'active' : '' }}">
-                      <i class="fa fa-book"></i>
-                      <p>Disbursal Details</p>
-                    </a>
-                  </li>
-
                   <li class="nav-item">
                     <a href="{{route('viewapproved')}}" class="nav-link {{ request()->is('viewapproved') ? 'active' : '' }}">
-                      <i class="far fa-circle nav-icon"></i>
+                      <i class="far fa-circle"></i>
                       <p>View</p>
                     </a>
                   </li>
+
+                  <li class="nav-item ">
+                    <a href="{{url('approved/disbursal')}}" class="nav-link {{ request()->is('approved/disbursal') ? 'active' : '' }}">
+                      <i class="fa fa-book"></i>
+                      <p> Add Disbursal Details</p>
+                    </a>
+                  </li>
+
+
 
 
 

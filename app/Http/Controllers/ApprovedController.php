@@ -330,8 +330,9 @@ class ApprovedController extends Controller
             //  dd($request->all());
             // Save the new record to the database
             $payment_data->save();
-
-            return redirect()->back()->with('success', 'Disbursal Added successfully.');
+            session()->forget('mainloan_id');
+            // return redirect()->back()->with('success', 'Disbursal Added successfully.');
+            return redirect('home')->with('success', 'Disbursal Added successfully.');
         } else {
 
 
@@ -381,7 +382,9 @@ class ApprovedController extends Controller
             // $disbursal_data->location = $request->location;
             $disbursal_data->save();
 
-            return redirect()->back()->with('success', 'Disbursal Updated successfully.');
+            session()->forget('mainloan_id'); 
+            // return redirect()->back()->with('success', 'Disbursal Updated successfully.');
+            return redirect('home')->with('success', 'Disbursal Added successfully.');
         }
     }
 

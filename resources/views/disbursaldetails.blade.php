@@ -16,6 +16,10 @@
             border: 0;
         }
 
+        .button-spacing > *:not(:last-child) {
+            margin-right: 25px;
+        }
+
     </style>
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -66,9 +70,13 @@
                                             @endforeach
                                         </select> --}}
                                         <select class="form-control loan_id" id="lon_id" name="lon_id">
-                                            <option value="" disabled {{ !session('mainloan_id') ? 'selected' : '' }}>Select a loan</option>
-                                            <option value="{{ session('mainloan_id') }}" selected>{{ session('mainprospect_No') }}</option>
-                                            <input type="text" id="loannumber" value="{{session('mainprospect_No')? session('mainprospect_No') :'' }}" hidden>
+                                            <option value="" disabled {{ !session('mainloan_id') ? 'selected' : '' }}>
+                                                Select a loan</option>
+                                            <option value="{{ session('mainloan_id') }}" selected>
+                                                {{ session('mainprospect_No') }}</option>
+                                            <input type="text" id="loannumber"
+                                                value="{{ session('mainprospect_No') ? session('mainprospect_No') : '' }}"
+                                                hidden>
                                             {{-- @foreach ($loans as $loan)
                                                 <option value="{{ $loan->loan_id }}">{{ $loan->Prospect_No }}</option>
                                             @endforeach --}}
@@ -129,7 +137,8 @@
                                                 </th>
                                                 <th class="text-nowrap" style="font-size: 14px !important">Sanctioned Date
                                                 </th>
-                                                <th class="text-nowrap" style="font-size: 14px !important">Tenure(Months)</th>
+                                                <th class="text-nowrap" style="font-size: 14px !important">Tenure(Months)
+                                                </th>
                                                 <th class="text-nowrap" style="font-size: 14px !important">ROI(%)</th>
                                                 <th class="text-nowrap" style="font-size: 14px !important">Disbursal Amount
                                                 </th>
@@ -380,7 +389,8 @@
                                                         </option>
                                                     </select><br>
 
-                                                    <i class="fa-solid fa-chevron-down"></i><a class="btn actionbtn" style="color: blue">Payment Details</a>
+                                                    <i class="fa-solid fa-chevron-down"></i><a class="btn actionbtn"
+                                                        style="color: blue">Payment Details</a>
 
                                                 </td>
                                             </tr>
@@ -512,7 +522,7 @@
                                                 </td>
                                             </tr>
 
-{{--
+                                            {{--
                                             <tr>
 
                                                 <td colspan="4" style="text-align: end;">
@@ -521,11 +531,39 @@
                                                         Details</a>
                                                 </td>
                                             </tr> --}}
+
+                                            {{-- shivang hide this 16-12-2024   --}}
+                                            {{-- <tr>
+                                                <td colspan="4">
+                                                    <div class="d-flex justify-content-end">
+                                                        <!-- Save Button (sets values only) -->
+                                                        <button type="button" class="btn btn-primary mt-3"
+                                                            id="saveButton">Save</button>
+                                                    </div>
+                                                </td>
+
+                                                <td colspan="4">
+                                                    <div class="d-flex justify-content-end">
+                                                        <button type="submit"
+                                                            class="btn btn-primary mt-3">Submit</button>
+                                                    </div>
+                                                </td>
+                                            </tr> --}}
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                {{-- <div class="table-responsive">
+                                    <table class="table table1">
+                                        <tbody>
                                             <tr>
                                                 <td colspan="4">
                                                     <div class="d-flex justify-content-end">
                                                         <!-- Save Button (sets values only) -->
-                                                        <button type="button" class="btn btn-primary mt-3" id="saveButton">Save</button>
+                                                        <button type="button" class="btn btn-primary mt-3"
+                                                            id="saveButton">Save</button>
                                                     </div>
                                                 </td>
 
@@ -538,6 +576,23 @@
                                             </tr>
 
 
+                                        </tbody>
+                                    </table>
+                                </div> --}}
+                                <div class="table-responsive">
+                                    <table class="table table1">
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="8">
+                                                    <div class="d-flex justify-content-end button-spacing mt-3">
+                                                        <!-- Save Button -->
+                                                        <button type="button" class="btn btn-primary" id="saveButton">Save</button>
+
+                                                        <!-- Submit Button -->
+                                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -648,15 +703,18 @@
                                 <tr>
                                     <th scope="row">6</th>
                                     <td><input type="text" class="form-control" name="charges_details[]"
-                                            value="Broken Period Interest" ></td>
+                                            value="Broken Period Interest"></td>
                                     <td><input type="text" class="form-control" name="percentage[]"></td>
-                                    <td><input type="text" class="form-control amount" name="amount[]" id="brokenid" readonly></td>
+                                    <td><input type="text" class="form-control amount" name="amount[]" id="brokenid"
+                                            readonly></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">7</th>
-                                    <td><input type="text" class="form-control" name="charges_details[]" value="Advance Installment Charges"></td>
+                                    <td><input type="text" class="form-control" name="charges_details[]"
+                                            value="Advance Installment Charges"></td>
                                     <td><input type="text" class="form-control" name="percentage[]"></td>
-                                    <td><input type="text" class="form-control amount" name="amount[]" id="ads_charge" readonly></td>
+                                    <td><input type="text" class="form-control amount" name="amount[]"
+                                            id="ads_charge" readonly></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">8</th>
@@ -687,6 +745,10 @@
                             --}}
                             {{-- <button  id="saveButton" class="btn btn-primary">Save</button> --}}
                             <button type="submit" class="btn btn-primary">Submit</button>
+                            {{-- <button type="button" class="close btn btn-primary" data-dismiss="modal" aria-label="Close">
+                                Close
+                            </button> --}}
+                            <button class="btn btn-danger" data-dismiss="modal">Close</button>
                         </div>
                     </form>
 
@@ -743,33 +805,33 @@
         var selectedLoanId = $('#lon_id').val();
         if (selectedLoanId) {
             $.ajax({
-                    url: '/get-orignalcustomers/' + selectedLoanId,
-                    type: 'GET',
-                    dataType: 'json',
-                    success: function(data) {
-                        $('#customer_id').empty();
-                        $.each(data.customers, function(key, customer) {
-                            $('#customer_id').append($('<option>', {
-                                value: customer.cust_id,
-                                text: customer.cust_name
-                            }));
+                url: '/get-orignalcustomers/' + selectedLoanId,
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    $('#customer_id').empty();
+                    $.each(data.customers, function(key, customer) {
+                        $('#customer_id').append($('<option>', {
+                            value: customer.cust_id,
+                            text: customer.cust_name
+                        }));
 
-                            let customerId1 = $('#customer_id').val();
-                            $("#loan_idpop").val(selectedLoanId);
-                            $("#customer_idpop").val(customerId1);
-                            // alert(customerId1);
-                            fetchLoanAndCustomerData(selectedLoanId, customerId1);
+                        let customerId1 = $('#customer_id').val();
+                        $("#loan_idpop").val(selectedLoanId);
+                        $("#customer_idpop").val(customerId1);
+                        // alert(customerId1);
+                        fetchLoanAndCustomerData(selectedLoanId, customerId1);
 
-                        });
+                    });
 
-                    },
-                    error: function(error) {
-                        console.error("Error fetching customers:", error);
-                    },
-                    complete: function() {
-                        $('#customer_id').trigger('change');
-                    }
-                });
+                },
+                error: function(error) {
+                    console.error("Error fetching customers:", error);
+                },
+                complete: function() {
+                    $('#customer_id').trigger('change');
+                }
+            });
         }
 
         $("#adddesicion").on('click', function() {
@@ -912,7 +974,7 @@
                         let $disbursaldata = response.disbursal;
                         let $adjustabledata = response.adjustabledata;
                         let $repaymentdata = response.repaymentdata;
-                        let $banknames     = response.banknames;
+                        let $banknames = response.banknames;
 
                         // console.log( $repaymentdata[0]['brk_charge']);
                         if ($creditdata && $creditdata.length > 0) {
@@ -921,7 +983,7 @@
                             $("#sanctioned_amount").val($creditdata[0]['sanctioned_amount']);
                             $("#sanctioned_date").val(date);
                             $("#tenure").val($creditdata[0]['sanctioned_tenure']);
-                            $("#roi").val($repaymentdata[0]['rate']);  // shivnag 14-12-2024
+                            $("#roi").val($repaymentdata[0]['rate']); // shivnag 14-12-2024
 
 
                             // $("#roi").val($creditdata[0]['sanctionedInterest']);
@@ -937,7 +999,8 @@
                         //     $("#bankName").val($bankdetails[0]['bank_name']);
                         // }
 
-                        if ($banknames && Object.keys($banknames).length > 0) { // Ensure banknames is valid and not empty
+                        if ($banknames && Object.keys($banknames).length >
+                            0) { // Ensure banknames is valid and not empty
                             let bankSelect = document.getElementById("bankName");
 
                             // Clear any existing options in the select box
@@ -945,10 +1008,13 @@
 
                             // Loop through the banknames object
                             Object.entries($banknames).forEach(([id, name]) => {
-                                let option = document.createElement("option"); // Create a new option element
+                                let option = document.createElement(
+                                "option"); // Create a new option element
                                 option.value = id; // Set the value of the option (bank ID)
-                                option.textContent = name; // Set the visible text of the option (bank name)
-                                bankSelect.appendChild(option); // Append the option to the select box
+                                option.textContent =
+                                name; // Set the visible text of the option (bank name)
+                                bankSelect.appendChild(
+                                option); // Append the option to the select box
                             });
                         } else {
                             console.error("Bank names data is invalid or empty.");
@@ -986,12 +1052,12 @@
                             $("#loan_account_number").val($disbursaldata['loan_account_number']);
 
                             $("#disbursal_date").val($disbursaldata['disbursal_date']);
-                            $("#effective_payment_date").val($disbursaldata['effective_payment_date']);
+                            $("#effective_payment_date").val($disbursaldata[
+                                'effective_payment_date']);
                             $("#payment_mode").val($disbursaldata['payment_mode']);
                             $("#bankName").val($disbursaldata['bankName']);
-                            if($disbursaldata['bankName'])
-                            {
-                               bankdata();
+                            if ($disbursaldata['bankName']) {
+                                bankdata();
                             }
 
 
@@ -1007,14 +1073,14 @@
                         // }
                         if ($adjustabledata && $adjustabledata.length > 0) {
                             // Loop through each item in $adjustabledata
-                          // .console.log($adjustabledata);
+                            // .console.log($adjustabledata);
 
                             let totalAmount = 0;
                             $adjustabledata.forEach((item, index) => {
 
                                 let rowIndex = index + 1; // Row index starts from 1
                                 let $row = $(`tbody tr:nth-child(${rowIndex})`);
-                        //    alert(item.charges_detail);
+                                //    alert(item.charges_detail);
                                 // Populate existing rows or append new ones if necessary
                                 if ($row.length > 0) {
                                     $row.find('input[name="charges_details[]"]').val(item
@@ -1081,29 +1147,28 @@
 
         }
 
-        function bankdata()
-        {
+        function bankdata() {
             $bankid = $("#bankName").val();
             $.ajax({
                 url: '{{ url('getbankdata') }}/' + $bankid,
-                    method: 'GET',
-                    success: function(response) {
-                        console.log(response.bankdetails);
-                        let $bankdetails = response.bankdetails;
-                        if ($bankdetails) {
-                            $("#beneficiarybranch").val($bankdetails[0]['branch_address']);
-                            $("#beneficiaryName").val($bankdetails[0]['account_holder_name']);
-                            $("#beneficiaryAccountNumber").val($bankdetails[0]['account_number']);
-                            $("#bankcode").val($bankdetails[0]['ifsc_code']);
-                            $("#businessacccountType").val($bankdetails[0]['Type_of_Account']);
-                        }
+                method: 'GET',
+                success: function(response) {
+                    console.log(response.bankdetails);
+                    let $bankdetails = response.bankdetails;
+                    if ($bankdetails) {
+                        $("#beneficiarybranch").val($bankdetails[0]['branch_address']);
+                        $("#beneficiaryName").val($bankdetails[0]['account_holder_name']);
+                        $("#beneficiaryAccountNumber").val($bankdetails[0]['account_number']);
+                        $("#bankcode").val($bankdetails[0]['ifsc_code']);
+                        $("#businessacccountType").val($bankdetails[0]['Type_of_Account']);
                     }
+                }
             });
         }
 
-        $(".actionbtn").on("click", function () {
+        $(".actionbtn").on("click", function() {
             // Toggle display of the .table-responsive div
-            $(".actionbtnkk").each(function () {
+            $(".actionbtnkk").each(function() {
                 if ($(this).css("display") === "none") {
                     $(this).css("display", "block"); // Show the div
                 } else {
@@ -1180,28 +1245,27 @@
         });
 
         // shivang add 12-12-2024
-        $("#bankName").on('change',function()
-        {
-           $bankid = $(this).val();
+        $("#bankName").on('change', function() {
+            $bankid = $(this).val();
             $.ajax({
                 url: '{{ url('getbankdata') }}/' + $bankid,
-                    method: 'GET',
-                    success: function(response) {
-                        console.log(response.bankdetails);
-                        let $bankdetails = response.bankdetails;
-                        if ($bankdetails) {
-                            $("#beneficiarybranch").val($bankdetails[0]['branch_address']);
-                            $("#beneficiaryName").val($bankdetails[0]['account_holder_name']);
-                            $("#beneficiaryAccountNumber").val($bankdetails[0]['account_number']);
-                            $("#bankcode").val($bankdetails[0]['ifsc_code']);
-                            $("#businessacccountType").val($bankdetails[0]['Type_of_Account']);
-                        }
+                method: 'GET',
+                success: function(response) {
+                    console.log(response.bankdetails);
+                    let $bankdetails = response.bankdetails;
+                    if ($bankdetails) {
+                        $("#beneficiarybranch").val($bankdetails[0]['branch_address']);
+                        $("#beneficiaryName").val($bankdetails[0]['account_holder_name']);
+                        $("#beneficiaryAccountNumber").val($bankdetails[0][
+                            'account_number']);
+                        $("#bankcode").val($bankdetails[0]['ifsc_code']);
+                        $("#businessacccountType").val($bankdetails[0]['Type_of_Account']);
                     }
+                }
             });
         });
 
     });
-
 </script>
 {{-- ///    --}}
 <script>
@@ -1220,7 +1284,7 @@
         // forgst
         $('#gstid').on('input', function() {
             // $amount = $('#sanctioned_amount').val();
-            $amount = $('#proccefeeamount').val();    // shivang add this 12-12-24
+            $amount = $('#proccefeeamount').val(); // shivang add this 12-12-24
             $percntgae = $('#gstid').val();
 
             $gstfee = $amount * $percntgae / 100;
@@ -1319,7 +1383,7 @@
                 .then(data => {
                     if (data.success) {
                         alert(data.message);
-                        $('#exampleModal1').modal('hide');
+
                         // form.reset();
 
                         // const popup = document.getElementById('exampleModal1');
@@ -1337,9 +1401,6 @@
         });
     });
 
-
-
-
 </script>
 
 {{-- <script>
@@ -1356,4 +1417,3 @@
 });
 
 </script> --}}
-
