@@ -776,21 +776,23 @@ $(document).ready(function() {
                     $("#act_date").val($repaymentdata['actual_date']);
                     $("#till_date").val($repaymentdata['till_date']);
                     $("#days_num").val($repaymentdata['days_num']);
+                    $("#rate_percentage").val($repaymentdata['rate']);
+
 
                     if ($repaymentdata['advance_installment_to_be_deducted'] == 1) {
                         // alert('gjkgg');
 
-        $(".advance-installment").prop("checked", true);
-    } else {
-        $(".advance-installment").prop("checked", false);
-    }
+                    $(".advance-installment").prop("checked", true);
+                    } else {
+                    $(".advance-installment").prop("checked", false);
+                    }
 
 
+                    }
+                },
+                error: function (error) {
+                    console.error("Error fetching loan data:", error);
                 }
-            },
-            error: function (error) {
-                console.error("Error fetching loan data:", error);
-            }
         });
     }
 }

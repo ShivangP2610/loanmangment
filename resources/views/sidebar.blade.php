@@ -29,7 +29,7 @@
                     <li class="list-group-item {{ request()->routeIs('rpartnersuse') ? 'active' : '' }}">REMAINING PARTNERS<span class="badgetext badge bg-success"><i class="fa fa-check" aria-hidden="true"></i></span></li>
                 </a>
                 <a href="{{route('babkdetilssuse',['id' => session('application_id')])}}">
-                    <li class="list-group-item {{ request()->routeIs('babkdetilssuse') ? 'active' : '' }}">ACCOUNT FOR DISBURSEMENT<span class="badgetext badge bg-success"><i class="fa fa-check" aria-hidden="true"></i></span></li>
+                    <li class="list-group-item {{ request()->routeIs('babkdetilssuse') ? 'active' : '' }}">Bank Details<span class="badgetext badge bg-success"><i class="fa fa-check" aria-hidden="true"></i></span></li>
                 </a>
                 <a href="{{route('referencesuse',['id' => session('application_id')])}}">
                     <li class="list-group-item {{ request()->routeIs('referencesuse') ? 'active' : '' }}">REFERENCES<span class="badgetext badge bg-success"><i class="fa fa-check" aria-hidden="true"></i></span></li>
@@ -39,6 +39,5 @@
         </div>
     </div>
 </div>
- 
 
- 
+

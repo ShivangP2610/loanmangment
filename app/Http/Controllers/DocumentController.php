@@ -629,7 +629,7 @@ $document = Document::find($docid);
             ->update(['app_status' => $appstatus]);
 
     // Redirect back with success message
-    return redirect()->back()->with('success', 'Document updated successfully.')->with('appstatus', $appstatus);
+    return redirect('viewdocument')->with('success', 'Document updated successfully.')->with('appstatus', $appstatus);
 }
 
 // shivang 13-12-2024

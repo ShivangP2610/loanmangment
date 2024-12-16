@@ -15,6 +15,7 @@
             clip: rect(0, 0, 0, 0);
             border: 0;
         }
+
     </style>
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -120,7 +121,7 @@
 
 
                                 <div class="table-responsive">
-                                    <table class="table table1">
+                                    <table class="table table1 tblmain">
                                         <thead>
                                             <h5 class="mt-2 mb-2">Application Details</h5>
                                             <tr>
@@ -128,8 +129,8 @@
                                                 </th>
                                                 <th class="text-nowrap" style="font-size: 14px !important">Sanctioned Date
                                                 </th>
-                                                <th class="text-nowrap" style="font-size: 14px !important">Tenure</th>
-                                                <th class="text-nowrap" style="font-size: 14px !important">ROI</th>
+                                                <th class="text-nowrap" style="font-size: 14px !important">Tenure(Months)</th>
+                                                <th class="text-nowrap" style="font-size: 14px !important">ROI(%)</th>
                                                 <th class="text-nowrap" style="font-size: 14px !important">Disbursal Amount
                                                 </th>
                                                 <th class="text-nowrap" style="font-size: 14px !important">Adjustment Amount
@@ -157,7 +158,7 @@
                                                 </td>
                                                 <td class="text-nowrap" style="text-align: center">
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control" id="sanctioned_date"
+                                                        <input type="date" class="form-control" id="sanctioned_date"
                                                             name="sanction_date">
                                                         <span class="input-group-text"><i
                                                                 class="fa-solid fa-calendar-days"></i></span>
@@ -165,7 +166,7 @@
                                                 </td>
                                                 <td class="text-nowrap" style="text-align: center">
                                                     <input type="number" class="form-control" id="tenure"
-                                                        name="tenure" readonly>
+                                                        name="tenure" readonly size="50">
                                                 </td>
                                                 <td class="text-nowrap" style="text-align: center">
                                                     <input type="text" class="form-control" id="roi"
@@ -204,14 +205,16 @@
                                     </table>
                                 </div>
 
+
+
                                 <div class="table-responsive">
                                     <table class="table table1">
                                         <thead>
                                             <h5 class="mt-2 mb-2">Disbursal Entry</h5>
                                             <tr>
-                                                <th class="text-nowrap"><input type="checkbox" name=""
+                                                {{-- <th class="text-nowrap"><input type="checkbox" name=""
                                                         id=""></th>
-                                                <th class="text-nowrap" style="font-size: 14px !important">Entry No</th>
+                                                <th class="text-nowrap" style="font-size: 14px !important">Entry No</th> --}}
                                                 <th class="text-nowrap" style="font-size: 14px !important">Disbursal Date
                                                 </th>
                                                 <th class="text-nowrap" style="font-size: 14px !important">Disbursal
@@ -220,17 +223,17 @@
                                                     Amount</th>
                                                 <th class="text-nowrap" style="font-size: 14px !important">Actual Payment
                                                     Amount</th>
-                                                <th class="text-nowrap" style="font-size: 14px !important">Action</th>
+                                                {{-- <th class="text-nowrap" style="font-size: 14px !important">Action</th> --}}
 
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td><input type="checkbox" name="" id=""></td>
+                                                {{-- <td><input type="checkbox" name="" id=""></td>
                                                 <td>
                                                     <i class="fa-solid fa-angle-up"></i> <a href="">Payee
                                                         Details</a>
-                                                </td>
+                                                </td> --}}
                                                 <td>
                                                     <div class="input-group">
                                                         <input type="date" class="form-control" id="disbursal_date"
@@ -270,9 +273,9 @@
                                                             readonly>
                                                     </div>
                                                 </td>
-                                                <td class="text-nowrap">
+                                                {{-- <td class="text-nowrap">
                                                     <i class="fa fa-eye"></i><br> <a href="">View Entry Details</a>
-                                                </td>
+                                                </td> --}}
 
                                             </tr>
                                         </tbody>
@@ -359,9 +362,9 @@
 
                                                 <td>
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control"
+                                                        <input type="date" class="form-control"
                                                             name="effective_payment_date" id="effective_payment_date"
-                                                            aria-label="Effective Payment Date" readonly>
+                                                            aria-label="Effective Payment Date">
                                                         <span class="input-group-text"><i
                                                                 class="fa-solid fa-calendar-days"></i></span>
                                                     </div>
@@ -376,8 +379,9 @@
                                                         <option value="transfer_exi_account">Transfer Existing Account
                                                         </option>
                                                     </select><br>
-                                                    <i class="fa-solid fa-chevron-down"></i> <a href="">Patment
-                                                        Details</a>
+
+                                                    <i class="fa-solid fa-chevron-down"></i><a class="btn actionbtn" style="color: blue">Payment Details</a>
+
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -385,7 +389,7 @@
                                 </div>
 
 
-                                <div class="table-responsive">
+                                <div class="table-responsive actionbtnkk" style="display: none;">
                                     <table class="table table1">
                                         <thead>
                                             <h5 class="mt-2 mb-2">Payment Details</h5>
@@ -508,7 +512,7 @@
                                                 </td>
                                             </tr>
 
-
+{{--
                                             <tr>
 
                                                 <td colspan="4" style="text-align: end;">
@@ -516,7 +520,7 @@
                                                         style="margin-right:5px;"></i><a href="">View Bank
                                                         Details</a>
                                                 </td>
-                                            </tr>
+                                            </tr> --}}
                                             <tr>
                                                 <td colspan="4">
                                                     <div class="d-flex justify-content-end">
@@ -681,7 +685,7 @@
                             {{-- <button type="button"  id="closebtn" class="btn btn-primary">close</button>
 
                             --}}
-                            <button  id="saveButton" class="btn btn-primary">Save</button>
+                            {{-- <button  id="saveButton" class="btn btn-primary">Save</button> --}}
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </form>
@@ -889,13 +893,6 @@
         });
 
 
-
-
-
-
-
-
-
         function fetchLoanAndCustomerData(loanId, customerId1) {
             $("#loanidmain").val(loanId);
             $("#custidmain").val(customerId1);
@@ -924,7 +921,7 @@
                             $("#sanctioned_amount").val($creditdata[0]['sanctioned_amount']);
                             $("#sanctioned_date").val(date);
                             $("#tenure").val($creditdata[0]['sanctioned_tenure']);
-                            $("#roi").val($creditdata[0]['sanctionedInterest']);
+                            $("#roi").val($repaymentdata[0]['rate']);  // shivnag 14-12-2024
 
 
                             // $("#roi").val($creditdata[0]['sanctionedInterest']);
@@ -986,7 +983,16 @@
 
                             $("#application_status").val($disbursaldata['application_status']);
 
-                            $("#loan_account_number").val($disbursaldata['loan_account_number'])
+                            $("#loan_account_number").val($disbursaldata['loan_account_number']);
+
+                            $("#disbursal_date").val($disbursaldata['disbursal_date']);
+                            $("#effective_payment_date").val($disbursaldata['effective_payment_date']);
+                            $("#payment_mode").val($disbursaldata['payment_mode']);
+                            $("#bankName").val($disbursaldata['bankName']);
+                            if($disbursaldata['bankName'])
+                            {
+                               bankdata();
+                            }
 
 
                             // $("#loan_account_number").val($disbursaldata[
@@ -1075,6 +1081,39 @@
 
         }
 
+        function bankdata()
+        {
+            $bankid = $("#bankName").val();
+            $.ajax({
+                url: '{{ url('getbankdata') }}/' + $bankid,
+                    method: 'GET',
+                    success: function(response) {
+                        console.log(response.bankdetails);
+                        let $bankdetails = response.bankdetails;
+                        if ($bankdetails) {
+                            $("#beneficiarybranch").val($bankdetails[0]['branch_address']);
+                            $("#beneficiaryName").val($bankdetails[0]['account_holder_name']);
+                            $("#beneficiaryAccountNumber").val($bankdetails[0]['account_number']);
+                            $("#bankcode").val($bankdetails[0]['ifsc_code']);
+                            $("#businessacccountType").val($bankdetails[0]['Type_of_Account']);
+                        }
+                    }
+            });
+        }
+
+        $(".actionbtn").on("click", function () {
+            // Toggle display of the .table-responsive div
+            $(".actionbtnkk").each(function () {
+                if ($(this).css("display") === "none") {
+                    $(this).css("display", "block"); // Show the div
+                } else {
+                    $(this).css("display", "none"); // Hide the div
+                }
+            });
+
+
+        });
+
     });
 </script>
 
@@ -1160,7 +1199,9 @@
                     }
             });
         });
+
     });
+
 </script>
 {{-- ///    --}}
 <script>
@@ -1278,8 +1319,8 @@
                 .then(data => {
                     if (data.success) {
                         alert(data.message);
-
-                        form.reset();
+                        $('#exampleModal1').modal('hide');
+                        // form.reset();
 
                         // const popup = document.getElementById('exampleModal1');
                         // if (popup) {
@@ -1301,21 +1342,18 @@
 
 </script>
 
-<script>
+{{-- <script>
     document.addEventListener('DOMContentLoaded', function () {
     const saveButton = document.getElementById('saveButton');
 
     saveButton.addEventListener('click', function () {
-
+        // alert("hello");
         $appno = $("#loannumber").val();
         $("#application_status").val("Disbursed");
         $('#loan_account_number').val($appno);
 
-
-
-
     });
 });
 
-</script>
+</script> --}}
 
