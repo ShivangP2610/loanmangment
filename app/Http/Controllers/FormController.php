@@ -36,6 +36,7 @@ class FormController extends Controller
     {
         // session()->destroy('application_id');
         Session()->forget('application_id');
+        session()->forget('mainloan_id');
         $todayDate = Carbon::now()->format('dmY');
 
         // Retrieve the latest record from FormOffice for today's date

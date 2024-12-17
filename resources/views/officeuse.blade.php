@@ -31,7 +31,8 @@
             </div>
         @endif
 
-        @if ($errors->any())
+        {{-- shivang hide this 17-12-2024 --}}
+        {{-- @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
                     @foreach ($errors->all() as $error)
@@ -39,7 +40,7 @@
                     @endforeach
                 </ul>
             </div>
-        @endif
+        @endif --}}
         <?php
         if(isset($back))
         {  ?>
@@ -203,14 +204,25 @@
                             <div class="col-lg-4">
                                 <div class="form-group d-flex align-items-center">
                                     <label class="text-nowrap">Application Type:</label>
-                                    <div class="form-check ml-2">
+                                    {{-- <div class="form-check ml-2">
                                         <input type="radio" class="form-check-input" id="new" name="application_type" value="new" {{  isset($officedata) && ($officedata->Application_Type === 'new' || old('application_type') === 'new') ? 'checked' : '' }}>
                                         <label class="form-check-label" for="new">New</label>
                                     </div>
                                     <div class="form-check ml-2">
                                         <input type="radio" class="form-check-input" id="updated" name="application_type" value="updated" {{ isset($officedata) && ($officedata->Application_Type === 'updated' || old('application_type') === 'updated') ? 'checked' : '' }}>
                                         <label class="form-check-label" for="updated">Updated</label>
+                                    </div> --}}
+                                    <div class="form-check ml-2">
+                                        <input type="radio" class="form-check-input" id="new" name="application_type" value="new"
+                                            {{ old('application_type') === 'new' ? 'checked' : (isset($officedata) && $officedata->Application_Type === 'new' ? 'checked' : '') }}>
+                                        <label class="form-check-label" for="new">New</label>
                                     </div>
+                                    <div class="form-check ml-2">
+                                        <input type="radio" class="form-check-input" id="updated" name="application_type" value="updated"
+                                            {{ old('application_type') === 'updated' ? 'checked' : (isset($officedata) && $officedata->Application_Type === 'updated' ? 'checked' : '') }}>
+                                        <label class="form-check-label" for="updated">Updated</label>
+                                    </div>
+
                                 </div>
                                 @error('application_type')
                                     <div class="text-danger">{{ $message }}</div>
@@ -224,7 +236,7 @@
                             <div class="col-lg-12">
                                 <div class="form-group d-flex align-items-center">
                                     <label class="text-nowrap">Account Type:</label>
-                                    <div class="form-check ml-2">
+                                    {{-- <div class="form-check ml-2">
                                         <input type="radio" class="form-check-input" id="normal" name="account_type" value="normal" {{ isset($officedata) && ($officedata->Account_Type === 'normal' || old('account_type') === 'normal') ? 'checked' : ''  }}>
                                         <label class="form-check-label" for="normal">Normal</label>
                                     </div>
@@ -235,7 +247,23 @@
                                     <div class="form-check ml-2">
                                         <input type="radio" class="form-check-input" id="kyc" name="account_type" value="kyc" {{ isset($officedata) && ($officedata->Account_Type === 'kyc' || old('account_type') === 'kyc') ? 'checked' : ''  }}>
                                         <label class="form-check-label" for="kyc">Aadhar Based OTP E-KYC (in non-face to face Mode)</label>
+                                    </div> --}}
+                                    <div class="form-check ml-2">
+                                        <input type="radio" class="form-check-input" id="normal" name="account_type" value="normal"
+                                            {{ old('account_type') === 'normal' ? 'checked' : (isset($officedata) && $officedata->Account_Type === 'normal' ? 'checked' : '') }}>
+                                        <label class="form-check-label" for="normal">Normal</label>
                                     </div>
+                                    <div class="form-check ml-2">
+                                        <input type="radio" class="form-check-input" id="minor" name="account_type" value="minor"
+                                            {{ old('account_type') === 'minor' ? 'checked' : (isset($officedata) && $officedata->Account_Type === 'minor' ? 'checked' : '') }}>
+                                        <label class="form-check-label" for="minor">Minor</label>
+                                    </div>
+                                    <div class="form-check ml-2">
+                                        <input type="radio" class="form-check-input" id="kyc" name="account_type" value="kyc"
+                                            {{ old('account_type') === 'kyc' ? 'checked' : (isset($officedata) && $officedata->Account_Type === 'kyc' ? 'checked' : '') }}>
+                                        <label class="form-check-label" for="kyc">Aadhar Based OTP E-KYC (in non-face to face Mode)</label>
+                                    </div>
+
                                 </div>
                                 @error('account_type')
                                     <div class="text-danger">{{ $message }}</div>
@@ -247,14 +275,27 @@
                             <div class="col-lg-12">
                                 <div class="form-group d-flex align-items-center">
                                     <label class="text-nowrap">Loan Type:</label>
-                                    <div class="form-check ml-2">
-                                        <input type="radio" class="form-check-input" id="personal" name="lon_type" value="personal" {{ isset($officedata) && ($officedata->lon_type === 'personal' || old('lon_type') === 'personal') ? 'checked' : ''  }}>
+                                    {{-- <div class="form-check ml-2">
+                                        <input type="radio" class="form-check-input" id="personal" name="lon_type" value="personal"
+                                         {{ isset($officedata) && ($officedata->lon_type === 'personal' || old('lon_type') === 'personal') ? 'checked' : ''  }}>
                                         <label class="form-check-label" for="normal">Personal</label>
                                     </div>
                                     <div class="form-check ml-2">
-                                        <input type="radio" class="form-check-input" id="business" name="lon_type" value="business" {{ isset($officedata) && ($officedata->lon_type === 'business' || old('lon_type') === 'business') ? 'checked' : ''  }}>
+                                        <input type="radio" class="form-check-input" id="business" name="lon_type" value="business"
+                                        {{ isset($officedata) && ($officedata->lon_type === 'business' || old('lon_type') === 'business') ? 'checked' : ''  }}>
                                         <label class="form-check-label" for="minor">Business</label>
+                                    </div> --}}
+                                    <div class="form-check ml-2">
+                                        <input type="radio" class="form-check-input" id="personal" name="lon_type" value="personal"
+                                            {{ old('lon_type') === 'personal' ? 'checked' : (isset($officedata) && $officedata->lon_type === 'personal' ? 'checked' : '') }}>
+                                        <label class="form-check-label" for="personal">Personal</label>
                                     </div>
+                                    <div class="form-check ml-2">
+                                        <input type="radio" class="form-check-input" id="business" name="lon_type" value="business"
+                                            {{ old('lon_type') === 'business' ? 'checked' : (isset($officedata) && $officedata->lon_type === 'business' ? 'checked' : '') }}>
+                                        <label class="form-check-label" for="business">Business</label>
+                                    </div>
+
 
                                 </div>
                                 @error('lon_type')

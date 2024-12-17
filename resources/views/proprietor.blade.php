@@ -29,8 +29,7 @@
                         <form action="{{ url($url) }}" method="POST">
                             @csrf <!-- Include CSRF token for Laravel form submission -->
                             <div id='partner-row-container'>
-                                @forelse ($Proprietordatas as $index => $Proprietordata) 
-
+                                @forelse ($Proprietordatas as $index => $Proprietordata)
                                     {{-- @php dd($Proprietordatas[2]); @endphp --}}
                                     <div class="row mb-3 bg-red d-flex justify-content-between">
                                         <div>
@@ -74,7 +73,7 @@
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label for="Gender" class="text-nowrap">Relation with Applican</label>
-                                                    <select class="form-control" id="relation_type" name="relation_type[]">
+                                                    <select class="form-control relation_type" id="relation_type" name="relation_type[]">
                                                         <option value="Partner"
                                                             {{ isset($Proprietordata->relation_with_applicant) && $Proprietordata->relation_with_applicant == 'Partner' ? 'selected' : '' }}>
                                                             Partner</option>
@@ -102,7 +101,18 @@
                                                     @enderror
                                                 </div>
                                             </div>
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-2 hidden1" style="display: none;">
+                                                <div class="form-group">
+                                                    <label for="f/s name" class="text-nowrap">Others</label>
+                                                    <input type="text" class="form-control" id="othersname"
+                                                        name="othersname[]"
+                                                        value="{{ isset($Proprietordata->father_or_spouse_name) ? $Proprietordata->father_or_spouse_name : old('father_or_spouse_name') }}">
+                                                    @error('othersname')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
                                                 <div class="form-group">
                                                     <label for="Gender" class="text-nowrap">Applying as
                                                         Co-Borrower</label>
@@ -304,7 +314,8 @@
                                                     <label for="city" class="text-nowrap">City/ Town</label>
                                                     <select class="form-control city-{{ $index }}" id="city"
                                                         name="city[]">
-                                                        <option value="{{ $Proprietordata->Current_City }}">{{ $Proprietordata->Current_City }}</option>
+                                                        <option value="{{ $Proprietordata->Current_City }}">
+                                                            {{ $Proprietordata->Current_City }}</option>
                                                     </select>
                                                     @error('city')
                                                         <span class="text-danger">{{ $message }}</span>
@@ -441,9 +452,8 @@
                                                     <label for="per_pincode" class="text-nowrap">Pin/Post Code</label>
                                                     <input type="text"
                                                         class="form-control  pincode-input-{{ $index }}-new"
-                                                        id="per_pincode" onInput="checkPincodeLength1(this)" 
-                                                        data-index="{{ $index }}"
-                                                        name="per_pincode[]"
+                                                        id="per_pincode" onInput="checkPincodeLength1(this)"
+                                                        data-index="{{ $index }}" name="per_pincode[]"
                                                         value="{{ isset($Proprietordata->Permanent_pincode) ? $Proprietordata->Permanent_pincode : old('Permanent_pincode') }}">
                                                     @error('per_pincode')
                                                         <span class="text-danger">{{ $message }}</span>
@@ -455,7 +465,7 @@
                                                     <label for="per_city" class="text-nowrap">City/ Town</label>
                                                     <select class="form-control   city-{{ $index }}-new"
                                                         id="per_city" name="per_city[]">
-                                                         <option value="">{{ $Proprietordata->Permanent_City }} 
+                                                        <option value="">{{ $Proprietordata->Permanent_City }}
                                                         </option>
                                                     </select>
                                                     @error('per_city')
@@ -577,7 +587,7 @@
                                     </div>
 
 
-                                    <div id="partner-row">
+                                    <div id="partner-row" class="partner-row">
 
                                         <div class="row mb-2">
 
@@ -658,7 +668,7 @@
                                                     <select class="form-control" id="relation_type"
                                                         name="apply_as_customer[]">
                                                         <option value="Partner">
-                                                        Partner</option>
+                                                            Partner</option>
                                                         <option value="No">
                                                             No</option>
 
@@ -838,8 +848,7 @@
                                                 <div class="form-group">
                                                     <label for="pincode" class="text-nowrap">Pin/Post Code</label>
                                                     <input type="text" class="form-control pincode-input-0"
-                                                        id="pincode" onInput="checkPincodeLength(this)" 
-                                                        data-index="0"
+                                                        id="pincode" onInput="checkPincodeLength(this)" data-index="0"
                                                         name="pincode[]" value="{{ old('Current_pincode') }}">
                                                     @error('pincode')
                                                         <span class="text-danger">{{ $message }}</span>
@@ -937,16 +946,14 @@
                                                     <div class="form-check ml-2 mr-2">
                                                         <input type="radio" class="form-check-input" id="yes"
                                                             onClick="getperaddress(this)" name="proof_address[]"
-                                                             data-index="0"
-                                                            value="Yes"
+                                                            data-index="0" value="Yes"
                                                             {{ old('proof_address') == 'Yes' ? 'checked' : '' }}>
                                                         <label class="form-check-label" for="yes">Yes</label>
                                                     </div>
                                                     <div class="form-check">
                                                         <input type="radio" class="form-check-input" id="no"
                                                             onClick="getperaddress(this)" name="proof_address[]"
-                                                             data-index="0"
-                                                            value="No"
+                                                            data-index="0" value="No"
                                                             {{ old('proof_address') == 'No' ? 'checked' : '' }}>
                                                         <label class="form-check-label" for="no">No</label>
                                                     </div>
@@ -990,9 +997,9 @@
                                                 <div class="form-group">
                                                     <label for="per_pincode" class="text-nowrap">Pin/Post Code</label>
                                                     <input type="text" class="form-control pincode-input-0-new"
-                                                        id="per_pincode" onInput="checkPincodeLength1(this)" 
-                                                        data-index="0"
-                                                        name="per_pincode[]" value="{{ old('Permanent_pincode') }}">
+                                                        id="per_pincode" onInput="checkPincodeLength1(this)"
+                                                        data-index="0" name="per_pincode[]"
+                                                        value="{{ old('Permanent_pincode') }}">
                                                     @error('per_pincode')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
@@ -1143,7 +1150,7 @@
         //    alert(index);
         var pincode = pincodeInput.value;
         var token = "{{ csrf_token() }}";
-        // console.log("Pincode:", pincode); // Use console.log for debugging instead of alert 
+        // console.log("Pincode:", pincode); // Use console.log for debugging instead of alert
         // die(); // Remove this line as it is not needed in JavaScript
         if (pincode.length === 6) {
             var index = index;
@@ -1174,7 +1181,7 @@
                         $(`.city-${index}`).append($('<option>', {
                             value: city.Name,
                             text: city.Name
-                        })); 
+                        }));
                         // alert(city.Name);
                         // die();
                     });
@@ -1204,20 +1211,20 @@
         }
     }
 
-    function checkPincodeLength1(input, row) { 
+    function checkPincodeLength1(input, row) {
 
         const pincodeIndex = $(input).data('index');
-        var pincode = input.value;  
+        var pincode = input.value;
 
-          
+
         // Check if pincode length is equal to 6
         if (pincode.length === 6) {
-            // Call getdetails() function 
+            // Call getdetails() function
             getdetailsmain1(input, row, pincodeIndex);
         }
     }
 
-    function getdetailsmain1(pincodeInput,row,pincodeIndex) {
+    function getdetailsmain1(pincodeInput, row, pincodeIndex) {
         var pincode = pincodeInput.value;
         var token = "{{ csrf_token() }}";
         console.log("Pincode:", pincode); // Use console.log for debugging instead of alert
@@ -1238,17 +1245,17 @@
                     var cities = data[0].PostOffice;
                     var district = data[0].PostOffice[0].District;
                     var state = data[0].PostOffice[0].State;
-                    // Populate city dropdown and set district and state values 
+                    // Populate city dropdown and set district and state values
 
-                    $(row).find(`.city-${pincodeIndex}-new`).empty();  
+                    $(row).find(`.city-${pincodeIndex}-new`).empty();
                     // $(`.city-3-new`).empty();
-                    cities.forEach(function(city) { 
+                    cities.forEach(function(city) {
                         console.log({
                             city
-                        }); 
-                      
-                       
-                        $(`.city-${pincodeIndex}-new`).append($('<option>', { 
+                        });
+
+
+                        $(`.city-${pincodeIndex}-new`).append($('<option>', {
                             value: city.Name,
                             text: city.Name
                         }));
@@ -1284,7 +1291,7 @@
     //     var row = $(input).closest('.row');
 
     //     // if (val === 'perYes') {
-    //     //     //alert('hello motaa'); 
+    //     //     //alert('hello motaa');
     //     //     $(".clone_permanent_address").prop('readonly', true);
     //     //     $(".clone_landmark").prop('readonly', true);
     //     //     $(".clone_pincode-input1").prop('readonly', true);
@@ -1292,7 +1299,7 @@
     //     //     $(".clone_per_District").prop('readonly', true);
     //     //     $(".clone_per_State").prop('readonly', true);
     //     //     $(".clone_per_state_code").prop('readonly', true);
-    //     //     $(".clone_per_country_code").prop('readonly', true); 
+    //     //     $(".clone_per_country_code").prop('readonly', true);
 
 
     //     //     var cloneaddress = $("#clone_current_address").val();
@@ -1311,8 +1318,8 @@
     //     //     $(".clone_per_State").val(clonestate);
     //     //     $(".clone_per_state_code").val(clonestate_code);
     //     //     $(".clone_per_country_code").val(clonecountry_code);
-    //     //     // $(".clone_per_city").val(clonecity); 
-            
+    //     //     // $(".clone_per_city").val(clonecity);
+
     //     //     if (clonecity) {
     //     //         $('.clone_per_city').empty();
     //     //         $('.clone_per_city').append($('<option>', {
@@ -1320,14 +1327,14 @@
     //     //             text: clonecity
     //     //         }));
     //     //     }
- 
+
     // }
 
     function getperaddress(input) {
         var val = $(input).val();
         var row = $(input).closest('.row');
         var index = $(input).data('index');
-        
+
 
 
         // alert('called');
@@ -1337,20 +1344,20 @@
             const orgAdd = $(`.address-${index}`).val();
             const orgLandmark = $(`.per-landmark-${index}`).val();
             const orgPincode = $(`.pincode-input-${index}`).val();
-            const orgCity = $(`.city-${index}`).val(); 
-        
+            const orgCity = $(`.city-${index}`).val();
+
             const orgdistrict = $(`.district-${index}`).val();
 
-        //     alert(orgdistrict);
-        // die();
+            //     alert(orgdistrict);
+            // die();
             const orgstate = $(`.state-${index}`).val();
             const orgstatecode = $(`.state-code-${index}`).val();
             const orgcountrycode = $(`.country-code-${index}`).val();
-            //  console.log(orgAdd); 
-             console.log(orgPincode); 
-               console.log(orgCity); ////// 
-               console.log(orgdistrict);
-            //    console.log(orgstate); 
+            //  console.log(orgAdd);
+            console.log(orgPincode);
+            console.log(orgCity); //////
+            console.log(orgdistrict);
+            //    console.log(orgstate);
             // console.log("Selected city value:", orgCity);
 
             $(`.address-${index}-new`).prop('readonly', true);
@@ -1371,8 +1378,8 @@
             $(`.state-${index}-new`).val(orgstate);
             $(`.state-code-${index}-new`).val(orgstatecode);
             $(`.country-code-${index}-new`).val(orgcountrycode);
-            // 
-            // alert($datata); 
+            //
+            // alert($datata);
 
             if (orgCity) {
                 $(`.city-${index}-new`).empty();
@@ -1382,7 +1389,7 @@
                 }));
             }
 
-        } else {  
+        } else {
 
             console.log("Index:", index);
             // alert('data here');
@@ -1434,27 +1441,29 @@
             //     // getdetailsmain(pincodeInput);    // change 3-5-24
             // });
         }
-        // Add an event listener to the plus button  
+        // Add an event listener to the plus button
         let index = {{ count($Proprietordatas) }} + 1;
 
 
         addPartnerRowButton.addEventListener('click', function() {
 
-       //     alert(index);
-
-            // alert('yes data  here'); 
-            // alert(index);
             $("#partner-row").append(
                 `
-                                   <div class="row mb-3 bg-red d-flex justify-content-between">
-                                    <div>
-                                        <h6 style="font-weight: 700" class="mt-2 ml-2">{{ $title }}</h6>
+                                <div class="removerawdata">
+                                    <div class="row mb-3 bg-red d-flex justify-content-between">
+                                        <div>
+                                            <h6 style="font-weight: 700" class="mt-2 ml-2">{{ $title }}</h6>
+                                        </div>
+                                        <div>
+                                            <a href="#" class="remove-partner-row">
+                                                <i class="fas fa-minus mt-2 mr-2" style="color:white"></i>
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
                                     <div class="row mb-2">
                                         <div class="col-log-4">
-                                            <img src="" alt="Image"
-                                                class="img-fluid" height="150" width="150">
+                                                <img src="{{ url('admin/dist/img/AdminLTELogo.png') }}" alt="Image"
+                                                    class="img-fluid" height="150" width="150">
                                         </div>
                                         <div class="col-lg-2 mt-5 ml-5">
                                             <div class="form-group">
@@ -1481,7 +1490,7 @@
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label for="Gender" class="text-nowrap">Relation with Applican</label>
-                                                <select class="form-control" id="relation_type" name="relation_type[]">
+                                                <select class="form-control relation_type" id="relation_type" name="relation_type[]">
                                                     <option value="Partner">Partner</option>
                                                     <option value="Director">Director</option>
                                                     <option value="Proprietor">Proprietor</option>
@@ -1495,7 +1504,18 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-2 hidden1" style="display: none;">
+                                                <div class="form-group">
+                                                    <label for="f/s name" class="text-nowrap">Others</label>
+                                                    <input type="text" class="form-control" id="othersname"
+                                                        name="othersname[]"
+                                                        value="{{ isset($Proprietordata->father_or_spouse_name) ? $Proprietordata->father_or_spouse_name : old('father_or_spouse_name') }}">
+                                                    @error('othersname')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                        </div>
+                                        <div class="col-lg-4">
                                             <div class="form-group">
                                                 <label for="Gender" class="text-nowrap">Applying as Co-Borrower</label>
                                                 <select class="form-control" id="relation_type" name="apply_as_customer[]">
@@ -1664,7 +1684,7 @@
                                             <div class="form-group">
                                                 <label for="pincode" class="text-nowrap">Pin/Post Code</label>
                                                 <input type="text" class="form-control pincode-input-${index}" id="clone_pincode"
-                                                    onInput="checkPincodeLength(this)" name="pincode[]" 
+                                                    onInput="checkPincodeLength(this)" name="pincode[]"
                                                     data-index="${index}"
                                                     value="">
                                                 @error('pincode')
@@ -1804,7 +1824,7 @@
                                             <div class="form-group">
                                                 <label for="per_pincode" class="text-nowrap">Pin/Post Code</label>
                                                 <input type="text" class="form-control pincode-input-${index}-new"
-                                                    id="per_pincode" onInput="checkPincodeLength1(this)" 
+                                                    id="per_pincode" onInput="checkPincodeLength1(this)"
                                                     data-index="${index}"
                                                     name="per_pincode[]"
                                                     value="">
@@ -1910,7 +1930,9 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                    </div>`);
+                                    </div>
+                                </div>
+                                    `);
             index++;
             // Clone the header row
             //const headerRow = partnerRowContainer.querySelector('.bg-red').cloneNode(true);
@@ -1950,12 +1972,33 @@
             // });
             // // Add event listener to pincode input in the new row
             // addPincodeEventListener(partnerRowTemplate);
+            $(document).on('click', '.remove-partner-row', function(e) {
+                e.preventDefault();
+                $(this).closest('.removerawdata').remove();
+            });
+
+            $(document).on('change','.relation_type', function()
+            {
+                $val = $(this).val();
+                if($val == "Others")
+                {
+                    $(this).closest('.row').find('.hidden1').show();
+                }
+                else{
+                    $(this).closest('.row').find('.hidden1').hide();
+                }
+            });
+
         });
+
         // Add event listener to the initial pincode input
-        const initialPincodeInput = partnerRowContainer.querySelector('.pincode-input');
-        addPincodeEventListener(initialPincodeInput);
+        // const initialPincodeInput = partnerRowContainer.querySelector('.pincode-input');
+        // addPincodeEventListener(initialPincodeInput);
     });
+
+
 </script>
+
 {{-- checkbox sinflr value store  --}}
 <script>
     function doalert(id) {
@@ -2023,4 +2066,32 @@
             }
         });
     }
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+
+        $(".relation_type").each(function() {
+            let $val = $(this).val();
+            if ($val == 'Others') {
+                $(this).closest('.row').find('.hidden1').show();
+            } else {
+                $(this).closest('.row').find('.hidden1').hide();
+            }
+        });
+
+        $(".relation_type").on("change", function() {
+            $val = $(this).val();
+            if ($val == 'Others') {
+                $(this).closest('.row').find('.hidden1').show();
+                // $(".hidden1").show();
+            } else {
+                $(this).closest('.row').find('.hidden1').hide();
+                // $(".hidden1").hide();
+            }
+        });
+
+    });
+
 </script>

@@ -21,9 +21,9 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        // $id = session()->get('application_id'); 
-        $id1 = session()->get('application_id'); 
-        if ($id1){ 
+        // $id = session()->get('application_id');
+        $id1 = session()->get('application_id');
+        if ($id1){
             $id = session()->get('application_id');
 
         }else{
@@ -83,8 +83,8 @@ class CustomerController extends Controller
 
         // $lastLoanId = FormOffice::latest()->first()->loan_id;
         // $LoanId = session('application_id');
-        $id1 = session()->get('application_id'); 
-        if ($id1){ 
+        $id1 = session()->get('application_id');
+        if ($id1){
             $id = session()->get('application_id');
 
         }else{
