@@ -108,7 +108,8 @@
                                                     <label for="f/s name" class="text-nowrap">Others</label>
                                                     <input type="text" class="form-control" id="othersname"
                                                         name="othersname[]"
-                                                        value="{{ isset($Proprietordata->father_or_spouse_name) ? $Proprietordata->father_or_spouse_name : old('father_or_spouse_name') }}">
+                                                        
+                                                        value="{{ isset($Proprietordata->othersname) ? $Proprietordata->othersname : old('othersname') }}"> 
                                                     @error('othersname')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
@@ -1511,7 +1512,7 @@
                                                     <label for="f/s name" class="text-nowrap">Others</label>
                                                     <input type="text" class="form-control" id="othersname"
                                                         name="othersname[]"
-                                                        value="{{ isset($Proprietordata->father_or_spouse_name) ? $Proprietordata->father_or_spouse_name : old('father_or_spouse_name') }}">
+                                                        value="{{ isset($Proprietordata->othersname) ? $Proprietordata->othersname : old('othersname') }}"> 
                                                     @error('othersname')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror

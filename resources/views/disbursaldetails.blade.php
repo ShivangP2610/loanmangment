@@ -327,8 +327,8 @@
                                                         name="applicant_type">
                                                         <option value="" disabled selected>Select Applicant Type
                                                         </option>
-                                                        <option value="BORROWER">BORROWER</option>
-                                                        <option value="CO-BORROWER">CO-BORROWER</option>
+                                                        <option value="BORROWER" {{ old('applicant_type') == 'BORROWER' ? 'selected' : '' }} >BORROWER</option>
+                                                        <option value="CO-BORROWER" {{ old('applicant_type') == 'CO-BORROWER' ? 'selected' : '' }}>CO-BORROWER</option>
                                                     </select>
                                                 </td>
                                                 <td>
@@ -383,9 +383,9 @@
                                                         aria-label="Default select example" name="payment_mode"
                                                         id="payment_mode">
                                                         <option selected>Open this select menu</option>
-                                                        <option value="check">Check</option>
-                                                        <option value="rtgs_neft">Rtgs/Neft</option>
-                                                        <option value="transfer_exi_account">Transfer Existing Account
+                                                        <option value="check" {{ old('payment_mode') == 'check' ? 'selected' : '' }}>Check</option>
+                                                        <option value="rtgs_neft" {{ old('payment_mode') == 'rtgs_neft' ? 'selected' : '' }}>Rtgs/Neft</option>
+                                                        <option value="transfer_exi_account" {{ old('payment_mode') == 'transfer_exi_account' ? 'selected' : '' }}>Transfer Existing Account
                                                         </option>
                                                     </select><br>
 
