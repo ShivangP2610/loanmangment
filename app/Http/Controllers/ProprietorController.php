@@ -169,7 +169,7 @@ class ProprietorController extends Controller
             $Proprietor->proprietor_email = $request['email'][$key];
             $Proprietor->proprietor_pannumber = $request['pan'][$key];
             $Proprietor->proprietor_adharnumber = $request['adhar'][$key]; 
-            $Proprietor->othersname = $request['othersname'][$key]; 
+            // $Proprietor->othersname = $request['othersname'][$key]; 
             $Proprietor->save();
         }
         return redirect('/rpartners/add')->with('success', 'Proprietor created successfully.');

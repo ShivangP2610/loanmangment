@@ -5,6 +5,14 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+        } 
+        .background-logo {
+            position: fixed;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.1; /* Transparent for watermark effect */
+            z-index: -1; /* Send to the background */
         }
         table {
             width: 100%;
@@ -85,7 +93,10 @@
 
     </style>
 </head>
-<body>
+<body> 
+    <div>
+        <img src="{{ asset('admin/dist/img/logo.jpeg') }}" alt="Background Logo" class="background-logo" style="width: 600px; height: 600px; box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);">
+    </div>
     <div class="div" style="text-align: right; margin:15px 0px;">
         <img id="logo" src="{{ asset('admin/dist/img/logo.jpeg') }}" alt="Company Logo" style="max-width: 200px; max-height: 100px; margin: 0 auto;">
     </div>

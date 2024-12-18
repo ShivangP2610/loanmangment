@@ -1403,7 +1403,7 @@
 
 </script>
 
-{{-- <script>
+<script>
     document.addEventListener('DOMContentLoaded', function () {
     const saveButton = document.getElementById('saveButton');
 
@@ -1416,4 +1416,4 @@
     });
 });
 
-</script> --}}
+</script>
