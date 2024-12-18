@@ -17,7 +17,8 @@
                     </div>
                 @endif
 
-                @if ($errors->any())
+                {{-- shivang hide this 17-12-2024 --}}
+                {{-- @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
                             @foreach ($errors->all() as $error)
@@ -25,7 +26,7 @@
                             @endforeach
                         </ul>
                     </div>
-                @endif
+                @endif --}}
 
                 <div class="row">
 
@@ -34,19 +35,19 @@
                     <div class="col-lg-9">
                         <form action="{{ url($url) }}" method="POST">
                             @csrf <!-- Include CSRF token for Laravel form submission -->
-                           
-                           
+
+
                             <div id="partner-row-container">
                                         <div class="row mb-3 bg-red d-flex justify-content-between">
                                             <div>
                                                 <h6 style="font-weight: 700" class="mt-2 ml-2">{{ $title }}</h6>
                                             </div>
                                             <div>
-                                                
+
                                                     <a href="#" id="add-partner-row">
                                                         <i class="fas fa-plus mt-2 mr-2" style="color:white"></i>
                                                     </a>
-                                               
+
                                             </div>
                                         </div>
 
@@ -58,8 +59,8 @@
                                                 <div class="form-group">
                                                     <label for="name" class="text-nowrap">Name</label>
                                                     <input type="text" class="form-control" id="name" name="name[]"
-                                                        value="{{ isset($Refernce->Name) ? $Refernce->Name : old('Name') }}">
-                                                    @error('name')
+                                                        value="{{ isset($Refernce->Name) ? $Refernce->Name : old('name.0') }}">
+                                                    @error('name.0')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
@@ -68,8 +69,8 @@
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label for="address" class="text-nowrap">Address</label>
-                                                    <textarea class="form-control" id="address" name="address[]" rows="1">{{ isset($Refernce->Address) ? $Refernce->Address : old('Address') }}</textarea>
-                                                    @error('address')
+                                                    <textarea class="form-control" id="address" name="address[]" rows="1">{{ isset($Refernce->Address) ? $Refernce->Address : old('address.0') }}</textarea>
+                                                    @error('address.0')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
@@ -81,8 +82,8 @@
                                                 <div class="form-group">
                                                     <label for="city" class="text-nowrap">City</label>
                                                     <input type="text" class="form-control" id="city" name="city[]"
-                                                        value="{{ isset($Refernce->City) ? $Refernce->City : old('City') }}">
-                                                    @error('city')
+                                                        value="{{ isset($Refernce->City) ? $Refernce->City : old('city.0') }}">
+                                                    @error('city.0')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
@@ -93,8 +94,8 @@
                                                     <label for="pincode" class="text-nowrap">Pincode</label>
                                                     <input type="text" class="form-control" id="pincode"
                                                         name="pincode[]"
-                                                        value="">
-                                                    @error('pincode')
+                                                        value="{{ isset($Refernce->pincode) ? $Refernce->pincode : old('pincode.0') }}">
+                                                    @error('pincode.0')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
@@ -104,8 +105,8 @@
                                                 <div class="form-group">
                                                     <label for="state" class="text-nowrap">State</label>
                                                     <input type="text" class="form-control" id="state" name="state[]"
-                                                        value="{{ isset($Refernce->State) ? $Refernce->State : old('State') }}">
-                                                    @error('state')
+                                                        value="{{ isset($Refernce->State) ? $Refernce->State : old('state.0') }}">
+                                                    @error('state.0')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
@@ -116,8 +117,8 @@
                                                     <label for="country" class="text-nowrap">Country</label>
                                                     <input type="text" class="form-control" id="country"
                                                         name="country[]"
-                                                        value="{{ isset($Refernce->Country) ? $Refernce->State : old('Country') }}">
-                                                    @error('country')
+                                                        value="{{ isset($Refernce->Country) ? $Refernce->State : old('country.0') }}">
+                                                    @error('country.0')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
@@ -127,8 +128,8 @@
                                                 <div class="form-group">
                                                     <label for="phone" class="text-nowrap">Phone</label>
                                                     <input type="text" class="form-control" id="phone" name="phone[]"
-                                                        value="{{ isset($Refernce->Phone) ? $Refernce->Phone : old('Phone') }}">
-                                                    @error('phone')
+                                                        value="{{ isset($Refernce->Phone) ? $Refernce->Phone : old('phone.0') }}">
+                                                    @error('phone.0')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
@@ -139,8 +140,8 @@
                                                     <label for="mobile" class="text-nowrap">Mobile</label>
                                                     <input type="text" class="form-control" id="mobile"
                                                         name="mobile[]"
-                                                        value="{{ isset($Refernce->Mobile) ? $Refernce->Mobile : old('Mobile') }}">
-                                                    @error('mobile')
+                                                        value="{{ isset($Refernce->Mobile) ? $Refernce->Mobile : old('mobile.0') }}">
+                                                    @error('mobile.0')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
@@ -151,8 +152,8 @@
                                                     <label for="email" class="text-nowrap">Email</label>
                                                     <input type="email" class="form-control" id="email"
                                                         name="email[]"
-                                                        value="{{ isset($Refernce->Email) ? $Refernce->Email : old('Email') }}">
-                                                    @error('email')
+                                                        value="{{ isset($Refernce->Email) ? $Refernce->Email : old('email.0') }}">
+                                                    @error('email.0')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
@@ -164,8 +165,8 @@
                                                         Applicant</label>
                                                     <input type="text" class="form-control" id="applicntrelation"
                                                         name="applicntrelation[]"
-                                                        value="{{ isset($Refernce->Relation_with_applicant) ? $Refernce->Relation_with_applicant : old('Relation_with_applicant') }}">
-                                                    @error('applicntrelation')
+                                                        value="{{ isset($Refernce->Relation_with_applicant) ? $Refernce->Relation_with_applicant : old('applicntrelation.0') }}">
+                                                    @error('applicntrelation.0')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
@@ -175,8 +176,8 @@
 
 
                                     </div>
-                                
-  
+
+
                             <div class="row mb-1">
                                 <div class="col-lg-12">
                                     <button type="submit" class="btn btn-primary">{{ $btext }}</button>

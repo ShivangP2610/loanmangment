@@ -22,10 +22,10 @@ class RemainingPartnerController extends Controller
      */
     public function create()
     {
-        // $id = session()->get('application_id'); 
+        // $id = session()->get('application_id');
 
-        $id1 = session()->get('application_id'); 
-        if ($id1){ 
+        $id1 = session()->get('application_id');
+        if ($id1){
             $id = session()->get('application_id');
 
         }else{
@@ -45,20 +45,34 @@ class RemainingPartnerController extends Controller
      */
     public function store(Request $request)
     {
-            
+        //        echo "<pre>";
+        // print_r($request->all());
+        // echo "</pre>";
+        // exit();
+        $request->validate([
+            // 'ckyc_no'             => 'required',
+            'full_name_first.*' => 'nullable',
+            'dob_day.*'         => 'nullable',
+            'pan_no_1.*'         => 'nullable',
+            'ADDRESS.*'       => 'nullable',
+            'MOBILE.*'         => 'nullable|min:10|max:10',
+            'WorkExperience'    =>   'nullable',
+            'Shareholding'    => 'nullable',
+        ]);
+
         $lastcustomerId = Customer::latest()->first()->cust_id;
         $loanId = Customer::where('cust_id', $lastcustomerId)->value('loan_id');
 
         // $id = session()->get('application_id');
-        // $id = session('mainloan_id'); 
+        // $id = session('mainloan_id');
 
-        $id1 = session()->get('application_id'); 
-        if ($id1){ 
+        $id1 = session()->get('application_id');
+        if ($id1){
             $id = session()->get('application_id');
 
         }else{
             $id = session('mainloan_id');
-        }  
+        }
 
         $customer = Customer::where('loan_id', $id)->first();
         $Remainingpartners = Remainingpartner::where('loan_id', $id)->get();

@@ -5,7 +5,7 @@
 
 @section('main-section')
     <div class="content-wrapper">
-        
+
         <div class="content-header">
         </div>
 
@@ -17,7 +17,8 @@
                     </div>
                 @endif
 
-                @if ($errors->any())
+                {{-- shivang hide this 17-12-2024 --}}
+                {{-- @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
                             @foreach ($errors->all() as $error)
@@ -25,7 +26,7 @@
                             @endforeach
                         </ul>
                     </div>
-                @endif
+                @endif --}}
 
                 <div class="row">
 
@@ -33,12 +34,12 @@
 
                     <div class="col-lg-9">
                         <form action="{{ url($url) }}" method="POST">
-                            @csrf 
+                            @csrf
 
-                            
-                             
-                            
-                        
+
+
+
+
 
                             <div id="partner-row-container">
                                 <div class="row mb-3 bg-red d-flex justify-content-between">
@@ -61,9 +62,9 @@
 
                                                 <input type="text" class="form-control" id="name_of_bank"
                                                     name="name_of_bank[]"
-                                                    value="{{ isset($bankdata->bank_name) ? $bankdata->bank_name : old('bank_name') }}">
+                                                    value="{{ isset($bankdata->bank_name) ? $bankdata->bank_name : old('name_of_bank.0') }}">
 
-                                                @error('name_of_bank')
+                                                @error('name_of_bank.0')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
                                             </div>
@@ -74,8 +75,8 @@
                                                 <label for="branch_address" class="text-nowrap">Branch Address</label>
                                                 <input type="text" class="form-control" id="branch_address"
                                                     name="branch_address[]"
-                                                    value="{{ isset($bankdata->branch_address) ? $bankdata->branch_address : old('branch_address') }}">
-                                                @error('branch_address')
+                                                    value="{{ isset($bankdata->branch_address) ? $bankdata->branch_address : old('branch_address.0') }}">
+                                                @error('branch_address.0')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
                                             </div>
@@ -86,8 +87,8 @@
                                                 <label for="accountname" class="text-nowrap">Account Holder Name</label>
                                                 <input type="text" class="form-control" id="accountname"
                                                     name="accountname[]"
-                                                    value="{{ isset($bankdata->account_holder_name) ? $bankdata->account_holder_name : old('account_holder_name') }}">
-                                                @error('accountname')
+                                                    value="{{ isset($bankdata->account_holder_name) ? $bankdata->account_holder_name : old('accountname.0') }}">
+                                                @error('accountname.0')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
                                             </div>
@@ -103,8 +104,8 @@
                                                 <label for="accountnumber" class="text-nowrap">Account Number</label>
                                                 <input type="text" class="form-control" id="accountnumber"
                                                     name="accountnumber[]"
-                                                    value="{{ isset($bankdata->account_number) ? $bankdata->account_number : old('account_number') }}">
-                                                @error('accountnumber')
+                                                    value="{{ isset($bankdata->account_number) ? $bankdata->account_number : old('accountnumber.0') }}">
+                                                @error('accountnumber.0')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
                                             </div>
@@ -120,50 +121,50 @@
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
                                             </div>
-                                        </div> --}}  
-                                     
+                                        </div> --}}
+
 
                                         <div class="col-lg-2">
                                             <div class="form-group">
                                                 <label for="typeofacount" class="text-nowrap">Type of Account</label>
                                                 <select class="form-control" id="typeofacount" name="typeofacount[]">
                                                     <option value="">Select Type of Account</option>
-                                                    <option value="Current account" 
+                                                    <option value="Current account"
                                                         {{ (isset($bankdata->Type_of_Account) && $bankdata->Type_of_Account == 'Current Account') || (old('typeofacount.0') == 'Current account') ? 'selected' : '' }}>
                                                         Current account
                                                     </option>
-                                                    <option value="Savings account" 
+                                                    <option value="Savings account"
                                                         {{ (isset($bankdata->Type_of_Account) && $bankdata->Type_of_Account == 'Savings Account') || (old('typeofacount.0') == 'Savings account') ? 'selected' : '' }}>
                                                         Savings account
                                                     </option>
-                                                    <option value="Salary account" 
+                                                    <option value="Salary account"
                                                         {{ (isset($bankdata->Type_of_Account) && $bankdata->Type_of_Account == 'Salary Account') || (old('typeofacount.0') == 'Salary account') ? 'selected' : '' }}>
                                                         Salary account
                                                     </option>
-                                                    <option value="Fixed deposit account" 
+                                                    <option value="Fixed deposit account"
                                                         {{ (isset($bankdata->Type_of_Account) && $bankdata->Type_of_Account == 'Fixed Deposit Account') || (old('typeofacount.0') == 'Fixed deposit account') ? 'selected' : '' }}>
                                                         Fixed deposit account
                                                     </option>
-                                                    <option value="Recurring deposit account" 
+                                                    <option value="Recurring deposit account"
                                                         {{ (isset($bankdata->Type_of_Account) && $bankdata->Type_of_Account == 'Recurring Deposit Account') || (old('typeofacount.0') == 'Recurring deposit account') ? 'selected' : '' }}>
                                                         Recurring deposit account
                                                     </option>
-                                                    <option value="NRI account" 
+                                                    <option value="NRI account"
                                                         {{ (isset($bankdata->Type_of_Account) && $bankdata->Type_of_Account == 'NRI Account') || (old('typeofacount.0') == 'NRI account') ? 'selected' : '' }}>
                                                         NRI account
                                                     </option>
                                                 </select>
-                                                @error('typeofacount')
+                                                @error('typeofacount.0')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
                                             </div>
                                         </div>
-                                        
-                                        
 
 
-                                        
-                                        
+
+
+
+
 
                                         <div class="col-lg-3">
                                             <div class="form-group">
@@ -171,7 +172,7 @@
                                                     Since</label>
                                                 <input type="text" class="form-control" id="accountyear"
                                                     name="accountyear[]"
-                                                    value="{{ isset($bankdata->account_oprete_since) ? $bankdata->account_oprete_since : old('account_oprete_since') }}">
+                                                    value="{{ isset($bankdata->account_oprete_since) ? $bankdata->account_oprete_since : old('accountyear.0') }}">
                                                 @error('accountyear')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
@@ -182,8 +183,8 @@
                                             <div class="form-group">
                                                 <label for="ifsc_code" class="text-nowrap">IFSC Code</label>
                                                 <input type="text" class="form-control" id="ifsc_code" name="ifsc_code[]"
-                                                    value="{{ isset($bankdata->ifsc_code) ? $bankdata->ifsc_code : old('ifsc_code') }}">
-                                                @error('ifsc_code')
+                                                    value="{{ isset($bankdata->ifsc_code) ? $bankdata->ifsc_code : old('ifsc_code.0') }}">
+                                                @error('ifsc_code.0')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
                                             </div>
@@ -193,8 +194,8 @@
                                             <div class="form-group">
                                                 <label for="micr_code" class="text-nowrap">MICR Code</label>
                                                 <input type="text" class="form-control" id="micr_code" name="micr_code[]"
-                                                    value="{{ isset($bankdata->micr_code) ? $bankdata->micr_code : old('micr_code') }}">
-                                                @error('micr_code')
+                                                    value="{{ isset($bankdata->micr_code) ? $bankdata->micr_code : old('micr_code.0') }}">
+                                                @error('micr_code.0')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
                                             </div>
@@ -204,9 +205,9 @@
                                 </div>
                             </div>
 
-                            
 
-                         
+
+
                             <div class="row">
                                 <div class="col-lg-12">
                                     <button type="submit" class="btn btn-primary">{{ $btext }}</button>

@@ -5,7 +5,7 @@
 
 @section('main-section')
     <div class="content-wrapper">
-        
+
         <div class="content-header">
         </div>
 
@@ -33,12 +33,12 @@
 
                     <div class="col-lg-9">
                         <form action="{{ url($url) }}" method="POST">
-                            @csrf 
+                            @csrf
 
-                            @php $counter = 0; @endphp 
-                             
-                            @forEach($bankdetails as $bankdata)  
-                        
+                            @php $counter = 0; @endphp
+
+                            @forEach($bankdetails as $bankdata)
+
 
                             <div id="partner-row-container">
                                 <div class="row mb-3 bg-red d-flex justify-content-between">
@@ -120,35 +120,35 @@
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
                                             </div>
-                                        </div> --}}  
-                                     
+                                        </div> --}}
+
 
                                         <div class="col-lg-2">
                                             <div class="form-group">
                                                 <label for="typeofacount" class="text-nowrap">Type of Account</label>
                                                 <select class="form-control" id="typeofacount" name="typeofacount[]">
                                                     <option value="">Select Type of Account</option>
-                                                    <option value="Current account" 
+                                                    <option value="Current account"
                                                         {{ (isset($bankdata->Type_of_Account) && $bankdata->Type_of_Account == 'Current Account') || (old('typeofacount.0') == 'Current account') ? 'selected' : '' }}>
                                                         Current account
                                                     </option>
-                                                    <option value="Savings account" 
+                                                    <option value="Savings account"
                                                         {{ (isset($bankdata->Type_of_Account) && $bankdata->Type_of_Account == 'Savings Account') || (old('typeofacount.0') == 'Savings account') ? 'selected' : '' }}>
                                                         Savings account
                                                     </option>
-                                                    <option value="Salary account" 
+                                                    <option value="Salary account"
                                                         {{ (isset($bankdata->Type_of_Account) && $bankdata->Type_of_Account == 'Salary Account') || (old('typeofacount.0') == 'Salary account') ? 'selected' : '' }}>
                                                         Salary account
                                                     </option>
-                                                    <option value="Fixed deposit account" 
+                                                    <option value="Fixed deposit account"
                                                         {{ (isset($bankdata->Type_of_Account) && $bankdata->Type_of_Account == 'Fixed Deposit Account') || (old('typeofacount.0') == 'Fixed deposit account') ? 'selected' : '' }}>
                                                         Fixed deposit account
                                                     </option>
-                                                    <option value="Recurring deposit account" 
+                                                    <option value="Recurring deposit account"
                                                         {{ (isset($bankdata->Type_of_Account) && $bankdata->Type_of_Account == 'Recurring Deposit Account') || (old('typeofacount.0') == 'Recurring deposit account') ? 'selected' : '' }}>
                                                         Recurring deposit account
                                                     </option>
-                                                    <option value="NRI account" 
+                                                    <option value="NRI account"
                                                         {{ (isset($bankdata->Type_of_Account) && $bankdata->Type_of_Account == 'NRI Account') || (old('typeofacount.0') == 'NRI account') ? 'selected' : '' }}>
                                                         NRI account
                                                     </option>
@@ -158,12 +158,12 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                        
-                                        
 
 
-                                        
-                                        
+
+
+
+
 
                                         <div class="col-lg-3">
                                             <div class="form-group">

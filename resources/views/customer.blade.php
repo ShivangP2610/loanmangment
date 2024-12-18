@@ -30,7 +30,8 @@
                     </div>
                 @endif
 
-                @if ($errors->any())
+                {{-- shivang hide this 17-12-2024 --}}
+                {{-- @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
                             @foreach ($errors->all() as $error)
@@ -38,7 +39,7 @@
                             @endforeach
                         </ul>
                     </div>
-                @endif
+                @endif --}}
 
                 <div class="row">
 
@@ -62,8 +63,8 @@
                             </ul>
                         </div>
                     </div>
-                </div> --}}  
-                {{-- <?php  dd($customerData);?> --}}
+                </div> --}}
+
 
 
                     @include('sidebar')
@@ -80,10 +81,10 @@
                                         <h6 style="font-weight: 700" class="mt-2 ml-2">{{ $title }}</h6>
                                     </div>
                                     <!-- <div>
-                                                <a href="#" id="add-partner-row">
-                                                    <i class="fas fa-plus mt-2 mr-2" style="color:white"></i>
-                                                </a>
-                                            </div> -->
+                                                    <a href="#" id="add-partner-row">
+                                                        <i class="fas fa-plus mt-2 mr-2" style="color:white"></i>
+                                                    </a>
+                                                </div> -->
                                 </div>
 
                                 <div id="partner-row">
@@ -113,19 +114,19 @@
                                                 <select class="form-control" id="entity_type" name="entity_type">
                                                     <option value="" selected disabled>Select Entity Type</option>
                                                     <option value="Proprietorship"
-                                                        {{ isset($customerData->cust_entity_type) && $customerData->cust_entity_type == 'Proprietors' ? 'selected' : '' }}>
+                                                        {{ old('entity_type') == 'Proprietorship' ? 'selected' : (isset($customerData->cust_entity_type) && $customerData->cust_entity_type == 'Proprietors' ? 'selected' : '') }}>
                                                         Proprietorship
                                                     </option>
                                                     <option value="Partnership"
-                                                        {{ isset($customerData->cust_entity_type) && $customerData->cust_entity_type == 'Partnership' ? 'selected' : '' }}>
+                                                        {{ old('entity_type') == 'Partnership' ? 'selected' : (isset($customerData->cust_entity_type) && $customerData->cust_entity_type == 'Partnership' ? 'selected' : '') }}>
                                                         Partnership
                                                     </option>
                                                     <option value="Pvt_Ltd"
-                                                        {{ isset($customerData->cust_entity_type) && $customerData->cust_entity_type == 'Pvt_Ltd' ? 'selected' : '' }}>
+                                                        {{ old('entity_type') == 'Pvt_Ltd' ? 'selected' : (isset($customerData->cust_entity_type) && $customerData->cust_entity_type == 'Pvt_Ltd' ? 'selected' : '') }}>
                                                         Pvt Ltd
                                                     </option>
                                                     <option value="Others"
-                                                        {{ isset($customerData->cust_entity_type) && $customerData->cust_entity_type == 'Others' ? 'selected' : '' }}>
+                                                        {{ old('entity_type') == 'Others' ? 'selected' : (isset($customerData->cust_entity_type) && $customerData->cust_entity_type == 'Others' ? 'selected' : '') }}>
                                                         Others
                                                     </option>
                                                     <!-- Add more options as needed -->
@@ -170,7 +171,7 @@
                                                 <label for="pincode" class="text-nowrap">Pin/Post Code</label>
                                                 <input type="text" class="form-control pincode-input" id="pincode"
                                                     onInput="checkPincodeLength(this)" name="pincode"
-                                                    value="{{ isset($customerData->Principal_pincode) ? $customerData->Principal_pincode : old('Principal_pincode') }}">
+                                                    value="{{ isset($customerData->Principal_pincode) ? $customerData->Principal_pincode : old('pincode') }}">
                                                 @error('pincode')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
@@ -178,18 +179,19 @@
                                         </div>
 
                                         <div class="col-lg-2">
-    <div class="form-group">
-        <label for="city" class="text-nowrap">City/ Town</label>
-        <select class="form-control city" id="city" name="city">
-            <option value="{{ isset($customerData->Principal_City) ? $customerData->Principal_City : old('Principal_City') }}">
-                {{ isset($customerData->Principal_City) ? $customerData->Principal_City : old('Principal_City') }}
-            </option>
-        </select>
-        @error('city')
-            <span class="text-danger">{{ $message }}</span>
-        @enderror
-    </div>
-</div>
+                                            <div class="form-group">
+                                                <label for="city" class="text-nowrap">City/ Town</label>
+                                                <select class="form-control city" id="city" name="city">
+                                                    <option
+                                                        value="{{ isset($customerData->Principal_City) ? $customerData->Principal_City : old('Principal_City') }}">
+                                                        {{ isset($customerData->Principal_City) ? $customerData->Principal_City : old('city') }}
+                                                    </option>
+                                                </select>
+                                                @error('city')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
 
 
 
@@ -198,7 +200,7 @@
                                                 <label for="District" class="text-nowrap">District</label>
                                                 <input type="text" class="form-control district" id="District"
                                                     name="District"
-                                                    value="{{ isset($customerData->Principal_District) ? $customerData->Principal_District : old('Principal_District') }}">
+                                                    value="{{ isset($customerData->Principal_District) ? $customerData->Principal_District : old('District') }}">
                                                 @error('District')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
@@ -210,7 +212,7 @@
                                                 <label for="State" class="text-nowrap">State</label>
                                                 <input type="text" class="form-control state" id="State"
                                                     name="State"
-                                                    value="{{ isset($customerData->Principal_State) ? $customerData->Principal_State : old('Principal_State') }}">
+                                                    value="{{ isset($customerData->Principal_State) ? $customerData->Principal_State : old('State') }}">
                                                 @error('State')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
@@ -222,7 +224,7 @@
                                                 <label for="state_code" class="text-nowrap">State/UT code</label>
                                                 <input type="text" class="form-control state-code" id="state_code"
                                                     name="state_code"
-                                                    value="{{ isset($customerData->Principal_State_code) ? $customerData->Principal_State_code : old('Principal_State_code') }}">
+                                                    value="{{ isset($customerData->Principal_State_code) ? $customerData->Principal_State_code : old('state_code') }}">
                                                 @error('state_code')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
@@ -234,7 +236,7 @@
                                                 <label for="country_code" class="text-nowrap">ISO Country Code</label>
                                                 <input type="text" class="form-control country-code" id="country_code"
                                                     name="country_code"
-                                                    value="{{ isset($customerData->Principal_Country_Code) ? $customerData->Principal_Country_Code : old('Principal_Country_Code') }}">
+                                                    value="{{ isset($customerData->Principal_Country_Code) ? $customerData->Principal_Country_Code : old('country_code') }}">
                                                 @error('country_code')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
@@ -276,7 +278,7 @@
                                                     Address</label>
                                                 <input type="text" class="form-control permanent_address"
                                                     id="permanent_address" name="permanent_address"
-                                                    value="{{ isset($customerData->Permanent_office_address) ? $customerData->Permanent_office_address : old('Permanent_office_address') }}">
+                                                    value="{{ isset($customerData->Permanent_office_address) ? $customerData->Permanent_office_address : old('permanent_address') }}">
                                                 @error('permanent_address')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
@@ -290,7 +292,7 @@
                                                 <input type="text" class="form-control pincode-input1"
                                                     id="per_pincode" onInput="checkPincodeLength1(this)"
                                                     name="per_pincode"
-                                                    value="{{ isset($customerData->Permanent_pincode) ? $customerData->Permanent_pincode : old('Permanent_pincode') }}">
+                                                    value="{{ isset($customerData->Permanent_pincode) ? $customerData->Permanent_pincode : old('per_pincode') }}">
                                                 @error('per_pincode')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
@@ -301,11 +303,13 @@
                                         <div class="col-lg-2">
                                             <div class="form-group">
                                                 <label for="per_city" class="text-nowrap">City/ Town</label>
-                                                <select class="form-control per_city" id="per_city" name="per_city" {{ isset($customerData->Principal_City) && $customerData->Principal_City == 'Trading' ? 'selected' : '' }}>
+                                                <select class="form-control per_city" id="per_city" name="per_city"
+                                                    {{ isset($customerData->Principal_City) && $customerData->Principal_City == 'Trading' ? 'selected' : '' }}>
                                                     <!-- Options will be dynamically generated here -->
-                                                    <option value="{{  isset($customerData->Permanent_City) ? $customerData->Permanent_City : old('Principal_City')  }}">
+                                                    <option
+                                                        value="{{ isset($customerData->Permanent_City) ? $customerData->Permanent_City : old('per_city') }}">
 
-                                                        {{ isset($customerData->Permanent_City) ? $customerData->Permanent_City : old('Permanent_City') }}
+                                                        {{ isset($customerData->Permanent_City) ? $customerData->Permanent_City : old('per_city') }}
                                                     </option>
 
                                                 </select>
@@ -320,7 +324,7 @@
                                                 <label for="per_District" class="text-nowrap">District</label>
                                                 <input type="text" class="form-control per_District" id="per_District"
                                                     name="per_District"
-                                                    value="{{ isset($customerData->Permanent_District) ? $customerData->Permanent_District : old('Permanent_District') }}">
+                                                    value="{{ isset($customerData->Permanent_District) ? $customerData->Permanent_District : old('per_District') }}">
                                                 @error('per_District')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
@@ -332,7 +336,7 @@
                                                 <label for="per_State" class="text-nowrap">State</label>
                                                 <input type="text" class="form-control per_State" id="per_State"
                                                     name="per_State"
-                                                    value="{{ isset($customerData->Permanent_State) ? $customerData->Permanent_State : old('Permanent_State') }}">
+                                                    value="{{ isset($customerData->Permanent_State) ? $customerData->Permanent_State : old('per_State') }}">
                                                 @error('per_State')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
@@ -345,7 +349,7 @@
                                                 <label for="per_state_code" class="text-nowrap">State/UT code</label>
                                                 <input type="text" class="form-control per_state_code"
                                                     id="per_state_code" name="per_state_code"
-                                                    value="{{ isset($customerData->Permanent_State_code) ? $customerData->Permanent_State_code : old('Permanent_State_code') }}">
+                                                    value="{{ isset($customerData->Permanent_State_code) ? $customerData->Permanent_State_code : old('per_state_code') }}">
                                                 @error('per_state_code')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
@@ -357,7 +361,7 @@
                                                 <label for="per_country_code" class="text-nowrap">ISO Country Code</label>
                                                 <input type="text" class="form-control per_country_code"
                                                     id="per_country_code" name="per_country_code"
-                                                    value="{{ isset($customerData->Permanent_Country_Code) ? $customerData->Permanent_Country_Code : old('Permanent_Country_Code') }}">
+                                                    value="{{ isset($customerData->Permanent_Country_Code) ? $customerData->Permanent_Country_Code : old('per_country_code') }}">
                                                 @error('per_country_code')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
@@ -372,7 +376,7 @@
                                                     incorporation</label>
                                                 <input type="text" class="form-control" id="corporation_place"
                                                     name="corporation_place"
-                                                    value="{{ isset($customerData->Place_of_incorporation) ? $customerData->Place_of_incorporation : old('Place_of_incorporation') }}">
+                                                    value="{{ isset($customerData->Place_of_incorporation) ? $customerData->Place_of_incorporation : old('corporation_place') }}">
                                                 @error('corporation_place')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
@@ -384,7 +388,7 @@
                                                 <label for="telephone" class="text-nowrap">Telephone (office)</label>
                                                 <input type="text" class="form-control" id="telephone"
                                                     name="telephone"
-                                                    value="{{ isset($customerData->cust_Telephone) ? $customerData->cust_Telephone : old('cust_Telephone') }}">
+                                                    value="{{ isset($customerData->cust_Telephone) ? $customerData->cust_Telephone : old('telephone') }}">
                                                 @error('telephone')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
@@ -395,7 +399,7 @@
                                             <div class="form-group">
                                                 <label for="E-mail" class="text-nowrap">E-mail Address</label>
                                                 <input type="email" class="form-control" id="email" name="email"
-                                                    value="{{ isset($customerData->cust_email) ? $customerData->cust_email : old('cust_email') }}">
+                                                    value="{{ isset($customerData->cust_email) ? $customerData->cust_email : old('email') }}">
                                                 @error('email')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
@@ -408,7 +412,7 @@
                                                     Profession</label>
                                                 <input type="text" class="form-control" id="industry_type"
                                                     name="industry_type"
-                                                    value="{{ isset($customerData->Type_of_Industry) ? $customerData->Type_of_Industry : old('Type_of_Industry') }}">
+                                                    value="{{ isset($customerData->Type_of_Industry) ? $customerData->Type_of_Industry : old('industry_type') }}">
                                                 @error('industry_type')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
@@ -430,17 +434,18 @@
                                                 <select class="form-control" id="Segment" name="Segment">
                                                     <option value="" selected disabled>Select Segment</option>
                                                     <option value="Trading"
-                                                       {{ isset($customerData->Segment) && $customerData->Segment == 'Trading' ? 'selected' : '' }}>Trading
+                                                        {{ old('Segment') == 'Trading' ? 'selected' : (isset($customerData->Segment) && $customerData->Segment == 'Trading' ? 'selected' : '' )}}>
+                                                        Trading
                                                     </option>
                                                     <option value="Manufacturing"
-
-                                                       {{ isset($customerData->Segment) && $customerData->Segment == 'Manufacturing' ? 'selected' : '' }}>
+                                                        {{ old('Segment') == 'Manufacturing' ? 'selected' : (isset($customerData->Segment) && $customerData->Segment == 'Manufacturing' ? 'selected' : '' )}}>
                                                         Manufacturing</option>
                                                     <option value="Service_Provider"
-                                                      {{ isset($customerData->Segment) && $customerData->Segment == 'Service_Provider' ? 'selected' : '' }}>
+                                                        {{ old('Segment') == 'Service_Provider' ? 'selected' : (isset($customerData->Segment) && $customerData->Segment == 'Service_Provider' ? 'selected' : '' )}}>
                                                         Service Provider</option>
                                                     <option value="Others"
-                                                         {{ isset($customerData->Segment) && $customerData->Segment == 'Others' ? 'selected' : '' }}>Others</option>
+                                                        {{ old('Segment') == 'Others' ? 'selected' : (isset($customerData->Segment) && $customerData->Segment == 'Others' ? 'selected' : '' )}}>
+                                                        Others</option>
                                                     <!-- Add more options as needed -->
                                                 </select>
                                                 @error('Segment')
@@ -453,7 +458,7 @@
                                             <div class="form-group">
                                                 <label for="gst" class="text-nowrap">GST Number</label>
                                                 <input type="text" class="form-control" id="gst" name="gst"
-                                                    value="{{ isset($customerData->cust_gst) ? $customerData->cust_gst : old('cust_gst') }}">
+                                                    value="{{ isset($customerData->cust_gst) ? $customerData->cust_gst : old('gst') }}">
                                                 @error('gst')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
@@ -464,7 +469,7 @@
                                             <div class="form-group">
                                                 <label for="pan" class="text-nowrap">PAN Number</label>
                                                 <input type="text" class="form-control" id="pan" name="pan"
-                                                    value="{{ isset($customerData->cust_pannumber) ? $customerData->cust_pannumber : old('cust_pannumber') }}">
+                                                    value="{{ isset($customerData->cust_pannumber) ? $customerData->cust_pannumber : old('pan') }}">
                                                 @error('pan')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
@@ -472,15 +477,15 @@
                                         </div>
 
                                         <!-- <div class="col-lg-2">
-                                                    <div class="form-group">
-                                                        <label for="Form 60" class="text-nowrap">Form 60</label>
-                                                        <input type="text" class="form-control" id="form60"
-                                                            name="form60[]" value="{{ old('form60[]') }}">
-                                                        @error('form60')
+                                                        <div class="form-group">
+                                                            <label for="Form 60" class="text-nowrap">Form 60</label>
+                                                            <input type="text" class="form-control" id="form60"
+                                                                name="form60[]" value="{{ old('form60[]') }}">
+                                                            @error('form60')
         <span class="text-danger">{{ $message }}</span>
     @enderror
-                                                    </div>
-                                                </div> -->
+                                                        </div>
+                                                    </div> -->
 
                                         <div class="col-lg-4">
                                             <div class="form-group">
@@ -488,7 +493,7 @@
                                                     Vintage</label>
                                                 <input type="text" class="form-control" id="bussiness_vintage"
                                                     name="bussiness_vintage"
-                                                    value="{{ isset($customerData->Overall_Business_Vintage) ? $customerData->Overall_Business_Vintage : old('Overall_Business_Vintage') }}">
+                                                    value="{{ isset($customerData->Overall_Business_Vintage) ? $customerData->Overall_Business_Vintage : old('bussiness_vintage') }}">
                                                 @error('bussiness_vintage')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror

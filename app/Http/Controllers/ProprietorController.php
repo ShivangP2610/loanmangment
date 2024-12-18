@@ -22,10 +22,10 @@ class ProprietorController extends Controller
      */
     public function create()
     {
-        // $id = session()->get('application_id'); 
+        // $id = session()->get('application_id');
 
-        $id1 = session()->get('application_id'); 
-        if ($id1){ 
+        $id1 = session()->get('application_id');
+        if ($id1){
             $id = session()->get('application_id');
 
         }else{
@@ -70,7 +70,7 @@ class ProprietorController extends Controller
             // 'different_address.*' => 'required',
             'current_address.*' => 'required',
             'current_landmark.*' => 'required',
-            // 'city.*' => 'required',
+            'city.*' => 'required',
             'District.*' => 'required',
             'State.*' => 'required',
             'pincode.*' => 'required|numeric|digits:6',
@@ -98,16 +98,16 @@ class ProprietorController extends Controller
             // dd($validator);proof_address
         }
         // dd($request->all());
-        //  dd($request->input('per_pincode')); 
+        //  dd($request->input('per_pincode'));
 
 
-        $id1 = session()->get('application_id'); 
-        if ($id1){ 
+        $id1 = session()->get('application_id');
+        if ($id1){
             $LoanId = session()->get('application_id');
 
         }else{
             $LoanId = session('mainloan_id');
-        } 
+        }
 
         // $LoanId = session('application_id');
         // dd($LoanId);

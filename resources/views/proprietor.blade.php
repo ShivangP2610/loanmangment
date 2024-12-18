@@ -14,7 +14,9 @@
                         {{ session('success') }}
                     </div>
                 @endif
-                @if ($errors->any())
+
+                {{-- shivang hide this 17-12-2024 --}}
+                {{-- @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
                             @foreach ($errors->all() as $error)
@@ -22,7 +24,7 @@
                             @endforeach
                         </ul>
                     </div>
-                @endif
+                @endif --}}
                 <div class="row">
                     @include('sidebar')
                     <div class="col-lg-9">
@@ -624,8 +626,8 @@
                                                 <div class="form-group">
                                                     <label for="fullname" class="text-nowrap">Full Name</label>
                                                     <input type="text" class="form-control" id="fullname"
-                                                        name="fullname[]" value="{{ old('fullname') }}">
-                                                    @error('fullname')
+                                                        name="fullname[]" value="{{ old('fullname.0') }}">
+                                                    @error('fullname.0')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
@@ -687,8 +689,8 @@
                                                     <label for="f/s name" class="text-nowrap">Father Name/ Spouse
                                                         Name</label>
                                                     <input type="text" class="form-control" id="f_s_name"
-                                                        name="f_s_name[]" value="{{ old('father_or_spouse_name') }}">
-                                                    @error('f_s_name')
+                                                        name="f_s_name[]" value="{{ old('f_s_name.0') }}">
+                                                    @error('f_s_name.0')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
@@ -701,8 +703,8 @@
                                                         Entity</label>
                                                     <input type="text" class="form-control" id="Shareholding"
                                                         name="Shareholding[]"
-                                                        value="{{ old('shareholding_with_cust_entity') }}">
-                                                    @error('Shareholding')
+                                                        value="{{ old('Shareholding.0') }}">
+                                                    @error('Shareholding.0')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
@@ -716,8 +718,8 @@
                                                 <div class="form-group">
                                                     <label for="dob" class="text-nowrap">Date of Birth</label>
                                                     <input type="date" class="form-control" id="dob"
-                                                        name="dob[]" value="{{ old('Date_of_Birth') }}">
-                                                    @error('dob')
+                                                        name="dob[]" value="{{ old('dob.0') }}">
+                                                    @error('dob.0')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
@@ -826,8 +828,8 @@
                                                         Address</label>
                                                     <input type="text" class="form-control address-0"
                                                         id="current_address" name="current_address[]"
-                                                        value="{{ old('Current_Residence_Address') }}">
-                                                    @error('current_address')
+                                                        value="{{ old('current_address.0') }}">
+                                                    @error('current_address.0')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
@@ -838,8 +840,8 @@
                                                     <label for="current_landmark" class="text-nowrap">Landmark</label>
                                                     <input type="text" class="form-control per-landmark-0"
                                                         id="current_landmark" name="current_landmark[]"
-                                                        value="{{ old('Current_Landmark') }}">
-                                                    @error('current_landmark')
+                                                        value="{{ old('current_landmark.0') }}">
+                                                    @error('current_landmark.0')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
@@ -849,8 +851,8 @@
                                                     <label for="pincode" class="text-nowrap">Pin/Post Code</label>
                                                     <input type="text" class="form-control pincode-input-0"
                                                         id="pincode" onInput="checkPincodeLength(this)" data-index="0"
-                                                        name="pincode[]" value="{{ old('Current_pincode') }}">
-                                                    @error('pincode')
+                                                        name="pincode[]" value="{{ old('pincode.0') }}">
+                                                    @error('pincode.0')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
@@ -858,9 +860,9 @@
                                             <div class="col-lg-2">
                                                 <div class="form-group">
                                                     <label for="city" class="text-nowrap">City/ Town</label>
-                                                    <select class="form-control city-0" id="city" name="city[]">
+                                                    <select class="form-control city-0" id="city" name="city[]" value="{{ old('city.0') }}">
                                                     </select>
-                                                    @error('city')
+                                                    @error('city.0')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
@@ -870,8 +872,8 @@
                                                 <div class="form-group">
                                                     <label for="District" class="text-nowrap">District</label>
                                                     <input type="text" class="form-control district-0" id="District"
-                                                        name="District[]" value="{{ old('Current_District') }}">
-                                                    @error('District')
+                                                        name="District[]" value="{{ old('District.0') }}">
+                                                    @error('District.0')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
@@ -881,8 +883,8 @@
                                                 <div class="form-group">
                                                     <label for="State" class="text-nowrap">State</label>
                                                     <input type="text" class="form-control state-0" id="State"
-                                                        name="State[]" value="{{ old('Current_State') }}">
-                                                    @error('State')
+                                                        name="State[]" value="{{ old('State.0') }}">
+                                                    @error('State.0')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
@@ -895,8 +897,8 @@
                                                     <label for="state_code" class="text-nowrap">State/UT code</label>
                                                     <input type="text" class="form-control state-code-0"
                                                         id="state_code" name="state_code[]"
-                                                        value="{{ old('Current_State_code') }}">
-                                                    @error('state_code')
+                                                        value="{{ old('state_code.0') }}">
+                                                    @error('state_code.0')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
@@ -907,8 +909,8 @@
                                                     <label for="country_code" class="text-nowrap">ISO Country Code</label>
                                                     <input type="text" class="form-control country-code-0"
                                                         id="country_code" name="country_code[]"
-                                                        value="{{ old('Current_Country_Code') }}">
-                                                    @error('country_code')
+                                                        value="{{ old('country_code.0') }}">
+                                                    @error('country_code.0')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
@@ -972,8 +974,8 @@
                                                         Address</label>
                                                     <input type="text" class="form-control address-0-new"
                                                         id="per_address" name="per_address[]"
-                                                        value="{{ old('Permanent_Residence_Address') }}">
-                                                    @error('per_address')
+                                                        value="{{ old('per_address.0') }}">
+                                                    @error('per_address.0')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
@@ -984,8 +986,8 @@
                                                     <label for="per_landmark" class="text-nowrap">Landmark</label>
                                                     <input type="text" class="form-control per-landmark-0-new"
                                                         id="per_landmark" name="per_landmark[]"
-                                                        value="{{ old('Permanent_Landmark') }}">
-                                                    @error('per_landmark')
+                                                        value="{{ old('per_landmark.0') }}">
+                                                    @error('per_landmark.0')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
@@ -999,8 +1001,8 @@
                                                     <input type="text" class="form-control pincode-input-0-new"
                                                         id="per_pincode" onInput="checkPincodeLength1(this)"
                                                         data-index="0" name="per_pincode[]"
-                                                        value="{{ old('Permanent_pincode') }}">
-                                                    @error('per_pincode')
+                                                        value="{{ old('per_pincode.0') }}">
+                                                    @error('per_pincode.0')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
@@ -1024,8 +1026,8 @@
                                                     <label for="per_District" class="text-nowrap">District</label>
                                                     <input type="text" class="form-control district-0-new"
                                                         id="per_District" name="per_District[]"
-                                                        value="{{ old('Permanent_District') }}">
-                                                    @error('per_District')
+                                                        value="{{ old('per_District.0') }}">
+                                                    @error('per_District.0')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
@@ -1035,8 +1037,8 @@
                                                 <div class="form-group">
                                                     <label for="per_State" class="text-nowrap">State</label>
                                                     <input type="text" class="form-control state-0-new" id="per_State"
-                                                        name="per_State[]" value="{{ old('Permanent_State') }}">
-                                                    @error('per_State')
+                                                        name="per_State[]" value="{{ old('per_State.0') }}">
+                                                    @error('per_State.0')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
@@ -1049,8 +1051,8 @@
                                                     <label for="per_state_code" class="text-nowrap">State/UT code</label>
                                                     <input type="text" class="form-control state-code-0-new"
                                                         id="per_state_code" name="per_state_code[]"
-                                                        value="{{ old('Permanent_State_code') }}">
-                                                    @error('per_state_code')
+                                                        value="{{ old('per_state_code.0') }}">
+                                                    @error('per_state_code.0')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
@@ -1062,8 +1064,8 @@
                                                         Code</label>
                                                     <input type="text" class="form-control country-code-0-new"
                                                         id="per_country_code" name="per_country_code[]"
-                                                        value="{{ old('Permanent_Country_Code') }}">
-                                                    @error('per_country_code')
+                                                        value="{{ old('per_country_code.0') }}">
+                                                    @error('per_country_code.0')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
@@ -1076,8 +1078,8 @@
                                                 <div class="form-group">
                                                     <label for="mobile" class="text-nowrap">Mobile No</label>
                                                     <input type="text" class="form-control" id="mobile"
-                                                        name="mobile[]" value="{{ old('proprietor_Mobile_no') }}">
-                                                    @error('mobile')
+                                                        name="mobile[]" value="{{ old('mobile.0') }}">
+                                                    @error('mobile.0')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
@@ -1087,8 +1089,8 @@
                                                 <div class="form-group">
                                                     <label for="email" class="text-nowrap">E-mail Address</label>
                                                     <input type="text" class="form-control" id="email"
-                                                        name="email[]" value="{{ old('proprietor_email') }}">
-                                                    @error('email')
+                                                        name="email[]" value="{{ old('email.0') }}">
+                                                    @error('email.0')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
@@ -1098,8 +1100,8 @@
                                                 <div class="form-group">
                                                     <label for="pan" class="text-nowrap">PAN</label>
                                                     <input type="text" class="form-control" id="pan"
-                                                        name="pan[]" value="{{ old('proprietor_pannumber') }}">
-                                                    @error('pan')
+                                                        name="pan[]" value="{{ old('pan.0') }}">
+                                                    @error('pan.0')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
@@ -1111,8 +1113,8 @@
                                                 <div class="form-group">
                                                     <label for="adhar" class="text-nowrap">AADHAR No</label>
                                                     <input type="text" class="form-control" id="adhar"
-                                                        name="adhar[]" value="{{ old('proprietor_adharnumber') }}">
-                                                    @error('adhar')
+                                                        name="adhar[]" value="{{ old('adhar.0') }}">
+                                                    @error('adhar.0')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
