@@ -266,6 +266,9 @@ Route::get('viewpdf/{loan_id}',[FormController::class,'viewPdf'])->name('viewpdf
 Route::get('download-pdf/{loan_id}', [FormController::class, 'downloadPDF'])->name('download.pdf');
 Route::get('/generate-pdf/{loan_id}', [PDFController::class,'generatePDF'])->name('generate.pdf');
 
+// for test 20-12-2024
+Route::get('viewpdffinal/{loan_id}',[FormController::class,'viewPdffinal'])->name('viewpdf');
+Route::get('download-finalpdf/{loan_id}', [FormController::class, 'downloadPDFfinal'])->name('download.pdf');
 
 // Credit data
 // Route::post('creditsatage/add',[CamController::class,'addcreditstage'])->name('add-creditstage');

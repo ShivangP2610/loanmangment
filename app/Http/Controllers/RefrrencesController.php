@@ -22,15 +22,15 @@ class RefrrencesController extends Controller
      */
     public function create()
     {
-        // $id = session()->get('application_id'); 
- 
-        $id1 = session()->get('application_id'); 
-        if ($id1){ 
+        // $id = session()->get('application_id');
+
+        $id1 = session()->get('application_id');
+        if ($id1){
             $id = session()->get('application_id');
 
         }else{
             $id = session('mainloan_id');
-        } 
+        }
 
         $url = url('/reference/add');
         $title = 'REFERENCES';
@@ -80,10 +80,10 @@ class RefrrencesController extends Controller
 
 
         // $id = session()->get('application_id');
-        // $id = session('mainloan_id'); 
+        // $id = session('mainloan_id');
 
-        $id1 = session()->get('application_id'); 
-        if ($id1){ 
+        $id1 = session()->get('application_id');
+        if ($id1){
             $id = session()->get('application_id');
 
         }else{
@@ -121,13 +121,12 @@ class RefrrencesController extends Controller
 
         $FormOffice = FormOffice::where('loan_id' ,$ref->loan_id)->first();
     //    dd($FormOffice);
+        // dd($FormOffice->Prospect_No);
         $FormOffice->app_status = 'office approved';
         $FormOffice->update();
-
-
-
-
-        return redirect()->back()->with('success', 'References created successfully.');
+        
+        // return redirect()->back()->with('success', 'References created successfully.');
+        return redirect('/home')->with('success', 'References created successfully.');
 
     }
 

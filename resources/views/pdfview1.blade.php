@@ -5,7 +5,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-        } 
+        }
         .background-logo {
             position: fixed;
             top: 20%;
@@ -93,7 +93,7 @@
 
     </style>
 </head>
-<body> 
+<body>
     <div>
         <img src="{{ asset('admin/dist/img/logo.jpeg') }}" alt="Background Logo" class="background-logo" style="width: 600px; height: 600px; box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);">
     </div>
@@ -172,12 +172,19 @@
             </tr>
         </thead>
         <tbody>
+            {{-- <tr>
+                <!-- Image Column spanning 6 rows -->
+                <td  rowspan="" style="border:1px solid black !important; vertical-align: top; text-align: start;">
+                    <img src="path/to/image.jpg" alt="Borrower Image" style="width:100%; max-width:150px; height:auto; display:block; margin:auto;">
+                </td>
+            </tr> --}}
+
             <tr>
                 <td colspan="3">
                     <table width="100%" style="border:none !important;">
                         <tr >
                             <td width="30%" class="fontstyle">Name of Borrower: </td>
-                            <td width="70%" class="data-field">{{ $customer->cust_name }}</td>
+                            <td width="70%" style="border-right: none !important" class="data-field">{{ $customer->cust_name }}</td>
                         </tr>
                     </table>
                 </td>
@@ -186,7 +193,7 @@
                 <td colspan="3">
                     <table style="border:none !important;">
                         <tr>
-                            <td width="60%" class="fontstyle" >Borrower Entity Type:<span class="data-field" style="margin-left:30px;">{{ $customer->cust_entity_type}}</span></td>
+                            <td width="60%" class="fontstyle" >Borrower Entity Type:<span class="data-field" style="margin-left:25px;">{{ $customer->cust_entity_type}}</span></td>
                             <td width="40%" class="fontstyle">Date of Incorporation:<span class="data-field" style="margin-left:30px;">{{ $customer->Date_of_Incorporation}}</span></td>
                         </tr>
                     </table>
@@ -197,7 +204,7 @@
                     <table width="100%" style="border:none !important;">
                         <tr>
                             <td width="30%" class="fontstyle">Principal office address / Place of Business: </td>
-                            <td width="70%" class="data-field">{{ $customer->Principal_office_address }}</td>
+                            <td width="70%" style="border-right: none !important" class="data-field">{{ $customer->Principal_office_address }}</td>
                         </tr>
                     </table>
                 </td>
@@ -206,8 +213,8 @@
                 <td colspan="3">
                     <table width="100%" style="border:none !important;">
                         <tr>
-                            <td width="33%" class="fontstyle">City/Town/Village: <span class="data-field" style="margin-left:50px;">{{ $customer->Principal_City }}</span></td>
-                            <td width="33%" class="fontstyle">District: <span class="data-field" style="margin-left:50px;">{{ $customer->Principal_District }}</span></td>
+                            <td width="33%" class="fontstyle">City/Town/Village: <span class="data-field" style="margin-left:43px;">{{ $customer->Principal_City }}</span></td>
+                            <td width="33%" class="fontstyle">District: <span class="data-field" style="margin-left:51px;">{{ $customer->Principal_District }}</span></td>
                             <td width="33%" class="fontstyle">State: <span class="data-field" style="margin-left:50px;">{{ $customer->Principal_State }}</span></td>
                         </tr>
                     </table>
@@ -217,7 +224,7 @@
                 <td colspan="3">
                     <table width="100%" style="border:none !important;">
                         <tr>
-                            <td width="33%" class="fontstyle">Pin/Post Code: <span class="data-field" style="margin-left:68px;">{{ $customer->Principal_pincode }}</span></td>
+                            <td width="33%" class="fontstyle">Pin/Post Code: <span class="data-field" style="margin-left:62px;">{{ $customer->Principal_pincode }}</span></td>
                             <td width="33%" class="fontstyle">State/UT code: <span class="data-field" style="margin-left:5px;">{{ $customer->Principal_State_code }}</span></td>
                             <td width="33%" class="fontstyle">ISO 3166 Country Code: <span class="data-field" style="margin-left:5px;">{{ $customer->Principal_Country_Code }}</span></td>
                         </tr>
@@ -229,7 +236,7 @@
                     <table width="100%" style="border:none !important;">
                         <tr>
                             <td width="30%" class="fontstyle">Permanent office Address: </td>
-                            <td width="70%" class="data-field">{{ $customer->Permanent_office_address }}</td>
+                            <td width="70%" style="border-right: none !important" class="data-field">{{ $customer->Permanent_office_address }}</td>
                         </tr>
                     </table>
                 </td>
@@ -238,8 +245,8 @@
                 <td colspan="3">
                     <table width="100%" style="border:none !important;">
                         <tr>
-                            <td width="33%" class="fontstyle">City/Town/Village: <span class="data-field" style="margin-left:50px;">{{ $customer->Permanent_City }}</span></td>
-                            <td width="33%" class="fontstyle">District: <span class="data-field" style="margin-left:50px;">{{ $customer->Permanent_District }}</span></td>
+                            <td width="33%" class="fontstyle">City/Town/Village: <span class="data-field" style="margin-left:43px;">{{ $customer->Permanent_City }}</span></td>
+                            <td width="33%" class="fontstyle">District: <span class="data-field" style="margin-left:51px;">{{ $customer->Permanent_District }}</span></td>
                             <td width="33%" class="fontstyle">State:<span class="data-field" style="margin-left:50px;">{{ $customer->Permanent_State }}</span></td>
                         </tr>
                     </table>
@@ -249,7 +256,7 @@
                 <td colspan="3">
                     <table width="100%" style="border:none !important;">
                         <tr>
-                            <td width="33%" class="fontstyle">Pin/Post Code: <span class="data-field" style="margin-left:68px;">{{ $customer->Permanent_pincode }}</span></td>
+                            <td width="33%" class="fontstyle">Pin/Post Code: <span class="data-field" style="margin-left:62px;">{{ $customer->Permanent_pincode }}</span></td>
                             <td width="33%" class="fontstyle">State/UT code: <span class="data-field" style="margin-left:5px;">{{ $customer->Permanent_State_code }}</span></td>
                             <td width="33%" class="fontstyle">ISO 3166 Country Code: <span class="data-field" style="margin-left:5px;">{{ $customer->Permanent_Country_Code }}</span></td>
                         </tr>
@@ -261,7 +268,7 @@
                     <table width="100%" style="border:none !important;">
                         <tr>
                             <td width="30%" class="fontstyle">Place of incorporation: </td>
-                            <td width="70%" class="data-field">{{ $customer->Place_of_incorporation }}</td>
+                            <td width="70%" style="border-right: none !important" class="data-field">{{ $customer->Place_of_incorporation }}</td>
                         </tr>
                     </table>
                 </td>
@@ -270,7 +277,7 @@
                 <td colspan="3">
                     <table width="100%" style="border:none !important;">
                         <tr>
-                            <td width="50%" class="fontstyle">Telephone (office):  <span class="data-field" style="margin-left:44px">{{ $customer->cust_Telephone }}</span></td>
+                            <td width="50%" class="fontstyle">Telephone (office):  <span class="data-field" style="margin-left:39px">{{ $customer->cust_Telephone }}</span></td>
                             <td width="50%" class="fontstyle">E-mail Address:  <span class="data-field" style="margin-left:44px">{{ $customer->cust_email }}</span></td>
                         </tr>
                     </table>
@@ -290,10 +297,10 @@
                 <td colspan="3">
                     <table width="100%" style="border:none !important;">
                         <tr>
-                            <td width="30%" class="fontstyle">GST:  <span class="data-field">{{ $customer->cust_gst }}</span></td>
-                            <td width="25%" class="fontstyle">PAN:  <span class="data-field">{{ $customer->cust_pannumber }}</span></td>
-                            <td width="15%" class="fontstyle">Form 60:  <span class="data-field">{{ $customer->Form_60 }}</span></td>
-                            <td width="30%" class="fontstyle">Overall Business Vintage:  <span class="data-field">{{ $customer->Overall_Business_Vintage }}</span></td>
+                            <td width="23%" class="fontstyle">GST:  <span class="data-field">{{ $customer->cust_gst }}</span></td>
+                            <td width="22%" class="fontstyle">PAN:  <span class="data-field">{{ $customer->cust_pannumber }}</span></td>
+                            <td width="20%" class="fontstyle">Form 60:  <span class="data-field">{{ $customer->Form_60 }}</span></td>
+                            <td width="35%" class="fontstyle">Overall Business Vintage:  <span class="data-field">{{ $customer->Overall_Business_Vintage }}</span></td>
                         </tr>
                     </table>
                 </td>
@@ -368,7 +375,7 @@
                                 <table width="100%" style="border:none !important;">
                                     <tr>
                                         <td width="50%" class="fontstyle">Date of Birth
-                                            <span class="data-field" style="margin-left:43px;">{{ $Proprietor->Date_of_Birth }}</span>
+                                            <span class="data-field" style="margin-left:29px;">{{ $Proprietor->Date_of_Birth }}</span>
                                         </td>
                                         <td width="50%" class="fontstyle">Gender:
                                             <span class="data-field" style="margin-left:39px;">{{ $Proprietor->Gender }}</span>
@@ -379,10 +386,10 @@
                         </tr>
                         <tr>
                             <td colspan="2">
-                                <table width="100%">
+                                <table width="100%" style="border:none !important;">
                                     <tr>
                                         <td width="50%" class="fontstyle">Marital Status:
-                                            <span class="data-field" style="margin-left:31px;">{{ $Proprietor->Marital_Status }}</span>
+                                            <span class="data-field" style="margin-left:18px;">{{ $Proprietor->Marital_Status }}</span>
                                         </td>
                                         <td width="50%" class="fontstyle">Citizenship:
                                             <span class="data-field" style="margin-left:18px;">{{ $Proprietor->Citizenship }}</span>
@@ -400,7 +407,7 @@
                     <table width="100%" style="border-bottom:1px solid black !important;">
                         <tr>
                             <td colspan="3">
-                                <table width="100%">
+                                <table width="100%" style="border:none !important;">
                                     <tr>
                                         <td width="50%" class="fontstyle">Father Name/ Spouse Name:
                                             <span class="data-field" style="margin-left:31px;">{{ $Proprietor->father_or_spouse_name}}</span>
@@ -461,7 +468,7 @@
                             <td colspan="3">
                                 <table width="100%" style="border:none !important;">
                                     <tr>
-                                        <td width="33%" class="fontstyle">City/Town/Village: <span class="data-field" style="margin-left:48px;">{{  $Proprietor->Current_City}}</span></td>
+                                        <td width="33%" class="fontstyle">City/Town/Village: <span class="data-field" style="margin-left:42px;">{{  $Proprietor->Current_City}}</span></td>
                                         <td width="33%" class="fontstyle">District: <span class="data-field" style="margin-left:50px;">{{  $Proprietor->Current_District}}</span></td>
                                         <td width="33%" class="fontstyle">State:<span class="data-field" style="margin-left:50px;">{{  $Proprietor->Current_State}}</span></td>
                                     </tr>
@@ -472,7 +479,7 @@
                             <td colspan="3">
                                 <table width="100%" style="border:none !important;">
                                     <tr>
-                                        <td width="33%" class="fontstyle">Pin/Post Code: <span class="data-field" style="margin-left:66px;">{{   $Proprietor->Current_pincode}}</span></td>
+                                        <td width="33%" class="fontstyle">Pin/Post Code: <span class="data-field" style="margin-left:62px;">{{   $Proprietor->Current_pincode}}</span></td>
                                         <td width="33%" class="fontstyle">State/UT code: <span class="data-field" style="margin-left:5px;">{{   $Proprietor->Current_State_code}}</span></td>
                                         <td width="33%" class="fontstyle">ISO 3166 Country Code: <span class="data-field" style="margin-left:5px;">{{   $Proprietor->Current_Country_Code}}</span></td>
                                     </tr>
@@ -530,7 +537,7 @@
                             <td colspan="3">
                                 <table width="100%" style="border:none !important;">
                                     <tr>
-                                        <td width="33%" class="fontstyle">City/Town/Village: <span class="data-field" style="margin-left:48px;">{{ $Proprietor->Permanent_City}}</span></td>
+                                        <td width="33%" class="fontstyle">City/Town/Village: <span class="data-field" style="margin-left:42px;">{{ $Proprietor->Permanent_City}}</span></td>
                                         <td width="33%" class="fontstyle">District: <span class="data-field" style="margin-left:50px;">{{ $Proprietor->Permanent_District}}</span></td>
                                         <td width="33%" class="fontstyle">State:<span class="data-field" style="margin-left:50px;">{{ $Proprietor->Permanent_State}}</span></td>
                                     </tr>
@@ -541,7 +548,7 @@
                             <td colspan="3">
                                 <table width="100%" style="border:none !important;">
                                     <tr>
-                                        <td width="33%" class="fontstyle">Pin/Post Code: <span class="data-field" style="margin-left:66px;">{{ $Proprietor->Permanent_pincode}}</span></td>
+                                        <td width="33%" class="fontstyle">Pin/Post Code: <span class="data-field" style="margin-left:62px;">{{ $Proprietor->Permanent_pincode}}</span></td>
                                         <td width="33%" class="fontstyle">State/UT code: <span class="data-field" style="margin-left:5px;">{{ $Proprietor->Permanent_State_code}}</span></td>
                                         <td width="33%" class="fontstyle">ISO 3166 Country Code: <span class="data-field" style="margin-left:5px;">{{ $Proprietor->Permanent_Country_Code}}</span></td>
                                     </tr>
@@ -552,7 +559,7 @@
                             <td colspan="3">
                                 <table width="100%" style="border:none !important;">
                                     <tr>
-                                        <td width="50%" class="fontstyle">Telephone (office):  <span class="data-field" style="margin-left:43px">{{ $Proprietor->proprietor_Mobile_no}}</span></td>
+                                        <td width="50%" class="fontstyle">Telephone (office):  <span class="data-field" style="margin-left:39px">{{ $Proprietor->proprietor_Mobile_no}}</span></td>
                                         <td width="50%" class="fontstyle">E-mail Address:  <span class="data-field" style="margin-left:44px">{{ $Proprietor->proprietor_email}}</span></td>
                                     </tr>
                                 </table>
@@ -562,7 +569,7 @@
                             <td colspan="3">
                                 <table width="100%" style="border:none !important;">
                                     <tr>
-                                        <td width="36%" class="fontstyle">PAN:<span class="data-field" style="margin-left:131px;">{{ $Proprietor->proprietor_pannumber}}</span></td>
+                                        <td width="36%" class="fontstyle">PAN:<span class="data-field" style="margin-left:127px;">{{ $Proprietor->proprietor_pannumber}}</span></td>
                                         <td width="20%" class="fontstyle">Form 60:<span class="data-field" style="margin-left:27px;">{{ $Proprietor->proprietor_Form_60}}</span></td>
                                         <td width="44%" class="fontstyle">AADHAR No.:<span class="data-field" style="margin-left:16px;">{{ $Proprietor->proprietor_adharnumber}}</span></td>
                                     </tr>
@@ -894,10 +901,28 @@
                         <tr>
                             <td width="20%">Full Name</td>
                             <td width="80%">
-                            <input type="text" value="{{$Remainingpartners[0]->partners_name ? $Remainingpartners[0]->partners_name : ''}}" class="widthheight"></input>
+                            {{-- <input type="text" value="{{$Remainingpartners[0]->partners_name ? $Remainingpartners[0]->partners_name : ''}}" class="widthheight"></input>
                             <input type="text"  value="{{$Remainingpartners[1]->partners_name ? $Remainingpartners[1]->partners_name : ''}}" class="widthheight"></input>
-                            <input type="text"   value="{{$Remainingpartners[2]->partners_name ? $Remainingpartners[2]->partners_name : ''}}"  class="widthheight"></input>
-                            </td>
+                            <input type="text"   value="{{$Remainingpartners[2]->partners_name ? $Remainingpartners[2]->partners_name : ''}}"  class="widthheight"></input> --}}
+                            @if (isset($Remainingpartners[0]) && $Remainingpartners[0] !== null)
+                            <input type="text" value="{{ $Remainingpartners[0]->partners_name ?? '' }}" class="widthheight">
+                            @else
+                                <input type="text" value="" class="widthheight">
+                            @endif
+
+                            @if (isset($Remainingpartners[1]) && $Remainingpartners[1] !== null)
+                                <input type="text" value="{{ $Remainingpartners[1]->partners_name ?? '' }}" class="widthheight">
+                            @else
+                                <input type="text" value="" class="widthheight">
+                            @endif
+
+                            @if (isset($Remainingpartners[2]) && $Remainingpartners[2] !== null)
+                                <input type="text" value="{{ $Remainingpartners[2]->partners_name ?? '' }}" class="widthheight">
+                            @else
+                                <input type="text" value="" class="widthheight">
+                            @endif
+
+                        </td>
 
 
                         </tr>
@@ -910,10 +935,27 @@
                         <tr>
                             <td width="20%">Date of Birth</td>
                             <td width="80%">
-                            <input type="text" value="{{$Remainingpartners[0]->Date_of_Birth ? $Remainingpartners[0]->Date_of_Birth : ''}}" class="widthheight"></input>
+                            {{-- <input type="text" value="{{$Remainingpartners[0]->Date_of_Birth ? $Remainingpartners[0]->Date_of_Birth : ''}}" class="widthheight"></input>
                             <input type="text"  value="{{$Remainingpartners[1]->Date_of_Birth ? $Remainingpartners[1]->Date_of_Birth : ''}}"class="widthheight"></input>
-                            <input type="text"  value="{{$Remainingpartners[2]->Date_of_Birth ? $Remainingpartners[2]->Date_of_Birth : ''}}"class="widthheight"></input>
-                            </td>
+                            <input type="text"  value="{{$Remainingpartners[2]->Date_of_Birth ? $Remainingpartners[2]->Date_of_Birth : ''}}"class="widthheight"></input> --}}
+                            @if (isset($Remainingpartners[0]) && $Remainingpartners[0] !== null)
+                            <input type="text" value="{{ $Remainingpartners[0]->Date_of_Birth ?? '' }}" class="widthheight">
+                            @else
+                                <input type="text" value="" class="widthheight">
+                            @endif
+
+                            @if (isset($Remainingpartners[1]) && $Remainingpartners[1] !== null)
+                                <input type="text" value="{{ $Remainingpartners[1]->Date_of_Birth ?? '' }}" class="widthheight">
+                            @else
+                                <input type="text" value="" class="widthheight">
+                            @endif
+
+                            @if (isset($Remainingpartners[2]) && $Remainingpartners[2] !== null)
+                                <input type="text" value="{{ $Remainingpartners[2]->Date_of_Birth ?? '' }}" class="widthheight">
+                            @else
+                                <input type="text" value="" class="widthheight">
+                            @endif
+                        </td>
 
 
                         </tr>
@@ -926,10 +968,27 @@
                         <tr>
                             <td width="20%">PAN No.</td>
                             <td width="80%">
-                            <input type="text"  value="{{$Remainingpartners[0]->partners_pannumber ? $Remainingpartners[0]->partners_pannumber : ''}}" class="widthheight"></input>
+                            {{-- <input type="text"  value="{{$Remainingpartners[0]->partners_pannumber ? $Remainingpartners[0]->partners_pannumber : ''}}" class="widthheight"></input>
                             <input type="text"  value="{{$Remainingpartners[1]->partners_pannumber ? $Remainingpartners[1]->partners_pannumber : ''}}" class="widthheight"></input>
-                            <input type="text"  value="{{$Remainingpartners[2]->partners_pannumber ? $Remainingpartners[2]->partners_pannumber : ''}}" class="widthheight"></input>
-                            </td>
+                            <input type="text"  value="{{$Remainingpartners[2]->partners_pannumber ? $Remainingpartners[2]->partners_pannumber : ''}}" class="widthheight"></input> --}}
+                            @if (isset($Remainingpartners[0]) && $Remainingpartners[0] !== null)
+                            <input type="text" value="{{ $Remainingpartners[0]->partners_pannumber ?? '' }}" class="widthheight">
+                            @else
+                                <input type="text" value="" class="widthheight">
+                            @endif
+
+                            @if (isset($Remainingpartners[1]) && $Remainingpartners[1] !== null)
+                                <input type="text" value="{{ $Remainingpartners[1]->partners_pannumber ?? '' }}" class="widthheight">
+                            @else
+                                <input type="text" value="" class="widthheight">
+                            @endif
+
+                            @if (isset($Remainingpartners[2]) && $Remainingpartners[2] !== null)
+                                <input type="text" value="{{ $Remainingpartners[2]->partners_pannumber ?? '' }}" class="widthheight">
+                            @else
+                                <input type="text" value="" class="widthheight">
+                            @endif
+                        </td>
 
 
                         </tr>
@@ -942,10 +1001,27 @@
                         <tr>
                             <td width="20%">Residential Address</td>
                             <td width="80%">
-                            <input type="text" value="{{$Remainingpartners[0]->partners_Residence_Address ? $Remainingpartners[0]->partners_Residence_Address : ''}}" class="widthheight"></input>
+                            {{-- <input type="text" value="{{$Remainingpartners[0]->partners_Residence_Address ? $Remainingpartners[0]->partners_Residence_Address : ''}}" class="widthheight"></input>
                             <input type="text" value="{{$Remainingpartners[1]->partners_Residence_Address ? $Remainingpartners[1]->partners_Residence_Address : ''}}" class="widthheight"></input>
-                            <input type="text" value="{{$Remainingpartners[2]->partners_Residence_Address ? $Remainingpartners[2]->partners_Residence_Address : ''}}" class="widthheight"></input>
-                            </td>
+                            <input type="text" value="{{$Remainingpartners[2]->partners_Residence_Address ? $Remainingpartners[2]->partners_Residence_Address : ''}}" class="widthheight"></input> --}}
+                            @if (isset($Remainingpartners[0]) && $Remainingpartners[0] !== null)
+                            <input type="text" value="{{ $Remainingpartners[0]->partners_Residence_Address ?? '' }}" class="widthheight">
+                            @else
+                                <input type="text" value="" class="widthheight">
+                            @endif
+
+                            @if (isset($Remainingpartners[1]) && $Remainingpartners[1] !== null)
+                                <input type="text" value="{{ $Remainingpartners[1]->partners_Residence_Address ?? '' }}" class="widthheight">
+                            @else
+                                <input type="text" value="" class="widthheight">
+                            @endif
+
+                            @if (isset($Remainingpartners[2]) && $Remainingpartners[2] !== null)
+                                <input type="text" value="{{ $Remainingpartners[2]->partners_Residence_Address ?? '' }}" class="widthheight">
+                            @else
+                                <input type="text" value="" class="widthheight">
+                            @endif
+                        </td>
 
 
                         </tr>
@@ -958,10 +1034,27 @@
                         <tr>
                             <td width="20%">Tel/Mobile</td>
                             <td width="80%">
-                            <input type="text" value="{{$Remainingpartners[0]->partners_Mobile_no ? $Remainingpartners[0]->partners_Mobile_no : ''}}" class="widthheight"></input>
+                            {{-- <input type="text" value="{{$Remainingpartners[0]->partners_Mobile_no ? $Remainingpartners[0]->partners_Mobile_no : ''}}" class="widthheight"></input>
                             <input type="text"  value="{{$Remainingpartners[1]->partners_Mobile_no ? $Remainingpartners[1]->partners_Mobile_no : ''}}" class="widthheight"></input>
-                            <input type="text"  value="{{$Remainingpartners[2]->partners_Mobile_no ? $Remainingpartners[2]->partners_Mobile_no : ''}}" class="widthheight"></input>
-                            </td>
+                            <input type="text"  value="{{$Remainingpartners[2]->partners_Mobile_no ? $Remainingpartners[2]->partners_Mobile_no : ''}}" class="widthheight"></input> --}}
+                            @if (isset($Remainingpartners[0]) && $Remainingpartners[0] !== null)
+                            <input type="text" value="{{ $Remainingpartners[0]->partners_Mobile_no ?? '' }}" class="widthheight">
+                            @else
+                                <input type="text" value="" class="widthheight">
+                            @endif
+
+                            @if (isset($Remainingpartners[1]) && $Remainingpartners[1] !== null)
+                                <input type="text" value="{{ $Remainingpartners[1]->partners_Mobile_no ?? '' }}" class="widthheight">
+                            @else
+                                <input type="text" value="" class="widthheight">
+                            @endif
+
+                            @if (isset($Remainingpartners[2]) && $Remainingpartners[2] !== null)
+                                <input type="text" value="{{ $Remainingpartners[2]->partners_Mobile_no ?? '' }}" class="widthheight">
+                            @else
+                                <input type="text" value="" class="widthheight">
+                            @endif
+                        </td>
 
 
                         </tr>
@@ -974,10 +1067,27 @@
                         <tr>
                             <td width="20%">Work Experience</td>
                             <td width="80%">
-                            <input type="text" value="{{$Remainingpartners[0]->partners_workexp ? $Remainingpartners[0]->partners_workexp : ''}}"  class="widthheight"></input>
+                            {{-- <input type="text" value="{{$Remainingpartners[0]->partners_workexp ? $Remainingpartners[0]->partners_workexp : ''}}"  class="widthheight"></input>
                             <input type="text" value="{{$Remainingpartners[1]->partners_workexp ? $Remainingpartners[1]->partners_workexp : ''}}"  class="widthheight"></input>
-                            <input type="text" value="{{$Remainingpartners[2]->partners_workexp ? $Remainingpartners[2]->partners_workexp : ''}}"  class="widthheight"></input>
-                            </td>
+                            <input type="text" value="{{$Remainingpartners[2]->partners_workexp ? $Remainingpartners[2]->partners_workexp : ''}}"  class="widthheight"></input> --}}
+                            @if (isset($Remainingpartners[0]) && $Remainingpartners[0] !== null)
+                            <input type="text" value="{{ $Remainingpartners[0]->partners_workexp ?? '' }}" class="widthheight">
+                            @else
+                                <input type="text" value="" class="widthheight">
+                            @endif
+
+                            @if (isset($Remainingpartners[1]) && $Remainingpartners[1] !== null)
+                                <input type="text" value="{{ $Remainingpartners[1]->partners_workexp ?? '' }}" class="widthheight">
+                            @else
+                                <input type="text" value="" class="widthheight">
+                            @endif
+
+                            @if (isset($Remainingpartners[2]) && $Remainingpartners[2] !== null)
+                                <input type="text" value="{{ $Remainingpartners[2]->partners_workexp ?? '' }}" class="widthheight">
+                            @else
+                                <input type="text" value="" class="widthheight">
+                            @endif
+                        </td>
 
 
                         </tr>
@@ -990,10 +1100,27 @@
                         <tr>
                             <td width="20%">Shareholding % in borrowing entity</td>
                             <td width="80%">
-                            <input type="text"  value="{{$Remainingpartners[0]->shareholding_with_cust_entity ? $Remainingpartners[0]->shareholding_with_cust_entity : ''}}" class="widthheight"></input>
+                            {{-- <input type="text"  value="{{$Remainingpartners[0]->shareholding_with_cust_entity ? $Remainingpartners[0]->shareholding_with_cust_entity : ''}}" class="widthheight"></input>
                             <input type="text"  value="{{$Remainingpartners[1]->shareholding_with_cust_entity ? $Remainingpartners[1]->shareholding_with_cust_entity : ''}}" class="widthheight"></input>
-                            <input type="text"  value="{{$Remainingpartners[2]->shareholding_with_cust_entity ? $Remainingpartners[2]->shareholding_with_cust_entity : ''}}" class="widthheight"></input>
-                            </td>
+                            <input type="text"  value="{{$Remainingpartners[2]->shareholding_with_cust_entity ? $Remainingpartners[2]->shareholding_with_cust_entity : ''}}" class="widthheight"></input> --}}
+                            @if (isset($Remainingpartners[0]) && $Remainingpartners[0] !== null)
+                            <input type="text" value="{{ $Remainingpartners[0]->shareholding_with_cust_entity ?? '' }}" class="widthheight">
+                            @else
+                                <input type="text" value="" class="widthheight">
+                            @endif
+
+                            @if (isset($Remainingpartners[1]) && $Remainingpartners[1] !== null)
+                                <input type="text" value="{{ $Remainingpartners[1]->shareholding_with_cust_entity ?? '' }}" class="widthheight">
+                            @else
+                                <input type="text" value="" class="widthheight">
+                            @endif
+
+                            @if (isset($Remainingpartners[2]) && $Remainingpartners[2] !== null)
+                                <input type="text" value="{{ $Remainingpartners[2]->shareholding_with_cust_entity ?? '' }}" class="widthheight">
+                            @else
+                                <input type="text" value="" class="widthheight">
+                            @endif
+                        </td>
 
 
                         </tr>
@@ -1019,7 +1146,11 @@
             <tr>
                 <td colspan="3">
                     <table width="100%" style="border:none !important;">
+
                     @foreach ( $BankDetailes as  $BankDetaile )
+                    <tr>
+                        <td colspan="2" style="font-weight: bold; text-align: left; padding: 10px 0;">Bank Detail {{ $loop->iteration }}</td>
+                    </tr>
                         <tr>
                             <td width="30%" class="fontstyle">Name of Bank:</td>
                             <td width="70%" class="data-field">{{ $BankDetaile->bank_name }}</td>
@@ -1032,7 +1163,7 @@
                             <td colspan="3">
                                 <table width="100%" style="border:none !important;">
                                     <tr>
-                                        <td width="65%" class="fontstyle">Account Holder Name:  <span class="data-field" style="margin-left:20px">{{ $BankDetaile->account_holder_name}}</span></td>
+                                        <td width="65%" class="fontstyle">Account Holder Name:  <span class="data-field" style="margin-left:15px">{{ $BankDetaile->account_holder_name}}</span></td>
                                         <td width="35%" class="fontstyle">Account Number:  <span class="data-field" style="margin-left:44px">{{ $BankDetaile->account_number}}</span></td>
                                     </tr>
                                 </table>
@@ -1042,8 +1173,8 @@
                             <td colspan="3">
                                 <table width="100%" style="border:none !important;">
                                     <tr>
-                                        <td width="65%" class="fontstyle">Type of Account:<span class="data-field" style="margin-left:60px">{{ $BankDetaile->Type_of_Account}}</span></td>
-                                        <td width="35%" class="fontstyle">Account Operational Since<span class="data-field" style="margin-left:44px">{{ $BankDetaile->account_oprete_since}}</span></td>
+                                        <td width="65%" class="fontstyle">Type of Account:<span class="data-field" style="margin-left:54px">{{ $BankDetaile->Type_of_Account}}</span></td>
+                                        <td width="35%" class="fontstyle">Account Operational Since<span class="data-field" style="margin-left:35px">{{ $BankDetaile->account_oprete_since}}</span></td>
                                     </tr>
                                 </table>
                             </td>
@@ -1052,7 +1183,7 @@
                             <td colspan="3">
                                 <table width="100%" style="border:none !important;">
                                     <tr>
-                                        <td width="65%" class="fontstyle">IFSC Code:<span class="data-field" style="margin-left:90px">{{ $BankDetaile->ifsc_code}}</span></td>
+                                        <td width="65%" class="fontstyle">IFSC Code:<span class="data-field" style="margin-left:86px">{{ $BankDetaile->ifsc_code}}</span></td>
                                         <td width="35%" class="fontstyle">MICR Code:<span class="data-field" style="margin-left:50px">{{ $BankDetaile->micr_code}}
                                         </span></td>
                                     </tr>
@@ -1414,10 +1545,10 @@
                 <td class="fontstyle" colspan="3" style="border: 1px solid black;">
                     ROI Based on credit evaluation process
                     <p>
-                        At IIFL we have adopted risk based pricing, which is arrived by taking into account, broad parameters like the customers financial and
+                        At FinDrop Capital we have adopted risk based pricing, which is arrived by taking into account, broad parameters like the customers financial and
                         credit profile. Applicable interest rates are arrived at taking into account the prevailing market rates at the time of sanctioning.
-                        Accordingly, the rate of interest may change from time to time as may be intimated by IIFL. The details are also available on our website:
-                        www.iifl.com.
+                        Accordingly, the rate of interest may change from time to time as may be intimated by FinDrop Capital. The details are also available on our website:
+                        www.FinDrop Capital.com.
                     </p>
                 </td>
             </tr>
@@ -1442,8 +1573,8 @@
                             <td width="100%" class="fontstyle">
                                 <p>
                                     • The Borrower(s) confirm having read and understood terms of the Application Form which would apply to the Facility being requested under this Application Form.<br>
-                                    • The Borrower(s) understand that sanction of the Facility and any disbursement thereunder is at the sole discretion of India IIFL Finance Limited (IIFL) (Formerly known as “IIFL Holdings Limited”) which reserves its right to reject the Application (with or without notice to the Borrower), and that IIFL shall not be responsible/liable in any manner whatsoever for such rejection or any delay in notifying me of such rejection. The Borrower(s) understand and agree that IIFL and/or its group companies reserve the rights to retain the photographs and documents submitted with this application. The Borrower(s) undertake to promptly inform IIFL about any change in any of the information furnished. The Borrower(s) further undertake to provide any further information/documents that IIFL and/or its group companies and/or its agents may require.<br>
-                                    • The Borrower(s) confirm that IIFL shall have the discretion to change prospectively the rate of interest and other charges applicable to the Facility.<br>
+                                    • The Borrower(s) understand that sanction of the Facility and any disbursement thereunder is at the sole discretion of India FinDrop Capital Finance Limited (FinDrop Capital) (Formerly known as “FinDrop Capital Holdings Limited”) which reserves its right to reject the Application (with or without notice to the Borrower), and that FinDrop Capital shall not be responsible/liable in any manner whatsoever for such rejection or any delay in notifying me of such rejection. The Borrower(s) understand and agree that FinDrop Capital and/or its group companies reserve the rights to retain the photographs and documents submitted with this application. The Borrower(s) undertake to promptly inform FinDrop Capital about any change in any of the information furnished. The Borrower(s) further undertake to provide any further information/documents that FinDrop Capital and/or its group companies and/or its agents may require.<br>
+                                    • The Borrower(s) confirm that FinDrop Capital shall have the discretion to change prospectively the rate of interest and other charges applicable to the Facility.<br>
                                 </p>
 
                             </td>
@@ -1461,10 +1592,10 @@
                                 <p>
                                     • In case there are more than one Borrower(s), each Borrower(s) agrees and undertakes that each of the Borrower(s) shall be jointly and severally be liable to make payments under the Loan.<br>
                                     • The Borrower(s) represent that each Borrower, its directors/partners (if any) has not been declared insolvent nor have any insolvency/bankruptcy proceedings been initiated against them. Borrower(s) represent that information furnished in this application is true and correct. Borrower(s) represent that none of the applicants have defaulted on any loan repayments with any of its creditors.<br>
-                                    • The Borrower(s) have no objection to IIFL and/or its group companies and/or its agents providing me/us information on various products, offers, and services provided by IIFL and/or its group companies through any mode (including telephone calls, SMSs/emails, letters, etc.) and authorize IIFL and/or its group companies and/or its agents for the above purpose. The Borrower(s) confirm that laws in relation to unsolicited communication referred to in the "National Do Not Call Registry" as laid down by 'TELECOM REGULATORY AUTHORITY OF INDIA' will not be applicable for such information/communication to the Borrower.<br>
-                                    • Borrower(s) agrees and accept that IIFL may in its sole discretion, by itself or through authorized persons, advocate, agencies, bureau, etc. verify any information given, check credit references, employment details, and obtain credit reports to determine creditworthiness from time to time.<br>
-                                    • Borrower(s) acknowledges the consent given by the Borrower and such third parties (as required) to IIFL to obtain Borrower’s KYC and credit-related information/documents from third parties including Unique Identification Authority of India, Credit Information Bureau of India Ltd, and other entities and also further consents that IIFL may, by itself or through authorized persons, verify any information given, check credit references, employment details, and obtain KYC-related documents or credit reports to determine the genuineness of the Borrower and/or creditworthiness from time to time. The Borrower further acknowledges the consent to Unique Identification Authority of India or such any other such third party consenting to the sharing of information with respect to the Borrower with IIFL.<br>
-                                    • Borrower(s) have no objection to IIFL or any of its subsidiaries exchanging and sharing information with its affiliates, regulatory bodies, government, and credit agencies, and other such authority as may be required.
+                                    • The Borrower(s) have no objection to FinDrop Capital and/or its group companies and/or its agents providing me/us information on various products, offers, and services provided by FinDrop Capital and/or its group companies through any mode (including telephone calls, SMSs/emails, letters, etc.) and authorize FinDrop Capital and/or its group companies and/or its agents for the above purpose. The Borrower(s) confirm that laws in relation to unsolicited communication referred to in the "National Do Not Call Registry" as laid down by 'TELECOM REGULATORY AUTHORITY OF INDIA' will not be applicable for such information/communication to the Borrower.<br>
+                                    • Borrower(s) agrees and accept that FinDrop Capital may in its sole discretion, by itself or through authorized persons, advocate, agencies, bureau, etc. verify any information given, check credit references, employment details, and obtain credit reports to determine creditworthiness from time to time.<br>
+                                    • Borrower(s) acknowledges the consent given by the Borrower and such third parties (as required) to FinDrop Capital to obtain Borrower’s KYC and credit-related information/documents from third parties including Unique Identification Authority of India, Credit Information Bureau of India Ltd, and other entities and also further consents that FinDrop Capital may, by itself or through authorized persons, verify any information given, check credit references, employment details, and obtain KYC-related documents or credit reports to determine the genuineness of the Borrower and/or creditworthiness from time to time. The Borrower further acknowledges the consent to Unique Identification Authority of India or such any other such third party consenting to the sharing of information with respect to the Borrower with FinDrop Capital.<br>
+                                    • Borrower(s) have no objection to FinDrop Capital or any of its subsidiaries exchanging and sharing information with its affiliates, regulatory bodies, government, and credit agencies, and other such authority as may be required.
                                 </p>
 
                             </td>
@@ -1494,7 +1625,7 @@
                         <tr>
                             <td width="100%" class="fontstyle">
                                 <p>
-                                    I/We have applied for loan facility with IIFL. The application will be appraised and processed as per the internal policy of IIFL. The application may be rejected in case I/we fail to comply with the internal policy of IIFL. IIFL has appraised me/us about the same in detail including eligibility criteria, documentation, etc.<br></p>
+                                    I/We have applied for loan facility with FinDrop Capital. The application will be appraised and processed as per the internal policy of FinDrop Capital. The application may be rejected in case I/we fail to comply with the internal policy of FinDrop Capital. FinDrop Capital has appraised me/us about the same in detail including eligibility criteria, documentation, etc.<br></p>
                                 <p>    In submitting the above application, I/We the undersigned, solemnly affirm that the details of loan terms/conditions inclusive of all charges have been read by me/us in full/read out to me/us (in vernacular) is understood and do hereby accept by me/us by signing this application physically and/or electronically (through accessing the link and/or vide OTP confirmation, Electronic and Digital Signatures, Aadhaar authentication and such other and further means as it was available and known to me/us by using my/our registered E-mail ID and the mobile number).
                                 </p>
                             </td>
@@ -1530,15 +1661,15 @@
                     FOR OFFICE USE ONLY
                 </td>
             </tr>
-            <tr>
+            {{-- <tr>
                 <td colspan="3" style="text-align: center;" class="fontstyle">
-                    IIFL Finance Limited (IIFL) (Formerly known as "IIFL Holdings Limited")<br>
+                    FinDrop Capital Finance Limited (FinDrop Capital) (Formerly known as "FinDrop Capital Holdings Limited")<br>
                     CIN: L67100MH1995PLC093797 / RBI CoR No. N -13.02386<br>
-                    Regd. Office: IIFL House, Sun Infotech Park, Road No. 16V, Plot No. B-23, Thane Industrial Area, Wagle Estate,<br>
+                    Regd. Office: FinDrop Capital House, Sun Infotech Park, Road No. 16V, Plot No. B-23, Thane Industrial Area, Wagle Estate,<br>
                     Thane - 400 604 • Tel: (91-22) 4103 5000 • Fax: (91-22) 2580 6654<br>
                     Corporate Office: 802, 8 Floor, Hub Town Solaris, N.S. Phadke Marg, Vijay Nagar, Andheri East, Mumbai - 400 069 • Tel: (91-22) 6788 1000 • Fax: (91-22) 6788 1010
                 </td>
-            </tr>
+            </tr> --}}
 
         </tbody>
     </table>

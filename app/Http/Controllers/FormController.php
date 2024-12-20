@@ -181,6 +181,26 @@ class FormController extends Controller
         return view('pdfview1')->with($data);
     }
 
+    // shivang 20-12-2024
+    public function viewPdffinal(string $id)
+    {
+        session()->put('application_id', $id);
+        $officedata = FormOffice::find($id);
+        $customer = Customer::where('loan_id', $id)->first();
+        $Proprietors = Proprietor::where('loan_id', $id)->get();
+        $CoCustomers = CoCustomer::where('loan_id', $id)->get();
+        $Remainingpartners = Remainingpartner::where('loan_id', $id)->get();
+        // dd($Remainingpartners);
+        $BankDetailes = BankDetails::where('loan_id', $id)->get();
+        $References = References::where('loan_id', $id)->get();
+        $url = url('/office/add');
+        $title = 'For Office Use Only';
+        $btext = "Submit";
+        $data = compact('url', 'title', 'btext', 'officedata', 'customer', 'Proprietors', 'CoCustomers', 'Remainingpartners', 'BankDetailes', 'References');
+        //  dd($data);
+        return view('pdfview')->with($data);
+    }
+
     /**
      * Show the form for editing the specified resource.
      */
@@ -255,6 +275,32 @@ class FormController extends Controller
         $References = References::where('loan_id', $id)->get();
         $data = compact('officedata', 'customer', 'Proprietors', 'CoCustomers', 'Remainingpartners', 'BankDetailes','References');
         $html = view('pdfview1', $data)->render();
+        //  dd($html);
+        $pdf = Pdf::loadHtml($html)->setOptions(['defaultFont' => 'sans-serif']);
+
+
+        return $pdf->download();
+
+
+    }
+
+    // shivang 20-12-2024
+    public function downloadPDFfinal($id)
+    {
+        $data = [
+            'title' => 'new Pdf',
+            'date' => date('m/d/Y')
+        ];
+        $officedata = FormOffice::findOrFail($id);
+        $customer = Customer::where('loan_id', $id)->first();
+        $Proprietors = Proprietor::where('loan_id', $id)->get();
+        $CoCustomers = CoCustomer::where('loan_id', $id)->get();
+        $Remainingpartners = Remainingpartner::where('loan_id', $id)->get();
+        // dd($Remainingpartners);
+        $BankDetailes = BankDetails::where('loan_id', $id)->get();
+        $References = References::where('loan_id', $id)->get();
+        $data = compact('officedata', 'customer', 'Proprietors', 'CoCustomers', 'Remainingpartners', 'BankDetailes','References');
+        $html = view('pdfview', $data)->render();
         //  dd($html);
         $pdf = Pdf::loadHtml($html)->setOptions(['defaultFont' => 'sans-serif']);
 

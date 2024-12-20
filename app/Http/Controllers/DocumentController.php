@@ -154,6 +154,7 @@ class DocumentController extends Controller
 
     public function store(Request $request)
 {
+    // dd($request->all());
     // Check if a document with the specified criteria already exists
     $document = Document::where('lon_id', $request->lon_id)
                         ->where('customer_id', $request->customermainnid)
@@ -380,8 +381,6 @@ public function viewDocumentlist($customer_id)
                             ->orderBy('created_at', 'desc')
                             ->get();
 
-
-    // dd($documentlist);
     $back  = "Back";
     return view('viewdocumentlist', compact('documentlist','back'));
 }
@@ -478,10 +477,11 @@ public function viewDocumenteditlast($id)
         $back  = "Back";
         $mainid = $documents[0]->id;
 
-        if ($proprietor) {
-            $data = compact('url', 'title', 'btext', 'officedata', 'proprietor','back','mainid');
-        } elseif ($customer) {
+
+        if ($customer) {
             $data = compact('url', 'title', 'btext', 'officedata', 'customer','back','mainid');
+        } elseif ($proprietor) {
+            $data = compact('url', 'title', 'btext', 'officedata', 'proprietor','back','mainid');
         } else {
 
             abort(404, 'No data found for this ID.');

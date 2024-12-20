@@ -15,13 +15,13 @@
         <div class="container-fluid">
 
             @if(session('success'))
-            <div class="alert alert-success">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ session('success') }}
             </div>
         @endif
 
         @if ($errors->any())
-            <div class="alert alert-danger">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -293,6 +293,7 @@ $(document).ready(function() {
                         // shivang 13-12-2024
 
                         if (item.proprietor_id && item.proprietor_name || !selectedValues[item.proprietor_id]) {
+                            // const proprietorValue = `p-${item.proprietor_id}`;
                             $('#customer_id').append($('<option>', {
                                 value: item.proprietor_id,
                                 text: item.proprietor_name + ' (Proprietor)'
@@ -421,4 +422,14 @@ $(document).ready(function() {
 
 
 
+</script>
+<script>
+    // Automatically remove alerts after 5 seconds
+    setTimeout(() => {
+        const alerts = document.querySelectorAll('.alert');
+        alerts.forEach(alert => {
+            alert.classList.remove('show');
+            alert.addEventListener('transitionend', () => alert.remove());
+        });
+    }, 3000);
 </script>
