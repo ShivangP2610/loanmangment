@@ -637,7 +637,13 @@
                                                                 <input type="text" name="ads_charge" id="ads_charge"
                                                                     hidden>
                                                                 <input type="text" name="rem_final_amount"
-                                                                    id="rem_final_amount" hidden>
+                                                                    id="rem_final_amount" hidden>  
+                                                                    
+                                                                    <input type="text" name="instal_amount"
+                                                                    id="total_instal_amount" hidden>  
+                                                                    <input type="text" name="total_interst"
+                                                                    id="total_interst_rate" hidden>
+                                                                    
 
                                                             </div>
                                                         </div>
@@ -1146,7 +1152,9 @@
                 $emi3 = $emi1 / $emi2;
                 //    $finalemi = Math.round($emi3 * 100) / 100;
                 $finalemi = ($emi3 % 1 >= 0.5) ? Math.ceil($emi3) : Math.floor($emi3);
-                $("#installment").text("INR " + $finalemi.toFixed(2).toLocaleString('en-IN'));
+                $("#installment").text("INR " + $finalemi.toFixed(2).toLocaleString('en-IN'));  
+                $("#total_instal_amount").val( $finalemi.toFixed(2).toLocaleString('en-IN'));  
+                
 
                 // modal data
 
@@ -1190,7 +1198,8 @@
                         interest: $interst.toFixed(2),
                         remainblnc: $remainblnc.toFixed(2)
                     });
-                }
+                } 
+                $("#total_interst_rate").val(totalInterest.toFixed(2)); 
                 let tableHTML = `
                     <table class="table table-bordered">
                         <thead>

@@ -99,7 +99,8 @@
 
 
 
-    </style>
+    </style> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <div>
@@ -344,10 +345,12 @@
                             <td width="30%" class="fontstyle">Title</td>
                             <td width="70%" class="data-field">{{ $Proprietor->title }}</td>
                         </tr>
-                        <tr>
+                      
+                        <tr> 
                             <td width="30%" class="fontstyle">Full Name:</td>
-                            <td width="70%" class="data-field">{{ $Proprietor->proprietor_name }}</td>
+                            <td width="70%" class="data-field text-capitalize">{{ $Proprietor->proprietor_name }}</td>
                         </tr>
+                    
                         <tr>
                             <td width="30%" class="fontstyle">Relation with Applicant:</td>
                             <td width="70%" class="data-field">
@@ -1179,15 +1182,16 @@
         </thead>
         <tbody>
             <tr>
-                <td width="100%" class="fontstyle">
+                <td width="100%" class="fontstyle"> 
+                    {{-- <?php  dd($Proprietors);?> --}}
                     <p>
                         THIS LOAN AGREEMENT (“Agreement”) (this Agreement which expression shall unless excluded by or repugnant to the subject or context thereof, include the Schedule(s) hereto and all amendments made from time to time) executed at the place and on the day, month and year set out in Schedule-I hereto by
                         <br></p>
-                    <p>   M/s. VEER ENTERPRISE, a DIRECTOR  Firm of VIRAG SHAH, having its place of Business at WORD NO 13/1, NAIK AVENUE PANCH HATDI, OPP SHREE RAM DAIRY ,NAVSARI, GUJARAT-396445,  herein after referred to as “the Borrower”, (which expression shall unless excluded by or repugnant to the subject or context, be deemed to include its successors-in-interest and assigns) of the ONE PART
+                    <p>   M/s. {{ $customer->cust_name }}, a DIRECTOR  Firm of {{ $Proprietors->first()->proprietor_name }}, having its place of Business at WORD NO {{ $customer->Principal_office_address}},  herein after referred to as “the Borrower”, (which expression shall unless excluded by or repugnant to the subject or context, be deemed to include its successors-in-interest and assigns) of the ONE PART
                     </p>
                     <p>and by</p>
                     <p>
-                        VIRAG SHAH, Aged 36 about , Indian resident, having PAN No. BASPS9737F and residing at 16,SARTHIVILLA RAW HOUSE,NEAR BAWAN JINALAY, TIGHRA,NAVSARI-396445; (hereinafter referred to as “Co-Borrowers”, which expression shall, unless repugnant to the context or meaning thereof, be deemed to mean and include their heirs, executors, administrators and permitted assigns) of the SECOND PART
+                        {{ $Proprietors->first()->proprietor_name }}, Aged 36 about , Indian resident, having PAN No. {{ $Proprietors->first()->proprietor_pannumber }} and residing at  {{ $Proprietors->first()->Current_Residence_Address }} ; (hereinafter referred to as “Co-Borrowers”, which expression shall, unless repugnant to the context or meaning thereof, be deemed to mean and include their heirs, executors, administrators and permitted assigns) of the SECOND PART
                     </p>
                 </td>
             </tr>
@@ -1572,27 +1576,27 @@
         </tr>
         <tr>
             <td width="50%" class="fontstyle"><strong>Name of Borrower</strong></td>
-            <td width="50%" class="fontstyle">VEER ENTERPRISE</td>
+            <td width="50%" class="fontstyle text-capitalize">{{ $customer->cust_name }}  </td>
         </tr>
         <tr>
             <td width="50%" class="fontstyle"><strong>Name of Proprietor</strong></td>
-            <td width="50%" class="fontstyle">VIRAG SHAH</td>
+            <td width="50%" class="fontstyle text-capitalize">{{ $Proprietor->proprietor_name }}</td>
         </tr>
         <tr>
             <td width="50%" class="fontstyle"><strong>Address of Borrower (where notice is to be sent to)</strong></td>
-            <td width="50%" class="fontstyle">16,SARTHIVILLA RAW HOUSE,NEAR BAWAN JINALAY, TIGHRA, NAVSARI-396445 – 396445</td>
+            <td width="50%" class="fontstyle text-capitalize">{{ $customer->Principal_office_address }} </td>
         </tr>
         <tr>
             <td width="50%" class="fontstyle"><strong>Contact No.</strong></td>
-            <td width="50%" class="fontstyle">9879402134</td>
+            <td width="50%" class="fontstyle text-capitalize">{{ $customer->cust_Telephone }}</td>
         </tr>
         <tr>
             <td width="50%" class="fontstyle"><strong>Email.id</strong></td>
-            <td width="50%" class="fontstyle">viragshah_86@yahoo.com</td>
+            <td width="50%" class="fontstyle text-capitalize">{{ $customer->cust_email }}</td>
         </tr>
         <tr>
             <td width="50%" class="fontstyle"><strong>Nature of Business</strong></td>
-            <td width="50%" class="fontstyle">Branded Garments</td>
+            <td width="50%" class="fontstyle text-capitalize">{{ $customer->cust_email }}</td>
         </tr>
     </table>
     <p></p>
@@ -1606,27 +1610,29 @@
         </tr>
         <tr>
             <td width="50%" class="fontstyle"><strong>Loan Application No.</strong></td>
-            <td width="50%" class="fontstyle">FD202205031007</td>
+            <td width="50%" class="fontstyle text-capitalize">{{ $officedata->Prospect_No}}</td>
         </tr>
         <tr>
             <td width="50%" class="fontstyle"><strong>Nature of Loan/Purpose</strong></td>
-            <td width="50%" class="fontstyle">Working Capital Finance</td>
+            <td width="50%" class="fontstyle text-capitalize">{{ $officedata->Purpose}}</td>
         </tr>
         <tr>
             <td width="50%" class="fontstyle"><strong>Amount</strong></td>
-            <td width="50%" class="fontstyle">Rs.500000/- (Four Lakh rupees and zero paisa only) / Rs. Five Lakh Only</td>
+            <td width="50%" class="fontstyle text-capitalize">{{  $creditstage->sanctioned_amount}}</td>
         </tr>
         <tr>
             <td width="50%" class="fontstyle"><strong>Security</strong></td>
             <td width="50%" class="fontstyle">Unsecured Loan</td>
         </tr>
-        <tr>
+        <tr> 
+          
             <td width="50%" class="fontstyle"><strong>Rate of Interest</strong></td>
-            <td width="50%" class="fontstyle">18% Reducing per month</td>
+            <td width="50%" class="fontstyle">{{ $creditstage->first()->policyrate}}% Reducing per month</td>
         </tr>
-        <tr>
+        <tr> 
+            {{-- <?php  dd($adjustdata[0]->percentage);?> --}}
             <td width="50%" class="fontstyle"><strong>Processing Fee and Set up Fee</strong></td>
-            <td width="50%" class="fontstyle">2%, Rs. 10000 (whichever is maximum) of the sanctioned amount net plus applicable service tax of the charges incurred by the borrower insurance. Rs.10000/- (Eight thousand Rupees and zero paisa only). This amount will be deducted from the first disbursement done to the borrower for a given sanctioned limit.</td>
+            <td width="50%" class="fontstyle">{{ $adjustdata[0]->percentage}}%, Rs. 10000 (whichever is maximum) of the sanctioned amount net plus applicable service tax of the charges incurred by the borrower insurance. Rs.10000/- (Eight thousand Rupees and zero paisa only). This amount will be deducted from the first disbursement done to the borrower for a given sanctioned limit.</td>
         </tr>
         <tr>
             <td width="50%" class="fontstyle"><strong>Repayment details</strong></td>
@@ -1634,11 +1640,11 @@
         </tr>
         <tr>
             <td width="50%" class="fontstyle"><strong>Installment Date</strong></td>
-            <td width="50%" class="fontstyle">05-05-2023</td>
+            <td width="50%" class="fontstyle">{{ $repayments->first_installment_date}}</td>
         </tr>
         <tr>
             <td width="50%" class="fontstyle"><strong>Primary Repayment Mode</strong></td>
-            <td width="50%" class="fontstyle">NACH / Post Dated Cheques / NEFT</td>
+            <td width="50%" class="fontstyle">{{ $disbursal->payment_mode}}</td>
         </tr>
         <tr>
             <td width="50%" class="fontstyle"><strong>Secondary Repayment Mode</strong></td>
@@ -1662,13 +1668,13 @@
         </tr>
         <tr>
             <td width="50%" class="fontstyle"><strong>Broken Period Interest</strong></td>
-            <td width="50%" class="fontstyle">1068.00 (4 days)</td>
+            <td width="50%" class="fontstyle">{{ $repayments->brk_charge}} ({{ $repayments->days_num}} days)</td>
         </tr>
     </table>
     <p></p>
     <p></p>
     <!-- D. DETAILS OF GUARANTORS / REFERENCES -->
-    <table width="100%" cellpadding="5" cellspacing="0" class="fontstyle borderdata">
+    {{-- <table width="100%" cellpadding="5" cellspacing="0" class="fontstyle borderdata">
         <tr>
             <td colspan="2" class="fontstyle">
                 <strong>D. DETAILS OF GUARANTORS / REFERENCES</strong>
@@ -1711,11 +1717,43 @@
             <td width="50%" class="fontstyle"><strong>Email.id</strong></td>
             <td width="50%" class="fontstyle">twinkalpatel@gmail.com</td>
         </tr>
-    </table>
-    <p></p>
-    <p></p>
-    <!-- E. BORROWER’S BANK ACCOUNT DETAILS -->
+    </table> --}} 
     <table width="100%" cellpadding="5" cellspacing="0" class="fontstyle borderdata">
+        <tr>
+            <td colspan="2" class="fontstyle">
+                <strong>D. DETAILS OF GUARANTORS / REFERENCES</strong>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="fontstyle">
+                <strong>Details of References</strong>
+            </td>
+        </tr>
+        @foreach ($Proprietors as $key => $Proprietor)
+        <tr>
+            <td width="50%" class="fontstyle"><strong>Name of Reference – {{ $key + 1 }}</strong></td>
+            <td width="50%" class="fontstyle">{{ $Proprietor->proprietor_name ?? 'N/A' }}</td>
+        </tr>
+        <tr>
+            <td width="50%" class="fontstyle"><strong>Address of Reference – {{ $key + 1 }}</strong></td>
+            <td width="50%" class="fontstyle">{{ $Proprietor->Permanent_Residence_Address ?? 'N/A' }}</td>
+        </tr>
+        <tr>
+            <td width="50%" class="fontstyle"><strong>Contact No.</strong></td>
+            <td width="50%" class="fontstyle">{{ $Proprietor->proprietor_Mobile_no ?? 'N/A' }}</td>
+        </tr>
+        <tr>
+            <td width="50%" class="fontstyle"><strong>Email.id</strong></td>
+            <td width="50%" class="fontstyle">{{ $Proprietor->proprietor_email ?? 'N/A' }}</td>
+        </tr>
+        @endforeach
+    </table>
+    
+    <p></p>
+    <p></p>
+    <!-- E. BORROWER’S BANK ACCOUNT DETAILS --> 
+    {{-- <?php dd($BankDetailes); ?>  --}}
+    {{-- <table width="100%" cellpadding="5" cellspacing="0" class="fontstyle borderdata">
         <tr>
             <td colspan="2" class="fontstyle">
                 <strong>E. BORROWER’S BANK ACCOUNT DETAILS</strong>
@@ -1741,7 +1779,37 @@
             <td width="50%" class="fontstyle"><strong>IFSC Code</strong></td>
             <td width="50%" class="fontstyle">SBIN0018548</td>
         </tr>
+    </table> --}} 
+    <table width="100%" cellpadding="5" cellspacing="0" class="fontstyle borderdata">
+        <tr>
+            <td colspan="2" class="fontstyle">
+                <strong>E. BORROWER’S BANK ACCOUNT DETAILS</strong>
+            </td>
+        </tr>
+        @foreach ($BankDetailes as $BankDetail)
+        <tr>
+            <td width="50%" class="fontstyle"><strong>Borrower Bank’s Account Name</strong></td>
+            <td width="50%" class="fontstyle">{{ $BankDetail->account_holder_name ?? 'N/A' }}</td>
+        </tr>
+        <tr>
+            <td width="50%" class="fontstyle"><strong>Account Number</strong></td>
+            <td width="50%" class="fontstyle">{{ $BankDetail->account_number ?? 'N/A' }}</td>
+        </tr>
+        <tr>
+            <td width="50%" class="fontstyle"><strong>Bank Name</strong></td>
+            <td width="50%" class="fontstyle">{{ $BankDetail->bank_name ?? 'N/A' }}</td>
+        </tr>
+        <tr>
+            <td width="50%" class="fontstyle"><strong>Branch</strong></td>
+            <td width="50%" class="fontstyle">{{ $BankDetail->branch_address ?? 'N/A' }}</td>
+        </tr>
+        <tr>
+            <td width="50%" class="fontstyle"><strong>IFSC Code</strong></td>
+            <td width="50%" class="fontstyle">{{ $BankDetail->ifsc_code ?? 'N/A' }}</td>
+        </tr>
+        @endforeach
     </table>
+    
     <p></p>
     <p></p>
     <!-- F. DISBURSEMENT ACCOUNT DETAILS -->
@@ -1753,23 +1821,23 @@
         </tr>
         <tr>
             <td width="50%" class="fontstyle"><strong>Borrower Bank’s Account Name</strong></td>
-            <td width="50%" class="fontstyle">VEER ENTERPRISE</td>
+            <td width="50%" class="fontstyle">{{ $disbursal->beneficiary_name}}</td>
         </tr>
         <tr>
             <td width="50%" class="fontstyle"><strong>Account Number</strong></td>
-            <td width="50%" class="fontstyle">50200001460662</td>
+            <td width="50%" class="fontstyle">{{ $disbursal->beneficiary_account_number}}</td>
         </tr>
         <tr>
             <td width="50%" class="fontstyle"><strong>Bank Name</strong></td>
-            <td width="50%" class="fontstyle">SBI BANK</td>
+            <td width="50%" class="fontstyle">{{ $disbursal->bankName}} </td>
         </tr>
         <tr>
             <td width="50%" class="fontstyle"><strong>Branch</strong></td>
-            <td width="50%" class="fontstyle">TIGHRA BRANCH</td>
+            <td width="50%" class="fontstyle">{{ $disbursal->branch}} </td>
         </tr>
         <tr>
             <td width="50%" class="fontstyle"><strong>IFSC Code</strong></td>
-            <td width="50%" class="fontstyle">SBIN0018548</td>
+            <td width="50%" class="fontstyle">{{ $disbursal->bankcode}}</td>
         </tr>
     </table>
     <p></p>
@@ -1876,13 +1944,13 @@
                     <p style="text-align: center;"><strong>SCHEDULE II</strong></p>
                     <p style="text-align: center;"><strong>Personal Guarantee</strong></p>
                     <p>
-                        This PERSONAL GUARANTEE (“Personal Guarantee”) executed at Navsari, Gujarat on 25/03/2023 by VIRAG SHAH, Son of Vipul Shah, PAN No. BASPS9737F, aged 36 years, residing at 16, SARTHIVILLA RAW HOUSE, NEAR BAWAN JINALAY, TIGHRA, NAVSARI-396445 (the “Guarantor”, which expression shall, unless it is repugnant to the subject or context thereof, include his/her legal heirs, executors, and administrators);
+                        This PERSONAL GUARANTEE (“Personal Guarantee”) executed at Navsari, Gujarat on 25/03/2023 by VIRAG SHAH, Son of Vipul Shah, PAN No.  {{ $customer->cust_pannumber }}  , aged 36 years, residing at {{ $customer->Principal_office_address}}  {{$customer->Principal_District}} {{ $customer->Principal_pincode}} (the “Guarantor”, which expression shall, unless it is repugnant to the subject or context thereof, include his/her legal heirs, executors, and administrators);
                     </p>
                     <p><strong>IN FAVOUR OF:</strong></p>
                     <p>
                         FinDrop Capital, a Lending Act 2017 and a non-banking financial company within the meaning of the Lending Act 2017 Act, 2017 and having its registered office at NO. 340, 3rd Floor, Central Bazar, Navsari-396445 Gujarat, represented herein by its authorized representative, hereinafter referred to as the “Lender", (which expression shall unless excluded by or repugnant to the subject or context, be deemed to include its successors-in-interest and assigns)
                     </p>
-                    <p><strong>WHEREAS:</strong> VEER ENTERPRISE (hereinafter referred to as ‘Borrower’ which expression shall, unless it be repugnant to the subject or context thereof, include its successors and permitted assigns) has requested the Lender to provide a working capital loan of Rs. 500000/- (Four lakh rupees and zero paisa only) at 18 fee per month (“hereinafter referred to as “Loan”)</p>
+                    <p><strong>WHEREAS:</strong> VEER ENTERPRISE (hereinafter referred to as ‘Borrower’ which expression shall, unless it be repugnant to the subject or context thereof, include its successors and permitted assigns) has requested the Lender to provide a working capital loan of Rs. {{ $creditstage->sanctioned_amount }} /- (Four lakh rupees and zero paisa only) at 18 fee per month (“hereinafter referred to as “Loan”)</p>
                     <p><strong>(a)</strong> The Lender has agreed to provide the Loan for the Purpose and on the terms and conditions of the Loan Agreement dated 25/03/2023 ("Loan Agreement”) entered into between the Lender and the Borrower and the Co-Borrower.</p>
                     <p><strong>(b)</strong> In this reference, the Guarantor has agreed to provide a Personal Guarantee guaranteeing the repayment of the entire Loan on such terms and conditions as set forth herein.</p>
                     <p><strong>(c)</strong> The Guarantor shall provide Post Dated Cheques (PDCs) to the Lender, towards the security of the said loan amount (Details of which is mentioned in Schedule-III, Part-D to the Loan Agreement).</p>
@@ -1907,7 +1975,7 @@
             <tr>
                 <td class="fontstyle">
                     <p><strong>SIGNED AND DELIVERED by</strong></p>
-                    <p>VIRAG SHAH</p>
+                    <p>{{ $customer->cust_name }}</p>
                     <p><strong>Witness 1:</strong></p>
                     <p><strong>Witness 2:</strong></p>
                 </td>
@@ -1924,11 +1992,11 @@
                 <p>Date: 25-03-2023</p>
 
                 <p>
-                    I, VIRAG SHAH and authorized person and acting on behalf of VEER ENTERPRISE (“Borrower”), a Lending Act 2017 and having its registered office at WORD NO 13/1, NAIK AVENUE PANCH HATDI, OPP SHREE RAM DAIRY, NAVSARI, GUJARAT-396445, (“Borrower”), state and undertake as below.
+                    I, VIRAG SHAH and authorized person and acting on behalf of VEER ENTERPRISE (“Borrower”), a Lending Act 2017 and having its registered office at WORD NO {{ $customer->Principal_office_address}}  {{$customer->Principal_District}} {{ $customer->Principal_pincode}}, (“Borrower”), state and undertake as below.
                 </p>
 
                 <p>
-                    That the Borrower will avail Loan of an amount of Rs. 500000/- (Four lakh rupees and zero paisa only) @ 18 % ROI fee per Annum (“Loan”) from FinDrop Capital, registered under the Lending Act 2017 and a non-banking financial company within the meaning of the Lending Act 2017 having its registered office at NO. 340, 3rd Floor, Central Bazar, Navsari-396445Gujarat. (hereinafter referred to as the "Lender”) on such terms and conditions as mentioned in the Loan Agreement dated 25/03/2023(“Loan Agreement”) executed between the Lender and the Borrower. That the said Loan will be availed by the Borrower for the execution of the Purpose as described in detail in the Loan Agreement.
+                    That the Borrower will avail Loan of an amount of Rs.{{ $creditstage->sanctioned_amount}}/- (Four lakh rupees and zero paisa only) @ 18 % ROI fee per Annum (“Loan”) from FinDrop Capital, registered under the Lending Act 2017 and a non-banking financial company within the meaning of the Lending Act 2017 having its registered office at NO. 340, 3rd Floor, Central Bazar, Navsari-396445Gujarat. (hereinafter referred to as the "Lender”) on such terms and conditions as mentioned in the Loan Agreement dated 25/03/2023(“Loan Agreement”) executed between the Lender and the Borrower. That the said Loan will be availed by the Borrower for the execution of the Purpose as described in detail in the Loan Agreement.
                 </p>
 
                 <p>
@@ -1979,7 +2047,7 @@
                     <tr>
                         <td width="50%">
                             <p><strong>Signed and delivered</strong></p>
-                            <p>Name - VIRAG SHAH</p>
+                            <p>Name - {{ $customer->cust_name }} </p>
                             <p>Signature -</p>
                             <p>Date - 25-03-2023</p>
                         </td>
@@ -2308,7 +2376,7 @@
                 <p style="font-weight: bold">To,</p>
                 <p style="font-weight: bold">VIRAG SHAH,<br>
                    VEER ENTERPRISE.<br>
-                   16, SARTHIVILLA RAW HOUSE, NEAR BAWAN JINALAY, TIGHRA, NAVSARI-396445.</p>
+                   {{ $customer->Principal_office_address}}  {{$customer->Principal_District}} {{ $customer->Principal_pincode}}.</p>
 
                 <p>Dear Sir,</p>
                 <p><strong>Sub.: An offer for Loan for Working Capital</strong></p>
@@ -2317,7 +2385,7 @@
                 <table border="1" width="100%" cellspacing="0" cellpadding="5">
                     <tr>
                         <td><strong>Loan Application No</strong></td>
-                        <td>FD202205031007</td>
+                        <td>{{ $officedata->Prospect_No}}</td>
                     </tr>
                     <tr>
                         <td><strong>Nature of Loan</strong></td>
@@ -2325,7 +2393,8 @@
                     </tr>
                     <tr>
                         <td><strong>Amount</strong></td>
-                        <td>Rs. 500000/- (Five Lakh rupees and zero paisa only)</td>
+                        {{-- <td>Rs. {{$disbursal->disbursal_amount}}/- (Five Lakh rupees and zero paisa only)</td>  --}}
+                        <td>Rs. {{$disbursal->disbursal_amount}}</td>
                     </tr>
                     <tr>
                         <td><strong>Security</strong></td>
@@ -2337,7 +2406,7 @@
                     </tr>
                     <tr>
                         <td><strong>Rate of Interest</strong></td>
-                        <td>18% Reducing per Annum</td>
+                        <td>{{ $repayments->rate}}% Reducing per Annum</td>
                     </tr>
                     <tr>
                         <td><strong>Processing Fee and Set up Charges</strong></td>
@@ -2345,7 +2414,7 @@
                     </tr>
                     <tr>
                         <td><strong>Repayment details</strong></td>
-                        <td>Repayment by 18 equal MONTHLY installments of Rs. 33,842.</td>
+                        <td>Repayment by 18 equal MONTHLY installments of Rs.{{$repayments->instal_amount}} .</td>
                     </tr>
                     <tr>
                         <td><strong>Primary Repayment Mode</strong></td>
@@ -2353,7 +2422,7 @@
                     </tr>
                     <tr>
                         <td><strong>Installment Date</strong></td>
-                        <td>05-05-2023</td>
+                        <td>{{ $repayments->first_installment_date}}</td>
                     </tr>
                     <tr>
                         <td><strong>Secondary Repayment Mode</strong></td>
@@ -2361,7 +2430,7 @@
                     </tr>
                     <tr>
                         <td><strong>Total Interest Payable</strong></td>
-                        <td>Rs. 109,156.00</td>
+                        <td>Rs. {{ $repayments->total_interst}}</td>
                     </tr>
                     <tr>
                         <td><strong>Delay Charges</strong></td>
@@ -2394,7 +2463,7 @@
                     </tr>
                     <tr>
                         <td><strong>Broken Period Interest</strong></td>
-                        <td class="fontstylemain">Rs. 1,068.00 (4 days)</td>
+                        <td class="fontstylemain">Rs. {{ $repayments->brk_charge}} ({{ $repayments->days_num}} days))</td>
                     </tr>
                 </table>
 

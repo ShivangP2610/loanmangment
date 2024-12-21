@@ -2,15 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Adjustable;
 use App\Models\BankDetails;
 use App\Models\CoCustomer;
 use Illuminate\Http\Request;
 use App\Models\FormOffice;
 use App\Models\CountryCode;
+use App\Models\Creditstage;
 use App\Models\Customer;
+use App\Models\Disbursal;
 use App\Models\Proprietor;
 use App\Models\References;
 use App\Models\Remainingpartner;
+use App\Models\Repayment;
 // use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Barryvdh\DomPDF\Facade\Pdf;
 
@@ -192,11 +196,15 @@ class FormController extends Controller
         $Remainingpartners = Remainingpartner::where('loan_id', $id)->get();
         // dd($Remainingpartners);
         $BankDetailes = BankDetails::where('loan_id', $id)->get();
-        $References = References::where('loan_id', $id)->get();
+        $References = References::where('loan_id', $id)->get(); 
+        $creditstage =  Creditstage::where('loan_id', $id)->first();  
+        $repayments = Repayment::where('loan_id', $id)->first();  
+        $disbursal = Disbursal::where('loan_id', $id)->first(); 
+        $adjustdata = Adjustable::where('loan_id', $id)->get(); 
         $url = url('/office/add');
         $title = 'For Office Use Only';
         $btext = "Submit";
-        $data = compact('url', 'title', 'btext', 'officedata', 'customer', 'Proprietors', 'CoCustomers', 'Remainingpartners', 'BankDetailes', 'References');
+        $data = compact('url', 'title', 'btext', 'officedata', 'customer', 'Proprietors', 'CoCustomers', 'Remainingpartners', 'BankDetailes', 'References' ,'creditstage','repayments','disbursal','adjustdata');
         //  dd($data);
         return view('pdfview')->with($data);
     }
@@ -295,11 +303,16 @@ class FormController extends Controller
         $customer = Customer::where('loan_id', $id)->first();
         $Proprietors = Proprietor::where('loan_id', $id)->get();
         $CoCustomers = CoCustomer::where('loan_id', $id)->get();
-        $Remainingpartners = Remainingpartner::where('loan_id', $id)->get();
+        $Remainingpartners = Remainingpartner::where('loan_id', $id)->get(); 
+        
         // dd($Remainingpartners);
         $BankDetailes = BankDetails::where('loan_id', $id)->get();
-        $References = References::where('loan_id', $id)->get();
-        $data = compact('officedata', 'customer', 'Proprietors', 'CoCustomers', 'Remainingpartners', 'BankDetailes','References');
+        $References = References::where('loan_id', $id)->get(); 
+        $creditstage =  Creditstage::where('loan_id', $id)->first(); 
+        $repayments = Repayment::where('loan_id', $id)->first();  
+        $disbursal = Disbursal::where('loan_id', $id)->first(); 
+        $adjustdata = Adjustable::where('loan_id', $id)->get(); 
+        $data = compact('officedata', 'customer', 'Proprietors', 'CoCustomers', 'Remainingpartners', 'BankDetailes','References','creditstage','repayments','disbursal','adjustdata');
         $html = view('pdfview', $data)->render();
         //  dd($html);
         $pdf = Pdf::loadHtml($html)->setOptions(['defaultFont' => 'sans-serif']);

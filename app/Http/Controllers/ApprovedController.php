@@ -119,7 +119,8 @@ class ApprovedController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
+    { 
+        // dd($request->all());
 
         // dd('ya re ya a aaagahgahahagh');
         // dd($request->all());
@@ -187,7 +188,10 @@ class ApprovedController extends Controller
             $payment_data->brk_charge =  $request->brk_charge;
             $payment_data->ads_charge =  $request->ads_charge;
             $payment_data->rem_final_amount =  $request->rem_final_amount;
-            $payment_data->advance_installment_to_be_deducted =  $request->advance_installment_to_be_deducted;
+            $payment_data->advance_installment_to_be_deducted =  $request->advance_installment_to_be_deducted;  
+            $payment_data->instal_amount =  $request->instal_amount;
+            $payment_data->total_interst =  $request->total_interst;
+
 
 
 
@@ -230,7 +234,9 @@ class ApprovedController extends Controller
             $repaymentdata->brk_charge =  $request->brk_charge;
             $repaymentdata->ads_charge =  $request->ads_charge;
             $repaymentdata->rem_final_amount =  $request->rem_final_amount;
-            $repaymentdata->advance_installment_to_be_deducted =  $request->advance_installment_to_be_deducted;
+            $repaymentdata->advance_installment_to_be_deducted =  $request->advance_installment_to_be_deducted; 
+            $repaymentdata->instal_amount =  $request->instal_amount;
+            $repaymentdata->total_interst =  $request->total_interst;
 
 
 
