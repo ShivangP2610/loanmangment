@@ -309,6 +309,42 @@ class FormController extends Controller
 
 
     }
+    // public function downloadPDFfinal($id)
+    // {
+    //     // Retrieve data from database
+    //     $officedata = FormOffice::findOrFail($id);
+    //     $customer = Customer::where('loan_id', $id)->first();
+    //     $Proprietors = Proprietor::where('loan_id', $id)->get();
+    //     $CoCustomers = CoCustomer::where('loan_id', $id)->get();
+    //     $Remainingpartners = Remainingpartner::where('loan_id', $id)->get();
+    //     $BankDetailes = BankDetails::where('loan_id', $id)->get();
+    //     $References = References::where('loan_id', $id)->get();
+
+    //     // Prepare data for rendering
+    //     $data = compact('officedata', 'customer', 'Proprietors', 'CoCustomers', 'Remainingpartners', 'BankDetailes', 'References');
+    //     $html = view('pdfview', $data)->render();
+
+    //     // Load HTML into PDF
+    //     $pdf = Pdf::loadHtml($html)
+    //         ->setOptions([
+    //             'defaultFont' => 'sans-serif',
+    //             'isHtml5ParserEnabled' => true,
+    //             'isPhpEnabled' => true,
+    //             'noPdfCompression' => true,
+    //             'marginTop' => 0,
+    //             'marginBottom' => 0,
+    //             'marginLeft' => 0,
+    //             'marginRight' => 0,
+    //             'enableHtml5Parser' => true,
+    //             'isHtml5ParserEnabled' => true,
+    //             'pageHeight' => 0, // Ensure no unnecessary height forcing
+    //         ]);
+
+    //     // Download the PDF without blank pages
+    //     return $pdf->download('final_document.pdf');
+    // }
+
+
 
     // shivang 05-12-2024
 

@@ -96,7 +96,10 @@
         .borderdone td{
             border: 1px solid black;
         }
-
+        p {
+            page-break-before: auto;
+            page-break-after: auto;
+        }
 
 
     </style>
@@ -1811,13 +1814,14 @@
             <td width="50%" class="fontstyle">ffffff</td>
         </tr>
 
-    </table>
 
+    </table>
     <p></p>
     <p></p>
-    {{-- <table width="100%" cellspacing="0" cellpadding="10">
+
+    <table width="100%" cellspacing="0" cellpadding="10">
         <tr>
-            <td  class="fontstyle">
+            <td width="100%" class="fontstyle">
                 <p style="text-align: center"><strong>SCHEDULE II</strong></p>
                 <p style="text-align: center"><strong>Personal Guarantee</strong></p>
                 <p>
@@ -1854,71 +1858,12 @@
                 <p><strong>Witness 2:</strong></p>
             </td>
         </tr>
-    </table> --}}
-
-
-    <table>
-        {{-- <thead>
-            <tr>
-                <th colspan="2" style="text-align: center;">
-                    <p><strong>SCHEDULE II</strong></p>
-                </th>
-            </tr>
-            <tr>
-                <th colspan="2" style="text-align: center;">
-                    <p><strong>Personal Guarantee</strong></p>
-                </th>
-            </tr>
-        </thead> --}}
-        <tbody>
-            <tr>
-                <td class="fontstyle">
-                    <p style="text-align: center;"><strong>SCHEDULE II</strong></p>
-                    <p style="text-align: center;"><strong>Personal Guarantee</strong></p>
-                    <p>
-                        This PERSONAL GUARANTEE (“Personal Guarantee”) executed at Navsari, Gujarat on 25/03/2023 by VIRAG SHAH, Son of Vipul Shah, PAN No. BASPS9737F, aged 36 years, residing at 16, SARTHIVILLA RAW HOUSE, NEAR BAWAN JINALAY, TIGHRA, NAVSARI-396445 (the “Guarantor”, which expression shall, unless it is repugnant to the subject or context thereof, include his/her legal heirs, executors, and administrators);
-                    </p>
-                    <p><strong>IN FAVOUR OF:</strong></p>
-                    <p>
-                        FinDrop Capital, a Lending Act 2017 and a non-banking financial company within the meaning of the Lending Act 2017 Act, 2017 and having its registered office at NO. 340, 3rd Floor, Central Bazar, Navsari-396445 Gujarat, represented herein by its authorized representative, hereinafter referred to as the “Lender", (which expression shall unless excluded by or repugnant to the subject or context, be deemed to include its successors-in-interest and assigns)
-                    </p>
-                    <p><strong>WHEREAS:</strong> VEER ENTERPRISE (hereinafter referred to as ‘Borrower’ which expression shall, unless it be repugnant to the subject or context thereof, include its successors and permitted assigns) has requested the Lender to provide a working capital loan of Rs. 500000/- (Four lakh rupees and zero paisa only) at 18 fee per month (“hereinafter referred to as “Loan”)</p>
-                    <p><strong>(a)</strong> The Lender has agreed to provide the Loan for the Purpose and on the terms and conditions of the Loan Agreement dated 25/03/2023 ("Loan Agreement”) entered into between the Lender and the Borrower and the Co-Borrower.</p>
-                    <p><strong>(b)</strong> In this reference, the Guarantor has agreed to provide a Personal Guarantee guaranteeing the repayment of the entire Loan on such terms and conditions as set forth herein.</p>
-                    <p><strong>(c)</strong> The Guarantor shall provide Post Dated Cheques (PDCs) to the Lender, towards the security of the said loan amount (Details of which is mentioned in Schedule-III, Part-D to the Loan Agreement).</p>
-                    <p><strong>(d)</strong> That for the purpose hereof, the Guarantor unconditionally and irrevocably agrees and undertakes to provide the present Personal Guarantee to the Lender to make payment on behalf of the Borrower and Co-Borrower in the event of any default on the part of the Borrower and/or Co-Borrower in payment of any part of the Loan (hereinafter referred to as the “Guarantee”).</p>
-                    <p><strong>(e)</strong> That the Guarantor further undertakes that he/she is solvent and financially capable to discharge his Guarantee obligations.</p>
-                </td>
-            </tr>
-            <tr>
-                <td class="fontstyle">
-                    <p><strong>TERMS AND CONDITIONS OF THE PRESENT PERSONAL GUARANTEE:</strong></p>
-                    <p><strong>(i)</strong> The Guarantor for the purpose hereof irrevocably undertakes to meet the Guarantee without any demur, reservation, caveat, protest or recourse and pay the amount not repaid by the Borrower within seven (7) days from the receipt of first written demand from the Lender.</p>
-                    <p><strong>(ii)</strong> The Guarantor agrees and undertakes to remain fully bound until the entire Loan along with any other dues is paid in full.</p>
-                    <p><strong>(iii)</strong> That the Guarantor further undertakes that to meet the Guarantee and pay the amount not repaid by the Borrower and/or Co-Borrower, the Lender shall have the right to initiate appropriate proceedings under applicable laws and statutes to recover the Guarantee.</p>
-                    <p><strong>(iv)</strong> The Guarantor agrees that his obligations under this Personal Guarantee shall not be reduced by reason of any partial performance of the terms and conditions of the Loan Agreement or other Loan Documents or on account of any other reason, whatsoever.</p>
-                    <p><strong>(v)</strong> The Guarantor agrees that in the Event of Default by the Borrower and/or Co-Borrower, the Lender at its option shall be entitled to enforce this Personal Guarantee against the Guarantor.</p>
-                    <p><strong>(vi)</strong> The Guarantor agrees and undertakes that during the term of the Loan Agreement or other Loan Documents, the Guarantor shall not resign as a member of the Board of Directors of the Borrower Company and/or shall not reduce his/her shareholding in the Borrower company, without the prior written consent of the Lender.</p>
-                    <p><strong>(vii)</strong> This Guarantee shall be construed, interpreted and governed in accordance with the laws of India and should any provision of this Guarantee be judged by an appropriate court of law as invalid, it shall not affect any of the remaining provisions whatsoever.</p>
-                    <p><strong>(viii)</strong> The capitalized terms used in the Personal Guarantee shall have the meaning ascribed to them under the Loan Agreement.</p>
-                    <p><strong>IN WITNESS WHEREOF THE PARTY HAS EXECUTED THIS DOCUMENT ON THE DATE STATED HEREINABOVE.</strong></p>
-                </td>
-            </tr>
-            <tr>
-                <td class="fontstyle">
-                    <p><strong>SIGNED AND DELIVERED by</strong></p>
-                    <p>VIRAG SHAH</p>
-                    <p><strong>Witness 1:</strong></p>
-                    <p><strong>Witness 2:</strong></p>
-                </td>
-            </tr>
-        </tbody>
     </table>
     <p></p>
     <p></p>
     <table width="100%" cellspacing="0" cellpadding="10">
         <tr>
-            <td  class="fontstyle">
+            <td width="100%" class="fontstyle">
                 <p style="text-align: center"><strong>SCHEDULE III</strong></p>
                 <p style="text-align: center"><strong>Part A – Undertaking</strong></p>
                 <p>Date: 25-03-2023</p>
@@ -1950,7 +1895,8 @@
             </td>
         </tr>
     </table>
-
+    <p></p>
+    <p></p>
     <table width="100%" cellspacing="0" cellpadding="10">
         <tr>
             <td width="100%" class="fontstyle">
@@ -1991,7 +1937,8 @@
             </td>
         </tr>
     </table>
-
+    <p></p>
+    <p></p>
     <table width="100%" cellspacing="0" cellpadding="10">
         <tr>
             <td width="100%" class="fontstyle">
@@ -2005,7 +1952,8 @@
             </td>
         </tr>
     </table>
-
+    <p></p>
+    <p></p>
     <table width="100%" cellspacing="0" cellpadding="10">
         <tr>
             <td width="100%" class="fontstyle">
@@ -2101,7 +2049,8 @@
             </td>
         </tr>
     </table>
-
+    <p></p>
+    <p></p>
     <table width="100%" cellspacing="0" cellpadding="10">
         <tr>
             <td width="100%" class="fontstyle">
@@ -2290,15 +2239,16 @@
                     </tbody>
                 </table>
 
-                <p style="text-align:right;margin-right:90px !important"><strong>RECEIVED</strong></p>
+                <p style="text-align: end;margin-right:100px !important"><strong>RECEIVED</strong></p>
 
-                <p style="text-align:right;margin-right:60px !important">__________________</p>
+                <p style="text-align: end;margin-right:60px !important">__________________</p>
 
-                <p style="text-align:right;margin-right:100px !important"><strong>LENDER</strong></p>
+                <p style="text-align: end;margin-right:100px !important"><strong>LENDER</strong></p>
             </td>
         </tr>
     </table>
-
+    <p></p>
+    <p></p>
     <table width="100%" cellspacing="0" cellpadding="10">
         <tr>
             <td width="100%" class="fontstyle">
