@@ -96,10 +96,7 @@
         .borderdone td{
             border: 1px solid black;
         }
-        p {
-            page-break-before: auto;
-            page-break-after: auto;
-        }
+
 
 
     </style>
@@ -1184,13 +1181,13 @@
             <tr>
                 <td width="100%" class="fontstyle">
                     <p>
-                        THIS LOAN AGREEMENT (“Agreement”) (this Agreement which expression shall unless excluded by or repugnant to the subject or context thereof, include the Schedule(s) hereto and all amendments made from time to time) executed at the place and on the day, month and year set out in Schedule-I hereto by
+                        <strong> LOAN AGREEMENT (“Agreement”) </strong> (this Agreement which expression shall unless excluded by or repugnant to the subject or context thereof, include the Schedule(s) hereto and all amendments made from time to time) executed at the place and on the day, month and year set out in Schedule-I hereto by
                         <br></p>
-                    <p>   M/s. VEER ENTERPRISE, a DIRECTOR  Firm of VIRAG SHAH, having its place of Business at WORD NO 13/1, NAIK AVENUE PANCH HATDI, OPP SHREE RAM DAIRY ,NAVSARI, GUJARAT-396445,  herein after referred to as “the Borrower”, (which expression shall unless excluded by or repugnant to the subject or context, be deemed to include its successors-in-interest and assigns) of the ONE PART
+                    <p>   M/s. <strong> VEER ENTERPRISE </strong>, a DIRECTOR  Firm of <strong> VIRAG SHAH </strong>, having its place of Business at <strong> WORD NO 13/1, NAIK AVENUE PANCH HATDI, OPP SHREE RAM DAIRY ,NAVSARI, GUJARAT-396445 </strong>,  herein after referred to as “the Borrower”, (which expression shall unless excluded by or repugnant to the subject or context, be deemed to include its successors-in-interest and assigns) of the <strong> ONE PART </strong>
                     </p>
                     <p>and by</p>
                     <p>
-                        VIRAG SHAH, Aged 36 about , Indian resident, having PAN No. BASPS9737F and residing at 16,SARTHIVILLA RAW HOUSE,NEAR BAWAN JINALAY, TIGHRA,NAVSARI-396445; (hereinafter referred to as “Co-Borrowers”, which expression shall, unless repugnant to the context or meaning thereof, be deemed to mean and include their heirs, executors, administrators and permitted assigns) of the SECOND PART
+                       <strong> VIRAG SHAH </strong>, Aged 36 about , Indian resident, having PAN No. <strong> BASPS9737F </strong> and residing at <strong> 16,SARTHIVILLA RAW HOUSE,NEAR BAWAN JINALAY, TIGHRA,NAVSARI-396445 </strong>; (hereinafter referred to as <strong> “Co-Borrowers” </strong>, which expression shall, unless repugnant to the context or meaning thereof, be deemed to mean and include their heirs, executors, administrators and permitted assigns) of the <strong> SECOND PART <strong>
                     </p>
                 </td>
             </tr>
@@ -1199,9 +1196,9 @@
                 <td width="100%" class="fontstyle">
                     <h4 style="text-align: center">In Favor Of:</h4>
                     <p>
-                        M/s. FinDrop Capital, a Lending Act 2017 and a non-banking financial company within the meaning of the Lending Act 2017 Act, 2017 and having its registered office at 340, 3rd Floor, Central Bazar, Navsari-396445Gujarat, represented herein by its authorized representative, hereinafter referred to as the “Lender", (which expression shall unless excluded by or repugnant to the subject or context, be deemed to include its successors-in-interest and assigns) of the THIRD PART.
+                       <strong> M/s. FinDrop Capital </strong>, a Lending Act 2017 and a non-banking financial company within the meaning of the Lending Act 2017 Act, 2017 and having its registered office at 340, 3rd Floor, Central Bazar, Navsari-396445Gujarat, represented herein by its authorized representative, hereinafter referred to as the “Lender", (which expression shall unless excluded by or repugnant to the subject or context, be deemed to include its successors-in-interest and assigns) of the THIRD PART.
                         <br></p>
-                    <p>  The Borrower AND the Lender shall be referred individually as “Party” and collectively as “Parties”.
+                    <p>  The Borrower AND the Lender shall be referred individually as <strong> “Party” </strong> and collectively as <strong> “Parties” </strong>.
                     </p>
 
                 </td>
@@ -1210,7 +1207,7 @@
                 <td width="100%" class="fontstyle">
                     <p><strong>WHEREAS:</strong></p>
                     <p>
-                        A. The Borrower has required financial assistance for its business purpose (as defined in Schedule-I)
+                        A. The Borrower has required financial assistance for its business purpose (as defined in <strong> Schedule-I </strong>)
                         and approached the Lender and the Lender relying upon the representations and warranties made by the Borrower,
                         has agreed to advance an aggregate loan facility as mentioned in Schedule-I hereunder written (“Loan”),
                         on the terms and conditions mentioned in Sanction Letter and this Agreement.
@@ -1337,7 +1334,7 @@
                     <p><strong>7. REPAYMENT</strong></p>
                     <p>
                         <strong>7.1</strong> The Borrower and Co-Borrower shall ensure to repay the Loan within the communicated time from the date of receipt
-                        of the Loan (hereinafter referred to as the “Repayment Amount”) as per the Repayment details set forth in Schedule I.
+                        of the Loan (hereinafter referred to as the <strong> “Repayment Amount” </strong>) as per the Repayment details set forth in <strong> Schedule I </strong>.
                     </p>
                     <p>
                         <strong>7.2</strong> The mode of payment of the Repayment Amount shall be Electronic Clearance Service/Standing Instruction or any
@@ -1362,24 +1359,24 @@
                 <td width="100%" class="fontstyle">
                     <p><strong>8. LOAN DOCUMENTS</strong></p>
                     <p>
-                        <strong>8.1</strong> The Borrower shall provide personal guarantees of VIRAG SHAH to the Lender for the Loan amount in relation to this
+                        <strong>8.1</strong> The Borrower shall provide personal guarantees of <strong> VIRAG SHAH </strong> to the Lender for the Loan amount in relation to this
                         Agreement. The promoters shall be equally liable for the performance of the obligations and covenants of the Borrower, and in the event
                         of default of any obligation by the Borrower and Co-Borrower, the Personal Guarantors shall be jointly and severally liable for the
                         repayment of the Loan amount in accordance with the terms and conditions in this Agreement and the Loan agreements. The format of the
                         “Personal Guarantee” is set forth in Schedule II hereto.
                     </p>
                     <p>
-                        <strong>8.2</strong> The Borrower and Co-Borrower shall provide an “Undertaking” to the Lender which is set forth in Schedule III – Part A
+                        <strong>8.2</strong> The Borrower and Co-Borrower shall provide an “Undertaking” to the Lender which is set forth in <strong> Schedule III – Part A </strong>
                         hereto.
                     </p>
                     <p>
-                        <strong>8.3</strong> The Borrower shall provide a demand promissory note, the format of which is set forth as Schedule III – Part B (“Demand
+                        <strong>8.3</strong> The Borrower shall provide a demand promissory note, the format of which is set forth as <strong> Schedule III – Part B <strong> (“Demand
                         Promissory Note”), undertaking unconditionally to pay on demand of the Lender the Loan amount together with interest thereon at the rate
-                        of interest mentioned in Schedule-I.
+                        of interest mentioned in <strong> Schedule-I </strong>.
                     </p>
                     <p>
                         <strong>8.4</strong> The Lender shall obtain Post Dated Cheque (“PDCs”) from the Borrower and/or Co-Borrower/Guarantors to enable the
-                        repayment of the Loan and other dues, and the format of the “Receipt” of the PDCs is set forth in Schedule III – Part D.
+                        repayment of the Loan and other dues, and the format of the “Receipt” of the PDCs is set forth in <strong> Schedule III – Part D </strong>.
                     </p>
                 </td>
             </tr>
@@ -1410,7 +1407,7 @@
 
                     <p><strong>9.6</strong> The Borrower and Co- Borrower confirms that till the Loan or any part thereof (including principal and interest as the case may be) is outstanding, the Borrower/Personal Guarantor shall not start a new firm without taking prior permission of the Lender.</p>
 
-                    <p><strong>9.7</strong> The Borrower and Co- Borrower shall provide a “List of Associate concerns” with respect to its business as set forth in Schedule III – Part C.</p>
+                    <p><strong>9.7</strong> The Borrower and Co- Borrower shall provide a “List of Associate concerns” with respect to its business as set forth in <strong> Schedule III – Part C </strong>.</p>
 
                     <p><strong>9.8</strong> The Borrower and Co- Borrower shall provide contact details of two references, as set out in Schedule-I, whom the Lender may contact prior to disbursement of loan and/or in the event of a default by the Borrower or Co- Borrower and/or if the Borrower or Co- Borrower is not reachable.</p>
                 </td>
@@ -1465,7 +1462,7 @@
 
                     <p><strong>13.1</strong> The Borrower and Co-Borrower and the Personal Guarantors agree to indemnify and hold harmless the Lender and its directors, officers, agents, employees, and counsel from and against any and all costs, expenses, direct or indirect claims, or liability incurred by the Borrower and/or Co-Borrower or such person hereunder and as a consequence of occurrence of an event of default, breach of this Agreement or acts of omission and commission on the part of the Borrower and/or Co-Borrower, or otherwise on account of the Loan.</p>
 
-                    <p><strong>13.2</strong> The Borrower has also provided an Undertaking cum Indemnity in respect of facsimile and/or email as set forth in Schedule III – Part A.</p>
+                    <p><strong>13.2</strong> The Borrower has also provided an Undertaking cum Indemnity in respect of facsimile and/or email as set forth in <strong> Schedule III – Part A </strong>.</p>
                 </td>
             </tr>
 
@@ -1477,37 +1474,7 @@
                 </td>
             </tr>
 
-            {{-- <tr>
-                <td width="100%" class="fontstyle">
-                    <p><strong>15. MISCELLANEOUS</strong></p>
 
-                    <p><strong>15.1 Notices:</strong> Any notice pursuant to this Agreement shall be in writing and either delivered personally, sent by certified or registered mail, sent by a recognized courier, or sent by electronic mail, with acknowledgment due.</p>
-
-                    <p><strong>15.2 Vernacular Language:</strong> The contents of this Agreement and the Loan Documents to be executed by the Borrower and Co-Borrower have been explained to the Borrower and Co-Borrower in the vernacular language or such other language as understood by the Borrower and Co-Borrower.</p>
-
-                    <p><strong>15.3 Cost:</strong> The Borrower and Co-Borrower shall incur all the collection/remittance/other charges in relation to obtaining the Loan under this Agreement.</p>
-
-                    <p><strong>15.4 Stamp duty and Registration charges:</strong> The Borrower shall pay to the Lender upon demand the stamp duty and registration charges if any, payable on this Agreement and all related Agreements, deeds, writings, and documents executed by and between the Parties hereto in respect of the Loan.</p>
-
-                    <p><strong>15.5 Relationship:</strong> Nothing in this Agreement shall be deemed to constitute a partnership, joint venture, agency, or employment relationship between the Parties hereto. No Party shall have the authority to bind or make any representation or commitment on behalf of the other Party. It is specifically agreed between the Parties that their specific rights and obligations in respect of their business relationship and understanding inter-se shall be governed in accordance with the provisions of this Agreement.</p>
-
-                    <p><strong>15.6 Force Majeure:</strong> Notwithstanding anything to the contrary in this Agreement, neither Party shall be liable by reason of failure or delay in the performance of its duties and obligations under this Agreement if such failure or delay is caused by acts of God, war, riot, fire, civil commotion, strikes, lockouts, embargoes, any orders of governmental, quasi-governmental, or local authorities, or any other similar cause beyond its control and without its fault or negligence. Provided that any Party faced with force majeure shall inform the other Party without delay by registered letter with advice of delivery or equivalent, stating the nature, probable duration, and foreseeable effects. Neither Party shall be held in breach of their obligations under the Agreement if they are prevented from fulfilling them by force majeure. Each of the Parties shall make every effort to mitigate any losses suffered due to force majeure. If the required Party fails to make necessary efforts by which the losses caused due to force majeure can be mitigated, then the other party shall have the right to terminate this Agreement.</p>
-
-                    <p><strong>15.7 Entire Agreement:</strong> This Agreement constitutes the entire agreement between the Parties in relation to its subject matter and supersedes all prior agreements and understandings whether oral or written with respect to such subject matter and no variation of this Agreement shall be effective unless reduced into writing and signed by or on behalf of each Party.</p>
-
-                    <p><strong>15.8 Severability:</strong> If any provision of this Agreement or part thereof is rendered void, illegal or unenforceable in any respect under any law, the validity, legality, and enforceability of the remaining provisions shall not in any way be affected or impaired thereby. In such case, the Parties shall forthwith enter into good faith negotiations to amend the provisions rendered void, illegal, or unenforceable in such a way that, as an amended provision, it is valid and legal and to the maximum extent possible carries out the original intent of the Parties as reflected herein with respect to the matter in question.</p>
-
-                    <p><strong>15.9 Assignment:</strong> This Agreement, including without limitation, any of the rights, duties, and obligations hereunder, may not be assigned, in whole or in part, by the Borrower and/or Co-Borrower without the prior written consent of the Lender.</p>
-
-                    <p><strong>15.10 Further Assurance:</strong> Each of the Parties hereto shall cooperate with the other and execute and deliver to the other such instruments and documents and take such other actions as may be reasonably requested from time to time in order to carry out evidence and confirm their rights and the intended purpose of this Agreement.</p>
-
-                    <p><strong>15.11 Waiver:</strong> No delay in exercising or omission to exercise any right, power, or remedy accruing to either Party under this Agreement shall impair any such right, power, or remedy or be construed to be a waiver or acquiescence thereof, nor shall action or inaction of acquiescence by either Party in any such default, affect or impair any right, power, or remedy of either Party, in respect of any such default.</p>
-
-                    <p><strong>15.12 Confidentiality:</strong> The Parties shall, at all times, keep confidential and maintain confidentiality of all data and client information of each Party shared with the other Party in respect of this Agreement and other Loan Documents. All such data and confidential client information shall not be disclosed or divulged to any third party without the consent of the concerned Party.</p>
-
-                    <p><strong>15.13 Counterparts:</strong> This Agreement is being prepared in counterparts and each of the counterparts so executed shall be deemed to be original but constitute one agreement and be binding on the Parties as if they had executed the same document.</p>
-                </td>
-            </tr> --}}
             <tr>
                 <td width="100%" class="fontstyle">
                     <p><strong>15. MISCELLANEOUS</strong></p>
@@ -1545,7 +1512,8 @@
     </table>
 
     {{-- here e e  ee --}}
-
+    <p></p>
+    <p></p>
     <table width="100%" cellpadding="5" cellspacing="0" class="fontstyle borderdata">
         <tr>
             <td colspan="2" style="text-align: center;">
@@ -1574,28 +1542,28 @@
             </td>
         </tr>
         <tr>
-            <td width="50%" class="fontstyle"><strong>Name of Borrower</strong></td>
-            <td width="50%" class="fontstyle">VEER ENTERPRISE</td>
+            <td width="50%" class="fontstyle">Name of Borrower</td>
+            <td width="50%" class="fontstyle"><strong> VEER ENTERPRISE </strong></td>
         </tr>
         <tr>
-            <td width="50%" class="fontstyle"><strong>Name of Proprietor</strong></td>
-            <td width="50%" class="fontstyle">VIRAG SHAH</td>
+            <td width="50%" class="fontstyle">Name of Proprietor</td>
+            <td width="50%" class="fontstyle"><strong>VIRAG SHAH</strong></td>
         </tr>
         <tr>
-            <td width="50%" class="fontstyle"><strong>Address of Borrower (where notice is to be sent to)</strong></td>
-            <td width="50%" class="fontstyle">16,SARTHIVILLA RAW HOUSE,NEAR BAWAN JINALAY, TIGHRA, NAVSARI-396445 – 396445</td>
+            <td width="50%" class="fontstyle">Address of Borrower (where notice is to be sent to)</td>
+            <td width="50%" class="fontstyle"><strong>16,SARTHIVILLA RAW HOUSE,NEAR BAWAN JINALAY, TIGHRA, NAVSARI-396445 – 396445</strong></td>
         </tr>
         <tr>
-            <td width="50%" class="fontstyle"><strong>Contact No.</strong></td>
-            <td width="50%" class="fontstyle">9879402134</td>
+            <td width="50%" class="fontstyle">Contact No.</td>
+            <td width="50%" class="fontstyle"><strong>9879402134</strong></td>
         </tr>
         <tr>
-            <td width="50%" class="fontstyle"><strong>Email.id</strong></td>
-            <td width="50%" class="fontstyle">viragshah_86@yahoo.com</td>
+            <td width="50%" class="fontstyle">Email.id</td>
+            <td width="50%" class="fontstyle"><strong>viragshah_86@yahoo.com</strong></td>
         </tr>
         <tr>
-            <td width="50%" class="fontstyle"><strong>Nature of Business</strong></td>
-            <td width="50%" class="fontstyle">Branded Garments</td>
+            <td width="50%" class="fontstyle">Nature of Business</td>
+            <td width="50%" class="fontstyle"><strong>Branded Garments</strong></td>
         </tr>
     </table>
     <p></p>
@@ -1608,64 +1576,64 @@
             </td>
         </tr>
         <tr>
-            <td width="50%" class="fontstyle"><strong>Loan Application No.</strong></td>
-            <td width="50%" class="fontstyle">FD202205031007</td>
+            <td width="50%" class="fontstyle">Loan Application No.</td>
+            <td width="50%" class="fontstyle"><strong>FD202205031007</strong></td>
         </tr>
         <tr>
-            <td width="50%" class="fontstyle"><strong>Nature of Loan/Purpose</strong></td>
+            <td width="50%" class="fontstyle">Nature of Loan/Purpose</td>
             <td width="50%" class="fontstyle">Working Capital Finance</td>
         </tr>
         <tr>
-            <td width="50%" class="fontstyle"><strong>Amount</strong></td>
-            <td width="50%" class="fontstyle">Rs.500000/- (Four Lakh rupees and zero paisa only) / Rs. Five Lakh Only</td>
+            <td width="50%" class="fontstyle">Amount</td>
+            <td width="50%" class="fontstyle"><strong>Rs.500000/- (Four Lakh rupees and zero paisa only) / Rs. Five Lakh Only</strong></td>
         </tr>
         <tr>
-            <td width="50%" class="fontstyle"><strong>Security</strong></td>
+            <td width="50%" class="fontstyle">Security</td>
             <td width="50%" class="fontstyle">Unsecured Loan</td>
         </tr>
         <tr>
-            <td width="50%" class="fontstyle"><strong>Rate of Interest</strong></td>
-            <td width="50%" class="fontstyle">18% Reducing per month</td>
+            <td width="50%" class="fontstyle">Rate of Interest</td>
+            <td width="50%" class="fontstyle"><strong>18% Reducing </strong>per month</td>
         </tr>
         <tr>
-            <td width="50%" class="fontstyle"><strong>Processing Fee and Set up Fee</strong></td>
-            <td width="50%" class="fontstyle">2%, Rs. 10000 (whichever is maximum) of the sanctioned amount net plus applicable service tax of the charges incurred by the borrower insurance. Rs.10000/- (Eight thousand Rupees and zero paisa only). This amount will be deducted from the first disbursement done to the borrower for a given sanctioned limit.</td>
+            <td width="50%" class="fontstyle">Processing Fee and Set up Fee</td>
+            <td width="50%" class="fontstyle">2%, Rs. 10000 (whichever is maximum) of the sanctioned amount net plus applicable service tax of the charges incurred by the borrower insurance. Rs.10000/- <strong>(Eight thousand Rupees and zero paisa only)</strong>. This amount will be deducted from the first disbursement done to the borrower for a given sanctioned limit.</td>
         </tr>
         <tr>
-            <td width="50%" class="fontstyle"><strong>Repayment details</strong></td>
-            <td width="50%" class="fontstyle">Repayment by 18 equal MONTHLY installments of Rs. 33842.00</td>
+            <td width="50%" class="fontstyle">Repayment details</td>
+            <td width="50%" class="fontstyle">Repayment by <strong>18</strong> equal <strong>MONTHLY</strong> installments of <strong>Rs. 33842.00</strong></td>
         </tr>
         <tr>
-            <td width="50%" class="fontstyle"><strong>Installment Date</strong></td>
-            <td width="50%" class="fontstyle">05-05-2023</td>
+            <td width="50%" class="fontstyle">Installment Date</td>
+            <td width="50%" class="fontstyle"><strong>05-05-2023</strong></td>
         </tr>
         <tr>
-            <td width="50%" class="fontstyle"><strong>Primary Repayment Mode</strong></td>
+            <td width="50%" class="fontstyle">Primary Repayment Mode</td>
             <td width="50%" class="fontstyle">NACH / Post Dated Cheques / NEFT</td>
         </tr>
         <tr>
-            <td width="50%" class="fontstyle"><strong>Secondary Repayment Mode</strong></td>
-            <td width="50%" class="fontstyle">N/A</td>
+            <td width="50%" class="fontstyle">Secondary Repayment Mode</td>
+            <td width="50%" class="fontstyle"><strong>N/A</strong></td>
         </tr>
         <tr>
-            <td width="50%" class="fontstyle"><strong>Total Interest Payable</strong></td>
-            <td width="50%" class="fontstyle">Total interest payable over the complete tenure of loan is Rs. 109156.00</td>
+            <td width="50%" class="fontstyle">Total Interest Payable</td>
+            <td width="50%" class="fontstyle">Total interest payable over the complete tenure of loan is <strong>Rs. 109156.00</strong></td>
         </tr>
         <tr>
-            <td width="50%" class="fontstyle"><strong>Delay Charges</strong></td>
-            <td width="50%" class="fontstyle">Rs. 100 per day per installment</td>
+            <td width="50%" class="fontstyle">Delay Charges</td>
+            <td width="50%" class="fontstyle"><strong>Rs. 100</strong> per day per installment</td>
         </tr>
         <tr>
-            <td width="50%" class="fontstyle"><strong>Legal expenses/stamp duty</strong></td>
+            <td width="50%" class="fontstyle">Legal expenses/stamp duty</td>
             <td width="50%" class="fontstyle">All stamp duties, legal expenses, and other costs involved, including the cost of documentation and due diligence cost to be borne by the Borrower. Waived for this cycle.</td>
         </tr>
         <tr>
-            <td width="50%" class="fontstyle"><strong>Approvals required</strong></td>
+            <td width="50%" class="fontstyle">Approvals required</td>
             <td width="50%" class="fontstyle">Borrower needs to take lender’s prior written approval before incurring further debt/loan/financing/encumbrances from any other lender</td>
         </tr>
         <tr>
-            <td width="50%" class="fontstyle"><strong>Broken Period Interest</strong></td>
-            <td width="50%" class="fontstyle">1068.00 (4 days)</td>
+            <td width="50%" class="fontstyle">Broken Period Interest</td>
+            <td width="50%" class="fontstyle fontstylemain">1068.00 (4 days)</td>
         </tr>
     </table>
     <p></p>
@@ -1683,36 +1651,36 @@
             </td>
         </tr>
         <tr>
-            <td width="50%" class="fontstyle"><strong>Name of Reference – 1</strong></td>
-            <td width="50%" class="fontstyle">Vipul Rathod</td>
+            <td width="50%" class="fontstyle">Name of Reference – 1</td>
+            <td width="50%" class="fontstyle"><strong>Vipul Rathod</strong></td>
         </tr>
         <tr>
-            <td width="50%" class="fontstyle"><strong>Address of Reference – 1</strong></td>
-            <td width="50%" class="fontstyle">Hudco Society, Bardoli</td>
+            <td width="50%" class="fontstyle">Address of Reference – 1</td>
+            <td width="50%" class="fontstyle"><strong>Hudco Society, Bardoli</strong></td>
         </tr>
         <tr>
-            <td width="50%" class="fontstyle"><strong>Contact No.</strong></td>
-            <td width="50%" class="fontstyle">9726018618</td>
+            <td width="50%" class="fontstyle">Contact No.</td>
+            <td width="50%" class="fontstyle"><strong>9726018618</strong></td>
         </tr>
         <tr>
-            <td width="50%" class="fontstyle"><strong>Email.id</strong></td>
-            <td width="50%" class="fontstyle">vipulrathod@gmail.com</td>
+            <td width="50%" class="fontstyle">Email.id</td>
+            <td width="50%" class="fontstyle"><strong>vipulrathod@gmail.com</strong></td>
         </tr>
         <tr>
-            <td width="50%" class="fontstyle"><strong>Name of Reference – 2</strong></td>
-            <td width="50%" class="fontstyle">Twinkal Patel</td>
+            <td width="50%" class="fontstyle">Name of Reference – 2</td>
+            <td width="50%" class="fontstyle"><strong>Twinkal Patel</strong></td>
         </tr>
         <tr>
-            <td width="50%" class="fontstyle"><strong>Address of Reference – 2</strong></td>
-            <td width="50%" class="fontstyle">Chhapra Road, Navsari</td>
+            <td width="50%" class="fontstyle">Address of Reference – 2</td>
+            <td width="50%" class="fontstyle"><strong>Chhapra Road, Navsari</strong></td>
         </tr>
         <tr>
-            <td width="50%" class="fontstyle"><strong>Contact No.</strong></td>
-            <td width="50%" class="fontstyle">9601849239</td>
+            <td width="50%" class="fontstyle">Contact No.</td>
+            <td width="50%" class="fontstyle"><strong>9601849239</strong></td>
         </tr>
         <tr>
-            <td width="50%" class="fontstyle"><strong>Email.id</strong></td>
-            <td width="50%" class="fontstyle">twinkalpatel@gmail.com</td>
+            <td width="50%" class="fontstyle">Email.id</td>
+            <td width="50%" class="fontstyle"><strong>twinkalpatel@gmail.com</strong></td>
         </tr>
     </table>
     <p></p>
@@ -1725,24 +1693,24 @@
             </td>
         </tr>
         <tr>
-            <td width="50%" class="fontstyle"><strong>Borrower Bank’s Account Name</strong></td>
-            <td width="50%" class="fontstyle">VEER ENTERPRISE</td>
+            <td width="50%" class="fontstyle">Borrower Bank’s Account Name</td>
+            <td width="50%" class="fontstyle"><strong>VEER ENTERPRISE</strong></td>
         </tr>
         <tr>
-            <td width="50%" class="fontstyle"><strong>Account Number</strong></td>
-            <td width="50%" class="fontstyle">50200001460662</td>
+            <td width="50%" class="fontstyle">Account Number</td>
+            <td width="50%" class="fontstyle"><strong>50200001460662</strong></td>
         </tr>
         <tr>
-            <td width="50%" class="fontstyle"><strong>Bank Name</strong></td>
-            <td width="50%" class="fontstyle">SBI BANK</td>
+            <td width="50%" class="fontstyle">Bank Name</td>
+            <td width="50%" class="fontstyle"><strong>SBI BANK</strong></td>
         </tr>
         <tr>
-            <td width="50%" class="fontstyle"><strong>Branch</strong></td>
-            <td width="50%" class="fontstyle">TIGHRA BRANCH</td>
+            <td width="50%" class="fontstyle">Branch</td>
+            <td width="50%" class="fontstyle"><strong>TIGHRA BRANCH</strong></td>
         </tr>
         <tr>
-            <td width="50%" class="fontstyle"><strong>IFSC Code</strong></td>
-            <td width="50%" class="fontstyle">SBIN0018548</td>
+            <td width="50%" class="fontstyle">IFSC Code</td>
+            <td width="50%" class="fontstyle"><strong>SBIN0018548</strong></td>
         </tr>
     </table>
     <p></p>
@@ -1755,24 +1723,24 @@
             </td>
         </tr>
         <tr>
-            <td width="50%" class="fontstyle"><strong>Borrower Bank’s Account Name</strong></td>
-            <td width="50%" class="fontstyle">VEER ENTERPRISE</td>
+            <td width="50%" class="fontstyle">Borrower Bank’s Account Name</td>
+            <td width="50%" class="fontstyle"><strong>VEER ENTERPRISE</strong></td>
         </tr>
         <tr>
-            <td width="50%" class="fontstyle"><strong>Account Number</strong></td>
-            <td width="50%" class="fontstyle">50200001460662</td>
+            <td width="50%" class="fontstyle">Account Number</td>
+            <td width="50%" class="fontstyle"><strong>50200001460662</strong></td>
         </tr>
         <tr>
-            <td width="50%" class="fontstyle"><strong>Bank Name</strong></td>
-            <td width="50%" class="fontstyle">SBI BANK</td>
+            <td width="50%" class="fontstyle">Bank Name</td>
+            <td width="50%" class="fontstyle"><strong>SBI BANK</strong></td>
         </tr>
         <tr>
-            <td width="50%" class="fontstyle"><strong>Branch</strong></td>
-            <td width="50%" class="fontstyle">TIGHRA BRANCH</td>
+            <td width="50%" class="fontstyle">Branch</td>
+            <td width="50%" class="fontstyle"><strong>TIGHRA BRANCH</strong></td>
         </tr>
         <tr>
-            <td width="50%" class="fontstyle"><strong>IFSC Code</strong></td>
-            <td width="50%" class="fontstyle">SBIN0018548</td>
+            <td width="50%" class="fontstyle">IFSC Code</td>
+            <td width="50%" class="fontstyle"><strong>SBIN0018548</strong></td>
         </tr>
     </table>
     <p></p>
@@ -1786,94 +1754,111 @@
         </tr>
         <tr>
             <td width="50%" class="fontstyle">
-                <strong>SIGNED AND DELIVERED by and on behalf of FinDrop Capital represented by its authorized representative:</strong>
+                SIGNED AND DELIVERED by and on behalf of FinDrop Capital represented by its authorized representative:
             </td>
             <td width="50%" class="fontstyle">
-                <strong>SIGNED AND DELIVERED by and on behalf of VEER ENTERPRISE represented by its authorized representative, VIRAG SHAH:</strong>
+                SIGNED AND DELIVERED by and on behalf of <strong> VEER ENTERPRISE </strong>> represented by its authorized representative, <strong> VIRAG SHAH:</strong>
             </td>
         </tr>
 
         <tr>
             <td width="50%" class="fontstyle" style="text-align: left; padding:20px;">
                 <hr style="border: 1px solid black; width: 35%; margin-top: 5px;margin-left:0px !important">
-                <strong>Authorized Signatory</strong><br>
+                Authorized Signatory<br>
             </td>
             <td width="50%" class="fontstyle" style="text-align: left; padding:20px;">
                 <hr style="border: 1px solid black; width: 35%; margin-top: 5px; margin-left:0px !important">
-                <strong>Authorized Signatory</strong><br>
+                Authorized Signatory<br>
             </td>
         </tr>
 
 
         <tr>
             <td width="50%" class="fontstyle">Place: Navsari, Gujarat</td>
-            <td width="50%" class="fontstyle">ddddd</td>
+            <td width="50%" class="fontstyle"></td>
         </tr>
         <tr>
             <td width="50%" class="fontstyle"><strong>Date: 25/03/2023</strong></td>
-            <td width="50%" class="fontstyle">ffffff</td>
+            <td width="50%" class="fontstyle"></td>
         </tr>
 
+    </table>
 
+    <p></p>
+    <p></p>
+
+    <table>
+        {{-- <thead>
+            <tr>
+                <th colspan="2" style="text-align: center;">
+                    <p><strong>SCHEDULE II</strong></p>
+                </th>
+            </tr>
+            <tr>
+                <th colspan="2" style="text-align: center;">
+                    <p><strong>Personal Guarantee</strong></p>
+                </th>
+            </tr>
+        </thead> --}}
+        <tbody>
+            <tr>
+                <td class="fontstyle">
+                    <p style="text-align: center;"><strong>SCHEDULE II</strong></p>
+                    <p style="text-align: center;"><strong>Personal Guarantee</strong></p>
+                    <p>
+                        This <strong> PERSONAL GUARANTEE </strong> (“Personal Guarantee”) executed at <strong> Navsari, Gujarat </strong> on <strong> 25/03/2023 </strong> by <strong> VIRAG SHAH, Son of Vipul Shah </strong>, PAN No. <strong> BASPS9737F </strong>, aged 36 years, residing at <strong> 16, SARTHIVILLA RAW HOUSE, NEAR BAWAN JINALAY, TIGHRA, NAVSARI-396445 </strong>(the “Guarantor”, which expression shall, unless it is repugnant to the subject or context thereof, include his/her legal heirs, executors, and administrators);
+                    </p>
+                    <p><strong>IN FAVOUR OF:</strong></p>
+                    <p>
+                       <strong> FinDrop Capital </strong>, a Lending Act 2017 and a non-banking financial company within the meaning of the Lending Act 2017 Act, 2017 and having its registered office at NO. 340, 3rd Floor, Central Bazar, Navsari-396445 Gujarat, represented herein by its authorized representative, hereinafter referred to as the “Lender", (which expression shall unless excluded by or repugnant to the subject or context, be deemed to include its successors-in-interest and assigns)
+                    </p>
+                    <p><strong>WHEREAS: VEER ENTERPRISE </strong>(hereinafter referred to as <strong> ‘Borrower’ </strong> which expression shall, unless it be repugnant to the subject or context thereof, include its successors and permitted assigns) has requested the Lender to provide a working capital loan of Rs. 500000/- <strong> (Four lakh rupees and zero paisa only)  at 18 </strong> fee per month (“hereinafter referred to as “Loan”)</p>
+                    <p><strong>(a)</strong> The Lender has agreed to provide the Loan for the Purpose and on the terms and conditions of the Loan Agreement dated <strong> 25/03/2023 ("Loan Agreement”) </strong> entered into between the Lender and the Borrower and the Co-Borrower.</p>
+                    <p><strong>(b)</strong> In this reference, the Guarantor has agreed to provide a Personal Guarantee guaranteeing the repayment of the entire Loan on such terms and conditions as set forth herein.</p>
+                    <p><strong>(c)</strong> The Guarantor shall provide Post Dated Cheques (PDCs) to the Lender, towards the security of the said loan amount (Details of which is mentioned in Schedule-III, Part-D to the Loan Agreement).</p>
+                    <p><strong>(d)</strong> That for the purpose hereof, the Guarantor unconditionally and irrevocably agrees and undertakes to provide the present Personal Guarantee to the Lender to make payment on behalf of the Borrower and Co-Borrower in the event of any default on the part of the Borrower and/or Co-Borrower in payment of any part of the Loan (hereinafter referred to as the <strong> “Guarantee” </strong>).</p>
+                    <p><strong>(e)</strong> That the Guarantor further undertakes that he/she is solvent and financially capable to discharge his Guarantee obligations.</p>
+                </td>
+            </tr>
+            <tr>
+                <td class="fontstyle">
+                    <p><strong>TERMS AND CONDITIONS OF THE PRESENT PERSONAL GUARANTEE:</strong></p>
+                    <p><strong>(i)</strong> The Guarantor for the purpose hereof irrevocably undertakes to meet the Guarantee without any demur, reservation, caveat, protest or recourse and pay the amount not repaid by the Borrower within seven (7) days from the receipt of first written demand from the Lender.</p>
+                    <p><strong>(ii)</strong> The Guarantor agrees and undertakes to remain fully bound until the entire Loan along with any other dues is paid in full.</p>
+                    <p><strong>(iii)</strong> That the Guarantor further undertakes that to meet the Guarantee and pay the amount not repaid by the Borrower and/or Co-Borrower, the Lender shall have the right to initiate appropriate proceedings under applicable laws and statutes to recover the Guarantee.</p>
+                    <p><strong>(iv)</strong> The Guarantor agrees that his obligations under this Personal Guarantee shall not be reduced by reason of any partial performance of the terms and conditions of the Loan Agreement or other Loan Documents or on account of any other reason, whatsoever.</p>
+                    <p><strong>(v)</strong> The Guarantor agrees that in the Event of Default by the Borrower and/or Co-Borrower, the Lender at its option shall be entitled to enforce this Personal Guarantee against the Guarantor.</p>
+                    <p><strong>(vi)</strong> The Guarantor agrees and undertakes that during the term of the Loan Agreement or other Loan Documents, the Guarantor shall not resign as a member of the Board of Directors of the Borrower Company and/or shall not reduce his/her shareholding in the Borrower company, without the prior written consent of the Lender.</p>
+                    <p><strong>(vii)</strong> This Guarantee shall be construed, interpreted and governed in accordance with the laws of India and should any provision of this Guarantee be judged by an appropriate court of law as invalid, it shall not affect any of the remaining provisions whatsoever.</p>
+                    <p><strong>(viii)</strong> The capitalized terms used in the Personal Guarantee shall have the meaning ascribed to them under the Loan Agreement.</p>
+                    <p><strong>IN WITNESS WHEREOF THE PARTY HAS EXECUTED THIS DOCUMENT ON THE DATE STATED HEREINABOVE.</strong></p>
+                </td>
+            </tr>
+            <tr>
+                <td class="fontstyle">
+                    <p><strong>SIGNED AND DELIVERED by</strong></p>
+                    <p><strong>VIRAG SHAH</strong></p>
+                    <p>Witness 1:</p>
+                    <p>Witness 2:</p>
+                </td>
+            </tr>
+        </tbody>
     </table>
     <p></p>
     <p></p>
-
     <table width="100%" cellspacing="0" cellpadding="10">
         <tr>
-            <td width="100%" class="fontstyle">
-                <p style="text-align: center"><strong>SCHEDULE II</strong></p>
-                <p style="text-align: center"><strong>Personal Guarantee</strong></p>
-                <p>
-                    This PERSONAL GUARANTEE (“Personal Guarantee”) executed at Navsari, Gujarat on 25/03/2023 by VIRAG SHAH, Son of Vipul Shah, PAN No. BASPS9737F, aged 36 years, residing at 16, SARTHIVILLA RAW HOUSE, NEAR BAWAN JINALAY, TIGHRA, NAVSARI-396445 (the “Guarantor”, which expression shall, unless it is repugnant to the subject or context thereof, include his/her legal heirs, executors, and administrators);
-                </p>
-
-                <p><strong>IN FAVOUR OF:</strong></p>
-                <p>
-                    FinDrop Capital, a Lending Act 2017 and a non-banking financial company within the meaning of the Lending Act 2017 Act, 2017 and having its registered office at NO. 340, 3rd Floor, Central Bazar, Navsari-396445 Gujarat, represented herein by its authorized representative, hereinafter referred to as the “Lender", (which expression shall unless excluded by or repugnant to the subject or context, be deemed to include its successors-in-interest and assigns)
-                </p>
-
-                <p><strong>WHEREAS:</strong> VEER ENTERPRISE (hereinafter referred to as ‘Borrower’ which expression shall, unless it be repugnant to the subject or context thereof, include its successors and permitted assigns) has requested the Lender to provide a working capital loan of Rs. 500000/- (Four lakh rupees and zero paisa only) at 18 fee per month (“hereinafter referred to as “Loan”)</p>
-
-                <p><strong>(a)</strong> The Lender has agreed to provide the Loan for the Purpose and on the terms and conditions of the Loan Agreement dated 25/03/2023 ("Loan Agreement”) entered into between the Lender and the Borrower and the Co-Borrower.</p>
-                <p><strong>(b)</strong> In this reference, the Guarantor has agreed to provide a Personal Guarantee guaranteeing the repayment of the entire Loan on such terms and conditions as set forth herein.</p>
-                <p><strong>(c)</strong> The Guarantor shall provide Post Dated Cheques (PDCs) to the Lender, towards the security of the said loan amount (Details of which is mentioned in Schedule-III, Part-D to the Loan Agreement).</p>
-                <p><strong>(d)</strong> That for the purpose hereof, the Guarantor unconditionally and irrevocably agrees and undertakes to provide the present Personal Guarantee to the Lender to make payment on behalf of the Borrower and Co-Borrower in the event of any default on the part of the Borrower and/or Co-Borrower in payment of any part of the Loan (hereinafter referred to as the “Guarantee”).</p>
-                <p><strong>(e)</strong> That the Guarantor further undertakes that he/she is solvent and financially capable to discharge his Guarantee obligations.</p>
-
-                <p><strong>TERMS AND CONDITIONS OF THE PRESENT PERSONAL GUARANTEE:</strong></p>
-                <p><strong>(i)</strong> The Guarantor for the purpose hereof irrevocably undertakes to meet the Guarantee without any demur, reservation, caveat, protest or recourse and pay the amount not repaid by the Borrower within seven (7) days from the receipt of first written demand from the Lender.</p>
-                <p><strong>(ii)</strong> The Guarantor agrees and undertakes to remain fully bound until the entire Loan along with any other dues is paid in full.</p>
-                <p><strong>(iii)</strong> That the Guarantor further undertakes that to meet the Guarantee and pay the amount not repaid by the Borrower and/or Co-Borrower, the Lender shall have the right to initiate appropriate proceedings under applicable laws and statutes to recover the Guarantee.</p>
-                <p><strong>(iv)</strong> The Guarantor agrees that his obligations under this Personal Guarantee shall not be reduced by reason of any partial performance of the terms and conditions of the Loan Agreement or other Loan Documents or on account of any other reason, whatsoever.</p>
-                <p><strong>(v)</strong> The Guarantor agrees that in the Event of Default by the Borrower and/or Co-Borrower, the Lender at its option shall be entitled to enforce this Personal Guarantee against the Guarantor.</p>
-                <p><strong>(vi)</strong> The Guarantor agrees and undertakes that during the term of the Loan Agreement or other Loan Documents, the Guarantor shall not resign as a member of the Board of Directors of the Borrower Company and/or shall not reduce his/her shareholding in the Borrower company, without the prior written consent of the Lender.</p>
-                <p><strong>(vii)</strong> This Guarantee shall be construed, interpreted and governed in accordance with the laws of India and should any provision of this Guarantee be judged by an appropriate court of law as invalid, it shall not affect any of the remaining provisions whatsoever.</p>
-                <p><strong>(viii)</strong> The capitalized terms used in the Personal Guarantee shall have the meaning ascribed to them under the Loan Agreement.</p>
-
-                <p><strong>IN WITNESS WHEREOF THE PARTY HAS EXECUTED THIS DOCUMENT ON THE DATE STATED HEREINABOVE.</strong></p>
-                <p><strong>SIGNED AND DELIVERED by</strong></p>
-                <p>VIRAG SHAH</p>
-                <p><strong>Witness 1:</strong></p>
-                <p><strong>Witness 2:</strong></p>
-            </td>
-        </tr>
-    </table>
-    <p></p>
-    <p></p>
-    <table width="100%" cellspacing="0" cellpadding="10">
-        <tr>
-            <td width="100%" class="fontstyle">
+            <td  class="fontstyle">
                 <p style="text-align: center"><strong>SCHEDULE III</strong></p>
                 <p style="text-align: center"><strong>Part A – Undertaking</strong></p>
-                <p>Date: 25-03-2023</p>
+                <p>Date: <strong>25-03-2023</strong></p>
 
                 <p>
-                    I, VIRAG SHAH and authorized person and acting on behalf of VEER ENTERPRISE (“Borrower”), a Lending Act 2017 and having its registered office at WORD NO 13/1, NAIK AVENUE PANCH HATDI, OPP SHREE RAM DAIRY, NAVSARI, GUJARAT-396445, (“Borrower”), state and undertake as below.
+                    I, <strong> VIRAG SHAH </strong> and authorized person and acting on behalf of <strong> VEER ENTERPRISE </strong>(“Borrower”), a Lending Act 2017 and having its registered office at <strong> WORD NO 13/1, NAIK AVENUE PANCH HATDI, OPP SHREE RAM DAIRY, NAVSARI, GUJARAT-396445, (“Borrower”) </strong>, state and undertake as below.
                 </p>
 
                 <p>
-                    That the Borrower will avail Loan of an amount of Rs. 500000/- (Four lakh rupees and zero paisa only) @ 18 % ROI fee per Annum (“Loan”) from FinDrop Capital, registered under the Lending Act 2017 and a non-banking financial company within the meaning of the Lending Act 2017 having its registered office at NO. 340, 3rd Floor, Central Bazar, Navsari-396445Gujarat. (hereinafter referred to as the "Lender”) on such terms and conditions as mentioned in the Loan Agreement dated 25/03/2023(“Loan Agreement”) executed between the Lender and the Borrower. That the said Loan will be availed by the Borrower for the execution of the Purpose as described in detail in the Loan Agreement.
+                    That the Borrower will avail Loan of an amount of Rs. 500000/- <strong> (Four lakh rupees and zero paisa only) @ 18 % </strong> ROI fee per Annum (“Loan”) from FinDrop Capital, registered under the Lending Act 2017 and a non-banking financial company within the meaning of the Lending Act 2017 having its registered office at NO. 340, 3rd Floor, Central Bazar, Navsari-396445Gujarat. (hereinafter referred to as the "Lender”) on such terms and conditions as mentioned in the Loan Agreement dated 25/03/2023(“Loan Agreement”) executed between the Lender and the Borrower. That the said Loan will be availed by the Borrower for the execution of the Purpose as described in detail in the Loan Agreement.
                 </p>
 
                 <p>
@@ -1891,17 +1876,16 @@
                 </p>
 
                 <p style="text-align: start">____________________________________</p>
-                <p style="text-align: start"><strong>Authorized Signatory</strong></p>
+                <p style="text-align: start">Authorized Signatory</p>
             </td>
         </tr>
     </table>
-    <p></p>
-    <p></p>
+
     <table width="100%" cellspacing="0" cellpadding="10">
         <tr>
             <td width="100%" class="fontstyle">
                 <p style="text-align: center"><strong>Undertaking cum Indemnity - In respect of Facsimile and/or Email Instruction</strong></p>
-                <p>Date: 25-03-2023</p>
+                <p>Date: <strong> 25-03-2023 </strong></p>
 
                 <p><strong>FinDrop Capital</strong><br>
                     340, 3rd Floor,<br>
@@ -1909,7 +1893,7 @@
                     Navsari-396445
                 </p>
 
-                <p>We, VEER ENTERPRISE, represented herein by its authorized representative VIRAG SHAH, execute this Undertaking cum Indemnity in favor of FinDrop Capital, registered under the Lending Act 2017 and a non-banking financial company within the meaning of the Lending Act 2017, having its registered office at NO. 340, 3rd Floor, Central Bazar, Navsari-396445 Gujarat. (hereinafter referred to as the "Lender”) on such terms and conditions as mentioned in the Loan Agreement dated 25/03/2023 (“Loan Agreement”) executed between the Lender and the Borrower.</p>
+                <p>We, <strong> VEER ENTERPRISE </strong>, represented herein by its authorized representative <strong> VIRAG SHAH </strong>, execute this Undertaking cum Indemnity in favor of <strong> FinDrop Capital </strong>, registered under the Lending Act 2017 and a non-banking financial company within the meaning of the Lending Act 2017, having its registered office at NO. 340, 3rd Floor, Central Bazar, Navsari-396445 Gujarat. (hereinafter referred to as the "Lender”) on such terms and conditions as mentioned in the Loan Agreement <strong> dated 25/03/2023 (“Loan Agreement”) </strong> executed between the Lender and the Borrower.</p>
 
                 <p>We have requested the Lender and agree and acknowledge that the Lender shall be entitled to treat any Fax and/or Email (whether or not the same has been electronically signed) submission as issued and the same is fully binding on us.</p>
 
@@ -1924,10 +1908,10 @@
                 <table width="100%" class="borderdone">
                     <tr>
                         <td width="50%">
-                            <p><strong>Signed and delivered</strong></p>
-                            <p>Name - VIRAG SHAH</p>
+                            <p>Signed and delivered</p>
+                            <p>Name - <strong>VIRAG SHAH</strong></p>
                             <p>Signature -</p>
-                            <p>Date - 25-03-2023</p>
+                            <p>Date - <strong>25-03-2023</strong></p>
                         </td>
                         <td width="50%">
 
@@ -1937,28 +1921,27 @@
             </td>
         </tr>
     </table>
-    <p></p>
-    <p></p>
+
     <table width="100%" cellspacing="0" cellpadding="10">
         <tr>
             <td width="100%" class="fontstyle">
                 <p style="text-align: center"><strong>Part B - Demand Promissory Note</strong></p>
-                <p>Place: Navsari, Gujarat</p>
-                <p>Date: 25-03-2023</p>
+                <p>Place:<strong> Navsari, Gujarat </strong></p>
+                <p>Date: <strong> 25-03-2023 </strong></p>
 
-                <p>ON DEMAND I/We VEER ENTERPRISE, a Lending Act 2017 and having its registered office at WORD NO 13/1, NAIK AVENUE PANCH HATDI, OPP SHREE RAM DAIRY ,NAVSARI, GUJARAT-396445, jointly/severally promise to pay FinDrop Capital , a company incorporated under the Lending Act 2017 and a non-banking financial company within the meaning of the Lending Act 2017 of India and having its registered office at NO. 340, 3rd Floor,Central Bazar, Navsari-396445 Gujarat., the sum of Rs. 500000/- (Four lakh rupees and zero paisa only) for value received with interest at the rate of Interest 18 % per Annum with monthly rests till date of payment in full, subject to rate of interest is change as per Lender’s policy.</p>
+                <p>ON DEMAND I/We <strong> VEER ENTERPRISE </strong>, a Lending Act 2017 and having its registered office at WORD NO 13/1, NAIK AVENUE PANCH HATDI, OPP SHREE RAM DAIRY ,NAVSARI, GUJARAT-396445, jointly/severally promise to pay FinDrop Capital , a company incorporated under the Lending Act 2017 and a non-banking financial company within the meaning of the Lending Act 2017 of India and having its registered office at NO. 340, 3rd Floor,Central Bazar, Navsari-396445 Gujarat., the sum of Rs. 500000/- (Four lakh rupees and zero paisa only) for value received with interest at the rate of Interest 18 % per Annum with monthly rests till date of payment in full, subject to rate of interest is change as per Lender’s policy.</p>
                 <p>SIGNED AND DELIVERED by and on behalf of<strong> VEER ENTERPRISE </strong> by its authorized representative, <strong> VIRAG SHAH.</strong></p>
 
             </td>
         </tr>
     </table>
-    <p></p>
-    <p></p>
+
+
     <table width="100%" cellspacing="0" cellpadding="10">
         <tr>
             <td width="100%" class="fontstyle">
                 <p style="text-align: center"><strong>Part C - List of Associate Concerns</strong></p>
-                <p>Date: 25/03/2023</p>
+                <p>Date:<strong> 25/03/2023 </strong></p>
 
                 <table border="1" width="100%" cellspacing="0" cellpadding="5">
                     <thead>
@@ -2049,13 +2032,12 @@
             </td>
         </tr>
     </table>
-    <p></p>
-    <p></p>
+
     <table width="100%" cellspacing="0" cellpadding="10">
         <tr>
             <td width="100%" class="fontstyle">
                 <p style="text-align: center"><strong>Part D - Receipt for Post-Dated Cheques</strong></p>
-                <p>RECEIVED with thanks from the Borrower/Guarantors VIRAG SHAH, the following Post Dated Cheques, all drawn on FinDrop Capital, towards the repayment of Loan amount as stated herein and the Loan Agreement.</p>
+                <p><strong> RECEIVED </strong> with thanks from the <strong> Borrower/Guarantors VIRAG SHAH </strong>, the following Post Dated Cheques, all drawn on <strong> FinDrop Capital </strong>, towards the repayment of Loan amount as stated herein and the Loan Agreement.</p>
 
                 <table border="1" width="100%" cellspacing="0" cellpadding="5">
                     <thead>
@@ -2239,98 +2221,98 @@
                     </tbody>
                 </table>
 
-                <p style="text-align: end;margin-right:100px !important"><strong>RECEIVED</strong></p>
+                <p style="text-align:right;margin-right:90px !important">RECEIVED</p>
 
-                <p style="text-align: end;margin-right:60px !important">__________________</p>
+                <p style="text-align:right;margin-right:60px !important">__________________</p>
 
-                <p style="text-align: end;margin-right:100px !important"><strong>LENDER</strong></p>
+                <p style="text-align:right;margin-right:100px !important"><strong>LENDER</strong></p>
             </td>
         </tr>
     </table>
-    <p></p>
-    <p></p>
+ {{-- remaining --}}
     <table width="100%" cellspacing="0" cellpadding="10">
         <tr>
             <td width="100%" class="fontstyle">
                 <p style="text-align: center"><strong>Sanction Letter</strong></p>
-                <p>Date: 25-03-2023</p>
+                <p>Date: <strong> 25-03-2023 </strong></p>
 
-                <p style="font-weight: bold">To,</p>
-                <p style="font-weight: bold">VIRAG SHAH,<br>
+                <p><strong> To,</strong></p>
+                <p><strong> VIRAG SHAH,<br>
                    VEER ENTERPRISE.<br>
-                   16, SARTHIVILLA RAW HOUSE, NEAR BAWAN JINALAY, TIGHRA, NAVSARI-396445.</p>
+                   16, SARTHIVILLA RAW HOUSE, NEAR BAWAN JINALAY, TIGHRA, NAVSARI-396445.</strong></p>
 
                 <p>Dear Sir,</p>
-                <p><strong>Sub.: An offer for Loan for Working Capital</strong></p>
+                <p style="text-align: center"><strong>Sub.: An offer for Loan for Working Capital</strong></p>
                 <p>With reference to your application, we offer the Loan on the terms and conditions given below:</p>
 
                 <table border="1" width="100%" cellspacing="0" cellpadding="5">
                     <tr>
-                        <td><strong>Loan Application No</strong></td>
-                        <td>FD202205031007</td>
+                        <td>Loan Application No</td>
+                        <td><strong>FD202205031007</strong></td>
                     </tr>
                     <tr>
-                        <td><strong>Nature of Loan</strong></td>
+                        <td>Nature of Loan</td>
                         <td>Working Capital Finance</td>
                     </tr>
                     <tr>
-                        <td><strong>Amount</strong></td>
-                        <td>Rs. 500000/- (Five Lakh rupees and zero paisa only)</td>
+                        <td>Amount</td>
+                        <td><strong>Rs. 500000/- (Five Lakh rupees and zero paisa only)</strong></td>
                     </tr>
                     <tr>
-                        <td><strong>Security</strong></td>
+                        <td>Security</td>
                         <td>Unsecured Loan</td>
                     </tr>
                     <tr>
-                        <td><strong>Purpose</strong></td>
+                        <td>Purpose</td>
                         <td>Working Capital</td>
                     </tr>
                     <tr>
-                        <td><strong>Rate of Interest</strong></td>
-                        <td>18% Reducing per Annum</td>
+                        <td>Rate of Interest</td>
+                        <td><strong>18% Reducing</strong> per Annum</td>
                     </tr>
                     <tr>
-                        <td><strong>Processing Fee and Set up Charges</strong></td>
-                        <td>2% (10000) of the sanctioned amount net plus applicable service tax of the charges incurred by the borrower (i.e., insurance). This amount will be deducted from the first disbursement done to the borrower for a given sanctioned limit.</td>
+                        <td>Processing Fee and Set up Charges</td>
+                        <td>2% (10000) of the sanctioned amount net plus applicable service tax of the charges incurred by the borrower (i.e., insurance). <strong>/-( Eight thousand rupees and zero paisa only)</strong>. This amount will be deducted from the first disbursement done to the borrower for a given sanctioned limit.</td>
                     </tr>
                     <tr>
-                        <td><strong>Repayment details</strong></td>
-                        <td>Repayment by 18 equal MONTHLY installments of Rs. 33,842.</td>
+                        <td>Repayment details</td>
+                        <td>Repayment by<strong> 18 </strong> equal <strong> MONTHLY </strong> installments of <strong> Rs. 33,842</strong>.</td>
                     </tr>
                     <tr>
-                        <td><strong>Primary Repayment Mode</strong></td>
+                        <td>Primary Repayment Mode</td>
                         <td>NACH / Post Dated Cheques / NEFT</td>
                     </tr>
                     <tr>
-                        <td><strong>Installment Date</strong></td>
-                        <td>05-05-2023</td>
+                        <td>Installment Date</td>
+                        <td><strong> 05-05-2023 </strong></td>
                     </tr>
                     <tr>
-                        <td><strong>Secondary Repayment Mode</strong></td>
-                        <td>N/A</td>
+                        <td>Secondary Repayment Mode</td>
+                        <td><strong>N/A</strong></td>
                     </tr>
                     <tr>
-                        <td><strong>Total Interest Payable</strong></td>
-                        <td>Rs. 109,156.00</td>
+                        <td>Total Interest Payable</td>
+                        <td>Total interest payable over the complete tenure of loan is <strong> 109156.00</strong>
+                        </td>
                     </tr>
                     <tr>
-                        <td><strong>Delay Charges</strong></td>
-                        <td>Rs. 100/- per day per installment</td>
+                        <td>Delay Charges</td>
+                        <td>Rs. <strong> 100/- </strong> per day per installment</td>
                     </tr>
                     <tr>
-                        <td><strong>Cheque Bounce Charges</strong></td>
-                        <td>Rs. 1,000/- Per Incident</td>
+                        <td>Cheque Bounce Charges</td>
+                        <td>Rs. <strong> 1,000/-</strong> Per Incident</td>
                     </tr>
                     <tr>
-                        <td><strong>Legal Expenses / Stamp Duty</strong></td>
+                        <td>Legal Expenses / Stamp Duty</td>
                         <td>All stamp duties, legal expenses, and other costs involved, including the cost of documentation and due diligence cost to be borne by the Borrower. Waived for this cycle.</td>
                     </tr>
                     <tr>
-                        <td><strong>Approvals Required</strong></td>
+                        <td>Approvals Required</td>
                         <td>Borrower needs to take lender’s prior written approval before incurring further debt/loan/financing/encumbrances from any other lender.</td>
                     </tr>
                     <tr>
-                        <td><strong>Documents to be Provided by the Borrower</strong></td>
+                        <td>Documents to be Provided by the Borrower</td>
                         <td>
                             <ol>
                                 <li>Personal Guarantee</li>
@@ -2343,7 +2325,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><strong>Broken Period Interest</strong></td>
+                        <td>Broken Period Interest</td>
                         <td class="fontstylemain">Rs. 1,068.00 (4 days)</td>
                     </tr>
                 </table>
@@ -2356,7 +2338,7 @@
                 <br><br>
 
                 <p>___________________</p>
-                <p><strong>Authorized Signatory</strong></p>
+                <p>Authorized Signatory</p>
             </td>
         </tr>
     </table>
