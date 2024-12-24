@@ -392,6 +392,153 @@ class ApprovedController extends Controller
             // return redirect()->back()->with('success', 'Disbursal Updated successfully.');
             return redirect('home')->with('success', 'Disbursal Added successfully.');
         }
+    }  
+
+
+    public function disbursalstoresave(Request $request)
+    {
+        // dd($request->all());
+
+        $request->validate([
+            'sanction_amount' => 'required',
+            'sanction_date'  => 'required',
+            'tenure' => 'required',
+            'roi' => 'required',
+            // 'app_disbursal_amount' => 'required',
+            // 'app_adjustment_amount' => 'required',
+            'disbursal_type'  => 'required',
+            // 'application_status' => 'required',
+            // 'disbursal_date'  => 'required',
+            // 'effective_payment_date'   => 'required',
+            'payment_mode'    => 'required',
+            // 'business_partner_type' => 'required',
+            'beneficiary_name'    => 'required',
+            'business_acccount_type' => 'required',
+            'beneficiary_account_number' => 'required',
+            // 'bankvalidation'   => 'required',
+            // 'bankdealing'      => 'required',
+            'bankcode'      => 'required',
+            'bankName'     => 'required',
+            'branch'      => 'required',
+            // 'location'   => 'required',
+
+
+        ]);
+
+
+        $disbursal_data = Disbursal::find($request->loanidmain);
+        // dd($disbursal_data );
+        if (!$disbursal_data) {
+            if ($request->applicant_type == 'BORROWER') {
+                $id = $request->partner_name;
+                //    $name = Customer::find($id)->select('cust_name');
+                $name = Customer::where('cust_id', $id)->pluck('cust_name')->first();
+            } else {
+                $id = $request->partner_name;
+                // $name = Proprietor::find($id)->select('proprietor_name');
+                // $name = Proprietor::where('proprietor_id', $id)->pluck('proprietor_name')->first();
+            }
+            // dd($name);
+            $payment_data = new Disbursal;
+            $payment_data->loan_id = $request->loanidmain;
+            $payment_data->cust_id = $request->custidmain;
+            $payment_data->sanction_amount = $request->sanction_amount;
+            $payment_data->sanction_date = $request->sanction_date;
+            $payment_data->tenure = $request->tenure;
+            $payment_data->roi = $request->roi;
+            $payment_data->app_disbursal_amount = $request->app_disbursal_amount;
+            $payment_data->app_adjustment_amount = $request->app_adjustment_amount;
+            $payment_data->disbursal_type = $request->disbursal_type;
+            $payment_data->application_status = $request->application_status;
+            $payment_data->loan_account_number = $request->loan_account_number;
+            $payment_data->disbursal_date = $request->disbursal_date;
+            $payment_data->disbursal_amount = $request->disbursal_amount;
+            $payment_data->adjustment_amount = $request->adjustment_amount;
+            $payment_data->actual_payment_amount = $request->actual_payment_amount;
+
+            $payment_data->bussiness_partner_type = $request->applicant_type;
+            // $payment_data->bussiness_partner_name_appant_id = $request->partner_name;
+            $payment_data->bussiness_partner_name_appant_name = $request->partner_name;;
+            $payment_data->bussiness_disbursal_amount    = $request->bussiness_disbursal_amount;
+            $payment_data->bussiness_adjustment_amount = $request->bussiness_adjustment_amount;
+            $payment_data->payment_amount = $request->payment_amount;
+            $payment_data->effective_payment_date = $request->effective_payment_date;
+            $payment_data->payment_mode = $request->payment_mode;
+            // $payment_data->business_partner_type = $request->business_partner_type;
+            $payment_data->beneficiary_name = $request->beneficiary_name;
+            $payment_data->business_acccount_type = $request->business_acccount_type;
+            $payment_data->beneficiary_account_number = $request->beneficiary_account_number;
+            // $payment_data->bankvalidation = $request->bankvalidation;
+            // $payment_data->bankdealing = $request->bankdealing;
+            $payment_data->bankcode = $request->bankcode;
+            $payment_data->bankName = $request->bankName;
+            $payment_data->branch = $request->branch;
+            // $payment_data->location = $request->location;
+            // $FormOffice = FormOffice::where('loan_id', $request->loanidmain)->first();
+            // // dd($FormOffice);
+            // $lonaccountnumber = $FormOffice->Prospect_No;
+            // $payment_data->loan_account_number = $lonaccountnumber;
+            //  dd($request->all());
+            // Save the new record to the database
+            $payment_data->save();
+            
+            // return redirect()->back()->with('success', 'Disbursal Added successfully.'); 
+            return response()->json(['message' => 'Disbursal saved successfully.'], 200);
+            // return redirect('home')->with('success', 'Disbursal Added successfully.');
+        } else {
+
+
+
+            if ($request->applicant_type == 'BORROWER') {
+                $id = $request->partner_name;
+                //    $name = Customer::find($id)->select('cust_name');
+                $name = Customer::where('cust_id', $id)->pluck('cust_name')->first();
+            } else {
+                $id = $request->partner_name;
+                // $name = Proprietor::find($id)->select('proprietor_name');
+                $name = Proprietor::where('proprietor_id', $id)->pluck('proprietor_name')->first();
+            }
+            $disbursal_data->sanction_amount = $request->sanction_amount;
+            $disbursal_data->sanction_date = $request->sanction_date;
+            $disbursal_data->tenure = $request->tenure;
+            $disbursal_data->roi = $request->roi;
+            $disbursal_data->app_disbursal_amount = $request->app_disbursal_amount;
+            $disbursal_data->app_adjustment_amount = $request->app_adjustment_amount;
+            $disbursal_data->disbursal_type = $request->disbursal_type;
+            $disbursal_data->application_status = $request->application_status;
+            $disbursal_data->loan_account_number = $request->loan_account_number;
+            $disbursal_data->disbursal_date = $request->disbursal_date;
+            $disbursal_data->disbursal_amount = $request->disbursal_amount;
+            $disbursal_data->adjustment_amount = $request->adjustment_amount;
+            $disbursal_data->actual_payment_amount = $request->actual_payment_amount;
+
+            $disbursal_data->bussiness_partner_type = $request->applicant_type;
+
+            // $disbursal_data->bussiness_partner_name_appant_id = $request->partner_name;
+
+            $disbursal_data->bussiness_partner_name_appant_name = $request->partner_name;;
+            $disbursal_data->bussiness_disbursal_amount = $request->bussiness_disbursal_amount;
+            $disbursal_data->bussiness_adjustment_amount = $request->bussiness_adjustment_amount;
+            $disbursal_data->payment_amount = $request->payment_amount;
+            $disbursal_data->effective_payment_date = $request->effective_payment_date;
+            $disbursal_data->payment_mode = $request->payment_mode;
+            // $disbursal_data->business_partner_type = $request->business_partner_type;
+            $disbursal_data->beneficiary_name = $request->beneficiary_name;
+            $disbursal_data->business_acccount_type = $request->business_acccount_type;
+            $disbursal_data->beneficiary_account_number = $request->beneficiary_account_number;
+            // $disbursal_data->bankvalidation = $request->bankvalidation;
+            // $disbursal_data->bankdealing = $request->bankdealing;
+            $disbursal_data->bankcode = $request->bankcode;
+            $disbursal_data->bankName = $request->bankName;
+            $disbursal_data->branch = $request->branch;
+            // $disbursal_data->location = $request->location;
+            $disbursal_data->save();
+
+            
+            // return redirect()->back()->with('success', 'Disbursal Updated successfully.'); 
+            return response()->json(['message' => 'Disbursal saved successfully.'], 200);
+            // return redirect('home')->with('success', 'Disbursal Added successfully.');
+        }
     }
 
 

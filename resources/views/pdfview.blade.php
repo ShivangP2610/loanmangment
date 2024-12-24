@@ -2404,13 +2404,13 @@
 
         <tr>
             <td width="50%" class="fontstyle"> <strong>  Place: Navsari, Gujarat </strong></td>
-            {{-- <td width="50%" class="fontstyle">ddddd</td> --}}
+            <td width="50%" class="fontstyle"></td>
         </tr>
         <tr> 
   
             {{-- <td width="50%" class="fontstyle"><strong>Date: 25/03/2023</strong></td>  --}}
             <td width="50%" class="fontstyle"><strong>Date: {{ Carbon::now()->format('d/m/Y') }}</strong></td>
-            {{-- <td width="50%" class="fontstyle">ffffff</td> --}}
+            <td width="50%" class="fontstyle"></td>
         </tr>
 
     </table>

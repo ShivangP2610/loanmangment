@@ -267,8 +267,8 @@ Route::get('download-pdf/{loan_id}', [FormController::class, 'downloadPDF'])->na
 Route::get('/generate-pdf/{loan_id}', [PDFController::class,'generatePDF'])->name('generate.pdf');
 
 // for test 20-12-2024
-Route::get('viewpdffinal/{loan_id}',[FormController::class,'viewPdffinal'])->name('viewpdf');
-Route::get('download-finalpdf/{loan_id}', [FormController::class, 'downloadPDFfinal'])->name('download.pdf');
+Route::get('viewpdffinal/{loan_id}',[FormController::class,'viewPdffinal'])->name('viewfinalpdf');
+Route::get('download-finalpdf/{loan_id}', [FormController::class, 'downloadPDFfinal'])->name('downloadfinal.pdf');
 
 // Credit data
 // Route::post('creditsatage/add',[CamController::class,'addcreditstage'])->name('add-creditstage');
@@ -292,7 +292,9 @@ Route::get('getbankdata/{id}',[ApprovedController::class,'getbankdata'])->name('
 
 Route::post('repayment-instrument',[ApprovedController::class,'store'])->name('repaymentinstrument');
 
-Route::post('disbursal-details',[ApprovedController::class,'disbursalstore'])->name('disbursaldetails');
+Route::post('disbursal-details',[ApprovedController::class,'disbursalstore'])->name('disbursaldetails');  
+Route::post('disbursal-details-save',[ApprovedController::class,'disbursalstoresave'])->name('disbursaldetails-save'); 
+
 
 Route::get('/get-partners', [ApprovedController::class, 'getPartners'])->name('get.partners');
 Route::post('/submit-form', [ApprovedController::class, 'adjustablestore'])->name('adjustable.store');

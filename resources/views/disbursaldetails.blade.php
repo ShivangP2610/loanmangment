@@ -2,7 +2,10 @@
     <title>Approved Form</title>
 @endpush
 @extends('layout.main')
-
+{{-- <meta name="csrf-token" content="{{ csrf_token() }}"> --}}
+@section('head')
+    <meta name="csrf_token" content="{{ csrf_token() }}" />
+@endsection
 @section('main-section')
     <style>
         .visually-hidden {
@@ -16,10 +19,9 @@
             border: 0;
         }
 
-        .button-spacing > *:not(:last-child) {
+        .button-spacing>*:not(:last-child) {
             margin-right: 25px;
         }
-
     </style>
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -122,7 +124,7 @@
                     </nav>
                     <div class="tab-content" id="nav-tabContent">
 
-                        <form action="{{ route('disbursaldetails') }}" method="POST">
+                        <form action="{{ route('disbursaldetails') }}" method="POST" id="addCreditForm">
                             @csrf
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
                                 aria-labelledby="nav-home-tab">
@@ -163,7 +165,8 @@
                                                         aria-label="Dollar amount (with dot and two decimal places)" hidden>
                                                     <input type="text" class="form-control" id="custidmain"
                                                         name="custidmain"
-                                                        aria-label="Dollar amount (with dot and two decimal places)" hidden>
+                                                        aria-label="Dollar amount (with dot and two decimal places)"
+                                                        hidden>
                                                 </td>
                                                 <td class="text-nowrap" style="text-align: center">
                                                     <div class="input-group">
@@ -327,8 +330,12 @@
                                                         name="applicant_type">
                                                         <option value="" disabled selected>Select Applicant Type
                                                         </option>
-                                                        <option value="BORROWER" {{ old('applicant_type') == 'BORROWER' ? 'selected' : '' }} >BORROWER</option>
-                                                        <option value="CO-BORROWER" {{ old('applicant_type') == 'CO-BORROWER' ? 'selected' : '' }}>CO-BORROWER</option>
+                                                        <option value="BORROWER"
+                                                            {{ old('applicant_type') == 'BORROWER' ? 'selected' : '' }}>
+                                                            BORROWER</option>
+                                                        <option value="CO-BORROWER"
+                                                            {{ old('applicant_type') == 'CO-BORROWER' ? 'selected' : '' }}>
+                                                            CO-BORROWER</option>
                                                     </select>
                                                 </td>
                                                 <td>
@@ -383,9 +390,15 @@
                                                         aria-label="Default select example" name="payment_mode"
                                                         id="payment_mode">
                                                         <option selected>Open this select menu</option>
-                                                        <option value="check" {{ old('payment_mode') == 'check' ? 'selected' : '' }}>Check</option>
-                                                        <option value="rtgs_neft" {{ old('payment_mode') == 'rtgs_neft' ? 'selected' : '' }}>Rtgs/Neft</option>
-                                                        <option value="transfer_exi_account" {{ old('payment_mode') == 'transfer_exi_account' ? 'selected' : '' }}>Transfer Existing Account
+                                                        <option value="check"
+                                                            {{ old('payment_mode') == 'check' ? 'selected' : '' }}>Check
+                                                        </option>
+                                                        <option value="rtgs_neft"
+                                                            {{ old('payment_mode') == 'rtgs_neft' ? 'selected' : '' }}>
+                                                            Rtgs/Neft</option>
+                                                        <option value="transfer_exi_account"
+                                                            {{ old('payment_mode') == 'transfer_exi_account' ? 'selected' : '' }}>
+                                                            Transfer Existing Account
                                                         </option>
                                                     </select><br>
 
@@ -586,10 +599,21 @@
                                                 <td colspan="8">
                                                     <div class="d-flex justify-content-end button-spacing mt-3">
                                                         <!-- Save Button -->
-                                                        <button type="button" class="btn btn-primary" id="saveButton">Save</button>
+
+                                                        {{-- <a href="{{ route('downloadfinal.pdf', session('mainloan_id')) }}" class="btn btn-primary btn-sm">Download Agreement</a>  --}}
+                                                        @if (session('mainloan_id') && \App\Models\Disbursal::where('loan_id', session('mainloan_id'))->exists())
+                                                            <a href="{{ route('downloadfinal.pdf', session('mainloan_id')) }}"
+                                                                class="btn btn-primary btn-sm">Download Agreement</a>
+                                                        @endif
+                                                        <button type="button" class="btn btn-primary"
+                                                            id="saveButton">Save</button>
 
                                                         <!-- Submit Button -->
                                                         <button type="submit" class="btn btn-primary">Submit</button>
+
+
+
+
                                                     </div>
                                                 </td>
                                             </tr>
@@ -1009,12 +1033,12 @@
                             // Loop through the banknames object
                             Object.entries($banknames).forEach(([id, name]) => {
                                 let option = document.createElement(
-                                "option"); // Create a new option element
+                                    "option"); // Create a new option element
                                 option.value = id; // Set the value of the option (bank ID)
                                 option.textContent =
-                                name; // Set the visible text of the option (bank name)
+                                    name; // Set the visible text of the option (bank name)
                                 bankSelect.appendChild(
-                                option); // Append the option to the select box
+                                    option); // Append the option to the select box
                             });
                         } else {
                             console.error("Bank names data is invalid or empty.");
@@ -1257,7 +1281,8 @@
                         $("#beneficiarybranch").val($bankdetails[0]['branch_address']);
                         $("#beneficiaryName").val($bankdetails[0]['account_holder_name']);
                         $("#beneficiaryAccountNumber").val($bankdetails[0][
-                            'account_number']);
+                            'account_number'
+                        ]);
                         $("#bankcode").val($bankdetails[0]['ifsc_code']);
                         $("#businessacccountType").val($bankdetails[0]['Type_of_Account']);
                     }
@@ -1400,20 +1425,67 @@
                 });
         });
     });
-
 </script>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-    const saveButton = document.getElementById('saveButton');
+    document.addEventListener('DOMContentLoaded', function() {
+        const saveButton = document.getElementById('saveButton');
 
-    saveButton.addEventListener('click', function () {
-        // alert("hello");
-        $appno = $("#loannumber").val();
-        $("#application_status").val("Disbursed");
-        $('#loan_account_number').val($appno);
+        saveButton.addEventListener('click', function() {
+            // alert("hello");
+            $appno = $("#loannumber").val();
+            $("#application_status").val("Disbursed");
+            $('#loan_account_number').val($appno);
 
+        });
     });
-});
+</script>
 
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const saveButton = document.getElementById('saveButton'); // Save button
+        const form = document.getElementById('addCreditForm'); // Form reference
+
+        saveButton.addEventListener('click', function(e) {
+            e.preventDefault();
+
+
+            const formData = new FormData(form);
+
+
+            const appNo = document.getElementById('loannumber').value;
+            document.getElementById('application_status').value = "Disbursed";
+            document.getElementById('loan_account_number').value = appNo;
+
+
+            formData.append('application_status', 'Disbursed');
+            formData.append('loan_account_number', appNo);
+
+            // Submit form data via AJAX
+            fetch("{{ route('disbursaldetails-save') }}", {
+                    method: 'POST',
+                    headers: {
+
+                        'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
+                    },
+                    body: formData,
+                })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        throw new Error('Failed to save data. Check the response.');
+                    }
+                })
+                .then(data => {
+                    // alert('Data saved successfully!');
+                    window.location.reload(); // Reload the page after success
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred while saving the data.');
+                });
+        });
+    });
 </script>
