@@ -191,7 +191,8 @@ class FormController extends Controller
         session()->put('application_id', $id);
         $officedata = FormOffice::find($id);
         $customer = Customer::where('loan_id', $id)->first();
-        $Proprietors = Proprietor::where('loan_id', $id)->get();
+        $Proprietors = Proprietor::where('loan_id', $id)->get();  
+        $Proprietors1 = Proprietor::where('loan_id', $id)->where('relation_with_applicant','Proprietor')->first();
         $CoCustomers = CoCustomer::where('loan_id', $id)->get();
         $Remainingpartners = Remainingpartner::where('loan_id', $id)->get();
         // dd($Remainingpartners);
@@ -204,7 +205,7 @@ class FormController extends Controller
         $url = url('/office/add');
         $title = 'For Office Use Only';
         $btext = "Submit";
-        $data = compact('url', 'title', 'btext', 'officedata', 'customer', 'Proprietors', 'CoCustomers', 'Remainingpartners', 'BankDetailes', 'References' ,'creditstage','repayments','disbursal','adjustdata');
+        $data = compact('url', 'title', 'btext', 'officedata', 'customer', 'Proprietors', 'CoCustomers', 'Remainingpartners', 'BankDetailes', 'References' ,'creditstage','repayments','disbursal','adjustdata','Proprietors1');
         //  dd($data);
         return view('pdfview')->with($data);
     }
@@ -311,8 +312,9 @@ class FormController extends Controller
         $creditstage =  Creditstage::where('loan_id', $id)->first(); 
         $repayments = Repayment::where('loan_id', $id)->first();  
         $disbursal = Disbursal::where('loan_id', $id)->first(); 
-        $adjustdata = Adjustable::where('loan_id', $id)->get(); 
-        $data = compact('officedata', 'customer', 'Proprietors', 'CoCustomers', 'Remainingpartners', 'BankDetailes','References','creditstage','repayments','disbursal','adjustdata');
+        $adjustdata = Adjustable::where('loan_id', $id)->get();  
+        $Proprietors1 = Proprietor::where('loan_id', $id)->where('relation_with_applicant','Proprietor')->first();
+        $data = compact('officedata', 'customer', 'Proprietors', 'CoCustomers', 'Remainingpartners', 'BankDetailes','References','creditstage','repayments','disbursal','adjustdata' ,'Proprietors1');
         $html = view('pdfview', $data)->render();
         //  dd($html);
         $pdf = Pdf::loadHtml($html)->setOptions(['defaultFont' => 'sans-serif']);
