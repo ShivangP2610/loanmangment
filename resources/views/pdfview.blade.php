@@ -3049,7 +3049,7 @@
                     </tr>
                     <tr>
                         <td>Processing Fee and Set up Charges</td>
-                        <td>2% (10000) of the sanctioned amount net plus applicable service tax of the charges incurred
+                        <td><storng> {{ $adjustdata[0]->percentage }}% <strong>  {{ $adjustdata[0]->amount }}  </strong> of the sanctioned amount net plus applicable service tax of the charges incurred
                             by the borrower (i.e., insurance). This amount will be deducted from the first disbursement
                             done to the borrower for a given sanctioned limit.</td>
                     </tr>
