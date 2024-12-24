@@ -2511,11 +2511,11 @@
                         referred to as the “Lender", (which expression shall unless excluded by or repugnant to the
                         subject or context, be deemed to include its successors-in-interest and assigns)
                     </p>
-                    <p><strong>WHEREAS: VEER ENTERPRISE </strong> (hereinafter referred to as <strong> ‘Borrower’ </strong> which expression
+                    <p><strong>WHEREAS: {{ $customer->cust_name }} </strong> (hereinafter referred to as <strong> ‘Borrower’ </strong> which expression
                         shall, unless it be repugnant to the subject or context thereof, include its successors and
                         permitted assigns) has requested the Lender to provide a working capital loan of Rs.
                        <strong>  {{ $creditstage->sanctioned_amount }} </strong> /- (Four lakh rupees and zero paisa only) at 18 fee per
-                        month (“hereinafter referred to as “Loan”)</p>
+                        month (“hereinafter referred to as   <strong>“Loan” </strong></p>
                     <p><strong>(a)</strong> The Lender has agreed to provide the Loan for the Purpose and on the terms
                         and conditions of the Loan Agreement dated <strong> {{ Carbon::now()->format('d/m/Y') }} </strong> <strong> ("Loan Agreement”) </strong> entered into between
                         the Lender and the Borrower and the Co-Borrower.</p>
@@ -2642,9 +2642,9 @@
                     340, 3rd Floor,<br>
                     Central Bazar,<br>
                     Navsari-396445
-                </p>
+                </p> 
 
-                <p>We, VEER ENTERPRISE, represented herein by its authorized representative VIRAG SHAH, execute this
+                <p>We,  {{ $customer->cust_name }}, execute this 
                     Undertaking cum Indemnity in favor of FinDrop Capital, registered under the Lending Act 2017 and a
                     non-banking financial company within the meaning of the Lending Act 2017, having its registered
                     office at NO. 340, 3rd Floor, Central Bazar, Navsari-396445 Gujarat. (hereinafter referred to as the
