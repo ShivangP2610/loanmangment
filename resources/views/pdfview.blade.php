@@ -2180,7 +2180,7 @@
         </tr>
         <tr>
             <td width="50%" class="fontstyle">Delay Charges</td>
-            <td width="50%" class="fontstyle">3% per Month ON Overdue</td>
+            <td width="50%" class="fontstyle">3% per Month On Overdue.</td>
         </tr>
         <tr>
             <td width="50%" class="fontstyle">Legal expenses/stamp duty</td>
@@ -2994,9 +2994,9 @@
                             <td></td>
                         </tr>
                     </tbody>
-                </table>
+                </table> <p></p> <p></p><p></p>
 
-                <p style="text-align:right;margin-right:90px !important"><strong>RECEIVED</strong></p>
+                <p style="text-align:right;margin-right:90px !important">RECEIVED</p>
 
                 <p style="text-align:right;margin-right:60px !important">__________________</p>
 
@@ -3009,7 +3009,7 @@
         <tr>
             <td width="100%" class="fontstyle">
                 <p style="text-align: center"><strong>Sanction Letter</strong></p>
-                <p>Date: {{ Carbon::now()->format('d/m/Y') }}</p>
+                <p>Date: <strong> {{ Carbon::now()->format('d/m/Y') }} </strong></p>
 
                 <p style="font-weight: bold">To,</p>
                 <p style="font-weight: bold"> <strong>{{ $customer->cust_name }} </strong>,<br>
@@ -3075,7 +3075,7 @@
                     </tr>
                     <tr>
                         <td>Delay Charges</td>
-                        <td>Rs. <strong> 100 </strong>/- per day per installment</td>
+                        <td>3% per Month On Overdue.</td>
                     </tr>
                     <tr>
                         <td>Cheque Bounce Charges</td>
