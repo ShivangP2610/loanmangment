@@ -1307,8 +1307,7 @@
                                     • The Borrower(s) confirm having read and understood terms of the Application Form
                                     which would apply to the Facility being requested under this Application Form.<br>
                                     • The Borrower(s) understand that sanction of the Facility and any disbursement
-                                    thereunder is at the sole discretion of India FinDrop Capital Finance Limited
-                                    (FinDrop Capital) (Formerly known as “FinDrop Capital Holdings Limited”) which
+                                    thereunder is at the sole discretion of Findrop Capital which
                                     reserves its right to reject the Application (with or without notice to the
                                     Borrower), and that FinDrop Capital shall not be responsible/liable in any manner
                                     whatsoever for such rejection or any delay in notifying me of such rejection. The
