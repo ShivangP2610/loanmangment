@@ -2088,11 +2088,12 @@
         <tr>
             <td width="50%" class="fontstyle">Name of Borrower</td>
             <td width="50%" class="fontstyle text-capitalize"> <strong>{{ $customer->cust_name }} </strong></td>
-        </tr>
-        <tr>
+        </tr> 
+        
+        {{-- <tr>
             <td width="50%" class="fontstyle">Name of Proprietor</td>
             <td width="50%" class="fontstyle text-capitalize"> <strong> {{ $Proprietors1->relation_with_applicant == 'Proprietor' ? $Proprietors1->proprietor_name : ''  }} </strong></td>
-        </tr>
+        </tr> --}}
         <tr>
             <td width="50%" class="fontstyle">Address of Borrower (where notice is to be sent to)
             </td>
@@ -2108,12 +2109,49 @@
             <td width="50%" class="fontstyle text-capitalize"> <strong>{{ $customer->cust_email }} </strong></td>
         </tr>
         <tr>
-            <td width="50%" class="fontstyle">Nature of Business</td>
-            <td width="50%" class="fontstyle text-capitalize"> <strong>{{ $customer->Type_of_Industry }} - {{ $customer->Segment }} </strong></td>
+            <td width="50%" class="fontstyle">Sign in Borrower</td>
+            <td width="50%" class="fontstyle text-capitalize">  </strong></td>
         </tr>
     </table>
     <p></p>
+    <p></p>   
+    {{-- <?php  dd($Proprietors);?> --}}
+    <table width="100%" cellpadding="5" cellspacing="0" class="fontstyle borderdata">
+        <tr>
+            <td colspan="2" class="fontstyle">
+                <strong>B. DETAILS OF CO-BORROWER</strong>
+            </td>
+        </tr> 
+        @foreach ($Proprietors as $key => $Proprietor)   
+        {{-- <?php  dd($Proprietor->Current_Residence_Address);?> --}}
+        <tr>
+            <td width="50%" class="fontstyle">Name of CO-BORROWE – {{ $key + 1 }}</td>
+            <td width="50%" class="fontstyle text-capitalize"> <strong>{{ $Proprietor->proprietor_name }} </strong></td>
+        </tr> 
+        
+      
+        <tr>
+            <td width="50%" class="fontstyle">Address of CO-BORROWE (where notice is to be sent to) – {{ $key + 1 }}
+            </td>
+            <td width="50%" class="fontstyle text-capitalize"><strong>  {{ $Proprietor->Current_Residence_Address }} {{ $Proprietor->Current_District }}
+                {{ $Proprietor->Current_pincode }}  </strong></td>
+        </tr>
+        <tr>
+            <td width="50%" class="fontstyle">Contact No.</td>
+            <td width="50%" class="fontstyle text-capitalize"> <strong>{{ $Proprietor->proprietor_Mobile_no }} </strong></td>
+        </tr>
+        <tr>
+            <td width="50%" class="fontstyle">Email.id</td>
+            <td width="50%" class="fontstyle text-capitalize"> <strong>{{ $Proprietor->proprietor_email }} </strong></td>
+        </tr>
+        <tr>
+            <td width="50%" class="fontstyle">Sign in CO-BORROWE – {{ $key + 1 }}</td>
+            <td width="50%" class="fontstyle text-capitalize">  </strong></td>
+        </tr> 
+        @endforeach
+    </table>  
     <p></p>
+    <p></p> 
     <!-- Table C: Loan Details -->
     <table width="100%" cellpadding="5" cellspacing="0" class="fontstyle borderdata">
         <tr>
@@ -2246,7 +2284,7 @@
             <td width="50%" class="fontstyle">twinkalpatel@gmail.com</td>
         </tr>
     </table> --}}
-    <table width="100%" cellpadding="5" cellspacing="0" class="fontstyle borderdata">
+    {{-- <table width="100%" cellpadding="5" cellspacing="0" class="fontstyle borderdata">
         <tr>
             <td colspan="2" class="fontstyle">
                 <strong>D. DETAILS OF GUARANTORS / REFERENCES</strong>
@@ -2276,7 +2314,7 @@
                 <td width="50%" class="fontstyle"><strong>  {{ $Proprietor->proprietor_email ?? 'N/A' }} </strong></td>
             </tr>
         @endforeach
-    </table>
+    </table> --}}
 
     <p></p>
     <p></p>
@@ -2309,7 +2347,7 @@
             <td width="50%" class="fontstyle">SBIN0018548</td>
         </tr>
     </table> --}}
-    <table width="100%" cellpadding="5" cellspacing="0" class="fontstyle borderdata">
+    {{-- <table width="100%" cellpadding="5" cellspacing="0" class="fontstyle borderdata">
         <tr>
             <td colspan="2" class="fontstyle">
                 <strong>E. BORROWER’S BANK ACCOUNT DETAILS</strong>
@@ -2337,7 +2375,7 @@
                 <td width="50%" class="fontstyle"> <strong>{{ $BankDetail->ifsc_code ?? 'N/A' }} </strong></td>
             </tr>
         @endforeach
-    </table>
+    </table> --}}
 
     <p></p>
     <p></p>
@@ -2497,7 +2535,7 @@
                   
                         ?>
                         This  <strong>PERSONAL GUARANTEE </strong> (“Personal Guarantee”) executed at  <strong>Navsari, Gujarat </strong> on   <strong>{{ Carbon::now()->format('d/m/Y') }}  </strong>by
-                      <strong>  {{ $customer->cust_name }} </strong>, PAN No. {{ $customer->cust_pannumber }} , aged 36 years,
+                      <strong>  {{ $customer->cust_name }} </strong>, PAN No. {{ $customer->cust_pannumber }} , 
                         residing at  <strong>{{ $customer->Principal_office_address }} {{ $customer->Principal_District }}
                         {{ $customer->Principal_pincode }} </strong> (the   <strong>“Guarantor” </strong>, which expression shall, unless it is
                         repugnant to the subject or context thereof, include his/her legal heirs, executors, and
