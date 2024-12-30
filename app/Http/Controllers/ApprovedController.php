@@ -293,6 +293,9 @@ class ApprovedController extends Controller
                 // $name = Proprietor::find($id)->select('proprietor_name');
                 // $name = Proprietor::where('proprietor_id', $id)->pluck('proprietor_name')->first();
             }
+
+            $banknamemain = BankDetails::find($request->bankName)->first(); 
+            $bankname = $banknamemain->bank_name;
             // dd($name);
             $payment_data = new Disbursal;
             $payment_data->loan_id = $request->loanidmain;
@@ -327,6 +330,7 @@ class ApprovedController extends Controller
             // $payment_data->bankdealing = $request->bankdealing;
             $payment_data->bankcode = $request->bankcode;
             $payment_data->bankName = $request->bankName;
+            $payment_data->banknamemain  = $bankname;
             $payment_data->branch = $request->branch;
             // $payment_data->location = $request->location;
             // $FormOffice = FormOffice::where('loan_id', $request->loanidmain)->first();
@@ -351,7 +355,11 @@ class ApprovedController extends Controller
                 $id = $request->partner_name;
                 // $name = Proprietor::find($id)->select('proprietor_name');
                 $name = Proprietor::where('proprietor_id', $id)->pluck('proprietor_name')->first();
-            }
+            } 
+
+            $banknamemain = BankDetails::find($request->bankName)->first(); 
+            $bankname = $banknamemain->bank_name;
+            // dd($banknamemain->bank_name);
             $disbursal_data->sanction_amount = $request->sanction_amount;
             $disbursal_data->sanction_date = $request->sanction_date;
             $disbursal_data->tenure = $request->tenure;
@@ -383,7 +391,10 @@ class ApprovedController extends Controller
             // $disbursal_data->bankvalidation = $request->bankvalidation;
             // $disbursal_data->bankdealing = $request->bankdealing;
             $disbursal_data->bankcode = $request->bankcode;
+            
+
             $disbursal_data->bankName = $request->bankName;
+            $disbursal_data->banknamemain  = $bankname;
             $disbursal_data->branch = $request->branch;
             // $disbursal_data->location = $request->location;
             $disbursal_data->save();
@@ -437,8 +448,11 @@ class ApprovedController extends Controller
                 $id = $request->partner_name;
                 // $name = Proprietor::find($id)->select('proprietor_name');
                 // $name = Proprietor::where('proprietor_id', $id)->pluck('proprietor_name')->first();
-            }
-            // dd($name);
+            } 
+            
+            $banknamemain = BankDetails::find($request->bankName)->first(); 
+            $bankname = $banknamemain->bank_name;
+            // dd($bankname);
             $payment_data = new Disbursal;
             $payment_data->loan_id = $request->loanidmain;
             $payment_data->cust_id = $request->custidmain;
@@ -472,6 +486,9 @@ class ApprovedController extends Controller
             // $payment_data->bankdealing = $request->bankdealing;
             $payment_data->bankcode = $request->bankcode;
             $payment_data->bankName = $request->bankName;
+            $payment_data->banknamemain  = $bankname;
+
+            
             $payment_data->branch = $request->branch;
             // $payment_data->location = $request->location;
             // $FormOffice = FormOffice::where('loan_id', $request->loanidmain)->first();
@@ -486,7 +503,7 @@ class ApprovedController extends Controller
             return response()->json(['message' => 'Disbursal saved successfully.'], 200);
             // return redirect('home')->with('success', 'Disbursal Added successfully.');
         } else {
-
+     
 
 
             if ($request->applicant_type == 'BORROWER') {
@@ -497,7 +514,12 @@ class ApprovedController extends Controller
                 $id = $request->partner_name;
                 // $name = Proprietor::find($id)->select('proprietor_name');
                 $name = Proprietor::where('proprietor_id', $id)->pluck('proprietor_name')->first();
-            }
+            } 
+
+            $banknamemain = BankDetails::find($request->bankName)->first(); 
+            $bankname = $banknamemain->bank_name;
+            // dd($bankname);
+
             $disbursal_data->sanction_amount = $request->sanction_amount;
             $disbursal_data->sanction_date = $request->sanction_date;
             $disbursal_data->tenure = $request->tenure;
@@ -529,7 +551,10 @@ class ApprovedController extends Controller
             // $disbursal_data->bankvalidation = $request->bankvalidation;
             // $disbursal_data->bankdealing = $request->bankdealing;
             $disbursal_data->bankcode = $request->bankcode;
+           
+
             $disbursal_data->bankName = $request->bankName;
+            $disbursal_data->banknamemain  = $bankname;
             $disbursal_data->branch = $request->branch;
             // $disbursal_data->location = $request->location;
             $disbursal_data->save();

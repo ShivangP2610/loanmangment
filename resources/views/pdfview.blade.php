@@ -2395,7 +2395,7 @@
         </tr>
         <tr>
             <td width="50%" class="fontstyle">Bank Name</td>
-            <td width="50%" class="fontstyle"> <strong>{{ $disbursal->bankName }} </strong></td>
+            <td width="50%" class="fontstyle"> <strong>{{ $disbursal->banknamemain }} </strong></td>
         </tr>
         <tr>
             <td width="50%" class="fontstyle">Branch</td>

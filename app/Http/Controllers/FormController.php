@@ -294,7 +294,7 @@ class FormController extends Controller
     }
 
     // shivang 20-12-2024
-    public function downloadPDFfinal($id)
+    public function  downloadPDFfinal($id)
     {
         $data = [
             'title' => 'new Pdf',
@@ -317,7 +317,8 @@ class FormController extends Controller
         $data = compact('officedata', 'customer', 'Proprietors', 'CoCustomers', 'Remainingpartners', 'BankDetailes','References','creditstage','repayments','disbursal','adjustdata' ,'Proprietors1');
         $html = view('pdfview', $data)->render();
         //  dd($html);
-        $pdf = Pdf::loadHtml($html)->setOptions(['defaultFont' => 'sans-serif']);
+        $pdf = Pdf::loadHtml($html)->setOptions(['defaultFont' => 'sans-serif']); 
+        // $pdf = Pdf::loadHtml($html)->setOptions(['isRemoteEnabled' => true, 'defaultFont' => 'sans-serif']);
 
 
         return $pdf->download();
